@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Admin;
 
 /**
  * Admin Data Transfer API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation datatransfer_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.applications = {
+export class Admin extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  applications = {
     /**
      * datatransfer.applications.get
      * @desc Retrieves information about an application for the given
@@ -77,7 +82,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datatransfer.applications.list
         * @desc Lists the applications available for data transfer for a
@@ -115,11 +120,11 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.transfers = {
+  transfers = {
     /**
      * datatransfer.transfers.get
      * @desc Retrieves a data transfer request by its resource ID.
@@ -154,7 +159,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['dataTransferId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datatransfer.transfers.insert
         * @desc Inserts a data transfer request.
@@ -189,7 +194,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datatransfer.transfers.list
         * @desc Lists the transfers for a customer by source user, destination
@@ -230,7 +235,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -291,5 +296,3 @@ function Admin(options: GlobalOptions) {
  * @property {string} kind Identifies the resource as a collection of data transfer requests.
  * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
  */
-
-export = Admin;

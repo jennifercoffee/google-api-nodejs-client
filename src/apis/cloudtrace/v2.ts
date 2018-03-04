@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Cloudtrace;
 
 /**
  * Stackdriver Trace API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Cloudtrace
  */
-function Cloudtrace(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Cloudtrace extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     traces: {
       /**
        * cloudtrace.projects.traces.batchWrite
@@ -81,7 +86,7 @@ function Cloudtrace(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
       spans: {
         /**
@@ -119,7 +124,7 @@ function Cloudtrace(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -266,5 +271,3 @@ function Cloudtrace(options: GlobalOptions) {
  * @property {integer} truncatedByteCount The number of bytes removed from the original string. If this value is 0, then the string was not shortened.
  * @property {string} value The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
  */
-
-export = Cloudtrace;

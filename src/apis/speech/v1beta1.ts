@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -23,8 +24,10 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-any
 
 
+let self: Speech;
+
 /**
- * Google Cloud Speech API
+ * Cloud Speech API
  *
  * Converts audio to text by applying powerful neural network models.
  *
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Speech
  */
-function Speech(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Speech extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * speech.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -77,11 +82,11 @@ function Speech(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.speech = {
+  speech = {
     /**
      * speech.speech.asyncrecognize
      * @desc Performs asynchronous speech recognition: receive results via the
@@ -120,7 +125,7 @@ function Speech(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * speech.speech.syncrecognize
         * @desc Performs synchronous speech recognition: receive results after
@@ -156,7 +161,7 @@ function Speech(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -236,5 +241,3 @@ function Speech(options: GlobalOptions) {
  * @type object
  * @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to sequential portions of audio.
  */
-
-export = Speech;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Content;
 
 /**
  * Content API for Shopping
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2sandbox
  * @param {object=} options Options for Content
  */
-function Content(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.orders = {
+export class Content extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  orders = {
     /**
      * content.orders.acknowledge
      * @desc Marks an order as acknowledged.
@@ -81,7 +86,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.advancetestorder
         * @desc Sandbox only. Moves a test order from state "inProgress" to
@@ -120,7 +125,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancel
         * @desc Cancels all line items in an order, making a full refund.
@@ -158,7 +163,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancellineitem
         * @desc Cancels a line item, making a full refund.
@@ -197,7 +202,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.createtestorder
         * @desc Sandbox only. Creates a test order.
@@ -233,7 +238,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.custombatch
         * @desc Retrieves or modifies multiple orders in a single request.
@@ -268,7 +273,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.get
         * @desc Retrieves an order from your Merchant Center account.
@@ -304,7 +309,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.getbymerchantorderid
         * @desc Retrieves an order using merchant order id.
@@ -342,7 +347,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'merchantOrderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.gettestordertemplate
         * @desc Sandbox only. Retrieves an order template that can be used to
@@ -381,7 +386,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'templateName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.instorerefundlineitem
         * @desc Notifies that item return and refund was handled directly in
@@ -421,7 +426,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.list
         * @desc Lists the orders in your Merchant Center account.
@@ -463,7 +468,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.refund
         * @desc Refund a portion of the order, up to the full amount paid.
@@ -501,7 +506,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.rejectreturnlineitem
         * @desc Rejects return on an line item.
@@ -540,7 +545,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnlineitem
         * @desc Returns a line item.
@@ -579,7 +584,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnrefundlineitem
         * @desc Returns and refunds a line item. Note that this method can only
@@ -619,7 +624,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.setlineitemmetadata
         * @desc Sets (overrides) merchant provided annotations on the line item.
@@ -658,7 +663,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.shiplineitems
         * @desc Marks line item(s) as shipped.
@@ -697,7 +702,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatelineitemshippingdetails
         * @desc Updates ship by and delivery by dates for a line item.
@@ -736,7 +741,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatemerchantorderid
         * @desc Updates the merchant order ID for a given order.
@@ -775,7 +780,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updateshipment
         * @desc Updates a shipment's status, carrier, and/or tracking ID.
@@ -814,7 +819,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -887,7 +892,7 @@ function Content(options: GlobalOptions) {
  * @typedef OrderCustomer
  * @memberOf! content(v2sandbox)
  * @type object
- * @property {string} email Email address of the customer.
+ * @property {string} email Email address that should be used for order related communications. In certain cases this might not be a real users email, but a proxy email.
  * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
  * @property {string} fullName Full name of the customer.
  */
@@ -1548,5 +1553,3 @@ function Content(options: GlobalOptions) {
  * @property {string} predefinedBillingAddress The billing address.
  * @property {string} type The type of instrument. Note that real orders might have different values than the four values accepted by createTestOrder.
  */
-
-export = Content;

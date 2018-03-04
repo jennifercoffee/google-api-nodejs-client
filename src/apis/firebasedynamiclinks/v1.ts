@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Firebasedynamiclinks;
 
 /**
  * Firebase Dynamic Links API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Firebasedynamiclinks
  */
-function Firebasedynamiclinks(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.shortLinks = {
+export class Firebasedynamiclinks extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  shortLinks = {
     /**
      * firebasedynamiclinks.shortLinks.create
      * @desc Creates a short Dynamic Link given either a valid long Dynamic Link
@@ -81,11 +86,11 @@ function Firebasedynamiclinks(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.v1 = {
+  v1 = {
     /**
      * firebasedynamiclinks.getLinkStats
      * @desc Fetches analytics stats of a short Dynamic Link for a given
@@ -124,7 +129,7 @@ function Firebasedynamiclinks(options: GlobalOptions) {
         pathParams: ['dynamicLink'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * firebasedynamiclinks.installAttribution
         * @desc Get iOS strong/weak-match info for post-install attribution.
@@ -160,7 +165,7 @@ function Firebasedynamiclinks(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -332,5 +337,3 @@ function Firebasedynamiclinks(options: GlobalOptions) {
  * @type object
  * @property {string} option Suffix option.
  */
-
-export = Firebasedynamiclinks;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Dataflow;
 
 /**
  * Dataflow API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1b3
  * @param {object=} options Options for Dataflow
  */
-function Dataflow(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects =
+export class Dataflow extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects =
       {
         /**
          * dataflow.projects.workerMessages
@@ -78,7 +83,7 @@ function Dataflow(options: GlobalOptions) {
             pathParams: ['projectId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         },
         jobs: {
           /**
@@ -122,7 +127,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.create
               * @desc Creates a Cloud Dataflow job.
@@ -162,7 +167,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.get
               * @desc Gets the state of the specified Cloud Dataflow job.
@@ -200,7 +205,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.getMetrics
               * @desc Request the job status.
@@ -240,7 +245,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.list
               * @desc List the jobs of a project in a given region.
@@ -281,7 +286,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.jobs.update
               * @desc Updates the state of an existing Cloud Dataflow job.
@@ -320,226 +325,235 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['jobId', 'projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           },
-          debug: {
-            /**
-             * dataflow.projects.jobs.debug.getConfig
-             * @desc Get encoded debug configuration for component. Not
-             * cacheable.
-             * @alias dataflow.projects.jobs.debug.getConfig
-             * @memberOf! dataflow(v1b3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.jobId The job id.
-             * @param {string} params.projectId The project id.
-             * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            getConfig(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl =
-                  options.rootUrl || 'https://dataflow.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url:
-                          (rootUrl +
-                           '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig')
-                              .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'POST'
-                    },
-                    options),
-                params,
-                requiredParams: ['projectId', 'jobId'],
-                pathParams: ['jobId', 'projectId'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }, /**
-                * dataflow.projects.jobs.debug.sendCapture
-                * @desc Send encoded debug capture data for component.
-                * @alias dataflow.projects.jobs.debug.sendCapture
-                * @memberOf! dataflow(v1b3)
-                *
-                * @param {object} params Parameters for request
-                * @param {string} params.jobId The job id.
-                * @param {string} params.projectId The project id.
-                * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
-                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                * @param {callback} callback The callback that handles the response.
-                * @return {object} Request object
-                */
-            sendCapture(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl =
-                  options.rootUrl || 'https://dataflow.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url:
-                          (rootUrl +
-                           '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture')
-                              .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'POST'
-                    },
-                    options),
-                params,
-                requiredParams: ['projectId', 'jobId'],
-                pathParams: ['jobId', 'projectId'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }
+          debug:
+              {
+                /**
+                 * dataflow.projects.jobs.debug.getConfig
+                 * @desc Get encoded debug configuration for component. Not
+                 * cacheable.
+                 * @alias dataflow.projects.jobs.debug.getConfig
+                 * @memberOf! dataflow(v1b3)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.jobId The job id.
+                 * @param {string} params.projectId The project id.
+                 * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                getConfig(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dataflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['projectId', 'jobId'],
+                    pathParams: ['jobId', 'projectId'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * dataflow.projects.jobs.debug.sendCapture
+                    * @desc Send encoded debug capture data for component.
+                    * @alias dataflow.projects.jobs.debug.sendCapture
+                    * @memberOf! dataflow(v1b3)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.jobId The job id.
+                    * @param {string} params.projectId The project id.
+                    * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                sendCapture(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dataflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['projectId', 'jobId'],
+                    pathParams: ['jobId', 'projectId'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }
 
-          },
-          messages: {
-            /**
-             * dataflow.projects.jobs.messages.list
-             * @desc Request the job status.
-             * @alias dataflow.projects.jobs.messages.list
-             * @memberOf! dataflow(v1b3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-             * @param {string} params.jobId The job to get messages about.
-             * @param {string=} params.location The location which contains the job specified by job_id.
-             * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-             * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-             * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-             * @param {string} params.projectId A project id.
-             * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            list(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl =
-                  options.rootUrl || 'https://dataflow.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url: (rootUrl +
-                            '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
-                               .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'GET'
-                    },
-                    options),
-                params,
-                requiredParams: ['projectId', 'jobId'],
-                pathParams: ['jobId', 'projectId'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }
+              },
+          messages:
+              {
+                /**
+                 * dataflow.projects.jobs.messages.list
+                 * @desc Request the job status.
+                 * @alias dataflow.projects.jobs.messages.list
+                 * @memberOf! dataflow(v1b3)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+                 * @param {string} params.jobId The job to get messages about.
+                 * @param {string=} params.location The location which contains the job specified by job_id.
+                 * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
+                 * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+                 * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+                 * @param {string} params.projectId A project id.
+                 * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dataflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['projectId', 'jobId'],
+                    pathParams: ['jobId', 'projectId'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }
 
-          },
-          workItems: {
-            /**
-             * dataflow.projects.jobs.workItems.lease
-             * @desc Leases a dataflow WorkItem to run.
-             * @alias dataflow.projects.jobs.workItems.lease
-             * @memberOf! dataflow(v1b3)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-             * @param {string} params.projectId Identifies the project this worker belongs to.
-             * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            lease(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl =
-                  options.rootUrl || 'https://dataflow.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url:
-                          (rootUrl +
-                           '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease')
-                              .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'POST'
-                    },
-                    options),
-                params,
-                requiredParams: ['projectId', 'jobId'],
-                pathParams: ['jobId', 'projectId'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }, /**
-                * dataflow.projects.jobs.workItems.reportStatus
-                * @desc Reports the status of dataflow WorkItems leased by a
-                * worker.
-                * @alias dataflow.projects.jobs.workItems.reportStatus
-                * @memberOf! dataflow(v1b3)
-                *
-                * @param {object} params Parameters for request
-                * @param {string} params.jobId The job which the WorkItem is part of.
-                * @param {string} params.projectId The project which owns the WorkItem's job.
-                * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
-                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                * @param {callback} callback The callback that handles the response.
-                * @return {object} Request object
-                */
-            reportStatus(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl =
-                  options.rootUrl || 'https://dataflow.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url:
-                          (rootUrl +
-                           '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus')
-                              .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'POST'
-                    },
-                    options),
-                params,
-                requiredParams: ['projectId', 'jobId'],
-                pathParams: ['jobId', 'projectId'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }
+              },
+          workItems:
+              {
+                /**
+                 * dataflow.projects.jobs.workItems.lease
+                 * @desc Leases a dataflow WorkItem to run.
+                 * @alias dataflow.projects.jobs.workItems.lease
+                 * @memberOf! dataflow(v1b3)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+                 * @param {string} params.projectId Identifies the project this worker belongs to.
+                 * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                lease(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dataflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['projectId', 'jobId'],
+                    pathParams: ['jobId', 'projectId'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * dataflow.projects.jobs.workItems.reportStatus
+                    * @desc Reports the status of dataflow WorkItems leased by a
+                    * worker.
+                    * @alias dataflow.projects.jobs.workItems.reportStatus
+                    * @memberOf! dataflow(v1b3)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.jobId The job which the WorkItem is part of.
+                    * @param {string} params.projectId The project which owns the WorkItem's job.
+                    * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                reportStatus(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://dataflow.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url:
+                              (rootUrl +
+                               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus')
+                                  .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['projectId', 'jobId'],
+                    pathParams: ['jobId', 'projectId'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }
 
-          }
+              }
         },
         locations:
             {
@@ -582,7 +596,7 @@ function Dataflow(options: GlobalOptions) {
                   pathParams: ['location', 'projectId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               },
               jobs:
                   {
@@ -628,7 +642,7 @@ function Dataflow(options: GlobalOptions) {
                         pathParams: ['location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.get
                         * @desc Gets the state of the specified Cloud Dataflow
@@ -670,7 +684,7 @@ function Dataflow(options: GlobalOptions) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.getMetrics
                         * @desc Request the job status.
@@ -712,7 +726,7 @@ function Dataflow(options: GlobalOptions) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.list
                         * @desc List the jobs of a project in a given region.
@@ -756,7 +770,7 @@ function Dataflow(options: GlobalOptions) {
                         pathParams: ['location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * dataflow.projects.locations.jobs.update
                         * @desc Updates the state of an existing Cloud Dataflow
@@ -799,238 +813,250 @@ function Dataflow(options: GlobalOptions) {
                         pathParams: ['jobId', 'location', 'projectId'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     },
-                    debug: {
-                      /**
-                       * dataflow.projects.locations.jobs.debug.getConfig
-                       * @desc Get encoded debug configuration for component.
-                       * Not cacheable.
-                       * @alias dataflow.projects.locations.jobs.debug.getConfig
-                       * @memberOf! dataflow(v1b3)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.jobId The job id.
-                       * @param {string} params.location The location which contains the job specified by job_id.
-                       * @param {string} params.projectId The project id.
-                       * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      getConfig(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dataflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'location', 'jobId'],
-                          pathParams: ['jobId', 'location', 'projectId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * dataflow.projects.locations.jobs.debug.sendCapture
-                          * @desc Send encoded debug capture data for component.
-                          * @alias
-                          * dataflow.projects.locations.jobs.debug.sendCapture
-                          * @memberOf! dataflow(v1b3)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.jobId The job id.
-                          * @param {string} params.location The location which contains the job specified by job_id.
-                          * @param {string} params.projectId The project id.
-                          * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      sendCapture(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dataflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'location', 'jobId'],
-                          pathParams: ['jobId', 'location', 'projectId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
+                    debug:
+                        {
+                          /**
+                           * dataflow.projects.locations.jobs.debug.getConfig
+                           * @desc Get encoded debug configuration for
+                           * component. Not cacheable.
+                           * @alias
+                           * dataflow.projects.locations.jobs.debug.getConfig
+                           * @memberOf! dataflow(v1b3)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string} params.jobId The job id.
+                           * @param {string} params.location The location which contains the job specified by job_id.
+                           * @param {string} params.projectId The project id.
+                           * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          getConfig(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://dataflow.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['projectId', 'location', 'jobId'],
+                              pathParams: ['jobId', 'location', 'projectId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * dataflow.projects.locations.jobs.debug.sendCapture
+                              * @desc Send encoded debug capture data for
+                              * component.
+                              * @alias
+                              * dataflow.projects.locations.jobs.debug.sendCapture
+                              * @memberOf! dataflow(v1b3)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.jobId The job id.
+                              * @param {string} params.location The location which contains the job specified by job_id.
+                              * @param {string} params.projectId The project id.
+                              * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          sendCapture(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://dataflow.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['projectId', 'location', 'jobId'],
+                              pathParams: ['jobId', 'location', 'projectId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    },
-                    messages: {
-                      /**
-                       * dataflow.projects.locations.jobs.messages.list
-                       * @desc Request the job status.
-                       * @alias dataflow.projects.locations.jobs.messages.list
-                       * @memberOf! dataflow(v1b3)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
-                       * @param {string} params.jobId The job to get messages about.
-                       * @param {string} params.location The location which contains the job specified by job_id.
-                       * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-                       * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
-                       * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
-                       * @param {string} params.projectId A project id.
-                       * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      list(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dataflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'location', 'jobId'],
-                          pathParams: ['jobId', 'location', 'projectId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
+                        },
+                    messages:
+                        {
+                          /**
+                           * dataflow.projects.locations.jobs.messages.list
+                           * @desc Request the job status.
+                           * @alias
+                           * dataflow.projects.locations.jobs.messages.list
+                           * @memberOf! dataflow(v1b3)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+                           * @param {string} params.jobId The job to get messages about.
+                           * @param {string} params.location The location which contains the job specified by job_id.
+                           * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
+                           * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
+                           * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+                           * @param {string} params.projectId A project id.
+                           * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          list(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://dataflow.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['projectId', 'location', 'jobId'],
+                              pathParams: ['jobId', 'location', 'projectId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    },
-                    workItems: {
-                      /**
-                       * dataflow.projects.locations.jobs.workItems.lease
-                       * @desc Leases a dataflow WorkItem to run.
-                       * @alias dataflow.projects.locations.jobs.workItems.lease
-                       * @memberOf! dataflow(v1b3)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-                       * @param {string} params.location The location which contains the WorkItem's job.
-                       * @param {string} params.projectId Identifies the project this worker belongs to.
-                       * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      lease(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dataflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'location', 'jobId'],
-                          pathParams: ['jobId', 'location', 'projectId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * dataflow.projects.locations.jobs.workItems.reportStatus
-                          * @desc Reports the status of dataflow WorkItems
-                          * leased by a worker.
-                          * @alias
-                          * dataflow.projects.locations.jobs.workItems.reportStatus
-                          * @memberOf! dataflow(v1b3)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.jobId The job which the WorkItem is part of.
-                          * @param {string} params.location The location which contains the WorkItem's job.
-                          * @param {string} params.projectId The project which owns the WorkItem's job.
-                          * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      reportStatus(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://dataflow.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'location', 'jobId'],
-                          pathParams: ['jobId', 'location', 'projectId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
+                        },
+                    workItems:
+                        {
+                          /**
+                           * dataflow.projects.locations.jobs.workItems.lease
+                           * @desc Leases a dataflow WorkItem to run.
+                           * @alias
+                           * dataflow.projects.locations.jobs.workItems.lease
+                           * @memberOf! dataflow(v1b3)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+                           * @param {string} params.location The location which contains the WorkItem's job.
+                           * @param {string} params.projectId Identifies the project this worker belongs to.
+                           * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          lease(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://dataflow.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['projectId', 'location', 'jobId'],
+                              pathParams: ['jobId', 'location', 'projectId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * dataflow.projects.locations.jobs.workItems.reportStatus
+                              * @desc Reports the status of dataflow WorkItems
+                              * leased by a worker.
+                              * @alias
+                              * dataflow.projects.locations.jobs.workItems.reportStatus
+                              * @memberOf! dataflow(v1b3)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.jobId The job which the WorkItem is part of.
+                              * @param {string} params.location The location which contains the WorkItem's job.
+                              * @param {string} params.projectId The project which owns the WorkItem's job.
+                              * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          reportStatus(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://dataflow.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['projectId', 'location', 'jobId'],
+                              pathParams: ['jobId', 'location', 'projectId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    }
+                        }
                   },
               templates: {
                 /**
@@ -1073,7 +1099,7 @@ function Dataflow(options: GlobalOptions) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * dataflow.projects.locations.templates.get
                     * @desc Get the template associated with a template.
@@ -1114,7 +1140,7 @@ function Dataflow(options: GlobalOptions) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * dataflow.projects.locations.templates.launch
                     * @desc Launch a template.
@@ -1157,7 +1183,7 @@ function Dataflow(options: GlobalOptions) {
                     pathParams: ['location', 'projectId'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }
 
               }
@@ -1199,7 +1225,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.templates.get
               * @desc Get the template associated with a template.
@@ -1237,7 +1263,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * dataflow.projects.templates.launch
               * @desc Launch a template.
@@ -1278,7 +1304,7 @@ function Dataflow(options: GlobalOptions) {
               pathParams: ['projectId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         }
@@ -1401,6 +1427,7 @@ function Dataflow(options: GlobalOptions) {
  * @property {dataflow(v1b3).FloatingPointList} floatingPointList List of floating point numbers, for Set.
  * @property {dataflow(v1b3).FloatingPointMean} floatingPointMean Floating point mean aggregation value for Mean.
  * @property {dataflow(v1b3).SplitInt64} integer Integer value for Sum, Max, Min.
+ * @property {dataflow(v1b3).IntegerGauge} integerGauge Gauge data
  * @property {dataflow(v1b3).IntegerList} integerList List of integers, for Set.
  * @property {dataflow(v1b3).IntegerMean} integerMean Integer mean aggregation value for Mean.
  * @property {any} internal Value for internally-defined counters used by the Dataflow service.
@@ -1595,6 +1622,13 @@ function Dataflow(options: GlobalOptions) {
  * @property {boolean} onlyCountValueBytes For system-generated byte and mean byte metrics, certain instructions should only report the value size.
  * @property {string} originalName System-defined name for this output in the original workflow graph. Outputs that do not contribute to an original instruction do not set this.
  * @property {string} systemName System-defined name of this output. Unique across the workflow.
+ */
+/**
+ * @typedef IntegerGauge
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} timestamp The time at which this value was measured. Measured as msecs from epoch.
+ * @property {dataflow(v1b3).SplitInt64} value The value of the variable represented by this gauge.
  */
 /**
  * @typedef IntegerList
@@ -2407,5 +2441,3 @@ function Dataflow(options: GlobalOptions) {
  * @property {dataflow(v1b3).InstructionInput} input The input.
  * @property {dataflow(v1b3).Sink} sink The sink to write to.
  */
-
-export = Dataflow;

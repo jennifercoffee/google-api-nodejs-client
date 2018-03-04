@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Slides;
 
 /**
  * Google Slides API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Slides
  */
-function Slides(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.presentations = {
+export class Slides extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  presentations = {
     /**
      * slides.presentations.batchUpdate
      * @desc Applies one or more updates to the presentation.  Each request is
@@ -90,7 +95,7 @@ function Slides(options: GlobalOptions) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.create
         * @desc Creates a new presentation using the title given in the request.
@@ -128,7 +133,7 @@ function Slides(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * slides.presentations.get
         * @desc Gets the latest version of the specified presentation.
@@ -162,92 +167,94 @@ function Slides(options: GlobalOptions) {
         pathParams: ['presentationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    pages: {
-      /**
-       * slides.presentations.pages.get
-       * @desc Gets the latest version of the specified page in the
-       * presentation.
-       * @alias slides.presentations.pages.get
-       * @memberOf! slides(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.pageObjectId The object ID of the page to retrieve.
-       * @param {string} params.presentationId The ID of the presentation to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/presentations/{presentationId}/pages/{pageObjectId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId', 'pageObjectId'],
-          pathParams: ['pageObjectId', 'presentationId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * slides.presentations.pages.getThumbnail
-          * @desc Generates a thumbnail of the latest version of the specified
-          * page in the presentation and returns a URL to the thumbnail image.
-          * This request counts as an [expensive read request](/slides/limits)
-          * for quota purposes.
-          * @alias slides.presentations.pages.getThumbnail
-          * @memberOf! slides(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.pageObjectId The object ID of the page whose thumbnail to retrieve.
-          * @param {string} params.presentationId The ID of the presentation to retrieve.
-          * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
-          * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      getThumbnail(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['presentationId', 'pageObjectId'],
-          pathParams: ['pageObjectId', 'presentationId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    pages:
+        {
+          /**
+           * slides.presentations.pages.get
+           * @desc Gets the latest version of the specified page in the
+           * presentation.
+           * @alias slides.presentations.pages.get
+           * @memberOf! slides(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.pageObjectId The object ID of the page to retrieve.
+           * @param {string} params.presentationId The ID of the presentation to retrieve.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/v1/presentations/{presentationId}/pages/{pageObjectId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['presentationId', 'pageObjectId'],
+              pathParams: ['pageObjectId', 'presentationId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * slides.presentations.pages.getThumbnail
+              * @desc Generates a thumbnail of the latest version of the
+              * specified page in the presentation and returns a URL to the
+              * thumbnail image.  This request counts as an [expensive read
+              * request](/slides/limits) for quota purposes.
+              * @alias slides.presentations.pages.getThumbnail
+              * @memberOf! slides(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.pageObjectId The object ID of the page whose thumbnail to retrieve.
+              * @param {string} params.presentationId The ID of the presentation to retrieve.
+              * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
+              * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          getThumbnail(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['presentationId', 'pageObjectId'],
+              pathParams: ['pageObjectId', 'presentationId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -1302,7 +1309,7 @@ function Slides(options: GlobalOptions) {
  * @memberOf! slides(v1)
  * @type object
  * @property {boolean} autoPlay Whether to enable video autoplay when the page is displayed in present mode. Defaults to false.
- * @property {integer} end The time at which to end playback, measured in seconds from the beginning of the video. If set, the end time should be after the start time. If not set or if you set this to a value that exceeds the video duration, the video will be played until its end.
+ * @property {integer} end The time at which to end playback, measured in seconds from the beginning of the video. If set, the end time should be after the start time. If not set or if you set this to a value that exceeds the video&#39;s length, the video will be played until its end.
  * @property {boolean} mute Whether to mute the audio during video playback. Defaults to false.
  * @property {slides(v1).Outline} outline The outline of the video. The default outline matches the defaults for new videos created in the Slides editor.
  * @property {integer} start The time at which to start playback, measured in seconds from the beginning of the video. If set, the start time should be before the end time. If you set this to a value that exceeds the video&#39;s length in seconds, the video will be played from the last second. If not set, the video will be played from the beginning.
@@ -1326,5 +1333,3 @@ function Slides(options: GlobalOptions) {
  * @type object
  * @property {string} requiredRevisionId The revision ID of the presentation required for the write request. If specified and the `required_revision_id` doesn&#39;t exactly match the presentation&#39;s current `revision_id`, the request will not be processed and will return a 400 bad request error.
  */
-
-export = Slides;

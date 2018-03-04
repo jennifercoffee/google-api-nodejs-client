@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Webfonts;
 
 /**
  * Google Fonts Developer API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Webfonts
  */
-function Webfonts(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.webfonts = {
+export class Webfonts extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  webfonts = {
     /**
      * webfonts.webfonts.list
      * @desc Retrieves the list of fonts currently served by the Google Fonts
@@ -79,7 +84,7 @@ function Webfonts(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -104,5 +109,3 @@ function Webfonts(options: GlobalOptions) {
  * @property {webfonts(v1).Webfont[]} items The list of fonts currently served by the Google Fonts API.
  * @property {string} kind This kind represents a list of webfont objects in the webfonts service.
  */
-
-export = Webfonts;

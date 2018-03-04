@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Acceleratedmobilepageurl;
 
 /**
  * Accelerated Mobile Pages (AMP) URL API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Acceleratedmobilepageurl
  */
-function Acceleratedmobilepageurl(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.ampUrls = {
+export class Acceleratedmobilepageurl extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  ampUrls = {
     /**
      * acceleratedmobilepageurl.ampUrls.batchGet
      * @desc Returns AMP URL(s) and equivalent [AMP Cache
@@ -79,7 +84,7 @@ function Acceleratedmobilepageurl(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -114,5 +119,3 @@ function Acceleratedmobilepageurl(options: GlobalOptions) {
  * @property {acceleratedmobilepageurl(v1).AmpUrl[]} ampUrls For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once.
  * @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
  */
-
-export = Acceleratedmobilepageurl;

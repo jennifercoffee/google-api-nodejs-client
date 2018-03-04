@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Kgsearch;
 
 /**
  * Knowledge Graph Search API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Kgsearch
  */
-function Kgsearch(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.entities = {
+export class Kgsearch extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  entities = {
     /**
      * kgsearch.entities.search
      * @desc Searches Knowledge Graph for entities that match the constraints. A
@@ -84,7 +89,7 @@ function Kgsearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -97,5 +102,3 @@ function Kgsearch(options: GlobalOptions) {
  * @property {any} @type The schema type of top-level JSON-LD object, e.g. ItemList.
  * @property {any[]} itemListElement The item list of search results.
  */
-
-export = Kgsearch;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Surveys;
 
 /**
  * Surveys API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Surveys
  */
-function Surveys(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.mobileapppanels = {
+export class Surveys extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  mobileapppanels = {
     /**
      * surveys.mobileapppanels.get
      * @desc Retrieves a MobileAppPanel that is available to the authenticated
@@ -77,7 +82,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['panelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.mobileapppanels.list
         * @desc Lists the MobileAppPanels available to the authenticated user.
@@ -114,7 +119,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.mobileapppanels.update
         * @desc Updates a MobileAppPanel. Currently the only property that can
@@ -151,11 +156,11 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['panelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.results = {
+  results = {
     /**
      * surveys.results.get
      * @desc Retrieves any survey results that have been produced so far.
@@ -192,11 +197,11 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['surveyUrlId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.surveys = {
+  surveys = {
     /**
      * surveys.surveys.delete
      * @desc Removes a survey from view in all user GET requests.
@@ -209,7 +214,7 @@ function Surveys(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -231,7 +236,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['surveyUrlId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.get
         * @desc Retrieves information about the specified survey.
@@ -265,7 +270,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['surveyUrlId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.insert
         * @desc Creates a survey.
@@ -300,7 +305,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.list
         * @desc Lists the surveys owned by the authenticated user.
@@ -337,7 +342,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.start
         * @desc Begins running a survey.
@@ -373,7 +378,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.stop
         * @desc Stops a running survey.
@@ -408,7 +413,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * surveys.surveys.update
         * @desc Updates a survey. Currently the only property that can be
@@ -445,7 +450,7 @@ function Surveys(options: GlobalOptions) {
         pathParams: ['surveyUrlId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -620,5 +625,3 @@ function Surveys(options: GlobalOptions) {
  * @property {string} nextPageToken
  * @property {string} previousPageToken
  */
-
-export = Surveys;

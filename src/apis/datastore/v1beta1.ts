@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Datastore;
 
 /**
  * Google Cloud Datastore API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Datastore
  */
-function Datastore(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Datastore extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     /**
      * datastore.projects.export
      * @desc Exports a copy of all or a subset of entities from Google Cloud
@@ -85,7 +90,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.import
         * @desc Imports entities into Google Cloud Datastore. Existing entities
@@ -126,7 +131,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -215,5 +220,3 @@ function Datastore(options: GlobalOptions) {
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
-
-export = Datastore;

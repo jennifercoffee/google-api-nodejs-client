@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Sourcerepo;
 
 /**
  * Cloud Source Repositories API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Sourcerepo
  */
-function Sourcerepo(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Sourcerepo extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     repos: {
       /**
        * sourcerepo.projects.repos.create
@@ -79,7 +84,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.delete
           * @desc Deletes a repo.
@@ -92,7 +97,7 @@ function Sourcerepo(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -113,7 +118,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.get
           * @desc Returns information about a repo.
@@ -146,7 +151,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -182,7 +187,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.list
           * @desc Returns all repos belonging to a project. The sizes of the
@@ -221,7 +226,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -258,7 +263,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * sourcerepo.projects.repos.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -296,7 +301,7 @@ function Sourcerepo(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -380,5 +385,3 @@ function Sourcerepo(options: GlobalOptions) {
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
-
-export = Sourcerepo;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Storagetransfer;
 
 /**
  * Storage Transfer API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Storagetransfer
  */
-function Storagetransfer(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.googleServiceAccounts = {
+export class Storagetransfer extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  googleServiceAccounts = {
     /**
      * storagetransfer.googleServiceAccounts.get
      * @desc Returns the Google service account that is used by Storage Transfer
@@ -137,11 +142,11 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.transferJobs = {
+  transferJobs = {
     /**
      * storagetransfer.transferJobs.create
      * @desc Creates a transfer job that runs periodically.
@@ -230,7 +235,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.get
         * @desc Gets a transfer job.
@@ -320,7 +325,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['jobName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.list
         * @desc Lists transfer jobs.
@@ -421,7 +426,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferJobs.patch
         * @desc Updates a transfer job. Updating a job's transfer spec does not
@@ -518,11 +523,11 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['jobName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.transferOperations = {
+  transferOperations = {
     /**
      * storagetransfer.transferOperations.cancel
      * @desc Cancels a transfer. Use the get method to check whether the
@@ -611,7 +616,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.delete
         * @desc This method is not supported and the server returns
@@ -676,7 +681,7 @@ function Storagetransfer(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -698,7 +703,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -786,7 +791,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -899,7 +904,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.pause
         * @desc Pauses a transfer operation.
@@ -991,7 +996,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storagetransfer.transferOperations.resume
         * @desc Resumes a transfer operation that is paused.
@@ -1084,7 +1089,7 @@ function Storagetransfer(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1293,5 +1298,3 @@ function Storagetransfer(options: GlobalOptions) {
  * @property {storagetransfer(v1).TransferJob} transferJob The job to update. `transferJob` is expected to specify only three fields: `description`, `transferSpec`, and `status`.  An UpdateTransferJobRequest that specifies other fields will be rejected with an error `INVALID_ARGUMENT`. Required.
  * @property {string} updateTransferJobFieldMask The field mask of the fields in `transferJob` that are to be updated in this request.  Fields in `transferJob` that can be updated are: `description`, `transferSpec`, and `status`.  To update the `transferSpec` of the job, a complete transfer specification has to be provided. An incomplete specification which misses any required fields will be rejected with the error `INVALID_ARGUMENT`.
  */
-
-export = Storagetransfer;

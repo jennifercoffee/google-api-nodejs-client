@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Dns;
 
 /**
  * Google Cloud DNS API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta1
  * @param {object=} options Options for Dns
  */
-function Dns(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.changes = {
+export class Dns extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  changes = {
     /**
      * dns.changes.create
      * @desc Atomically update the ResourceRecordSet collection.
@@ -142,7 +147,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.changes.get
         * @desc Fetch the representation of an existing Change.
@@ -242,7 +247,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['changeId', 'managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.changes.list
         * @desc Enumerate Changes to a ResourceRecordSet collection.
@@ -354,11 +359,11 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.dnsKeys = {
+  dnsKeys = {
     /**
      * dns.dnsKeys.get
      * @desc Fetch the representation of an existing DnsKey.
@@ -458,7 +463,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.dnsKeys.list
         * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
@@ -569,11 +574,11 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.managedZoneOperations = {
+  managedZoneOperations = {
     /**
      * dns.managedZoneOperations.get
      * @desc Fetch the representation of an existing Operation.
@@ -671,7 +676,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZoneOperations.list
         * @desc Enumerate Operations for the given ManagedZone.
@@ -783,11 +788,11 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.managedZones = {
+  managedZones = {
     /**
      * dns.managedZones.create
      * @desc Create a new ManagedZone.
@@ -881,7 +886,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZones.delete
         * @desc Delete a previously created ManagedZone.
@@ -953,7 +958,7 @@ function Dns(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -977,7 +982,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZones.get
         * @desc Fetch the representation of an existing ManagedZone.
@@ -1072,7 +1077,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZones.list
         * @desc Enumerate ManagedZones that have been created but not yet
@@ -1178,7 +1183,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZones.patch
         * @desc Update an existing ManagedZone. This method supports patch
@@ -1282,7 +1287,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dns.managedZones.update
         * @desc Update an existing ManagedZone.
@@ -1385,11 +1390,11 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     /**
      * dns.projects.get
      * @desc Fetch the representation of an existing Project.
@@ -1477,11 +1482,11 @@ function Dns(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.resourceRecordSets = {
+  resourceRecordSets = {
     /**
      * dns.resourceRecordSets.list
      * @desc Enumerate ResourceRecordSets that have been created but not yet
@@ -1594,7 +1599,7 @@ function Dns(options: GlobalOptions) {
         pathParams: ['managedZone', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1671,6 +1676,7 @@ function Dns(options: GlobalOptions) {
  * @property {dns(v2beta1).ManagedZoneDnsSecConfig} dnssecConfig DNSSEC configuration.
  * @property {string} id Unique identifier for the resource; defined by the server (output only)
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZone&quot;.
+ * @property {object} labels User labels.
  * @property {string} name User assigned name for this resource. Must be unique within the project. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.
  * @property {string[]} nameServers Delegate your managed_zone to these virtual name servers; defined by the server (output only)
  * @property {string} nameServerSet Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
@@ -1692,12 +1698,6 @@ function Dns(options: GlobalOptions) {
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
  * @property {dns(v2beta1).Operation[]} operations The operation resources.
- */
-/**
- * @typedef ManagedZonesDeleteResponse
- * @memberOf! dns(v2beta1)
- * @type object
- * @property {dns(v2beta1).ResponseHeader} header
  */
 /**
  * @typedef ManagedZonesListResponse
@@ -1784,5 +1784,3 @@ function Dns(options: GlobalOptions) {
  * @type object
  * @property {string} operationId For mutating operation requests that completed successfully. This is the client_operation_id if the client specified it, otherwise it is generated by the server (output only).
  */
-
-export = Dns;

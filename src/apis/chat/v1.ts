@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -23,10 +24,12 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-any
 
 
+let self: Chat;
+
 /**
  * Hangouts Chat API
  *
- *
+ * Create bots and extend the new Hangouts Chat.
  *
  * @example
  * const google = require('googleapis');
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Chat
  */
-function Chat(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.dms = {
+export class Chat extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  dms = {
     conversations: {
       messages: {
         /**
@@ -80,7 +85,7 @@ function Chat(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -122,12 +127,12 @@ function Chat(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.rooms = {
+  rooms = {
     conversations: {
       messages: {
         /**
@@ -166,7 +171,7 @@ function Chat(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -208,12 +213,12 @@ function Chat(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.spaces = {
+  spaces = {
     /**
      * chat.spaces.get
      * @desc Returns a space.
@@ -246,7 +251,7 @@ function Chat(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * chat.spaces.list
         * @desc Lists spaces the caller is a member of.
@@ -281,226 +286,228 @@ function Chat(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    members: {
-      /**
-       * chat.spaces.members.get
-       * @desc Returns a membership.
-       * @alias chat.spaces.members.get
-       * @memberOf! chat(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * chat.spaces.members.list
-          * @desc Lists human memberships in a space.
-          * @alias chat.spaces.members.list
-          * @memberOf! chat(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
-          * @param {string=} params.pageToken A token identifying a page of results the server should return.
-          * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/members')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    members:
+        {
+          /**
+           * chat.spaces.members.get
+           * @desc Returns a membership.
+           * @alias chat.spaces.members.get
+           * @memberOf! chat(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x".  Example: spaces/AAAAMpdlehY/members/105115627578887013105
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * chat.spaces.members.list
+              * @desc Lists human memberships in a space.
+              * @alias chat.spaces.members.list
+              * @memberOf! chat(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
+              * @param {string=} params.pageToken A token identifying a page of results the server should return.
+              * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/members')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    messages: {
-      /**
-       * chat.spaces.messages.create
-       * @desc Creates a message.
-       * @alias chat.spaces.messages.create
-       * @memberOf! chat(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-       * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-       * @param {chat(v1).Message} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * chat.spaces.messages.delete
-          * @desc Deletes a message.
-          * @alias chat.spaces.messages.delete
-          * @memberOf! chat(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * chat.spaces.messages.get
-          * @desc Returns a message.
-          * @alias chat.spaces.messages.get
-          * @memberOf! chat(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * chat.spaces.messages.update
-          * @desc Updates a message.
-          * @alias chat.spaces.messages.update
-          * @memberOf! chat(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-          * @param {string=} params.updateMask Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
-          * @param {chat(v1).Message} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    messages:
+        {
+          /**
+           * chat.spaces.messages.create
+           * @desc Creates a message.
+           * @alias chat.spaces.messages.create
+           * @memberOf! chat(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+           * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
+           * @param {chat(v1).Message} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/messages')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * chat.spaces.messages.delete
+              * @desc Deletes a message.
+              * @alias chat.spaces.messages.delete
+              * @memberOf! chat(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x"  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * chat.spaces.messages.get
+              * @desc Returns a message.
+              * @alias chat.spaces.messages.get
+              * @memberOf! chat(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * chat.spaces.messages.update
+              * @desc Updates a message.
+              * @alias chat.spaces.messages.update
+              * @memberOf! chat(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+              * @param {string=} params.updateMask Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
+              * @param {chat(v1).Message} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -710,5 +717,3 @@ function Chat(options: GlobalOptions) {
  * @property {chat(v1).KeyValue} keyValue Display a key value item in this widget.
  * @property {chat(v1).TextParagraph} textParagraph Display a text paragraph in this widget.
  */
-
-export = Chat;

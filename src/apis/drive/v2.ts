@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Drive;
 
 /**
  * Drive API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Drive
  */
-function Drive(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.about = {
+export class Drive extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  about = {
     /**
      * drive.about.get
      * @desc Gets the information about the current user along with Drive API
@@ -78,11 +83,11 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.apps = {
+  apps = {
     /**
      * drive.apps.get
      * @desc Gets a specific app.
@@ -116,7 +121,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['appId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.apps.list
         * @desc Lists a user's installed apps.
@@ -152,11 +157,11 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.changes = {
+  changes = {
     /**
      * drive.changes.get
      * @desc Deprecated - Use changes.getStartPageToken and changes.list to
@@ -193,7 +198,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['changeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.changes.getStartPageToken
         * @desc Gets the starting pageToken for listing future changes.
@@ -229,7 +234,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.changes.list
         * @desc Lists the changes for a user or Team Drive.
@@ -273,7 +278,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.changes.watch
         * @desc Subscribe to changes for a user.
@@ -318,11 +323,11 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * drive.channels.stop
      * @desc Stop watching resources through this channel
@@ -357,11 +362,11 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.children = {
+  children = {
     /**
      * drive.children.delete
      * @desc Removes a child from a folder.
@@ -375,7 +380,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -397,7 +402,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['childId', 'folderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.children.get
         * @desc Gets a specific child reference.
@@ -432,7 +437,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['childId', 'folderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.children.insert
         * @desc Inserts a file into a folder.
@@ -469,7 +474,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['folderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.children.list
         * @desc Lists a folder's children.
@@ -508,11 +513,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['folderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * drive.comments.delete
      * @desc Deletes a comment.
@@ -526,7 +531,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -548,7 +553,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.get
         * @desc Gets a comment by ID.
@@ -584,7 +589,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.insert
         * @desc Creates a new comment on the given file.
@@ -620,7 +625,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.list
         * @desc Lists a file's comments.
@@ -659,7 +664,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.patch
         * @desc Updates an existing comment. This method supports patch
@@ -697,7 +702,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.comments.update
         * @desc Updates an existing comment.
@@ -734,11 +739,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.files = {
+  files = {
     /**
      * drive.files.copy
      * @desc Creates a copy of the specified file.
@@ -782,7 +787,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.delete
         * @desc Permanently deletes a file by ID. Skips the trash. The currently
@@ -798,7 +803,7 @@ function Drive(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -820,7 +825,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.emptyTrash
         * @desc Permanently deletes all of the user's trashed files.
@@ -854,7 +859,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.export
         * @desc Exports a Google Doc to the requested MIME type and returns the
@@ -892,7 +897,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.generateIds
         * @desc Generates a set of file IDs which can be provided in insert
@@ -929,7 +934,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.get
         * @desc Gets a file's metadata by ID.
@@ -968,7 +973,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.insert
         * @desc Insert a new file.
@@ -1016,7 +1021,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.list
         * @desc Lists the user's files.
@@ -1060,7 +1065,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.patch
         * @desc Updates file metadata and/or content. This method supports patch
@@ -1111,7 +1116,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.touch
         * @desc Set the file's updated time to the current server time.
@@ -1147,7 +1152,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.trash
         * @desc Moves a file to the trash. The currently authenticated user must
@@ -1184,7 +1189,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.untrash
         * @desc Restores a file from the trash.
@@ -1220,7 +1225,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.update
         * @desc Updates file metadata and/or content.
@@ -1275,7 +1280,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.files.watch
         * @desc Subscribe to changes on a file
@@ -1316,11 +1321,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.parents = {
+  parents = {
     /**
      * drive.parents.delete
      * @desc Removes a parent from a file.
@@ -1334,7 +1339,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1356,7 +1361,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'parentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.parents.get
         * @desc Gets a specific parent reference.
@@ -1391,7 +1396,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'parentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.parents.insert
         * @desc Adds a parent folder for a file.
@@ -1428,7 +1433,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.parents.list
         * @desc Lists a file's parents.
@@ -1463,11 +1468,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.permissions = {
+  permissions = {
     /**
      * drive.permissions.delete
      * @desc Deletes a permission from a file or Team Drive.
@@ -1483,7 +1488,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1506,7 +1511,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.get
         * @desc Gets a permission by ID.
@@ -1544,7 +1549,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.getIdForEmail
         * @desc Returns the permission ID for an email address.
@@ -1579,7 +1584,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['email'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.insert
         * @desc Inserts a permission for a file or Team Drive.
@@ -1619,7 +1624,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.list
         * @desc Lists a file's or Team Drive's permissions.
@@ -1658,7 +1663,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.patch
         * @desc Updates a permission using patch semantics.
@@ -1700,7 +1705,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.permissions.update
         * @desc Updates a permission.
@@ -1742,11 +1747,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.properties = {
+  properties = {
     /**
      * drive.properties.delete
      * @desc Deletes a property.
@@ -1761,7 +1766,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1784,7 +1789,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'propertyKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.properties.get
         * @desc Gets a property by its key.
@@ -1821,7 +1826,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'propertyKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.properties.insert
         * @desc Adds a property to a file, or updates it if it already exists.
@@ -1857,7 +1862,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.properties.list
         * @desc Lists a file's properties.
@@ -1892,7 +1897,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.properties.patch
         * @desc Updates a property, or adds it if it doesn't exist. This method
@@ -1932,7 +1937,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'propertyKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.properties.update
         * @desc Updates a property, or adds it if it doesn't exist.
@@ -1971,11 +1976,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'propertyKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.realtime = {
+  realtime = {
     /**
      * drive.realtime.get
      * @desc Exports the contents of the Realtime API data model associated with
@@ -2011,7 +2016,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.realtime.update
         * @desc Overwrites the Realtime API data model associated with this file
@@ -2053,11 +2058,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.replies = {
+  replies = {
     /**
      * drive.replies.delete
      * @desc Deletes a reply.
@@ -2072,7 +2077,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2096,7 +2101,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.get
         * @desc Gets a reply.
@@ -2135,7 +2140,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.insert
         * @desc Creates a new reply to the given comment.
@@ -2173,7 +2178,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.list
         * @desc Lists all of the replies to a comment.
@@ -2213,7 +2218,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.patch
         * @desc Updates an existing reply. This method supports patch semantics.
@@ -2253,7 +2258,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.replies.update
         * @desc Updates an existing reply.
@@ -2293,11 +2298,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['commentId', 'fileId', 'replyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.revisions = {
+  revisions = {
     /**
      * drive.revisions.delete
      * @desc Removes a revision.
@@ -2311,7 +2316,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2333,7 +2338,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.get
         * @desc Gets a specific revision.
@@ -2368,7 +2373,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.list
         * @desc Lists a file's revisions.
@@ -2405,7 +2410,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.patch
         * @desc Updates a revision. This method supports patch semantics.
@@ -2442,7 +2447,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.revisions.update
         * @desc Updates a revision.
@@ -2479,11 +2484,11 @@ function Drive(options: GlobalOptions) {
         pathParams: ['fileId', 'revisionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.teamdrives = {
+  teamdrives = {
     /**
      * drive.teamdrives.delete
      * @desc Permanently deletes a Team Drive for which the user is an
@@ -2497,7 +2502,7 @@ function Drive(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2519,7 +2524,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.get
         * @desc Gets a Team Drive's metadata by ID.
@@ -2554,7 +2559,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.insert
         * @desc Creates a new Team Drive.
@@ -2590,7 +2595,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.list
         * @desc Lists the user's Team Drives.
@@ -2628,7 +2633,7 @@ function Drive(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * drive.teamdrives.update
         * @desc Updates a Team Drive's metadata
@@ -2664,7 +2669,7 @@ function Drive(options: GlobalOptions) {
         pathParams: ['teamDriveId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3098,5 +3103,3 @@ function Drive(options: GlobalOptions) {
  * @property {string} permissionId The user&#39;s ID as visible in the permissions collection.
  * @property {object} picture The user&#39;s profile picture.
  */
-
-export = Drive;

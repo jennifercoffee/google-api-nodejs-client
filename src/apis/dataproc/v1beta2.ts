@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Dataproc;
 
 /**
  * Google Cloud Dataproc API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Dataproc
  */
-function Dataproc(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Dataproc extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     locations: {
       workflowTemplates: {
         /**
@@ -65,8 +70,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -80,7 +84,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.delete
             * @desc Deletes a workflow template. It does not cancel in-progress
@@ -95,7 +99,7 @@ function Dataproc(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -103,8 +107,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -118,7 +121,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.get
             * @desc Retrieves the latest workflow template.Can retrieve
@@ -141,8 +144,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -156,7 +158,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.getIamPolicy
             * @desc Gets the access control policy for a resource. Returns an
@@ -179,8 +181,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -194,7 +195,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.instantiate
             * @desc Instantiates a template and begins execution.The returned
@@ -223,8 +224,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -238,7 +238,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.instantiateInline
             * @desc Instantiates a template and begins execution.This method is
@@ -271,8 +271,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -287,7 +286,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.list
             * @desc Lists workflows that match the specified filter in the
@@ -311,8 +310,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -326,7 +324,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.setIamPolicy
             * @desc Sets the access control policy on the specified resource.
@@ -349,8 +347,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -364,7 +361,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -392,8 +389,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -407,7 +403,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.locations.workflowTemplates.update
             * @desc Updates (replaces) workflow template. The updated template
@@ -430,8 +426,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -445,7 +440,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -475,8 +470,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -492,7 +486,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.delete
             * @desc Deletes a cluster in a project.
@@ -509,7 +503,7 @@ function Dataproc(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -517,8 +511,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -534,7 +527,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.diagnose
             * @desc Gets cluster diagnostic information. After the operation
@@ -560,8 +553,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -577,7 +569,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.get
             * @desc Gets the resource representation for a cluster in a project.
@@ -599,8 +591,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -616,7 +607,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.getIamPolicy
             * @desc Gets the access control policy for a resource. Returns an
@@ -639,8 +630,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -654,7 +644,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.list
             * @desc Lists all regions/{region}/clusters in a project.
@@ -679,8 +669,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -696,7 +685,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.patch
             * @desc Updates a cluster in a project.
@@ -723,8 +712,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -740,7 +728,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['clusterName', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.setIamPolicy
             * @desc Sets the access control policy on the specified resource.
@@ -763,8 +751,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -778,7 +765,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.clusters.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -805,8 +792,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -820,7 +806,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       },
@@ -850,8 +836,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -867,7 +852,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.delete
             * @desc Deletes the job from the project. If the job is active, the
@@ -883,7 +868,7 @@ function Dataproc(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -891,8 +876,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -908,7 +892,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.get
             * @desc Gets the resource representation for a job in a project.
@@ -930,8 +914,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -947,7 +930,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.getIamPolicy
             * @desc Gets the access control policy for a resource. Returns an
@@ -970,8 +953,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -985,7 +967,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.list
             * @desc Lists regions/{region}/jobs in a project.
@@ -1012,8 +994,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1028,7 +1009,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.patch
             * @desc Updates a job in a project.
@@ -1053,8 +1034,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1070,7 +1050,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['jobId', 'projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.setIamPolicy
             * @desc Sets the access control policy on the specified resource.
@@ -1093,8 +1073,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1108,7 +1087,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.submit
             * @desc Submits a job to a cluster.
@@ -1131,8 +1110,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1148,7 +1126,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['projectId', 'region'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.jobs.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -1175,8 +1153,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1190,7 +1167,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       },
@@ -1224,8 +1201,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1239,7 +1215,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.delete
             * @desc Deletes a long-running operation. This method indicates that
@@ -1255,7 +1231,7 @@ function Dataproc(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -1263,8 +1239,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1278,7 +1253,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.get
             * @desc Gets the latest state of a long-running operation. Clients
@@ -1300,8 +1275,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1315,7 +1289,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.getIamPolicy
             * @desc Gets the access control policy for a resource. Returns an
@@ -1338,8 +1312,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1353,7 +1326,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.list
             * @desc Lists operations that match the specified filter in the
@@ -1386,8 +1359,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1401,7 +1373,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.setIamPolicy
             * @desc Sets the access control policy on the specified resource.
@@ -1424,8 +1396,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1439,7 +1410,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * dataproc.projects.regions.operations.testIamPermissions
             * @desc Returns permissions that a caller has on the specified
@@ -1466,8 +1437,7 @@ function Dataproc(options: GlobalOptions) {
             options = {};
           }
           options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://content-dataproc.googleapis.com/';
+          const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
           const parameters = {
             options: Object.assign(
                 {
@@ -1481,7 +1451,7 @@ function Dataproc(options: GlobalOptions) {
             pathParams: ['resource'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       },
@@ -1509,7 +1479,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1523,7 +1493,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.delete
                 * @desc Deletes a workflow template. It does not cancel
@@ -1538,7 +1508,7 @@ function Dataproc(options: GlobalOptions) {
                 * @param {callback} callback The callback that handles the response.
                 * @return {object} Request object
                 */
-            delete (
+            delete(
                 params: any, options: MethodOptions|BodyResponseCallback<any>,
                 callback?: BodyResponseCallback<any>) {
               if (typeof options === 'function') {
@@ -1547,7 +1517,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1561,7 +1531,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.get
                 * @desc Retrieves the latest workflow template.Can retrieve
@@ -1585,7 +1555,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1599,7 +1569,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.getIamPolicy
                 * @desc Gets the access control policy for a resource. Returns
@@ -1624,7 +1594,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1638,7 +1608,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['resource'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.instantiate
                 * @desc Instantiates a template and begins execution.The
@@ -1668,7 +1638,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1682,7 +1652,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.instantiateInline
                 * @desc Instantiates a template and begins execution.This method
@@ -1717,7 +1687,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1733,7 +1703,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.list
                 * @desc Lists workflows that match the specified filter in the
@@ -1758,7 +1728,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1772,7 +1742,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.setIamPolicy
                 * @desc Sets the access control policy on the specified
@@ -1797,7 +1767,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1811,7 +1781,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['resource'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.testIamPermissions
                 * @desc Returns permissions that a caller has on the specified
@@ -1840,7 +1810,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1854,7 +1824,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['resource'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * dataproc.projects.regions.workflowTemplates.update
                 * @desc Updates (replaces) workflow template. The updated
@@ -1879,7 +1849,7 @@ function Dataproc(options: GlobalOptions) {
               }
               options = options || {};
               const rootUrl =
-                  options.rootUrl || 'https://content-dataproc.googleapis.com/';
+                  options.rootUrl || 'https://dataproc.googleapis.com/';
               const parameters = {
                 options: Object.assign(
                     {
@@ -1893,7 +1863,7 @@ function Dataproc(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }
 
           }
@@ -2175,9 +2145,9 @@ function Dataproc(options: GlobalOptions) {
  * @typedef ManagedCluster
  * @memberOf! dataproc(v1beta2)
  * @type object
- * @property {string} clusterName Required. The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
+ * @property {string} clusterName Required. The cluster name prefix. A unique cluster name will be formed by appending a random suffix.The name must contain only lower-case letters (a-z), numbers (0-9), and hyphens (-). Must begin with a letter. Cannot begin or end with hyphen. Must consist of between 2 and 35 characters.
  * @property {dataproc(v1beta2).ClusterConfig} config Required. The cluster configuration.
- * @property {object} labels Optional. The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given cluster.
+ * @property {object} labels Optional. The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a given cluster.
  */
 /**
  * @typedef ManagedGroupConfig
@@ -2209,14 +2179,14 @@ function Dataproc(options: GlobalOptions) {
  * @type object
  * @property {dataproc(v1beta2).HadoopJob} hadoopJob Job is a Hadoop job.
  * @property {dataproc(v1beta2).HiveJob} hiveJob Job is a Hive job.
- * @property {object} labels Optional. The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 64 labels can be associated with a given job.
+ * @property {object} labels Optional. The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a given job.
  * @property {dataproc(v1beta2).PigJob} pigJob Job is a Pig job.
  * @property {string[]} prerequisiteStepIds Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
  * @property {dataproc(v1beta2).PySparkJob} pysparkJob Job is a Pyspark job.
  * @property {dataproc(v1beta2).JobScheduling} scheduling Optional. Job scheduling configuration.
  * @property {dataproc(v1beta2).SparkJob} sparkJob Job is a Spark job.
  * @property {dataproc(v1beta2).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
- * @property {string} stepId Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job workflow-step-id label, and in prerequisite_step_ids field from other steps.
+ * @property {string} stepId Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
  */
 /**
  * @typedef PigJob
@@ -2354,7 +2324,7 @@ function Dataproc(options: GlobalOptions) {
  * @memberOf! dataproc(v1beta2)
  * @type object
  * @property {string} createTime Output only. The time template was created.
- * @property {string} id Required. The template id.
+ * @property {string} id Required. The template id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
  * @property {dataproc(v1beta2).OrderedJob[]} jobs Required. The Directed Acyclic Graph of Jobs to submit.
  * @property {object} labels Optional. The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance.Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels can be associated with a template.
  * @property {string} name Output only. The &quot;resource name&quot; of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
@@ -2378,5 +2348,3 @@ function Dataproc(options: GlobalOptions) {
  * @property {string} state Required. The application state.
  * @property {string} trackingUrl Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
  */
-
-export = Dataproc;

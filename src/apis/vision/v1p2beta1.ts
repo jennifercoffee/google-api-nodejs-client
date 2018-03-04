@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Vision;
 
 /**
  * Google Cloud Vision API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1p2beta1
  * @param {object=} options Options for Vision
  */
-function Vision(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.files = {
+export class Vision extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  files = {
     /**
      * vision.files.asyncBatchAnnotate
      * @desc Run async image detection and annotation for a list of generic
@@ -83,11 +88,11 @@ function Vision(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.images = {
+  images = {
     /**
      * vision.images.annotate
      * @desc Run image detection and annotation for a batch of images.
@@ -122,7 +127,7 @@ function Vision(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -554,5 +559,3 @@ function Vision(options: GlobalOptions) {
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
-
-export = Vision;

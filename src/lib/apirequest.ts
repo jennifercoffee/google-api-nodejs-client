@@ -20,6 +20,7 @@ import * as uuid from 'uuid';
 
 import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
+import { GoogleApis } from '..';
 
 const maxContentLength = Math.pow(2, 31);
 
@@ -252,5 +253,14 @@ class ProgressStream extends stream.Transform {
     this.emit('progress', this.bytesRead);
     this.push(chunk);
     callback();
+  }
+}
+
+export class BaseAPI {
+  protected _options: GlobalOptions;
+  google: GoogleApis;
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    this.google = google;
+    this._options = options || {};
   }
 }

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Customsearch;
 
 /**
  * CustomSearch API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Customsearch
  */
-function Customsearch(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.cse = {
+export class Customsearch extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  cse = {
     /**
      * search.cse.list
      * @desc Returns metadata about the search performed, metadata about the
@@ -106,7 +111,7 @@ function Customsearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     siterestrict: {
       /**
@@ -175,7 +180,7 @@ function Customsearch(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -273,5 +278,3 @@ function Customsearch(options: GlobalOptions) {
  * @property {object} spelling
  * @property {object} url
  */
-
-export = Customsearch;

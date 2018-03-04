@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Analyticsreporting;
 
 /**
  * Google Analytics Reporting API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Analyticsreporting
  */
-function Analyticsreporting(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.reports = {
+export class Analyticsreporting extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  reports = {
     /**
      * analyticsreporting.reports.batchGet
      * @desc Returns the Analytics data.
@@ -77,7 +82,7 @@ function Analyticsreporting(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -376,5 +381,3 @@ function Analyticsreporting(options: GlobalOptions) {
  * @type object
  * @property {analyticsreporting(v4).OrFiltersForSegment[]} orFiltersForSegment A list of segment filters groups which are combined with logical `AND` operator.
  */
-
-export = Analyticsreporting;

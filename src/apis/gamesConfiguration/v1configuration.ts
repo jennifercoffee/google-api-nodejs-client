@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Gamesconfiguration;
 
 /**
  * Google Play Game Services Publishing API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1configuration
  * @param {object=} options Options for Gamesconfiguration
  */
-function Gamesconfiguration(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.achievementConfigurations = {
+export class Gamesconfiguration extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  achievementConfigurations = {
     /**
      * gamesConfiguration.achievementConfigurations.delete
      * @desc Delete the achievement configuration with the given ID.
@@ -54,7 +59,7 @@ function Gamesconfiguration(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -77,7 +82,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.get
         * @desc Retrieves the metadata of the achievement configuration with the
@@ -113,7 +118,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.insert
         * @desc Insert a new achievement configuration in this application.
@@ -151,7 +156,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.list
         * @desc Returns a list of the achievement configurations in this
@@ -191,7 +196,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.patch
         * @desc Update the metadata of the achievement configuration with the
@@ -229,7 +234,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.achievementConfigurations.update
         * @desc Update the metadata of the achievement configuration with the
@@ -267,11 +272,11 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.imageConfigurations = {
+  imageConfigurations = {
     /**
      * gamesConfiguration.imageConfigurations.upload
      * @desc Uploads an image for a resource with the given ID and image type.
@@ -316,11 +321,11 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['imageType', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.leaderboardConfigurations = {
+  leaderboardConfigurations = {
     /**
      * gamesConfiguration.leaderboardConfigurations.delete
      * @desc Delete the leaderboard configuration with the given ID.
@@ -333,7 +338,7 @@ function Gamesconfiguration(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -356,7 +361,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.get
         * @desc Retrieves the metadata of the leaderboard configuration with the
@@ -392,7 +397,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.insert
         * @desc Insert a new leaderboard configuration in this application.
@@ -430,7 +435,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.list
         * @desc Returns a list of the leaderboard configurations in this
@@ -470,7 +475,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.patch
         * @desc Update the metadata of the leaderboard configuration with the
@@ -508,7 +513,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesConfiguration.leaderboardConfigurations.update
         * @desc Update the metadata of the leaderboard configuration with the
@@ -546,7 +551,7 @@ function Gamesconfiguration(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -658,5 +663,3 @@ function Gamesconfiguration(options: GlobalOptions) {
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
  * @property {gamesConfiguration(v1configuration).LocalizedString[]} translations The locale strings.
  */
-
-export = Gamesconfiguration;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Plusdomains;
 
 /**
  * Google+ Domains API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Plusdomains
  */
-function Plusdomains(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.activities = {
+export class Plusdomains extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  activities = {
     /**
      * plusDomains.activities.get
      * @desc Get an activity.
@@ -75,7 +80,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.activities.insert
         * @desc Create a new activity for the authenticated user.
@@ -112,7 +117,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.activities.list
         * @desc List all of the activities in the specified collection for a
@@ -152,11 +157,11 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.audiences = {
+  audiences = {
     /**
      * plusDomains.audiences.list
      * @desc List all of the audiences to which a user can share.
@@ -193,11 +198,11 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.circles = {
+  circles = {
     /**
      * plusDomains.circles.addPeople
      * @desc Add a person to a circle. Google+ limits certain circle operations,
@@ -235,7 +240,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.get
         * @desc Get a circle.
@@ -269,7 +274,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.insert
         * @desc Create a new circle for the authenticated user.
@@ -305,7 +310,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.list
         * @desc List all of the circles for a user.
@@ -342,7 +347,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.patch
         * @desc Update a circle's description. This method supports patch
@@ -379,7 +384,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.remove
         * @desc Delete a circle.
@@ -414,7 +419,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.removePeople
         * @desc Remove a person from a circle.
@@ -451,7 +456,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.circles.update
         * @desc Update a circle's description.
@@ -487,11 +492,11 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * plusDomains.comments.get
      * @desc Get a comment.
@@ -525,7 +530,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['commentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.comments.insert
         * @desc Create a new comment in reply to an activity.
@@ -562,7 +567,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.comments.list
         * @desc List all of the comments for an activity.
@@ -601,11 +606,11 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.media = {
+  media = {
     /**
      * plusDomains.media.insert
      * @desc Add a new media item to an album. The current upload size
@@ -652,11 +657,11 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.people = {
+  people = {
     /**
      * plusDomains.people.get
      * @desc Get a person's profile.
@@ -690,7 +695,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.list
         * @desc List all of the people in the specified collection.
@@ -730,7 +735,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.listByActivity
         * @desc List all of the people in the specified collection for a
@@ -771,7 +776,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['activityId', 'collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plusDomains.people.listByCircle
         * @desc List all of the people who are members of a circle.
@@ -808,7 +813,7 @@ function Plusdomains(options: GlobalOptions) {
         pathParams: ['circleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1030,5 +1035,3 @@ function Plusdomains(options: GlobalOptions) {
  * @property {string} url URL of the video stream.
  * @property {integer} width The width, in pixels, of the video resource.
  */
-
-export = Plusdomains;

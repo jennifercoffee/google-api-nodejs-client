@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Admin;
 
 /**
  * Admin Reports API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation reports_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.activities = {
+export class Admin extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  activities = {
     /**
      * reports.activities.list
      * @desc Retrieves a list of activities for a specific customer and
@@ -89,7 +94,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reports.activities.watch
         * @desc Push changes to activities
@@ -136,11 +141,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['applicationName', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * admin.channels.stop
      * @desc Stop watching resources through this channel
@@ -176,11 +181,11 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.customerUsageReports = {
+  customerUsageReports = {
     /**
      * reports.customerUsageReports.get
      * @desc Retrieves a report which is a collection of properties / statistics
@@ -218,11 +223,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['date'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.entityUsageReports = {
+  entityUsageReports = {
     /**
      * reports.entityUsageReports.get
      * @desc Retrieves a report which is a collection of properties / statistics
@@ -266,11 +271,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['date', 'entityKey', 'entityType'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.userUsageReport = {
+  userUsageReport = {
     /**
      * reports.userUsageReport.get
      * @desc Retrieves a report which is a collection of properties / statistics
@@ -312,7 +317,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['date', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -373,5 +378,3 @@ function Admin(options: GlobalOptions) {
  * @property {admin(reports_v1).UsageReport[]} usageReports Various application parameter records.
  * @property {object[]} warnings Warnings if any.
  */
-
-export = Admin;

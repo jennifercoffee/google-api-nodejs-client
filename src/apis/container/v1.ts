@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Container;
 
 /**
  * Google Kubernetes Engine API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Container
  */
-function Container(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Container extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     zones:
         {
           /**
@@ -140,7 +145,7 @@ function Container(options: GlobalOptions) {
               pathParams: ['projectId', 'zone'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           },
           clusters:
               {
@@ -254,7 +259,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.completeIpRotation
                     * @desc Completes master IP rotation.
@@ -368,7 +373,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.create
                     * @desc Creates a cluster, consisting of the specified
@@ -485,7 +490,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.delete
                     * @desc Deletes the cluster, including the Kubernetes
@@ -573,7 +578,7 @@ function Container(options: GlobalOptions) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (
+                delete(
                     params: any,
                     options: MethodOptions|BodyResponseCallback<any>,
                     callback?: BodyResponseCallback<any>) {
@@ -599,7 +604,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.get
                     * @desc Gets the details of a specific cluster.
@@ -706,7 +711,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.legacyAbac
                     * @desc Enables or disables the ABAC authorization mechanism
@@ -820,7 +825,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.list
                     * @desc Lists all clusters owned by a project in either the
@@ -924,7 +929,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.locations
                     * @desc Sets the locations of a specific cluster.
@@ -1037,7 +1042,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.logging
                     * @desc Sets the logging service of a specific cluster.
@@ -1150,7 +1155,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.master
                     * @desc Updates the master of a specific cluster.
@@ -1263,7 +1268,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.monitoring
                     * @desc Sets the monitoring service of a specific cluster.
@@ -1376,7 +1381,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.resourceLabels
                     * @desc Sets labels on a cluster.
@@ -1489,7 +1494,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.setMaintenancePolicy
                     * @desc Sets the maintenance policy for a cluster.
@@ -1603,7 +1608,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.setMasterAuth
                     * @desc Used to set master auth materials. Currently
@@ -1719,7 +1724,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.setNetworkPolicy
                     * @desc Enables/Disables Network Policy for a cluster.
@@ -1832,7 +1837,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.startIpRotation
                     * @desc Start master IP rotation.
@@ -1945,7 +1950,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.zones.clusters.update
                     * @desc Updates the settings of a specific cluster.
@@ -2060,7 +2065,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['clusterId', 'projectId', 'zone'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 },
                 nodePools:
                     {
@@ -2189,7 +2194,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.create
                           * @desc Creates a node pool for a cluster.
@@ -2309,7 +2314,7 @@ function Container(options: GlobalOptions) {
                           pathParams: ['clusterId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.delete
                           * @desc Deletes a node pool from a cluster.
@@ -2402,7 +2407,7 @@ function Container(options: GlobalOptions) {
                           * @param {callback} callback The callback that handles the response.
                           * @return {object} Request object
                           */
-                      delete (
+                      delete(
                           params: any,
                           options: MethodOptions|BodyResponseCallback<any>,
                           callback?: BodyResponseCallback<any>) {
@@ -2430,7 +2435,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.get
                           * @desc Retrieves the node pool requested.
@@ -2550,7 +2555,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.list
                           * @desc Lists the node pools for a cluster.
@@ -2664,7 +2669,7 @@ function Container(options: GlobalOptions) {
                           pathParams: ['clusterId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.rollback
                           * @desc Roll back the previously Aborted or Failed
@@ -2793,7 +2798,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.setManagement
                           * @desc Sets the NodeManagement options for a node
@@ -2921,7 +2926,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.setSize
                           * @desc Sets the size of a specific node pool.
@@ -3048,7 +3053,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }, /**
                           * container.projects.zones.clusters.nodePools.update
                           * @desc Updates the version and/or image type of a
@@ -3176,7 +3181,7 @@ function Container(options: GlobalOptions) {
                               ['clusterId', 'nodePoolId', 'projectId', 'zone'],
                           context: self
                         };
-                        return createAPIRequest(parameters, callback!);
+                        createAPIRequest(parameters, callback!);
                       }
 
                     }
@@ -3285,7 +3290,7 @@ function Container(options: GlobalOptions) {
                 pathParams: ['operationId', 'projectId', 'zone'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * container.projects.zones.operations.get
                 * @desc Gets the specified operation.
@@ -3389,7 +3394,7 @@ function Container(options: GlobalOptions) {
                 pathParams: ['operationId', 'projectId', 'zone'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * container.projects.zones.operations.list
                 * @desc Lists all operations in a project in a specific zone or
@@ -3488,7 +3493,7 @@ function Container(options: GlobalOptions) {
                 pathParams: ['projectId', 'zone'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }
 
           }
@@ -3898,5 +3903,3 @@ function Container(options: GlobalOptions) {
  * @property {string} imageType The desired image type for the node pool.
  * @property {string} nodeVersion The Kubernetes version to change the nodes to (typically an upgrade). Use `-` to upgrade to the latest version supported by the server.
  */
-
-export = Container;

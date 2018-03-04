@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -23,10 +24,12 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-any
 
 
+let self: Dlp;
+
 /**
- * DLP API
+ * Cloud Data Loss Prevention (DLP) API
  *
- * The Google Data Loss Prevention API provides methods for detection of
+ * Provides methods for detection, risk analysis, and de-identification of
  * privacy-sensitive fragments in text, images, and Google Cloud Platform
  * storage repositories.
  *
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta2
  * @param {object=} options Options for Dlp
  */
-function Dlp(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.infoTypes = {
+export class Dlp extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  infoTypes = {
     /**
      * dlp.infoTypes.list
      * @desc Returns sensitive information types DLP supports.
@@ -79,11 +84,11 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.organizations = {
+  organizations = {
     deidentifyTemplates: {
       /**
        * dlp.organizations.deidentifyTemplates.create
@@ -121,7 +126,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.deidentifyTemplates.delete
           * @desc Deletes inspect templates.
@@ -134,7 +139,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -156,7 +161,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.deidentifyTemplates.get
           * @desc Gets an inspect template.
@@ -190,7 +195,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.deidentifyTemplates.list
           * @desc Lists inspect templates.
@@ -227,7 +232,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.deidentifyTemplates.patch
           * @desc Updates the inspect template.
@@ -263,7 +268,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -304,7 +309,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.inspectTemplates.delete
           * @desc Deletes inspect templates.
@@ -317,7 +322,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -339,7 +344,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.inspectTemplates.get
           * @desc Gets an inspect template.
@@ -373,7 +378,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.inspectTemplates.list
           * @desc Lists inspect templates.
@@ -410,7 +415,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.organizations.inspectTemplates.patch
           * @desc Updates the inspect template.
@@ -446,12 +451,12 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.projects = {
+  projects = {
     content: {
       /**
        * dlp.projects.content.deidentify
@@ -490,7 +495,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.content.inspect
           * @desc Finds potentially sensitive info in content. This method has
@@ -529,7 +534,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.content.reidentify
           * @desc Re-identify content that has been de-identified.
@@ -565,7 +570,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -607,7 +612,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.dataSource.inspect
           * @desc Schedules a job scanning content in a Google Cloud Platform
@@ -644,7 +649,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -685,7 +690,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.deidentifyTemplates.delete
           * @desc Deletes inspect templates.
@@ -698,7 +703,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -720,7 +725,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.deidentifyTemplates.get
           * @desc Gets an inspect template.
@@ -754,7 +759,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.deidentifyTemplates.list
           * @desc Lists inspect templates.
@@ -791,7 +796,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.deidentifyTemplates.patch
           * @desc Updates the inspect template.
@@ -827,7 +832,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -869,7 +874,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.dlpJobs.delete
           * @desc Deletes a long-running DlpJob. This method indicates that the
@@ -884,7 +889,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -906,7 +911,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.dlpJobs.get
           * @desc Gets the latest state of a long-running DlpJob.
@@ -940,7 +945,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.dlpJobs.list
           * @desc Lists DlpJobs that match the specified filter in the request.
@@ -979,7 +984,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1021,7 +1026,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1062,7 +1067,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.inspectTemplates.delete
           * @desc Deletes inspect templates.
@@ -1075,7 +1080,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1097,7 +1102,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.inspectTemplates.get
           * @desc Gets an inspect template.
@@ -1131,7 +1136,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.inspectTemplates.list
           * @desc Lists inspect templates.
@@ -1168,7 +1173,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.inspectTemplates.patch
           * @desc Updates the inspect template.
@@ -1204,7 +1209,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1245,7 +1250,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.jobTriggers.delete
           * @desc Deletes a job trigger.
@@ -1258,7 +1263,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1280,7 +1285,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.jobTriggers.get
           * @desc Gets a job trigger.
@@ -1314,7 +1319,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.jobTriggers.list
           * @desc Lists job triggers.
@@ -1352,7 +1357,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.projects.jobTriggers.patch
           * @desc Updates a job trigger.
@@ -1388,7 +1393,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -2123,8 +2128,8 @@ function Dlp(options: GlobalOptions) {
  * @memberOf! dlp(v2beta2)
  * @type object
  * @property {dlp(v2beta2).GooglePrivacyDlpV2beta2InfoTypeLimit[]} maxFindingsPerInfoType Configuration of findings limit given for specified infoTypes.
- * @property {integer} maxFindingsPerItem Max number of findings that will be returned for each item scanned.
- * @property {integer} maxFindingsPerRequest Max total number of findings that will be returned per request/job.
+ * @property {integer} maxFindingsPerItem Max number of findings that will be returned for each item scanned. When set within `InspectDataSourceRequest`, the maximum returned is 1000 regardless if this is set higher. When set within `InspectContentRequest`, this field is ignored.
+ * @property {integer} maxFindingsPerRequest Max number of findings that will be returned per request/job. When set within `InspectContentRequest`, the maximum returned is 1000 regardless if this is set higher.
  */
 /**
  * @typedef GooglePrivacyDlpV2beta2FixedSizeBucketingConfig
@@ -2842,5 +2847,3 @@ function Dlp(options: GlobalOptions) {
  * @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
  * @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
  */
-
-export = Dlp;

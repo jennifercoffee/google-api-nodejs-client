@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Iam;
 
 /**
  * Google Identity and Access Management (IAM) API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Iam
  */
-function Iam(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.iamPolicies = {
+export class Iam extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  iamPolicies = {
     /**
      * iam.iamPolicies.queryAuditableServices
      * @desc Returns a list of services that support service level audit logging
@@ -79,11 +84,11 @@ function Iam(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.organizations = {
+  organizations = {
     roles: {
       /**
        * iam.organizations.roles.create
@@ -120,7 +125,7 @@ function Iam(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.delete
           * @desc Soft deletes a role. The role is suspended and cannot be used
@@ -140,7 +145,7 @@ function Iam(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -161,7 +166,7 @@ function Iam(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.get
           * @desc Gets a Role definition.
@@ -194,7 +199,7 @@ function Iam(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.list
           * @desc Lists the Roles defined on a resource.
@@ -233,7 +238,7 @@ function Iam(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.patch
           * @desc Updates a Role definition.
@@ -269,7 +274,7 @@ function Iam(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * iam.organizations.roles.undelete
           * @desc Undelete a Role, bringing it back in its previous state.
@@ -305,12 +310,12 @@ function Iam(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.permissions = {
+  permissions = {
     /**
      * iam.permissions.queryTestablePermissions
      * @desc Lists the permissions testable on a resource. A permission is
@@ -346,11 +351,11 @@ function Iam(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects =
+  projects =
       {
         roles: {
           /**
@@ -388,7 +393,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.delete
               * @desc Soft deletes a role. The role is suspended and cannot be
@@ -408,7 +413,7 @@ function Iam(options: GlobalOptions) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -429,7 +434,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.get
               * @desc Gets a Role definition.
@@ -462,7 +467,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.list
               * @desc Lists the Roles defined on a resource.
@@ -501,7 +506,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.patch
               * @desc Updates a Role definition.
@@ -537,7 +542,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.roles.undelete
               * @desc Undelete a Role, bringing it back in its previous state.
@@ -573,7 +578,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -613,7 +618,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.delete
               * @desc Deletes a ServiceAccount.
@@ -626,7 +631,7 @@ function Iam(options: GlobalOptions) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -647,7 +652,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.get
               * @desc Gets a ServiceAccount.
@@ -680,7 +685,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.getIamPolicy
               * @desc Returns the IAM access control policy for a
@@ -716,7 +721,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.list
               * @desc Lists ServiceAccounts for a project.
@@ -753,7 +758,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.setIamPolicy
               * @desc Sets the IAM access control policy for a ServiceAccount.
@@ -789,7 +794,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.signBlob
               * @desc Signs a blob using a service account's system-managed
@@ -826,7 +831,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.signJwt
               * @desc Signs a JWT using a service account's system-managed
@@ -866,7 +871,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.testIamPermissions
               * @desc Tests the specified permissions against the IAM access
@@ -903,7 +908,7 @@ function Iam(options: GlobalOptions) {
               pathParams: ['resource'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * iam.projects.serviceAccounts.update
               * @desc Updates a ServiceAccount.  Currently, only the following
@@ -939,157 +944,166 @@ function Iam(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           },
-          keys: {
-            /**
-             * iam.projects.serviceAccounts.keys.create
-             * @desc Creates a ServiceAccountKey and returns it.
-             * @alias iam.projects.serviceAccounts.keys.create
-             * @memberOf! iam(v1)
-             *
-             * @param {object} params Parameters for request
-             * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-             * @param {iam(v1).CreateServiceAccountKeyRequest} params.resource Request body data
-             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-             * @param {callback} callback The callback that handles the response.
-             * @return {object} Request object
-             */
-            create(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url: (rootUrl + '/v1/{name}/keys')
-                               .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'POST'
-                    },
-                    options),
-                params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }, /**
-                * iam.projects.serviceAccounts.keys.delete
-                * @desc Deletes a ServiceAccountKey.
-                * @alias iam.projects.serviceAccounts.keys.delete
-                * @memberOf! iam(v1)
-                *
-                * @param {object} params Parameters for request
-                * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                * @param {callback} callback The callback that handles the response.
-                * @return {object} Request object
-                */
-            delete (
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url: (rootUrl + '/v1/{name}')
-                               .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'DELETE'
-                    },
-                    options),
-                params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }, /**
-                * iam.projects.serviceAccounts.keys.get
-                * @desc Gets the ServiceAccountKey by key id.
-                * @alias iam.projects.serviceAccounts.keys.get
-                * @memberOf! iam(v1)
-                *
-                * @param {object} params Parameters for request
-                * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-                * @param {string=} params.publicKeyType The output format of the public key requested. X509_PEM is the default output format.
-                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                * @param {callback} callback The callback that handles the response.
-                * @return {object} Request object
-                */
-            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url: (rootUrl + '/v1/{name}')
-                               .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'GET'
-                    },
-                    options),
-                params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }, /**
-                * iam.projects.serviceAccounts.keys.list
-                * @desc Lists ServiceAccountKeys.
-                * @alias iam.projects.serviceAccounts.keys.list
-                * @memberOf! iam(v1)
-                *
-                * @param {object} params Parameters for request
-                * @param {string=} params.keyTypes Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
-                * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
-                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                * @param {callback} callback The callback that handles the response.
-                * @return {object} Request object
-                */
-            list(
-                params: any, options: MethodOptions|BodyResponseCallback<any>,
-                callback?: BodyResponseCallback<any>) {
-              if (typeof options === 'function') {
-                callback = options;
-                options = {};
-              }
-              options = options || {};
-              const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-              const parameters = {
-                options: Object.assign(
-                    {
-                      url: (rootUrl + '/v1/{name}/keys')
-                               .replace(/([^:]\/)\/+/g, '$1'),
-                      method: 'GET'
-                    },
-                    options),
-                params,
-                requiredParams: ['name'],
-                pathParams: ['name'],
-                context: self
-              };
-              return createAPIRequest(parameters, callback!);
-            }
+          keys:
+              {
+                /**
+                 * iam.projects.serviceAccounts.keys.create
+                 * @desc Creates a ServiceAccountKey and returns it.
+                 * @alias iam.projects.serviceAccounts.keys.create
+                 * @memberOf! iam(v1)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+                 * @param {iam(v1).CreateServiceAccountKeyRequest} params.resource Request body data
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                create(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://iam.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}/keys')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * iam.projects.serviceAccounts.keys.delete
+                    * @desc Deletes a ServiceAccountKey.
+                    * @alias iam.projects.serviceAccounts.keys.delete
+                    * @memberOf! iam(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://iam.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'DELETE'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * iam.projects.serviceAccounts.keys.get
+                    * @desc Gets the ServiceAccountKey by key id.
+                    * @alias iam.projects.serviceAccounts.keys.get
+                    * @memberOf! iam(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.  Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+                    * @param {string=} params.publicKeyType The output format of the public key requested. X509_PEM is the default output format.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://iam.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * iam.projects.serviceAccounts.keys.list
+                    * @desc Lists ServiceAccountKeys.
+                    * @alias iam.projects.serviceAccounts.keys.list
+                    * @memberOf! iam(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string=} params.keyTypes Filters the types of keys the user wants to include in the list response. Duplicate key types are not allowed. If no key type is provided, all keys are returned.
+                    * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a wildcard for the `PROJECT_ID`, will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl =
+                      options.rootUrl || 'https://iam.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}/keys')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }
 
-          }
+              }
         }
       };
-  self.roles = {
+  roles = {
     /**
      * iam.roles.get
      * @desc Gets a Role definition.
@@ -1122,7 +1136,7 @@ function Iam(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * iam.roles.list
         * @desc Lists the Roles defined on a resource.
@@ -1160,7 +1174,7 @@ function Iam(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * iam.roles.queryGrantableRoles
         * @desc Queries roles that can be granted on a particular resource. A
@@ -1197,7 +1211,7 @@ function Iam(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1446,5 +1460,3 @@ function Iam(options: GlobalOptions) {
  * @type object
  * @property {string} etag Used to perform a consistent read-modify-write.
  */
-
-export = Iam;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Testing;
 
 /**
  * Google Cloud Testing API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Testing
  */
-function Testing(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.applicationDetailService = {
+export class Testing extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  applicationDetailService = {
     /**
      * testing.applicationDetailService.getApkDetails
      * @desc Request the details of an Android application APK.
@@ -77,11 +82,11 @@ function Testing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     testMatrices: {
       /**
        * testing.projects.testMatrices.cancel
@@ -126,7 +131,7 @@ function Testing(options: GlobalOptions) {
           pathParams: ['projectId', 'testMatrixId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * testing.projects.testMatrices.create
           * @desc Request to run a matrix of tests according to the given
@@ -170,7 +175,7 @@ function Testing(options: GlobalOptions) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * testing.projects.testMatrices.get
           * @desc Check the status of a test matrix.  May return any of the
@@ -209,12 +214,12 @@ function Testing(options: GlobalOptions) {
           pathParams: ['projectId', 'testMatrixId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.testEnvironmentCatalog = {
+  testEnvironmentCatalog = {
     /**
      * testing.testEnvironmentCatalog.get
      * @desc Get the catalog of supported test environments.  May return any of
@@ -252,7 +257,7 @@ function Testing(options: GlobalOptions) {
         pathParams: ['environmentType'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -323,6 +328,7 @@ function Testing(options: GlobalOptions) {
  * @property {string[]} supportedAbis The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list.  Elements are optionally prefixed by &quot;version_id:&quot; (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version. @OutputOnly
  * @property {string[]} supportedVersionIds The set of Android versions this device supports. @OutputOnly
  * @property {string[]} tags Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;
+ * @property {boolean} videoRecordingNotSupported True if and only if tests with this model DO NOT have video output. See also TestSpecification.disable_video_recording @OutputOnly
  */
 /**
  * @typedef AndroidRoboTest
@@ -568,6 +574,7 @@ function Testing(options: GlobalOptions) {
  * @type object
  * @property {string} errorMessage If the TestState is ERROR, then this string will contain human-readable details about the error. @OutputOnly
  * @property {string[]} progressMessages Human-readable, detailed descriptions of the test&#39;s progress. For example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;.  During the course of execution new data may be appended to the end of progress_messages. @OutputOnly
+ * @property {boolean} videoRecordingDisabled Indicates that video will not be recorded for this execution either because the user chose to disable it or the device does not support it. See AndroidModel.video_recording_not_supported @OutputOnly
  */
 /**
  * @typedef TestEnvironmentCatalog
@@ -663,5 +670,3 @@ function Testing(options: GlobalOptions) {
  * @property {number} packetDuplicationRatio Packet duplication ratio (0.0 - 1.0)
  * @property {number} packetLossRatio Packet loss ratio (0.0 - 1.0)
  */
-
-export = Testing;

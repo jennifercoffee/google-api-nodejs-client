@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Serviceuser;
 
 /**
  * Service User API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceuser
  */
-function Serviceuser(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Serviceuser extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     services: {
       /**
        * serviceuser.projects.services.disable
@@ -69,7 +74,7 @@ function Serviceuser(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://serviceuser.googleapis.com/';
+            options.rootUrl || 'https://content-serviceuser.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -83,7 +88,7 @@ function Serviceuser(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceuser.projects.services.enable
           * @desc Enable a service so it can be used with a project. See [Cloud
@@ -108,7 +113,7 @@ function Serviceuser(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://serviceuser.googleapis.com/';
+            options.rootUrl || 'https://content-serviceuser.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -122,7 +127,7 @@ function Serviceuser(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceuser.projects.services.list
           * @desc List enabled services for the specified consumer.
@@ -146,7 +151,7 @@ function Serviceuser(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://serviceuser.googleapis.com/';
+            options.rootUrl || 'https://content-serviceuser.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -160,12 +165,12 @@ function Serviceuser(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.services = {
+  services = {
     /**
      * serviceuser.services.search
      * @desc Search available services.  When no filter is specified, returns
@@ -190,7 +195,8 @@ function Serviceuser(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl || 'https://serviceuser.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://content-serviceuser.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -204,7 +210,7 @@ function Serviceuser(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -671,7 +677,6 @@ function Serviceuser(options: GlobalOptions) {
  * @property {string} title The product title for this service.
  * @property {serviceuser(v1).Type[]} types A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
  * @property {serviceuser(v1).Usage} usage Configuration controlling usage of this service.
- * @property {serviceuser(v1).Visibility} visibility API visibility configuration.
  */
 /**
  * @typedef SourceContext
@@ -748,18 +753,3 @@ function Serviceuser(options: GlobalOptions) {
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
  * @property {boolean} skipServiceControl If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
  */
-/**
- * @typedef Visibility
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {serviceuser(v1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
- */
-/**
- * @typedef VisibilityRule
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`. Any of the listed labels can be used to grant the visibility.  If a rule has multiple labels, removing one of the labels but not all of them can break clients.  Example:      visibility:       rules:       - selector: google.calendar.Calendar.EnhancedSearch         restriction: GOOGLE_INTERNAL, TRUSTED_TESTER  Removing GOOGLE_INTERNAL from this restriction will break clients that rely on this method and only had access to it through GOOGLE_INTERNAL.
- * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.  Refer to selector for syntax details.
- */
-
-export = Serviceuser;

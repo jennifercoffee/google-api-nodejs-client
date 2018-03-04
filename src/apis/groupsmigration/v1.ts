@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Groupsmigration;
 
 /**
  * Groups Migration API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Groupsmigration
  */
-function Groupsmigration(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.archive = {
+export class Groupsmigration extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  archive = {
     /**
      * groupsmigration.archive.insert
      * @desc Inserts a new mail into the archive of the Google group.
@@ -81,7 +86,7 @@ function Groupsmigration(options: GlobalOptions) {
         pathParams: ['groupId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -93,5 +98,3 @@ function Groupsmigration(options: GlobalOptions) {
  * @property {string} kind The kind of insert resource this is.
  * @property {string} responseCode The status of the insert request.
  */
-
-export = Groupsmigration;

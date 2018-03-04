@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Doubleclickbidmanager;
 
 /**
  * DoubleClick Bid Manager API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Doubleclickbidmanager
  */
-function Doubleclickbidmanager(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.lineitems = {
+export class Doubleclickbidmanager extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  lineitems = {
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
      * @desc Retrieves line items in CSV format. TrueView line items are not
@@ -78,7 +83,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.lineitems.uploadlineitems
         * @desc Uploads line items in CSV format. TrueView line items are not
@@ -115,11 +120,11 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.queries = {
+  queries = {
     /**
      * doubleclickbidmanager.queries.createquery
      * @desc Creates a query.
@@ -154,7 +159,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.deletequery
         * @desc Deletes a stored query as well as the associated stored reports.
@@ -189,7 +194,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.getquery
         * @desc Retrieves a stored query.
@@ -224,7 +229,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.listqueries
         * @desc Retrieves stored queries.
@@ -258,7 +263,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclickbidmanager.queries.runquery
         * @desc Runs a stored query to generate a report.
@@ -294,11 +299,11 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.reports = {
+  reports = {
     /**
      * doubleclickbidmanager.reports.listreports
      * @desc Retrieves stored reports.
@@ -334,11 +339,11 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: ['queryId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.sdf = {
+  sdf = {
     /**
      * doubleclickbidmanager.sdf.download
      * @desc Retrieves entities in SDF format.
@@ -373,7 +378,7 @@ function Doubleclickbidmanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -561,5 +566,3 @@ function Doubleclickbidmanager(options: GlobalOptions) {
  * @property {string[]} errors Reasons why upload can&#39;t be completed.
  * @property {doubleclickbidmanager(v1).RowStatus[]} rowStatus Per-row upload status.
  */
-
-export = Doubleclickbidmanager;

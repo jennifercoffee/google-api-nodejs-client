@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Storage;
 
 /**
  * Cloud Storage JSON API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Storage
  */
-function Storage(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.bucketAccessControls = {
+export class Storage extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  bucketAccessControls = {
     /**
      * storage.bucketAccessControls.delete
      * @desc Permanently deletes the ACL entry for the specified entity on the
@@ -112,7 +117,7 @@ function Storage(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -134,7 +139,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.bucketAccessControls.get
         * @desc Returns the ACL entry for the specified entity on the specified
@@ -229,7 +234,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.bucketAccessControls.insert
         * @desc Creates a new ACL entry on the specified bucket.
@@ -321,7 +326,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.bucketAccessControls.list
         * @desc Retrieves ACL entries on the specified bucket.
@@ -410,11 +415,10 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.bucketAccessControls.patch
-        * @desc Updates an ACL entry on the specified bucket. This method
-        * supports patch semantics.
+        * @desc Patches an ACL entry on the specified bucket.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -511,7 +515,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.bucketAccessControls.update
         * @desc Updates an ACL entry on the specified bucket.
@@ -611,11 +615,11 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.buckets = {
+  buckets = {
     /**
      * storage.buckets.delete
      * @desc Permanently deletes an empty bucket.
@@ -681,7 +685,7 @@ function Storage(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -703,7 +707,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.get
         * @desc Returns metadata for the specified bucket.
@@ -794,7 +798,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.getIamPolicy
         * @desc Returns an IAM policy for the specified bucket.
@@ -883,7 +887,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.insert
         * @desc Creates a new bucket.
@@ -979,7 +983,7 @@ function Storage(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.list
         * @desc Retrieves a list of buckets for a given project.
@@ -1084,7 +1088,7 @@ function Storage(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.lockRetentionPolicy
         * @desc Locks retention policy on a bucket.
@@ -1121,7 +1125,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.patch
         * @desc Updates a bucket. Changes to the bucket will be readable
@@ -1224,7 +1228,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.setIamPolicy
         * @desc Updates an IAM policy for the specified bucket.
@@ -1320,7 +1324,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.testIamPermissions
         * @desc Tests a set of permissions on the given bucket to see which, if
@@ -1412,7 +1416,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.buckets.update
         * @desc Updates a bucket. Changes to the bucket will be readable
@@ -1515,11 +1519,11 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * storage.channels.stop
      * @desc Stop watching resources through this channel
@@ -1605,11 +1609,11 @@ function Storage(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.defaultObjectAccessControls = {
+  defaultObjectAccessControls = {
     /**
      * storage.defaultObjectAccessControls.delete
      * @desc Permanently deletes the default object ACL entry for the specified
@@ -1680,7 +1684,7 @@ function Storage(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1703,7 +1707,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.defaultObjectAccessControls.get
         * @desc Returns the default object ACL entry for the specified entity on
@@ -1797,7 +1801,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.defaultObjectAccessControls.insert
         * @desc Creates a new default object ACL entry on the specified bucket.
@@ -1889,7 +1893,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.defaultObjectAccessControls.list
         * @desc Retrieves default object ACL entries on the specified bucket.
@@ -1978,11 +1982,10 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.defaultObjectAccessControls.patch
-        * @desc Updates a default object ACL entry on the specified bucket. This
-        * method supports patch semantics.
+        * @desc Patches a default object ACL entry on the specified bucket.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -2080,7 +2083,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.defaultObjectAccessControls.update
         * @desc Updates a default object ACL entry on the specified bucket.
@@ -2181,11 +2184,11 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.notifications = {
+  notifications = {
     /**
      * storage.notifications.delete
      * @desc Permanently deletes a notification subscription.
@@ -2253,7 +2256,7 @@ function Storage(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2276,7 +2279,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'notification'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.notifications.get
         * @desc View a notification configuration.
@@ -2370,7 +2373,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'notification'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.notifications.insert
         * @desc Creates a notification subscription for a given bucket.
@@ -2464,7 +2467,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.notifications.list
         * @desc Retrieves a list of notification subscriptions for a given
@@ -2554,11 +2557,11 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.objectAccessControls = {
+  objectAccessControls = {
     /**
      * storage.objectAccessControls.delete
      * @desc Permanently deletes the ACL entry for the specified entity on the
@@ -2636,7 +2639,7 @@ function Storage(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2658,7 +2661,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.objectAccessControls.get
         * @desc Returns the ACL entry for the specified entity on the specified
@@ -2760,7 +2763,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.objectAccessControls.insert
         * @desc Creates a new ACL entry on the specified object.
@@ -2859,7 +2862,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.objectAccessControls.list
         * @desc Retrieves ACL entries on the specified object.
@@ -2955,11 +2958,10 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.objectAccessControls.patch
-        * @desc Updates an ACL entry on the specified object. This method
-        * supports patch semantics.
+        * @desc Patches an ACL entry on the specified object.
         * @example
         * // BEFORE RUNNING:
         * // ---------------
@@ -3063,7 +3065,7 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * storage.objectAccessControls.update
         * @desc Updates an ACL entry on the specified object.
@@ -3170,11 +3172,11 @@ function Storage(options: GlobalOptions) {
         pathParams: ['bucket', 'entity', 'object'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.objects =
+  objects =
       {
         /**
          * storage.objects.compose
@@ -3284,7 +3286,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['destinationBucket', 'destinationObject'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.copy
             * @desc Copies a source object to a destination object. Optionally
@@ -3422,7 +3424,7 @@ function Storage(options: GlobalOptions) {
             ],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.delete
             * @desc Deletes an object and its metadata. Deletions are permanent
@@ -3499,7 +3501,7 @@ function Storage(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -3521,7 +3523,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.get
             * @desc Retrieves an object or its metadata.
@@ -3625,7 +3627,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.getIamPolicy
             * @desc Returns an IAM policy for the specified object.
@@ -3721,7 +3723,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.insert
             * @desc Stores a new object and metadata.
@@ -3839,7 +3841,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.list
             * @desc Retrieves a list of objects matching the criteria.
@@ -3947,7 +3949,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.patch
             * @desc Patches an object's metadata.
@@ -4056,7 +4058,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.rewrite
             * @desc Rewrites a source object to a destination object. Optionally
@@ -4197,7 +4199,7 @@ function Storage(options: GlobalOptions) {
             ],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.setIamPolicy
             * @desc Updates an IAM policy for the specified object.
@@ -4300,7 +4302,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.testIamPermissions
             * @desc Tests a set of permissions on the given object to see which,
@@ -4400,7 +4402,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.update
             * @desc Updates an object's metadata.
@@ -4509,7 +4511,7 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket', 'object'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * storage.objects.watchAll
             * @desc Watch for changes on all objects in a bucket.
@@ -4609,11 +4611,11 @@ function Storage(options: GlobalOptions) {
             pathParams: ['bucket'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       };
-  self.projects = {
+  projects = {
     serviceAccount: {
       /**
        * storage.projects.serviceAccount.get
@@ -4702,7 +4704,7 @@ function Storage(options: GlobalOptions) {
           pathParams: ['projectId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -4916,5 +4918,3 @@ function Storage(options: GlobalOptions) {
  * @property {string} kind The kind of item this is.
  * @property {string[]} permissions The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:   - storage.buckets.delete — Delete bucket.   - storage.buckets.get — Read bucket metadata.   - storage.buckets.getIamPolicy — Read bucket IAM policy.   - storage.buckets.create — Create bucket.   - storage.buckets.list — List buckets.   - storage.buckets.setIamPolicy — Update bucket IAM policy.   - storage.buckets.update — Update bucket metadata.   - storage.objects.delete — Delete object.   - storage.objects.get — Read object data and metadata.   - storage.objects.getIamPolicy — Read object IAM policy.   - storage.objects.create — Create object.   - storage.objects.list — List objects.   - storage.objects.setIamPolicy — Update object IAM policy.   - storage.objects.update — Update object metadata.
  */
-
-export = Storage;

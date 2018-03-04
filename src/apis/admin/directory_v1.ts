@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Admin;
 
 /**
  * Admin Directory API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation directory_v1
  * @param {object=} options Options for Admin
  */
-function Admin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.asps = {
+export class Admin extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  asps = {
     /**
      * directory.asps.delete
      * @desc Delete an ASP issued by a user.
@@ -57,7 +62,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -80,7 +85,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.asps.get
         * @desc Get information about an ASP issued by a user.
@@ -116,7 +121,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['codeId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.asps.list
         * @desc List the ASPs issued by a user.
@@ -151,11 +156,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * admin.channels.stop
      * @desc Stop watching resources through this channel
@@ -191,11 +196,11 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.chromeosdevices = {
+  chromeosdevices = {
     /**
      * directory.chromeosdevices.action
      * @desc Take action on Chrome OS Device
@@ -234,7 +239,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.get
         * @desc Retrieve Chrome OS Device
@@ -272,7 +277,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.list
         * @desc Retrieve all Chrome OS Devices of a customer (paginated)
@@ -316,7 +321,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.moveDevicesToOu
         * @desc Move or insert multiple Chrome OS Devices to organizational unit
@@ -355,7 +360,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.patch
         * @desc Update Chrome OS Device. This method supports patch semantics.
@@ -395,7 +400,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.chromeosdevices.update
         * @desc Update Chrome OS Device
@@ -435,11 +440,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'deviceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.customers = {
+  customers = {
     /**
      * directory.customers.get
      * @desc Retrieves a customer.
@@ -473,7 +478,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.customers.patch
         * @desc Updates a customer. This method supports patch semantics.
@@ -509,7 +514,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.customers.update
         * @desc Updates a customer.
@@ -545,11 +550,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.domainAliases = {
+  domainAliases = {
     /**
      * directory.domainAliases.delete
      * @desc Deletes a Domain Alias of the customer.
@@ -563,7 +568,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -587,7 +592,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'domainAliasName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.get
         * @desc Retrieves a domain alias of the customer.
@@ -624,7 +629,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'domainAliasName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.insert
         * @desc Inserts a Domain alias of the customer.
@@ -661,7 +666,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domainAliases.list
         * @desc Lists the domain aliases of the customer.
@@ -698,11 +703,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.domains = {
+  domains = {
     /**
      * directory.domains.delete
      * @desc Deletes a domain of the customer.
@@ -716,7 +721,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -740,7 +745,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'domainName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.get
         * @desc Retrieves a domain of the customer.
@@ -777,7 +782,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'domainName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.insert
         * @desc Inserts a domain of the customer.
@@ -813,7 +818,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.domains.list
         * @desc Lists the domains of the customer.
@@ -848,11 +853,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.groups = {
+  groups = {
     /**
      * directory.groups.delete
      * @desc Delete Group
@@ -865,7 +870,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -887,7 +892,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.get
         * @desc Retrieve Group
@@ -921,7 +926,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.insert
         * @desc Create Group
@@ -956,7 +961,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.list
         * @desc Retrieve all groups in a domain (paginated)
@@ -995,7 +1000,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.patch
         * @desc Update Group. This method supports patch semantics.
@@ -1031,7 +1036,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.groups.update
         * @desc Update Group
@@ -1067,122 +1072,126 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    aliases: {
-      /**
-       * directory.groups.aliases.delete
-       * @desc Remove a alias for the group
-       * @alias directory.groups.aliases.delete
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.alias The alias to be removed
-       * @param {string} params.groupKey Email or immutable ID of the group
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/groups/{groupKey}/aliases/{alias}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['groupKey', 'alias'],
-          pathParams: ['alias', 'groupKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.groups.aliases.insert
-          * @desc Add a alias for the group
-          * @alias directory.groups.aliases.insert
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.groupKey Email or immutable ID of the group
-          * @param {admin(directory_v1).Alias} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      insert(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['groupKey'],
-          pathParams: ['groupKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.groups.aliases.list
-          * @desc List all aliases for a group
-          * @alias directory.groups.aliases.list
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.groupKey Email or immutable ID of the group
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['groupKey'],
-          pathParams: ['groupKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    aliases:
+        {
+          /**
+           * directory.groups.aliases.delete
+           * @desc Remove a alias for the group
+           * @alias directory.groups.aliases.delete
+           * @memberOf! admin(directory_v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.alias The alias to be removed
+           * @param {string} params.groupKey Email or immutable ID of the group
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/groups/{groupKey}/aliases/{alias}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['groupKey', 'alias'],
+              pathParams: ['alias', 'groupKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.groups.aliases.insert
+              * @desc Add a alias for the group
+              * @alias directory.groups.aliases.insert
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.groupKey Email or immutable ID of the group
+              * @param {admin(directory_v1).Alias} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/groups/{groupKey}/aliases')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['groupKey'],
+              pathParams: ['groupKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.groups.aliases.list
+              * @desc List all aliases for a group
+              * @alias directory.groups.aliases.list
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.groupKey Email or immutable ID of the group
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/groups/{groupKey}/aliases')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['groupKey'],
+              pathParams: ['groupKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.members = {
+  members = {
     /**
      * directory.members.delete
      * @desc Remove membership.
@@ -1196,7 +1205,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1219,7 +1228,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.get
         * @desc Retrieve Group Member
@@ -1255,16 +1264,17 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.hasMember
-        * @desc Checks Membership of an user within a Group
+        * @desc Checks whether the given user is a member of the group.
+        * Membership can be direct or nested.
         * @alias directory.members.hasMember
         * @memberOf! admin(directory_v1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.groupKey Email or immutable Id of the group
-        * @param {string} params.memberKey Email or immutable Id of the member
+        * @param {string} params.groupKey Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
+        * @param {string} params.memberKey Identifies the user member in the API request. The value can be the user's primary email address, alias, or unique ID.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -1293,7 +1303,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.insert
         * @desc Add user to the specified group.
@@ -1329,7 +1339,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.list
         * @desc Retrieve all members in a group (paginated)
@@ -1367,7 +1377,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.patch
         * @desc Update membership of a user in the specified group. This method
@@ -1406,7 +1416,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.members.update
         * @desc Update membership of a user in the specified group.
@@ -1444,11 +1454,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['groupKey', 'memberKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.mobiledevices = {
+  mobiledevices = {
     /**
      * directory.mobiledevices.action
      * @desc Take action on Mobile Device
@@ -1487,7 +1497,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.delete
         * @desc Delete Mobile Device
@@ -1501,7 +1511,7 @@ function Admin(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1525,7 +1535,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.get
         * @desc Retrieve Mobile Device
@@ -1563,7 +1573,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'resourceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.mobiledevices.list
         * @desc Retrieve all Mobile Devices of a customer (paginated)
@@ -1605,11 +1615,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.notifications = {
+  notifications = {
     /**
      * directory.notifications.delete
      * @desc Deletes a notification
@@ -1623,7 +1633,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1647,7 +1657,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.get
         * @desc Retrieves a notification.
@@ -1684,7 +1694,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.list
         * @desc Retrieves a list of notifications.
@@ -1723,7 +1733,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.patch
         * @desc Updates a notification. This method supports patch semantics.
@@ -1762,7 +1772,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.notifications.update
         * @desc Updates a notification.
@@ -1801,11 +1811,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'notificationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.orgunits = {
+  orgunits = {
     /**
      * directory.orgunits.delete
      * @desc Remove organizational unit
@@ -1819,7 +1829,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1843,7 +1853,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.get
         * @desc Retrieve organizational unit
@@ -1880,7 +1890,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.insert
         * @desc Add organizational unit
@@ -1917,7 +1927,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.list
         * @desc Retrieve all organizational units
@@ -1955,7 +1965,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.patch
         * @desc Update organizational unit. This method supports patch
@@ -1995,7 +2005,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.orgunits.update
         * @desc Update organizational unit
@@ -2034,11 +2044,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'orgUnitPath'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.privileges = {
+  privileges = {
     /**
      * directory.privileges.list
      * @desc Retrieves a paginated list of all privileges for a customer.
@@ -2075,11 +2085,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.resolvedAppAccessSettings = {
+  resolvedAppAccessSettings = {
     /**
      * directory.resolvedAppAccessSettings.GetSettings
      * @desc Retrieves resolved app access settings of the logged in user.
@@ -2113,7 +2123,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.resolvedAppAccessSettings.ListTrustedApps
         * @desc Retrieves the list of apps trusted by the admin of the logged in
@@ -2148,11 +2158,11 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.resources =
+  resources =
       {
         buildings: {
           /**
@@ -2168,7 +2178,7 @@ function Admin(options: GlobalOptions) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2192,7 +2202,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.get
               * @desc Retrieves a building.
@@ -2229,7 +2239,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.insert
               * @desc Inserts a building.
@@ -2267,7 +2277,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.list
               * @desc Retrieves a list of buildings for an account.
@@ -2276,6 +2286,8 @@ function Admin(options: GlobalOptions) {
               *
               * @param {object} params Parameters for request
               * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+              * @param {integer=} params.maxResults Maximum number of results to return.
+              * @param {string=} params.pageToken Token to specify the next page in the list.
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -2304,7 +2316,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.patch
               * @desc Updates a building. This method supports patch semantics.
@@ -2343,7 +2355,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.buildings.update
               * @desc Updates a building.
@@ -2382,7 +2394,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['buildingId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2400,7 +2412,7 @@ function Admin(options: GlobalOptions) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2424,7 +2436,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.get
               * @desc Retrieves a calendar resource.
@@ -2461,7 +2473,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.insert
               * @desc Inserts a calendar resource.
@@ -2499,7 +2511,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.list
               * @desc Retrieves a list of calendar resources for an account.
@@ -2511,7 +2523,7 @@ function Admin(options: GlobalOptions) {
               * @param {integer=} params.maxResults Maximum number of results to return.
               * @param {string=} params.orderBy Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
               * @param {string=} params.pageToken Token to specify the next page in the list.
-              * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match where applicable. For prefix match, the value should always be followed by a *.
+              * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
@@ -2540,7 +2552,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.patch
               * @desc Updates a calendar resource.  This method supports patch
@@ -2582,7 +2594,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * directory.resources.calendars.update
               * @desc Updates a calendar resource.  This method supports patch
@@ -2624,7 +2636,7 @@ function Admin(options: GlobalOptions) {
               pathParams: ['calendarResourceId', 'customer'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2643,7 +2655,7 @@ function Admin(options: GlobalOptions) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              delete (
+              delete(
                   params: any, options: MethodOptions|BodyResponseCallback<any>,
                   callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
@@ -2668,7 +2680,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.get
                   * @desc Retrieves a feature.
@@ -2706,7 +2718,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.insert
                   * @desc Inserts a feature.
@@ -2745,7 +2757,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.list
                   * @desc Retrieves a list of features for an account.
@@ -2754,6 +2766,7 @@ function Admin(options: GlobalOptions) {
                   *
                   * @param {object} params Parameters for request
                   * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+                  * @param {integer=} params.maxResults Maximum number of results to return.
                   * @param {string=} params.pageToken Token to specify the next page in the list.
                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
                   * @param {callback} callback The callback that handles the response.
@@ -2784,7 +2797,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.patch
                   * @desc Updates a feature. This method supports patch
@@ -2825,7 +2838,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.rename
                   * @desc Renames a feature.
@@ -2865,7 +2878,7 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer', 'oldName'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * directory.resources.features.update
                   * @desc Updates a feature.
@@ -2905,12 +2918,12 @@ function Admin(options: GlobalOptions) {
                   pathParams: ['customer', 'featureKey'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }
 
             }
       };
-  self.roleAssignments = {
+  roleAssignments = {
     /**
      * directory.roleAssignments.delete
      * @desc Deletes a role assignment.
@@ -2924,7 +2937,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2948,7 +2961,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleAssignmentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.get
         * @desc Retrieve a role assignment.
@@ -2985,7 +2998,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleAssignmentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.insert
         * @desc Creates a role assignment.
@@ -3022,7 +3035,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roleAssignments.list
         * @desc Retrieves a paginated list of all roleAssignments.
@@ -3062,11 +3075,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.roles = {
+  roles = {
     /**
      * directory.roles.delete
      * @desc Deletes a role.
@@ -3080,7 +3093,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -3103,7 +3116,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.get
         * @desc Retrieves a role.
@@ -3139,7 +3152,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.insert
         * @desc Creates a role.
@@ -3175,7 +3188,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.list
         * @desc Retrieves a paginated list of all the roles in a domain.
@@ -3212,7 +3225,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.patch
         * @desc Updates a role. This method supports patch semantics.
@@ -3250,7 +3263,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.roles.update
         * @desc Updates a role.
@@ -3288,11 +3301,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customer', 'roleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.schemas = {
+  schemas = {
     /**
      * directory.schemas.delete
      * @desc Delete schema
@@ -3306,7 +3319,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -3330,7 +3343,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.get
         * @desc Retrieve schema
@@ -3367,7 +3380,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.insert
         * @desc Create schema.
@@ -3404,7 +3417,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.list
         * @desc Retrieve all schemas for a customer
@@ -3440,7 +3453,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.patch
         * @desc Update schema. This method supports patch semantics.
@@ -3479,7 +3492,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.schemas.update
         * @desc Update schema
@@ -3518,11 +3531,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['customerId', 'schemaKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tokens = {
+  tokens = {
     /**
      * directory.tokens.delete
      * @desc Delete all access tokens issued by a user for an application.
@@ -3536,7 +3549,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -3559,7 +3572,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.tokens.get
         * @desc Get information about an access token issued by a user.
@@ -3595,7 +3608,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['clientId', 'userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.tokens.list
         * @desc Returns the set of tokens specified user has issued to 3rd party
@@ -3631,11 +3644,11 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * directory.users.delete
      * @desc Delete user
@@ -3648,7 +3661,7 @@ function Admin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -3670,7 +3683,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.get
         * @desc retrieve user
@@ -3707,7 +3720,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.insert
         * @desc create user.
@@ -3742,7 +3755,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.list
         * @desc Retrieve either deleted users or all users in a domain
@@ -3789,7 +3802,7 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.makeAdmin
         * @desc change admin status of a user
@@ -3825,7 +3838,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.patch
         * @desc update user. This method supports patch semantics.
@@ -3861,7 +3874,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.undelete
         * @desc Undelete a deleted user
@@ -3897,7 +3910,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.update
         * @desc update user
@@ -3933,7 +3946,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.users.watch
         * @desc Watch for changes in users list
@@ -3980,311 +3993,319 @@ function Admin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    aliases: {
-      /**
-       * directory.users.aliases.delete
-       * @desc Remove a alias for the user
-       * @alias directory.users.aliases.delete
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.alias The alias to be removed
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/aliases/{alias}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userKey', 'alias'],
-          pathParams: ['alias', 'userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.aliases.insert
-          * @desc Add a alias for the user
-          * @alias directory.users.aliases.insert
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {admin(directory_v1).Alias} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      insert(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.aliases.list
-          * @desc List all aliases for a user
-          * @alias directory.users.aliases.list
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.event Event on which subscription is intended (if subscribing)
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/admin/directory/v1/users/{userKey}/aliases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.aliases.watch
-          * @desc Watch for changes in user aliases list
-          * @alias directory.users.aliases.watch
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.event Event on which subscription is intended (if subscribing)
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {admin(directory_v1).Channel} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      watch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/aliases/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    aliases:
+        {
+          /**
+           * directory.users.aliases.delete
+           * @desc Remove a alias for the user
+           * @alias directory.users.aliases.delete
+           * @memberOf! admin(directory_v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.alias The alias to be removed
+           * @param {string} params.userKey Email or immutable ID of the user
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/users/{userKey}/aliases/{alias}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey', 'alias'],
+              pathParams: ['alias', 'userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.aliases.insert
+              * @desc Add a alias for the user
+              * @alias directory.users.aliases.insert
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {admin(directory_v1).Alias} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/users/{userKey}/aliases')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.aliases.list
+              * @desc List all aliases for a user
+              * @alias directory.users.aliases.list
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.event Event on which subscription is intended (if subscribing)
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/users/{userKey}/aliases')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.aliases.watch
+              * @desc Watch for changes in user aliases list
+              * @alias directory.users.aliases.watch
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.event Event on which subscription is intended (if subscribing)
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {admin(directory_v1).Channel} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          watch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/admin/directory/v1/users/{userKey}/aliases/watch')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    photos: {
-      /**
-       * directory.users.photos.delete
-       * @desc Remove photos for the user
-       * @alias directory.users.photos.delete
-       * @memberOf! admin(directory_v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.userKey Email or immutable ID of the user
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.photos.get
-          * @desc Retrieve photo of a user
-          * @alias directory.users.photos.get
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.photos.patch
-          * @desc Add a photo for the user. This method supports patch
-          * semantics.
-          * @alias directory.users.photos.patch
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {admin(directory_v1).UserPhoto} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * directory.users.photos.update
-          * @desc Add a photo for the user
-          * @alias directory.users.photos.update
-          * @memberOf! admin(directory_v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.userKey Email or immutable ID of the user
-          * @param {admin(directory_v1).UserPhoto} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/admin/directory/v1/users/{userKey}/photos/thumbnail')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['userKey'],
-          pathParams: ['userKey'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    photos:
+        {
+          /**
+           * directory.users.photos.delete
+           * @desc Remove photos for the user
+           * @alias directory.users.photos.delete
+           * @memberOf! admin(directory_v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.userKey Email or immutable ID of the user
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.photos.get
+              * @desc Retrieve photo of a user
+              * @alias directory.users.photos.get
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.photos.patch
+              * @desc Add a photo for the user. This method supports patch
+              * semantics.
+              * @alias directory.users.photos.patch
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * directory.users.photos.update
+              * @desc Add a photo for the user
+              * @alias directory.users.photos.update
+              * @memberOf! admin(directory_v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.userKey Email or immutable ID of the user
+              * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/admin/directory/v1/users/{userKey}/photos/thumbnail')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['userKey'],
+              pathParams: ['userKey'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.verificationCodes = {
+  verificationCodes = {
     /**
      * directory.verificationCodes.generate
      * @desc Generate new backup verification codes for the user.
@@ -4321,7 +4342,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.verificationCodes.invalidate
         * @desc Invalidate the current backup verification codes for the user.
@@ -4358,7 +4379,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * directory.verificationCodes.list
         * @desc Returns the current set of valid backup verification codes for
@@ -4395,7 +4416,7 @@ function Admin(options: GlobalOptions) {
         pathParams: ['userKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4552,7 +4573,7 @@ function Admin(options: GlobalOptions) {
  * @property {string} serialNumber Chromebook serial number (Read-only)
  * @property {string} status status of the device (Read-only)
  * @property {string} supportEndDate Final date the device will be supported (Read-only)
- * @property {object} tpmVersionInfo
+ * @property {object} tpmVersionInfo Trusted Platform Module (TPM) (Read-only)
  * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
  */
 /**
@@ -4656,7 +4677,7 @@ function Admin(options: GlobalOptions) {
  * @typedef FeatureInstance
  * @memberOf! admin(directory_v1)
  * @type object
- * @property {admin(directory_v1).Feature} feature
+ * @property {admin(directory_v1).Feature} feature The feature that this is an instance of. A calendar resource may have multiple instances of a feature.
  */
 /**
  * @typedef FeatureRename
@@ -4722,7 +4743,7 @@ function Admin(options: GlobalOptions) {
  * @typedef MembersHasMember
  * @memberOf! admin(directory_v1)
  * @type object
- * @property {boolean} isMember Identifies whether given user is a member or not.
+ * @property {boolean} isMember Identifies whether the given user is a member of the group. Membership can be direct or nested.
  */
 /**
  * @typedef MobileDevice
@@ -5230,5 +5251,3 @@ function Admin(options: GlobalOptions) {
  * @property {admin(directory_v1).VerificationCode[]} items A list of verification code resources.
  * @property {string} kind The type of the resource. This is always admin#directory#verificationCodesList.
  */
-
-export = Admin;

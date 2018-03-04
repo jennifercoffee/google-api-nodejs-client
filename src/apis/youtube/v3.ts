@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Youtube;
 
 /**
  * YouTube Data API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Youtube
  */
-function Youtube(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.activities = {
+export class Youtube extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  activities = {
     /**
      * youtube.activities.insert
      * @desc Posts a bulletin for a specific channel. (The user submitting the
@@ -84,7 +89,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.activities.list
         * @desc Returns a list of channel activity events that match the request
@@ -131,11 +136,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.captions = {
+  captions = {
     /**
      * youtube.captions.delete
      * @desc Deletes a specified caption track.
@@ -150,7 +155,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -172,7 +177,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.captions.download
         * @desc Downloads a caption track. The caption track is returned in its
@@ -214,7 +219,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.captions.insert
         * @desc Uploads a caption track.
@@ -258,7 +263,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.captions.list
         * @desc Returns a list of caption tracks that are associated with a
@@ -300,7 +305,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.captions.update
         * @desc Updates a caption track. When updating a caption track, you can
@@ -346,11 +351,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channelBanners = {
+  channelBanners = {
     /**
      * youtube.channelBanners.insert
      * @desc Uploads a channel banner image to YouTube. This method represents
@@ -400,11 +405,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * youtube.channels.list
      * @desc Returns a collection of zero or more channel resources that match
@@ -450,7 +455,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.channels.update
         * @desc Updates a channel's metadata. Note that this method currently
@@ -489,11 +494,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channelSections = {
+  channelSections = {
     /**
      * youtube.channelSections.delete
      * @desc Deletes a channelSection.
@@ -507,7 +512,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -529,7 +534,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.channelSections.insert
         * @desc Adds a channelSection for the authenticated user's channel.
@@ -567,7 +572,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.channelSections.list
         * @desc Returns channelSection resources that match the API request
@@ -608,7 +613,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.channelSections.update
         * @desc Update a channelSection.
@@ -645,11 +650,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * youtube.comments.delete
      * @desc Deletes a comment.
@@ -662,7 +667,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -684,7 +689,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.comments.insert
         * @desc Creates a reply to an existing comment. Note: To create a
@@ -721,7 +726,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.comments.list
         * @desc Returns a list of comments that match the API request
@@ -762,7 +767,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.comments.markAsSpam
         * @desc Expresses the caller's opinion that one or more comments should
@@ -798,7 +803,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.comments.setModerationStatus
         * @desc Sets the moderation status of one or more comments. The API
@@ -837,7 +842,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.comments.update
         * @desc Modifies a comment.
@@ -873,11 +878,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.commentThreads = {
+  commentThreads = {
     /**
      * youtube.commentThreads.insert
      * @desc Creates a new top-level comment. To add a reply to an existing
@@ -914,7 +919,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.commentThreads.list
         * @desc Returns a list of comment threads that match the API request
@@ -960,7 +965,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.commentThreads.update
         * @desc Modifies the top-level comment in a comment thread.
@@ -996,11 +1001,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.fanFundingEvents = {
+  fanFundingEvents = {
     /**
      * youtube.fanFundingEvents.list
      * @desc Lists fan funding events for a channel.
@@ -1038,11 +1043,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.guideCategories = {
+  guideCategories = {
     /**
      * youtube.guideCategories.list
      * @desc Returns a list of categories that can be associated with YouTube
@@ -1081,11 +1086,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.i18nLanguages = {
+  i18nLanguages = {
     /**
      * youtube.i18nLanguages.list
      * @desc Returns a list of application languages that the YouTube website
@@ -1122,11 +1127,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.i18nRegions = {
+  i18nRegions = {
     /**
      * youtube.i18nRegions.list
      * @desc Returns a list of content regions that the YouTube website
@@ -1163,11 +1168,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liveBroadcasts = {
+  liveBroadcasts = {
     /**
      * youtube.liveBroadcasts.bind
      * @desc Binds a YouTube broadcast to a stream or removes an existing
@@ -1209,7 +1214,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.control
         * @desc Controls the settings for a slate that can be displayed in the
@@ -1251,7 +1256,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.delete
         * @desc Deletes a broadcast.
@@ -1266,7 +1271,7 @@ function Youtube(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1288,7 +1293,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.insert
         * @desc Creates a broadcast.
@@ -1326,7 +1331,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.list
         * @desc Returns a list of YouTube broadcasts that match the API request
@@ -1370,7 +1375,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.transition
         * @desc Changes the status of a YouTube live broadcast and initiates any
@@ -1414,7 +1419,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveBroadcasts.update
         * @desc Updates a broadcast. For example, you could modify the broadcast
@@ -1454,11 +1459,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liveChatBans = {
+  liveChatBans = {
     /**
      * youtube.liveChatBans.delete
      * @desc Removes a chat ban.
@@ -1471,7 +1476,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1493,7 +1498,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveChatBans.insert
         * @desc Adds a new ban to the chat.
@@ -1529,11 +1534,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liveChatMessages = {
+  liveChatMessages = {
     /**
      * youtube.liveChatMessages.delete
      * @desc Deletes a chat message.
@@ -1546,7 +1551,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1568,7 +1573,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveChatMessages.insert
         * @desc Adds a message to a live chat.
@@ -1604,7 +1609,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveChatMessages.list
         * @desc Lists live chat messages for a specific chat.
@@ -1644,11 +1649,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liveChatModerators = {
+  liveChatModerators = {
     /**
      * youtube.liveChatModerators.delete
      * @desc Removes a chat moderator.
@@ -1661,7 +1666,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1683,7 +1688,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveChatModerators.insert
         * @desc Adds a new moderator for the chat.
@@ -1719,7 +1724,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveChatModerators.list
         * @desc Lists moderators for a live chat.
@@ -1757,11 +1762,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liveStreams = {
+  liveStreams = {
     /**
      * youtube.liveStreams.delete
      * @desc Deletes a video stream.
@@ -1776,7 +1781,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1798,7 +1803,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveStreams.insert
         * @desc Creates a video stream. The stream enables you to send your
@@ -1837,7 +1842,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveStreams.list
         * @desc Returns a list of video streams that match the API request
@@ -1879,7 +1884,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.liveStreams.update
         * @desc Updates a video stream. If the properties that you want to
@@ -1919,11 +1924,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.playlistItems = {
+  playlistItems = {
     /**
      * youtube.playlistItems.delete
      * @desc Deletes a playlist item.
@@ -1937,7 +1942,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1959,7 +1964,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlistItems.insert
         * @desc Adds a resource to a playlist.
@@ -1996,7 +2001,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlistItems.list
         * @desc Returns a collection of playlist items that match the API
@@ -2040,7 +2045,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlistItems.update
         * @desc Modifies a playlist item. For example, you could update the
@@ -2078,11 +2083,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.playlists = {
+  playlists = {
     /**
      * youtube.playlists.delete
      * @desc Deletes a playlist.
@@ -2096,7 +2101,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2118,7 +2123,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlists.insert
         * @desc Creates a playlist.
@@ -2156,7 +2161,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlists.list
         * @desc Returns a collection of playlists that match the API request
@@ -2202,7 +2207,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.playlists.update
         * @desc Modifies a playlist. For example, you could change a playlist's
@@ -2240,11 +2245,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.search = {
+  search = {
     /**
      * youtube.search.list
      * @desc Returns a collection of search results that match the query
@@ -2312,11 +2317,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.sponsors = {
+  sponsors = {
     /**
      * youtube.sponsors.list
      * @desc Lists sponsors for a channel.
@@ -2354,11 +2359,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.subscriptions = {
+  subscriptions = {
     /**
      * youtube.subscriptions.delete
      * @desc Deletes a subscription.
@@ -2371,7 +2376,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2393,7 +2398,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.subscriptions.insert
         * @desc Adds a subscription for the authenticated user's channel.
@@ -2429,7 +2434,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.subscriptions.list
         * @desc Returns subscription resources that match the API request
@@ -2476,11 +2481,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.superChatEvents = {
+  superChatEvents = {
     /**
      * youtube.superChatEvents.list
      * @desc Lists Super Chat events for a channel.
@@ -2518,11 +2523,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.thumbnails = {
+  thumbnails = {
     /**
      * youtube.thumbnails.set
      * @desc Uploads a custom video thumbnail to YouTube and sets it for a
@@ -2563,11 +2568,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.videoAbuseReportReasons = {
+  videoAbuseReportReasons = {
     /**
      * youtube.videoAbuseReportReasons.list
      * @desc Returns a list of abuse reasons that can be used for reporting
@@ -2604,11 +2609,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.videoCategories = {
+  videoCategories = {
     /**
      * youtube.videoCategories.list
      * @desc Returns a list of categories that can be associated with YouTube
@@ -2647,11 +2652,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.videos = {
+  videos = {
     /**
      * youtube.videos.delete
      * @desc Deletes a YouTube video.
@@ -2665,7 +2670,7 @@ function Youtube(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2687,7 +2692,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.getRating
         * @desc Retrieves the ratings that the authorized user gave to a list of
@@ -2724,7 +2729,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.insert
         * @desc Uploads a video to YouTube and optionally sets the video's
@@ -2771,7 +2776,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.list
         * @desc Returns a list of videos that match the API request parameters.
@@ -2818,7 +2823,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.rate
         * @desc Add a like or dislike rating to a video or remove a rating from
@@ -2855,7 +2860,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.reportAbuse
         * @desc Report abuse for a video.
@@ -2891,7 +2896,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.videos.update
         * @desc Updates a video's metadata.
@@ -2928,11 +2933,11 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.watermarks = {
+  watermarks = {
     /**
      * youtube.watermarks.set
      * @desc Uploads a watermark image to YouTube and sets it for a channel.
@@ -2973,7 +2978,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtube.watermarks.unset
         * @desc Deletes a channel's watermark image.
@@ -3009,7 +3014,7 @@ function Youtube(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3804,6 +3809,7 @@ function Youtube(options: GlobalOptions) {
  * @property {string} projection The projection format of this broadcast. This defaults to rectangular.
  * @property {boolean} recordFromStart Automatically start recording after the event goes live. The default value for this property is true.    Important: You must also set the enableDvr property&#39;s value to true if you want the playback to be available immediately after the broadcast ends. If you set this property&#39;s value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback.
  * @property {boolean} startWithSlate This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast&#39;s status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint&#39;s eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.
+ * @property {string} stereoLayout
  */
 /**
  * @typedef LiveBroadcastListResponse
@@ -4367,6 +4373,7 @@ function Youtube(options: GlobalOptions) {
  * @memberOf! youtube(v3)
  * @type object
  * @property {string} channelId The id of the channel being sponsored.
+ * @property {integer} cumulativeDurationMonths The cumulative time a user has been a sponsor in months.
  * @property {youtube(v3).ChannelProfileDetails} sponsorDetails Details about the sponsor.
  * @property {string} sponsorSince The date and time when the user became a sponsor. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
  */
@@ -4828,5 +4835,3 @@ function Youtube(options: GlobalOptions) {
  * @property {string} featuredPlaylistId An ID that uniquely identifies a playlist that displays next to the video player.
  * @property {string} textColor The background color for the video watch page&#39;s branded area.
  */
-
-export = Youtube;

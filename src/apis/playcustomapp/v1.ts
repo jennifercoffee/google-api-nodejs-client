@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Playcustomapp;
 
 /**
  * Google Play Custom App Publishing API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Playcustomapp
  */
-function Playcustomapp(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Playcustomapp extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     customApps: {
       /**
        * playcustomapp.accounts.customApps.create
@@ -85,7 +90,7 @@ function Playcustomapp(options: GlobalOptions) {
           pathParams: ['account'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -98,5 +103,3 @@ function Playcustomapp(options: GlobalOptions) {
  * @property {string} languageCode Default listing language in BCP 47 format.
  * @property {string} title Title for the Android app.
  */
-
-export = Playcustomapp;

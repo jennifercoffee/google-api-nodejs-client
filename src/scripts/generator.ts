@@ -63,6 +63,10 @@ export class Generator {
     return str ? str.replace(/\n/g, ' ') : '';
   }
 
+  private dotToUnderscore(str?: string) {
+    return str ? str.replace(/\./g, '_') : '';
+  }
+
   /**
    * Clean a string of comment tags.
    * @param str String to process
@@ -108,6 +112,7 @@ export class Generator {
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('cleanComments', this.cleanComments);
+    this.env.addFilter('dotToUnderscore', this.dotToUnderscore);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
     this.env.addFilter('cleanPaths', (str) => {

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Script;
 
 /**
  * Google Apps Script API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Script
  */
-function Script(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.processes = {
+export class Script extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  processes = {
     /**
      * script.processes.list
      * @desc List information about processes made by or on behalf of a user,
@@ -86,7 +91,7 @@ function Script(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * script.processes.listScriptProcesses
         * @desc List information about a script's executed processes, such as
@@ -131,11 +136,11 @@ function Script(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     /**
      * script.projects.create
      * @desc Creates a new, empty script project with no script files and a base
@@ -170,7 +175,7 @@ function Script(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.get
         * @desc Gets a script project's metadata.
@@ -204,7 +209,7 @@ function Script(options: GlobalOptions) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.getContent
         * @desc Gets the content of the script project, including the code
@@ -241,7 +246,7 @@ function Script(options: GlobalOptions) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.getMetrics
         * @desc Get metrics data for scripts, such as number of executions and
@@ -279,7 +284,7 @@ function Script(options: GlobalOptions) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * script.projects.updateContent
         * @desc Updates the content of the specified script project. This
@@ -319,312 +324,314 @@ function Script(options: GlobalOptions) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    deployments: {
-      /**
-       * script.projects.deployments.create
-       * @desc Creates a deployment of an Apps Script project.
-       * @alias script.projects.deployments.create
-       * @memberOf! script(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.scriptId The script project's Drive ID.
-       * @param {script(v1).DeploymentConfig} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{scriptId}/deployments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId'],
-          pathParams: ['scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.deployments.delete
-          * @desc Deletes a deployment of an Apps Script project.
-          * @alias script.projects.deployments.delete
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.deploymentId The deployment ID to be undeployed.
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId', 'deploymentId'],
-          pathParams: ['deploymentId', 'scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.deployments.get
-          * @desc Gets a deployment of an Apps Script project.
-          * @alias script.projects.deployments.get
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.deploymentId The deployment ID.
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId', 'deploymentId'],
-          pathParams: ['deploymentId', 'scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.deployments.list
-          * @desc Lists the deployments of an Apps Script project.
-          * @alias script.projects.deployments.list
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize The maximum number of deployments on each returned page. Defaults to 50.
-          * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{scriptId}/deployments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId'],
-          pathParams: ['scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.deployments.update
-          * @desc Updates a deployment of an Apps Script project.
-          * @alias script.projects.deployments.update
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.deploymentId The deployment ID for this deployment.
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {script(v1).UpdateDeploymentRequest} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId', 'deploymentId'],
-          pathParams: ['deploymentId', 'scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    deployments:
+        {
+          /**
+           * script.projects.deployments.create
+           * @desc Creates a deployment of an Apps Script project.
+           * @alias script.projects.deployments.create
+           * @memberOf! script(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.scriptId The script project's Drive ID.
+           * @param {script(v1).DeploymentConfig} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/projects/{scriptId}/deployments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId'],
+              pathParams: ['scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.deployments.delete
+              * @desc Deletes a deployment of an Apps Script project.
+              * @alias script.projects.deployments.delete
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.deploymentId The deployment ID to be undeployed.
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/projects/{scriptId}/deployments/{deploymentId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId', 'deploymentId'],
+              pathParams: ['deploymentId', 'scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.deployments.get
+              * @desc Gets a deployment of an Apps Script project.
+              * @alias script.projects.deployments.get
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.deploymentId The deployment ID.
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/projects/{scriptId}/deployments/{deploymentId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId', 'deploymentId'],
+              pathParams: ['deploymentId', 'scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.deployments.list
+              * @desc Lists the deployments of an Apps Script project.
+              * @alias script.projects.deployments.list
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize The maximum number of deployments on each returned page. Defaults to 50.
+              * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/projects/{scriptId}/deployments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId'],
+              pathParams: ['scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.deployments.update
+              * @desc Updates a deployment of an Apps Script project.
+              * @alias script.projects.deployments.update
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.deploymentId The deployment ID for this deployment.
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {script(v1).UpdateDeploymentRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          update(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/projects/{scriptId}/deployments/{deploymentId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PUT'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId', 'deploymentId'],
+              pathParams: ['deploymentId', 'scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    versions: {
-      /**
-       * script.projects.versions.create
-       * @desc Creates a new immutable version using the current code, with a
-       * unique version number.
-       * @alias script.projects.versions.create
-       * @memberOf! script(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.scriptId The script project's Drive ID.
-       * @param {script(v1).Version} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{scriptId}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId'],
-          pathParams: ['scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.versions.get
-          * @desc Gets a version of a script project.
-          * @alias script.projects.versions.get
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {integer} params.versionNumber The version number.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/projects/{scriptId}/versions/{versionNumber}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId', 'versionNumber'],
-          pathParams: ['scriptId', 'versionNumber'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * script.projects.versions.list
-          * @desc List the versions of a script project.
-          * @alias script.projects.versions.list
-          * @memberOf! script(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize The maximum number of versions on each returned page. Defaults to 50.
-          * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-          * @param {string} params.scriptId The script project's Drive ID.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{scriptId}/versions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['scriptId'],
-          pathParams: ['scriptId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    versions:
+        {
+          /**
+           * script.projects.versions.create
+           * @desc Creates a new immutable version using the current code, with
+           * a unique version number.
+           * @alias script.projects.versions.create
+           * @memberOf! script(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.scriptId The script project's Drive ID.
+           * @param {script(v1).Version} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/projects/{scriptId}/versions')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId'],
+              pathParams: ['scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.versions.get
+              * @desc Gets a version of a script project.
+              * @alias script.projects.versions.get
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {integer} params.versionNumber The version number.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/projects/{scriptId}/versions/{versionNumber}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId', 'versionNumber'],
+              pathParams: ['scriptId', 'versionNumber'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * script.projects.versions.list
+              * @desc List the versions of a script project.
+              * @alias script.projects.versions.list
+              * @memberOf! script(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize The maximum number of versions on each returned page. Defaults to 50.
+              * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
+              * @param {string} params.scriptId The script project's Drive ID.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/projects/{scriptId}/versions')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['scriptId'],
+              pathParams: ['scriptId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.scripts = {
+  scripts = {
     /**
      * script.scripts.run
      * @desc Runs a function in an Apps Script project. The project must be
@@ -666,7 +673,7 @@ function Script(options: GlobalOptions) {
         pathParams: ['scriptId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -932,5 +939,3 @@ function Script(options: GlobalOptions) {
  * @property {string} scriptId The script project&#39;s Drive ID.
  * @property {integer} versionNumber The incremental ID that is created by Apps Script when a version is created. This is system assigned number and is immutable once created.
  */
-
-export = Script;

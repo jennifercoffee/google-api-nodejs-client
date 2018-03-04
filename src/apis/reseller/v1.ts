@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Reseller;
 
 /**
  * Enterprise Apps Reseller API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Reseller
  */
-function Reseller(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.customers = {
+export class Reseller extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  customers = {
     /**
      * reseller.customers.get
      * @desc Get a customer account.
@@ -75,7 +80,7 @@ function Reseller(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.insert
         * @desc Order a new customer's account.
@@ -111,7 +116,7 @@ function Reseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.patch
         * @desc Update a customer account's settings. This method supports patch
@@ -148,7 +153,7 @@ function Reseller(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reseller.customers.update
         * @desc Update a customer account's settings.
@@ -184,11 +189,11 @@ function Reseller(options: GlobalOptions) {
         pathParams: ['customerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.resellernotify = {
+  resellernotify = {
     /**
      * reseller.resellernotify.getwatchdetails
      * @desc Returns all the details of the watch corresponding to the reseller.
@@ -223,7 +228,7 @@ function Reseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reseller.resellernotify.register
         * @desc Registers a Reseller for receiving notifications.
@@ -258,7 +263,7 @@ function Reseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * reseller.resellernotify.unregister
         * @desc Unregisters a Reseller for receiving notifications.
@@ -293,11 +298,11 @@ function Reseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.subscriptions =
+  subscriptions =
       {
         /**
          * reseller.subscriptions.activate
@@ -336,7 +341,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changePlan
             * @desc Update a subscription plan. Use this method to update a plan
@@ -377,7 +382,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changeRenewalSettings
             * @desc Update a user license's renewal settings. This is applicable
@@ -417,7 +422,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.changeSeats
             * @desc Update a subscription's user license settings.
@@ -456,7 +461,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.delete
             * @desc Cancel, suspend or transfer a subscription to direct.
@@ -471,7 +476,7 @@ function Reseller(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -495,7 +500,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.get
             * @desc Get a specific subscription.
@@ -532,7 +537,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.insert
             * @desc Create or transfer a subscription.
@@ -571,7 +576,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.list
             * @desc List of subscriptions managed by the reseller. The list can
@@ -612,7 +617,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.startPaidService
             * @desc Immediately move a 30-day free trial subscription to a paid
@@ -651,7 +656,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * reseller.subscriptions.suspend
             * @desc Suspends an active subscription.
@@ -689,7 +694,7 @@ function Reseller(options: GlobalOptions) {
             pathParams: ['customerId', 'subscriptionId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       };
@@ -792,5 +797,3 @@ function Reseller(options: GlobalOptions) {
  * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  * @property {reseller(v1).Subscription[]} subscriptions The subscriptions in this page of results.
  */
-
-export = Reseller;

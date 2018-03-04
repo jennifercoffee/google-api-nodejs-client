@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Youtubeanalytics;
 
 /**
  * YouTube Analytics API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Youtubeanalytics
  */
-function Youtubeanalytics(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.groupItems = {
+export class Youtubeanalytics extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  groupItems = {
     /**
      * youtubeAnalytics.groupItems.delete
      * @desc Removes an item from a group.
@@ -55,7 +60,7 @@ function Youtubeanalytics(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -77,7 +82,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubeAnalytics.groupItems.insert
         * @desc Creates a group item.
@@ -113,7 +118,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubeAnalytics.groupItems.list
         * @desc Returns a collection of group items that match the API request
@@ -150,11 +155,11 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.groups = {
+  groups = {
     /**
      * youtubeAnalytics.groups.delete
      * @desc Deletes a group.
@@ -168,7 +173,7 @@ function Youtubeanalytics(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -190,7 +195,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubeAnalytics.groups.insert
         * @desc Creates a group.
@@ -226,7 +231,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubeAnalytics.groups.list
         * @desc Returns a collection of groups that match the API request
@@ -267,7 +272,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubeAnalytics.groups.update
         * @desc Modifies a group. For example, you could change a group's title.
@@ -303,11 +308,11 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.reports = {
+  reports = {
     /**
      * youtubeAnalytics.reports.query
      * @desc Retrieve your YouTube Analytics reports.
@@ -352,7 +357,7 @@ function Youtubeanalytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -402,5 +407,3 @@ function Youtubeanalytics(options: GlobalOptions) {
  * @property {string} kind This value specifies the type of data included in the API response. For the query method, the kind property value will be youtubeAnalytics#resultTable.
  * @property {array[]} rows The list contains all rows of the result table. Each item in the list is an array that contains comma-delimited data corresponding to a single row of data. The order of the comma-delimited data fields will match the order of the columns listed in the columnHeaders field. If no data is available for the given query, the rows element will be omitted from the response. The response for a query with the day dimension will not contain rows for the most recent days.
  */
-
-export = Youtubeanalytics;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Logging;
 
 /**
  * Stackdriver Logging API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Logging
  */
-function Logging(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.billingAccounts = {
+export class Logging extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  billingAccounts = {
     exclusions: {
       /**
        * logging.billingAccounts.exclusions.create
@@ -80,7 +85,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.exclusions.delete
           * @desc Deletes an exclusion.
@@ -93,7 +98,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -114,7 +119,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.exclusions.get
           * @desc Gets the description of an exclusion.
@@ -147,7 +152,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.exclusions.list
           * @desc Lists all the exclusions in a parent resource.
@@ -184,7 +189,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.exclusions.patch
           * @desc Changes one or more properties of an existing exclusion.
@@ -220,7 +225,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -239,7 +244,7 @@ function Logging(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -260,7 +265,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['logName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.logs.list
           * @desc Lists the logs in projects, organizations, folders, or billing
@@ -298,7 +303,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -343,7 +348,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.sinks.delete
           * @desc Deletes a sink. If the sink has a unique writer_identity, then
@@ -357,7 +362,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -378,7 +383,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.sinks.get
           * @desc Gets a sink.
@@ -411,7 +416,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.sinks.list
           * @desc Lists sinks.
@@ -448,7 +453,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.sinks.patch
           * @desc Updates a sink. This method replaces the following fields in
@@ -488,7 +493,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.billingAccounts.sinks.update
           * @desc Updates a sink. This method replaces the following fields in
@@ -528,12 +533,12 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.entries = {
+  entries = {
     /**
      * logging.entries.list
      * @desc Lists log entries. Use this method to retrieve log entries from
@@ -568,7 +573,7 @@ function Logging(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.entries.write
         * @desc Log entry resourcesWrites log entries to Stackdriver Logging.
@@ -607,11 +612,11 @@ function Logging(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.exclusions = {
+  exclusions = {
     /**
      * logging.exclusions.create
      * @desc Creates a new exclusion in a specified parent resource. Only log
@@ -649,7 +654,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.exclusions.delete
         * @desc Deletes an exclusion.
@@ -662,7 +667,7 @@ function Logging(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -683,7 +688,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.exclusions.get
         * @desc Gets the description of an exclusion.
@@ -716,7 +721,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.exclusions.list
         * @desc Lists all the exclusions in a parent resource.
@@ -753,7 +758,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.exclusions.patch
         * @desc Changes one or more properties of an existing exclusion.
@@ -789,11 +794,11 @@ function Logging(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.folders = {
+  folders = {
     exclusions: {
       /**
        * logging.folders.exclusions.create
@@ -832,7 +837,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.exclusions.delete
           * @desc Deletes an exclusion.
@@ -845,7 +850,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -866,7 +871,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.exclusions.get
           * @desc Gets the description of an exclusion.
@@ -899,7 +904,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.exclusions.list
           * @desc Lists all the exclusions in a parent resource.
@@ -936,7 +941,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.exclusions.patch
           * @desc Changes one or more properties of an existing exclusion.
@@ -972,7 +977,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -991,7 +996,7 @@ function Logging(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1012,7 +1017,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['logName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.logs.list
           * @desc Lists the logs in projects, organizations, folders, or billing
@@ -1050,7 +1055,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1095,7 +1100,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.sinks.delete
           * @desc Deletes a sink. If the sink has a unique writer_identity, then
@@ -1109,7 +1114,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1130,7 +1135,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.sinks.get
           * @desc Gets a sink.
@@ -1163,7 +1168,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.sinks.list
           * @desc Lists sinks.
@@ -1200,7 +1205,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.sinks.patch
           * @desc Updates a sink. This method replaces the following fields in
@@ -1240,7 +1245,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.folders.sinks.update
           * @desc Updates a sink. This method replaces the following fields in
@@ -1280,12 +1285,12 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.logs = {
+  logs = {
     /**
      * logging.logs.delete
      * @desc Deletes all the log entries in a log. The log reappears if it
@@ -1300,7 +1305,7 @@ function Logging(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1321,7 +1326,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['logName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.logs.list
         * @desc Lists the logs in projects, organizations, folders, or billing
@@ -1359,11 +1364,11 @@ function Logging(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.monitoredResourceDescriptors = {
+  monitoredResourceDescriptors = {
     /**
      * logging.monitoredResourceDescriptors.list
      * @desc Lists the descriptors for monitored resource types used by
@@ -1400,11 +1405,11 @@ function Logging(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.organizations = {
+  organizations = {
     exclusions: {
       /**
        * logging.organizations.exclusions.create
@@ -1443,7 +1448,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.exclusions.delete
           * @desc Deletes an exclusion.
@@ -1456,7 +1461,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1477,7 +1482,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.exclusions.get
           * @desc Gets the description of an exclusion.
@@ -1510,7 +1515,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.exclusions.list
           * @desc Lists all the exclusions in a parent resource.
@@ -1547,7 +1552,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.exclusions.patch
           * @desc Changes one or more properties of an existing exclusion.
@@ -1583,7 +1588,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1602,7 +1607,7 @@ function Logging(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1623,7 +1628,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['logName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.logs.list
           * @desc Lists the logs in projects, organizations, folders, or billing
@@ -1661,7 +1666,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1706,7 +1711,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.sinks.delete
           * @desc Deletes a sink. If the sink has a unique writer_identity, then
@@ -1720,7 +1725,7 @@ function Logging(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1741,7 +1746,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.sinks.get
           * @desc Gets a sink.
@@ -1774,7 +1779,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.sinks.list
           * @desc Lists sinks.
@@ -1811,7 +1816,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.sinks.patch
           * @desc Updates a sink. This method replaces the following fields in
@@ -1851,7 +1856,7 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * logging.organizations.sinks.update
           * @desc Updates a sink. This method replaces the following fields in
@@ -1891,12 +1896,12 @@ function Logging(options: GlobalOptions) {
           pathParams: ['sinkName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.projects =
+  projects =
       {
         exclusions: {
           /**
@@ -1937,7 +1942,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.exclusions.delete
               * @desc Deletes an exclusion.
@@ -1950,7 +1955,7 @@ function Logging(options: GlobalOptions) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -1972,7 +1977,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.exclusions.get
               * @desc Gets the description of an exclusion.
@@ -2006,7 +2011,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.exclusions.list
               * @desc Lists all the exclusions in a parent resource.
@@ -2044,7 +2049,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.exclusions.patch
               * @desc Changes one or more properties of an existing exclusion.
@@ -2081,7 +2086,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2100,7 +2105,7 @@ function Logging(options: GlobalOptions) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2123,7 +2128,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['logName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.logs.list
               * @desc Lists the logs in projects, organizations, folders, or
@@ -2162,7 +2167,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2203,7 +2208,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.delete
               * @desc Deletes a logs-based metric.
@@ -2216,7 +2221,7 @@ function Logging(options: GlobalOptions) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2239,7 +2244,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.get
               * @desc Gets a logs-based metric.
@@ -2274,7 +2279,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.list
               * @desc Lists logs-based metrics.
@@ -2312,7 +2317,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.metrics.update
               * @desc Creates or updates a logs-based metric.
@@ -2349,7 +2354,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['metricName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2395,7 +2400,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.delete
               * @desc Deletes a sink. If the sink has a unique writer_identity,
@@ -2409,7 +2414,7 @@ function Logging(options: GlobalOptions) {
               * @param {callback} callback The callback that handles the response.
               * @return {object} Request object
               */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2432,7 +2437,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.get
               * @desc Gets a sink.
@@ -2467,7 +2472,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.list
               * @desc Lists sinks.
@@ -2505,7 +2510,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.patch
               * @desc Updates a sink. This method replaces the following fields
@@ -2547,7 +2552,7 @@ function Logging(options: GlobalOptions) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * logging.projects.sinks.update
               * @desc Updates a sink. This method replaces the following fields
@@ -2589,12 +2594,12 @@ function Logging(options: GlobalOptions) {
               pathParams: ['sinkName'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         }
       };
-  self.sinks = {
+  sinks = {
     /**
      * logging.sinks.create
      * @desc Creates a sink that exports specified log entries to a destination.
@@ -2634,7 +2639,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.sinks.delete
         * @desc Deletes a sink. If the sink has a unique writer_identity, then
@@ -2648,7 +2653,7 @@ function Logging(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2669,7 +2674,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['sinkName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.sinks.get
         * @desc Gets a sink.
@@ -2702,7 +2707,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['sinkName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.sinks.list
         * @desc Lists sinks.
@@ -2739,7 +2744,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * logging.sinks.update
         * @desc Updates a sink. This method replaces the following fields in the
@@ -2779,7 +2784,7 @@ function Logging(options: GlobalOptions) {
         pathParams: ['sinkName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3079,5 +3084,3 @@ function Logging(options: GlobalOptions) {
  * @memberOf! logging(v2)
  * @type object
  */
-
-export = Logging;

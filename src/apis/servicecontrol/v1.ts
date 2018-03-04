@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Servicecontrol;
 
 /**
  * Google Service Control API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Servicecontrol
  */
-function Servicecontrol(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.services = {
+export class Servicecontrol extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  services = {
     /**
      * servicecontrol.services.allocateQuota
      * @desc Attempts to allocate quota for the specified consumer. It should be
@@ -86,7 +91,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.check
         * @desc Checks whether an operation on a service should be allowed to
@@ -135,7 +140,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.endReconciliation
         * @desc Signals the quota controller that service ends the ongoing usage
@@ -176,7 +181,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.releaseQuota
         * @desc Releases previously allocated quota done through AllocateQuota
@@ -220,7 +225,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.report
         * @desc Reports operation results to Google Service Control, such as
@@ -267,7 +272,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicecontrol.services.startReconciliation
         * @desc Unlike rate quota, allocation quota does not get refilled
@@ -325,7 +330,7 @@ function Servicecontrol(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -655,5 +660,3 @@ function Servicecontrol(options: GlobalOptions) {
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
-
-export = Servicecontrol;

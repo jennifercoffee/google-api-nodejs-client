@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Adexperiencereport;
 
 /**
  * Google Ad Experience Report API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Adexperiencereport
  */
-function Adexperiencereport(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.sites = {
+export class Adexperiencereport extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  sites = {
     /**
      * adexperiencereport.sites.get
      * @desc Gets a summary of the ad experience rating of a site.
@@ -76,11 +81,11 @@ function Adexperiencereport(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.violatingSites = {
+  violatingSites = {
     /**
      * adexperiencereport.violatingSites.list
      * @desc Lists sites with Ad Experience Report statuses of "Failing" or
@@ -116,7 +121,7 @@ function Adexperiencereport(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -147,5 +152,3 @@ function Adexperiencereport(options: GlobalOptions) {
  * @type object
  * @property {adexperiencereport(v1).SiteSummaryResponse[]} violatingSites A list of summaries of violating sites.
  */
-
-export = Adexperiencereport;

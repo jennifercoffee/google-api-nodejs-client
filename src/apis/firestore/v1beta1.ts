@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Firestore;
 
 /**
  * Google Cloud Firestore API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Firestore
  */
-function Firestore(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Firestore extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     databases: {
       documents: {
         /**
@@ -82,7 +87,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.beginTransaction
             * @desc Starts a new transaction.
@@ -120,7 +125,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.commit
             * @desc Commits a transaction, while optionally updating documents.
@@ -157,7 +162,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.createDocument
             * @desc Creates a new document.
@@ -197,7 +202,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['collectionId', 'parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.delete
             * @desc Deletes a document.
@@ -212,7 +217,7 @@ function Firestore(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -235,7 +240,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.get
             * @desc Gets a single document.
@@ -273,7 +278,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.list
             * @desc Lists documents.
@@ -317,7 +322,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['collectionId', 'parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.listCollectionIds
             * @desc Lists all the collection IDs underneath a document.
@@ -354,7 +359,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.listen
             * @desc Listens to changes.
@@ -391,7 +396,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.patch
             * @desc Updates or inserts a document.
@@ -432,7 +437,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.rollback
             * @desc Rolls back a transaction.
@@ -469,7 +474,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.runQuery
             * @desc Runs a query.
@@ -506,7 +511,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.documents.write
             * @desc Streams batches of document updates and deletes, in order.
@@ -543,7 +548,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['database'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       },
@@ -592,7 +597,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.delete
             * @desc Deletes an index.
@@ -605,7 +610,7 @@ function Firestore(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -628,7 +633,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.get
             * @desc Gets an index.
@@ -663,7 +668,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * firestore.projects.databases.indexes.list
             * @desc Lists the indexes that match the specified filters.
@@ -702,7 +707,7 @@ function Firestore(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -1129,5 +1134,3 @@ function Firestore(options: GlobalOptions) {
  * @property {firestore(v1beta1).Value[]} transformResults The results of applying each DocumentTransform.FieldTransform, in the same order.
  * @property {string} updateTime The last update time of the document after applying the write. Not set after a `delete`.  If the write did not actually change the document, this will be the previous update_time.
  */
-
-export = Firestore;

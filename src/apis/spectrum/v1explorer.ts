@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Spectrum;
 
 /**
  * Google Spectrum Database API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1explorer
  * @param {object=} options Options for Spectrum
  */
-function Spectrum(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.paws = {
+export class Spectrum extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  paws = {
     /**
      * spectrum.paws.getSpectrum
      * @desc Requests information about the available spectrum for a device at a
@@ -78,7 +83,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.getSpectrumBatch
         * @desc The Google Spectrum Database does not support batch requests, so
@@ -114,7 +119,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.init
         * @desc Initializes the connection between a white space device and the
@@ -150,7 +155,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.notifySpectrumUse
         * @desc Notifies the database that the device has selected certain
@@ -189,7 +194,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.register
         * @desc The Google Spectrum Database implements registration in the
@@ -226,7 +231,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * spectrum.paws.verifyDevice
         * @desc Validates a device for white space use in accordance with
@@ -264,7 +269,7 @@ function Spectrum(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -570,5 +575,3 @@ function Spectrum(options: GlobalOptions) {
  * @type object
  * @property {string} text The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com.
  */
-
-export = Spectrum;

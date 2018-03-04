@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Spanner;
 
 /**
  * Cloud Spanner API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Spanner
  */
-function Spanner(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects =
+export class Spanner extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects =
       {
         instanceConfigs: {
           /**
@@ -78,7 +83,7 @@ function Spanner(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * spanner.projects.instanceConfigs.list
               * @desc Lists the supported instance configurations for a given
@@ -117,7 +122,7 @@ function Spanner(options: GlobalOptions) {
               pathParams: ['parent'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -180,7 +185,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.delete
                   * @desc Deletes an instance.  Immediately upon completion of
@@ -198,7 +203,7 @@ function Spanner(options: GlobalOptions) {
                   * @param {callback} callback The callback that handles the response.
                   * @return {object} Request object
                   */
-              delete (
+              delete(
                   params: any, options: MethodOptions|BodyResponseCallback<any>,
                   callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
@@ -221,7 +226,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.get
                   * @desc Gets information about a particular instance.
@@ -256,7 +261,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.getIamPolicy
                   * @desc Gets the access control policy for an instance
@@ -296,7 +301,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.list
                   * @desc Lists all instances in the given project.
@@ -335,7 +340,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['parent'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.patch
                   * @desc Updates an instance, and begins allocating or
@@ -398,7 +403,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['name'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.setIamPolicy
                   * @desc Sets the access control policy on an instance
@@ -437,7 +442,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * spanner.projects.instances.testIamPermissions
                   * @desc Returns permissions that the caller has on the
@@ -479,7 +484,7 @@ function Spanner(options: GlobalOptions) {
                   pathParams: ['resource'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               },
               databases:
                   {
@@ -526,7 +531,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['parent'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.dropDatabase
                         * @desc Drops (aka deletes) a Cloud Spanner database.
@@ -564,7 +569,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.get
                         * @desc Gets the state of a Cloud Spanner database.
@@ -600,7 +605,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['name'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.getDdl
                         * @desc Returns the schema of a Cloud Spanner database
@@ -640,7 +645,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.getIamPolicy
                         * @desc Gets the access control policy for a database
@@ -683,7 +688,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.list
                         * @desc Lists Cloud Spanner databases.
@@ -722,7 +727,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['parent'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.setIamPolicy
                         * @desc Sets the access control policy on a database
@@ -764,7 +769,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.testIamPermissions
                         * @desc Returns permissions that the caller has on the
@@ -810,7 +815,7 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['resource'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     }, /**
                         * spanner.projects.instances.databases.updateDdl
                         * @desc Updates the schema of a Cloud Spanner database
@@ -855,973 +860,994 @@ function Spanner(options: GlobalOptions) {
                         pathParams: ['database'],
                         context: self
                       };
-                      return createAPIRequest(parameters, callback!);
+                      createAPIRequest(parameters, callback!);
                     },
-                    operations: {
-                      /**
-                       * spanner.projects.instances.databases.operations.cancel
-                       * @desc Starts asynchronous cancellation on a
-                       * long-running operation.  The server makes a best effort
-                       * to cancel the operation, but success is not guaranteed.
-                       * If the server doesn't support this method, it returns
-                       * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-                       * Operations.GetOperation or other methods to check
-                       * whether the cancellation succeeded or whether the
-                       * operation completed despite cancellation. On successful
-                       * cancellation, the operation is not deleted; instead, it
-                       * becomes an operation with an Operation.error value with
-                       * a google.rpc.Status.code of 1, corresponding to
-                       * `Code.CANCELLED`.
-                       * @alias
-                       * spanner.projects.instances.databases.operations.cancel
-                       * @memberOf! spanner(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.name The name of the operation resource to be cancelled.
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      cancel(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}:cancel')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.operations.delete
-                          * @desc Deletes a long-running operation. This method
-                          * indicates that the client is no longer interested in
-                          * the operation result. It does not cancel the
-                          * operation. If the server doesn't support this
-                          * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-                          * @alias
-                          * spanner.projects.instances.databases.operations.delete
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name The name of the operation resource to be deleted.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      delete (
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'DELETE'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.operations.get
-                          * @desc Gets the latest state of a long-running
-                          * operation.  Clients can use this method to poll the
-                          * operation result at intervals as recommended by the
-                          * API service.
-                          * @alias
-                          * spanner.projects.instances.databases.operations.get
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name The name of the operation resource.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      get(params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.operations.list
-                          * @desc Lists operations that match the specified
-                          * filter in the request. If the server doesn't support
-                          * this method, it returns `UNIMPLEMENTED`.  NOTE: the
-                          * `name` binding allows API services to override the
-                          * binding to use different resource name schemes, such
-                          * as `users/x/operations`. To override the binding,
-                          * API services can add a binding such as
-                          * `"/v1/{name=users/x}/operations"` to their service
-                          * configuration. For backwards compatibility, the
-                          * default name includes the operations collection id,
-                          * however overriding users must ensure the name
-                          * binding is the parent resource, without the
-                          * operations collection id.
-                          * @alias
-                          * spanner.projects.instances.databases.operations.list
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string=} params.filter The standard list filter.
-                          * @param {string} params.name The name of the operation's parent resource.
-                          * @param {integer=} params.pageSize The standard list page size.
-                          * @param {string=} params.pageToken The standard list page token.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      list(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
+                    operations:
+                        {
+                          /**
+                           * spanner.projects.instances.databases.operations.cancel
+                           * @desc Starts asynchronous cancellation on a
+                           * long-running operation.  The server makes a best
+                           * effort to cancel the operation, but success is not
+                           * guaranteed.  If the server doesn't support this
+                           * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+                           * Clients can use Operations.GetOperation or other
+                           * methods to check whether the cancellation succeeded
+                           * or whether the operation completed despite
+                           * cancellation. On successful cancellation, the
+                           * operation is not deleted; instead, it becomes an
+                           * operation with an Operation.error value with a
+                           * google.rpc.Status.code of 1, corresponding to
+                           * `Code.CANCELLED`.
+                           * @alias
+                           * spanner.projects.instances.databases.operations.cancel
+                           * @memberOf! spanner(v1)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string} params.name The name of the operation resource to be cancelled.
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          cancel(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}:cancel')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.operations.delete
+                              * @desc Deletes a long-running operation. This
+                              * method indicates that the client is no longer
+                              * interested in the operation result. It does not
+                              * cancel the operation. If the server doesn't
+                              * support this method, it returns
+                              * `google.rpc.Code.UNIMPLEMENTED`.
+                              * @alias
+                              * spanner.projects.instances.databases.operations.delete
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.name The name of the operation resource to be deleted.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          delete(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'DELETE'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.operations.get
+                              * @desc Gets the latest state of a long-running
+                              * operation.  Clients can use this method to poll
+                              * the operation result at intervals as recommended
+                              * by the API service.
+                              * @alias
+                              * spanner.projects.instances.databases.operations.get
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.name The name of the operation resource.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          get(params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.operations.list
+                              * @desc Lists operations that match the specified
+                              * filter in the request. If the server doesn't
+                              * support this method, it returns `UNIMPLEMENTED`.
+                              * NOTE: the `name` binding allows API services to
+                              * override the binding to use different resource
+                              * name schemes, such as `users/x/operations`. To
+                              * override the binding, API services can add a
+                              * binding such as
+                              * `"/v1/{name=users/x}/operations"` to their
+                              * service configuration. For backwards
+                              * compatibility, the default name includes the
+                              * operations collection id, however overriding
+                              * users must ensure the name binding is the parent
+                              * resource, without the operations collection id.
+                              * @alias
+                              * spanner.projects.instances.databases.operations.list
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string=} params.filter The standard list filter.
+                              * @param {string} params.name The name of the operation's parent resource.
+                              * @param {integer=} params.pageSize The standard list page size.
+                              * @param {string=} params.pageToken The standard list page token.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          list(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    },
-                    sessions: {
-                      /**
-                       * spanner.projects.instances.databases.sessions.beginTransaction
-                       * @desc Begins a new transaction. This step can often be
-                       * skipped: Read, ExecuteSql and Commit can begin a new
-                       * transaction as a side-effect.
-                       * @alias
-                       * spanner.projects.instances.databases.sessions.beginTransaction
-                       * @memberOf! spanner(v1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.session Required. The session in which the transaction runs.
-                       * @param {spanner(v1).BeginTransactionRequest} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      beginTransaction(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl + '/v1/{session}:beginTransaction')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.commit
-                          * @desc Commits a transaction. The request includes
-                          * the mutations to be applied to rows in the database.
-                          * `Commit` might return an `ABORTED` error. This can
-                          * occur at any time; commonly, the cause is conflicts
-                          * with concurrent transactions. However, it can also
-                          * happen for a variety of other reasons. If `Commit`
-                          * returns `ABORTED`, the caller should re-attempt the
-                          * transaction from the beginning, re-using the same
-                          * session.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.commit
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the transaction to be committed is running.
-                          * @param {spanner(v1).CommitRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      commit(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:commit')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.create
-                          * @desc Creates a new session. A session can be used
-                          * to perform transactions that read and/or modify data
-                          * in a Cloud Spanner database. Sessions are meant to
-                          * be reused for many consecutive transactions.
-                          * Sessions can only execute one transaction at a time.
-                          * To execute multiple concurrent read-write/write-only
-                          * transactions, create multiple sessions. Note that
-                          * standalone reads and queries use a transaction
-                          * internally, and count toward the one transaction
-                          * limit.  Cloud Spanner limits the number of sessions
-                          * that can exist at any given time; thus, it is a good
-                          * idea to delete idle and/or unneeded sessions. Aside
-                          * from explicit deletes, Cloud Spanner can delete
-                          * sessions for which no operations are sent for more
-                          * than an hour. If a session is deleted, requests to
-                          * it return `NOT_FOUND`.  Idle sessions can be kept
-                          * alive by sending a trivial SQL query periodically,
-                          * e.g., `"SELECT 1"`.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.create
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.database Required. The database in which the new session is created.
-                          * @param {spanner(v1).CreateSessionRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      create(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{database}/sessions')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['database'],
-                          pathParams: ['database'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.delete
-                          * @desc Ends a session, releasing server resources
-                          * associated with it.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.delete
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name Required. The name of the session to delete.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      delete (
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'DELETE'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.executeSql
-                          * @desc Executes an SQL query, returning all rows in a
-                          * single reply. This method cannot be used to return a
-                          * result set larger than 10 MiB; if the query yields
-                          * more data than that, the query fails with a
-                          * `FAILED_PRECONDITION` error.  Queries inside
-                          * read-write transactions might return `ABORTED`. If
-                          * this occurs, the application should restart the
-                          * transaction from the beginning. See Transaction for
-                          * more details.  Larger result sets can be fetched in
-                          * streaming fashion by calling ExecuteStreamingSql
-                          * instead.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.executeSql
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the SQL query should be performed.
-                          * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      executeSql(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:executeSql')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.executeStreamingSql
-                          * @desc Like ExecuteSql, except returns the result set
-                          * as a stream. Unlike ExecuteSql, there is no limit on
-                          * the size of the returned result set. However, no
-                          * individual row in the result set can exceed 100 MiB,
-                          * and no column value can exceed 10 MiB.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.executeStreamingSql
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the SQL query should be performed.
-                          * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      executeStreamingSql(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl +
-                                      '/v1/{session}:executeStreamingSql')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.get
-                          * @desc Gets a session. Returns `NOT_FOUND` if the
-                          * session does not exist. This is mainly useful for
-                          * determining whether a session is still alive.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.get
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.name Required. The name of the session to retrieve.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      get(params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{name}')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['name'],
-                          pathParams: ['name'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.list
-                          * @desc Lists all sessions in a given database.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.list
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.database Required. The database in which to list sessions.
-                          * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `labels.key` where key is the name of a label  Some examples of using filters are:    * `labels.env:*` --> The session has the label "env".   * `labels.env:dev` --> The session has the label "env" and the value of                        the label contains the string "dev".
-                          * @param {integer=} params.pageSize Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-                          * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      list(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{database}/sessions')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['database'],
-                          pathParams: ['database'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.partitionQuery
-                          * @desc Creates a set of partition tokens that can be
-                          * used to execute a query operation in parallel.  Each
-                          * of the returned partition tokens can be used by
-                          * ExecuteStreamingSql to specify a subset of the query
-                          * result to read.  The same session and read-only
-                          * transaction must be used by the
-                          * PartitionQueryRequest used to create the partition
-                          * tokens and the ExecuteSqlRequests that use the
-                          * partition tokens. Partition tokens become invalid
-                          * when the session used to create them is deleted or
-                          * begins a new transaction.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.partitionQuery
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session used to create the partitions.
-                          * @param {spanner(v1).PartitionQueryRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      partitionQuery(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:partitionQuery')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.partitionRead
-                          * @desc Creates a set of partition tokens that can be
-                          * used to execute a read operation in parallel.  Each
-                          * of the returned partition tokens can be used by
-                          * StreamingRead to specify a subset of the read result
-                          * to read.  The same session and read-only transaction
-                          * must be used by the PartitionReadRequest used to
-                          * create the partition tokens and the ReadRequests
-                          * that use the partition tokens. Partition tokens
-                          * become invalid when the session used to create them
-                          * is deleted or begins a new transaction.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.partitionRead
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session used to create the partitions.
-                          * @param {spanner(v1).PartitionReadRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      partitionRead(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:partitionRead')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.read
-                          * @desc Reads rows from the database using key lookups
-                          * and scans, as a simple key/value style alternative
-                          * to ExecuteSql.  This method cannot be used to return
-                          * a result set larger than 10 MiB; if the read matches
-                          * more data than that, the read fails with a
-                          * `FAILED_PRECONDITION` error.  Reads inside
-                          * read-write transactions might return `ABORTED`. If
-                          * this occurs, the application should restart the
-                          * transaction from the beginning. See Transaction for
-                          * more details.  Larger result sets can be yielded in
-                          * streaming fashion by calling StreamingRead instead.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.read
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the read should be performed.
-                          * @param {spanner(v1).ReadRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      read(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:read')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.rollback
-                          * @desc Rolls back a transaction, releasing any locks
-                          * it holds. It is a good idea to call this for any
-                          * transaction that includes one or more Read or
-                          * ExecuteSql requests and ultimately decides not to
-                          * commit.  `Rollback` returns `OK` if it successfully
-                          * aborts the transaction, the transaction was already
-                          * aborted, or the transaction is not found. `Rollback`
-                          * never returns `ABORTED`.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.rollback
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the transaction to roll back is running.
-                          * @param {spanner(v1).RollbackRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      rollback(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:rollback')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * spanner.projects.instances.databases.sessions.streamingRead
-                          * @desc Like Read, except returns the result set as a
-                          * stream. Unlike Read, there is no limit on the size
-                          * of the returned result set. However, no individual
-                          * row in the result set can exceed 100 MiB, and no
-                          * column value can exceed 10 MiB.
-                          * @alias
-                          * spanner.projects.instances.databases.sessions.streamingRead
-                          * @memberOf! spanner(v1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.session Required. The session in which the read should be performed.
-                          * @param {spanner(v1).ReadRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      streamingRead(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://spanner.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url: (rootUrl + '/v1/{session}:streamingRead')
-                                         .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['session'],
-                          pathParams: ['session'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
+                        },
+                    sessions:
+                        {
+                          /**
+                           * spanner.projects.instances.databases.sessions.beginTransaction
+                           * @desc Begins a new transaction. This step can often
+                           * be skipped: Read, ExecuteSql and Commit can begin a
+                           * new transaction as a side-effect.
+                           * @alias
+                           * spanner.projects.instances.databases.sessions.beginTransaction
+                           * @memberOf! spanner(v1)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string} params.session Required. The session in which the transaction runs.
+                           * @param {spanner(v1).BeginTransactionRequest} params.resource Request body data
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          beginTransaction(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl +
+                                          '/v1/{session}:beginTransaction')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.commit
+                              * @desc Commits a transaction. The request
+                              * includes the mutations to be applied to rows in
+                              * the database.  `Commit` might return an
+                              * `ABORTED` error. This can occur at any time;
+                              * commonly, the cause is conflicts with concurrent
+                              * transactions. However, it can also happen for a
+                              * variety of other reasons. If `Commit` returns
+                              * `ABORTED`, the caller should re-attempt the
+                              * transaction from the beginning, re-using the
+                              * same session.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.commit
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the transaction to be committed is running.
+                              * @param {spanner(v1).CommitRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          commit(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{session}:commit')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.create
+                              * @desc Creates a new session. A session can be
+                              * used to perform transactions that read and/or
+                              * modify data in a Cloud Spanner database.
+                              * Sessions are meant to be reused for many
+                              * consecutive transactions.  Sessions can only
+                              * execute one transaction at a time. To execute
+                              * multiple concurrent read-write/write-only
+                              * transactions, create multiple sessions. Note
+                              * that standalone reads and queries use a
+                              * transaction internally, and count toward the one
+                              * transaction limit.  Cloud Spanner limits the
+                              * number of sessions that can exist at any given
+                              * time; thus, it is a good idea to delete idle
+                              * and/or unneeded sessions. Aside from explicit
+                              * deletes, Cloud Spanner can delete sessions for
+                              * which no operations are sent for more than an
+                              * hour. If a session is deleted, requests to it
+                              * return `NOT_FOUND`.  Idle sessions can be kept
+                              * alive by sending a trivial SQL query
+                              * periodically, e.g., `"SELECT 1"`.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.create
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.database Required. The database in which the new session is created.
+                              * @param {spanner(v1).CreateSessionRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          create(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{database}/sessions')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['database'],
+                              pathParams: ['database'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.delete
+                              * @desc Ends a session, releasing server resources
+                              * associated with it.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.delete
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.name Required. The name of the session to delete.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          delete(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'DELETE'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.executeSql
+                              * @desc Executes an SQL query, returning all rows
+                              * in a single reply. This method cannot be used to
+                              * return a result set larger than 10 MiB; if the
+                              * query yields more data than that, the query
+                              * fails with a `FAILED_PRECONDITION` error.
+                              * Queries inside read-write transactions might
+                              * return `ABORTED`. If this occurs, the
+                              * application should restart the transaction from
+                              * the beginning. See Transaction for more details.
+                              * Larger result sets can be fetched in streaming
+                              * fashion by calling ExecuteStreamingSql instead.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.executeSql
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the SQL query should be performed.
+                              * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          executeSql(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{session}:executeSql')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.executeStreamingSql
+                              * @desc Like ExecuteSql, except returns the result
+                              * set as a stream. Unlike ExecuteSql, there is no
+                              * limit on the size of the returned result set.
+                              * However, no individual row in the result set can
+                              * exceed 100 MiB, and no column value can exceed
+                              * 10 MiB.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.executeStreamingSql
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the SQL query should be performed.
+                              * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          executeStreamingSql(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl +
+                                          '/v1/{session}:executeStreamingSql')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.get
+                              * @desc Gets a session. Returns `NOT_FOUND` if the
+                              * session does not exist. This is mainly useful
+                              * for determining whether a session is still
+                              * alive.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.get
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.name Required. The name of the session to retrieve.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          get(params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{name}')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['name'],
+                              pathParams: ['name'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.list
+                              * @desc Lists all sessions in a given database.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.list
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.database Required. The database in which to list sessions.
+                              * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `labels.key` where key is the name of a label  Some examples of using filters are:    * `labels.env:*` --> The session has the label "env".   * `labels.env:dev` --> The session has the label "env" and the value of                        the label contains the string "dev".
+                              * @param {integer=} params.pageSize Number of sessions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+                              * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListSessionsResponse.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          list(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{database}/sessions')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['database'],
+                              pathParams: ['database'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.partitionQuery
+                              * @desc Creates a set of partition tokens that can
+                              * be used to execute a query operation in
+                              * parallel.  Each of the returned partition tokens
+                              * can be used by ExecuteStreamingSql to specify a
+                              * subset of the query result to read.  The same
+                              * session and read-only transaction must be used
+                              * by the PartitionQueryRequest used to create the
+                              * partition tokens and the ExecuteSqlRequests that
+                              * use the partition tokens. Partition tokens
+                              * become invalid when the session used to create
+                              * them is deleted or begins a new transaction.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.partitionQuery
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session used to create the partitions.
+                              * @param {spanner(v1).PartitionQueryRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          partitionQuery(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl +
+                                          '/v1/{session}:partitionQuery')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.partitionRead
+                              * @desc Creates a set of partition tokens that can
+                              * be used to execute a read operation in parallel.
+                              * Each of the returned partition tokens can be
+                              * used by StreamingRead to specify a subset of the
+                              * read result to read.  The same session and
+                              * read-only transaction must be used by the
+                              * PartitionReadRequest used to create the
+                              * partition tokens and the ReadRequests that use
+                              * the partition tokens. Partition tokens become
+                              * invalid when the session used to create them is
+                              * deleted or begins a new transaction.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.partitionRead
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session used to create the partitions.
+                              * @param {spanner(v1).PartitionReadRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          partitionRead(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl +
+                                          '/v1/{session}:partitionRead')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.read
+                              * @desc Reads rows from the database using key
+                              * lookups and scans, as a simple key/value style
+                              * alternative to ExecuteSql.  This method cannot
+                              * be used to return a result set larger than 10
+                              * MiB; if the read matches more data than that,
+                              * the read fails with a `FAILED_PRECONDITION`
+                              * error.  Reads inside read-write transactions
+                              * might return `ABORTED`. If this occurs, the
+                              * application should restart the transaction from
+                              * the beginning. See Transaction for more details.
+                              * Larger result sets can be yielded in streaming
+                              * fashion by calling StreamingRead instead.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.read
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the read should be performed.
+                              * @param {spanner(v1).ReadRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          read(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{session}:read')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.rollback
+                              * @desc Rolls back a transaction, releasing any
+                              * locks it holds. It is a good idea to call this
+                              * for any transaction that includes one or more
+                              * Read or ExecuteSql requests and ultimately
+                              * decides not to commit.  `Rollback` returns `OK`
+                              * if it successfully aborts the transaction, the
+                              * transaction was already aborted, or the
+                              * transaction is not found. `Rollback` never
+                              * returns `ABORTED`.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.rollback
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the transaction to roll back is running.
+                              * @param {spanner(v1).RollbackRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          rollback(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl + '/v1/{session}:rollback')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * spanner.projects.instances.databases.sessions.streamingRead
+                              * @desc Like Read, except returns the result set
+                              * as a stream. Unlike Read, there is no limit on
+                              * the size of the returned result set. However, no
+                              * individual row in the result set can exceed 100
+                              * MiB, and no column value can exceed 10 MiB.
+                              * @alias
+                              * spanner.projects.instances.databases.sessions.streamingRead
+                              * @memberOf! spanner(v1)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.session Required. The session in which the read should be performed.
+                              * @param {spanner(v1).ReadRequest} params.resource Request body data
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          streamingRead(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://spanner.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url: (rootUrl +
+                                          '/v1/{session}:streamingRead')
+                                             .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: ['session'],
+                              pathParams: ['session'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    }
+                        }
                   },
-              operations: {
-                /**
-                 * spanner.projects.instances.operations.cancel
-                 * @desc Starts asynchronous cancellation on a long-running
-                 * operation.  The server makes a best effort to cancel the
-                 * operation, but success is not guaranteed.  If the server
-                 * doesn't support this method, it returns
-                 * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-                 * Operations.GetOperation or other methods to check whether the
-                 * cancellation succeeded or whether the operation completed
-                 * despite cancellation. On successful cancellation, the
-                 * operation is not deleted; instead, it becomes an operation
-                 * with an Operation.error value with a google.rpc.Status.code
-                 * of 1, corresponding to `Code.CANCELLED`.
-                 * @alias spanner.projects.instances.operations.cancel
-                 * @memberOf! spanner(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.name The name of the operation resource to be cancelled.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                cancel(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://spanner.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1/{name}:cancel')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * spanner.projects.instances.operations.delete
-                    * @desc Deletes a long-running operation. This method
-                    * indicates that the client is no longer interested in the
-                    * operation result. It does not cancel the operation. If the
-                    * server doesn't support this method, it returns
-                    * `google.rpc.Code.UNIMPLEMENTED`.
-                    * @alias spanner.projects.instances.operations.delete
-                    * @memberOf! spanner(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.name The name of the operation resource to be deleted.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                delete (
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://spanner.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'DELETE'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * spanner.projects.instances.operations.get
-                    * @desc Gets the latest state of a long-running operation.
-                    * Clients can use this method to poll the operation result
-                    * at intervals as recommended by the API service.
-                    * @alias spanner.projects.instances.operations.get
-                    * @memberOf! spanner(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.name The name of the operation resource.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://spanner.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * spanner.projects.instances.operations.list
-                    * @desc Lists operations that match the specified filter in
-                    * the request. If the server doesn't support this method, it
-                    * returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows
-                    * API services to override the binding to use different
-                    * resource name schemes, such as `users/x/operations`. To
-                    * override the binding, API services can add a binding such
-                    * as `"/v1/{name=users/x}/operations"` to their service
-                    * configuration. For backwards compatibility, the default
-                    * name includes the operations collection id, however
-                    * overriding users must ensure the name binding is the
-                    * parent resource, without the operations collection id.
-                    * @alias spanner.projects.instances.operations.list
-                    * @memberOf! spanner(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.filter The standard list filter.
-                    * @param {string} params.name The name of the operation's parent resource.
-                    * @param {integer=} params.pageSize The standard list page size.
-                    * @param {string=} params.pageToken The standard list page token.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://spanner.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url: (rootUrl + '/v1/{name}')
-                                   .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['name'],
-                    pathParams: ['name'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }
+              operations:
+                  {
+                    /**
+                     * spanner.projects.instances.operations.cancel
+                     * @desc Starts asynchronous cancellation on a long-running
+                     * operation.  The server makes a best effort to cancel the
+                     * operation, but success is not guaranteed.  If the server
+                     * doesn't support this method, it returns
+                     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+                     * Operations.GetOperation or other methods to check whether
+                     * the cancellation succeeded or whether the operation
+                     * completed despite cancellation. On successful
+                     * cancellation, the operation is not deleted; instead, it
+                     * becomes an operation with an Operation.error value with a
+                     * google.rpc.Status.code of 1, corresponding to
+                     * `Code.CANCELLED`.
+                     * @alias spanner.projects.instances.operations.cancel
+                     * @memberOf! spanner(v1)
+                     *
+                     * @param {object} params Parameters for request
+                     * @param {string} params.name The name of the operation resource to be cancelled.
+                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                     * @param {callback} callback The callback that handles the response.
+                     * @return {object} Request object
+                     */
+                    cancel(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl =
+                          options.rootUrl || 'https://spanner.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url: (rootUrl + '/v1/{name}:cancel')
+                                       .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['name'],
+                        pathParams: ['name'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * spanner.projects.instances.operations.delete
+                        * @desc Deletes a long-running operation. This method
+                        * indicates that the client is no longer interested in
+                        * the operation result. It does not cancel the
+                        * operation. If the server doesn't support this method,
+                        * it returns `google.rpc.Code.UNIMPLEMENTED`.
+                        * @alias spanner.projects.instances.operations.delete
+                        * @memberOf! spanner(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.name The name of the operation resource to be deleted.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    delete(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl =
+                          options.rootUrl || 'https://spanner.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url: (rootUrl + '/v1/{name}')
+                                       .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'DELETE'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['name'],
+                        pathParams: ['name'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * spanner.projects.instances.operations.get
+                        * @desc Gets the latest state of a long-running
+                        * operation.  Clients can use this method to poll the
+                        * operation result at intervals as recommended by the
+                        * API service.
+                        * @alias spanner.projects.instances.operations.get
+                        * @memberOf! spanner(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.name The name of the operation resource.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl =
+                          options.rootUrl || 'https://spanner.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url: (rootUrl + '/v1/{name}')
+                                       .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['name'],
+                        pathParams: ['name'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * spanner.projects.instances.operations.list
+                        * @desc Lists operations that match the specified filter
+                        * in the request. If the server doesn't support this
+                        * method, it returns `UNIMPLEMENTED`.  NOTE: the `name`
+                        * binding allows API services to override the binding to
+                        * use different resource name schemes, such as
+                        * `users/x/operations`. To override the binding, API
+                        * services can add a binding such as
+                        * `"/v1/{name=users/x}/operations"` to their service
+                        * configuration. For backwards compatibility, the
+                        * default name includes the operations collection id,
+                        * however overriding users must ensure the name binding
+                        * is the parent resource, without the operations
+                        * collection id.
+                        * @alias spanner.projects.instances.operations.list
+                        * @memberOf! spanner(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string=} params.filter The standard list filter.
+                        * @param {string} params.name The name of the operation's parent resource.
+                        * @param {integer=} params.pageSize The standard list page size.
+                        * @param {string=} params.pageToken The standard list page token.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl =
+                          options.rootUrl || 'https://spanner.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url: (rootUrl + '/v1/{name}')
+                                       .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['name'],
+                        pathParams: ['name'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }
 
-              }
+                  }
             }
       };
 }
@@ -2285,5 +2311,3 @@ function Spanner(options: GlobalOptions) {
  * @property {string} table Required. The table whose rows will be written.
  * @property {array[]} values The values to be written. `values` can contain more than one list of values. If it does, then multiple rows are written, one for each entry in `values`. Each list in `values` must have exactly as many entries as there are entries in columns above. Sending multiple lists is equivalent to sending multiple `Mutation`s, each containing one `values` entry and repeating table and columns. Individual values in each list are encoded as described here.
  */
-
-export = Spanner;

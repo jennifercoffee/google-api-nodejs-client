@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Taskqueue;
 
 /**
  * TaskQueue API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Taskqueue
  */
-function Taskqueue(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.taskqueues = {
+export class Taskqueue extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  taskqueues = {
     /**
      * taskqueue.taskqueues.get
      * @desc Get detailed information about a TaskQueue.
@@ -79,11 +84,11 @@ function Taskqueue(options: GlobalOptions) {
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tasks = {
+  tasks = {
     /**
      * taskqueue.tasks.delete
      * @desc Delete a task from a TaskQueue.
@@ -98,7 +103,7 @@ function Taskqueue(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -122,7 +127,7 @@ function Taskqueue(options: GlobalOptions) {
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * taskqueue.tasks.get
         * @desc Get a particular task from a TaskQueue.
@@ -160,7 +165,7 @@ function Taskqueue(options: GlobalOptions) {
         pathParams: ['project', 'task', 'taskqueue'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * taskqueue.tasks.lease
         * @desc Lease 1 or more tasks from a TaskQueue.
@@ -200,7 +205,7 @@ function Taskqueue(options: GlobalOptions) {
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * taskqueue.tasks.list
         * @desc List Tasks in a TaskQueue
@@ -238,7 +243,7 @@ function Taskqueue(options: GlobalOptions) {
         pathParams: ['project', 'taskqueue'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -278,5 +283,3 @@ function Taskqueue(options: GlobalOptions) {
  * @property {taskqueue(v1beta1).Task[]} items The actual list of tasks currently active in the TaskQueue.
  * @property {string} kind The kind of object returned, a list of tasks.
  */
-
-export = Taskqueue;

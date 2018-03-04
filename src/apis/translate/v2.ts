@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Translate;
 
 /**
  * Google Cloud Translation API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Translate
  */
-function Translate(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.detections = {
+export class Translate extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  detections = {
     /**
      * language.detections.detect
      * @desc Detects the language of text within a request.
@@ -77,7 +82,7 @@ function Translate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.detections.list
         * @desc Detects the language of text within a request.
@@ -112,11 +117,11 @@ function Translate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.languages = {
+  languages = {
     /**
      * language.languages.list
      * @desc Returns a list of supported languages for translation.
@@ -152,11 +157,11 @@ function Translate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.translations = {
+  translations = {
     /**
      * language.translations.list
      * @desc Translates input text, returning translated text.
@@ -196,7 +201,7 @@ function Translate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.translations.translate
         * @desc Translates input text, returning translated text.
@@ -231,7 +236,7 @@ function Translate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -296,5 +301,3 @@ function Translate(options: GlobalOptions) {
  * @property {string} model The `model` type used for this translation. Valid values are listed in public documentation. Can be different from requested `model`. Present only if specific model type was explicitly requested.
  * @property {string} translatedText Text translated into the target language.
  */
-
-export = Translate;

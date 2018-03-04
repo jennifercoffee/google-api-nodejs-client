@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Searchconsole;
 
 /**
  * Google Search Console URL Testing Tools API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Searchconsole
  */
-function Searchconsole(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.urlTestingTools = {
+export class Searchconsole extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  urlTestingTools = {
     mobileFriendlyTest: {
       /**
        * searchconsole.urlTestingTools.mobileFriendlyTest.run
@@ -77,7 +82,7 @@ function Searchconsole(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -132,5 +137,3 @@ function Searchconsole(options: GlobalOptions) {
  * @property {string} details Error details if applicable.
  * @property {string} status Status of the test.
  */
-
-export = Searchconsole;

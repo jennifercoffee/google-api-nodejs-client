@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Datastore;
 
 /**
  * Google Cloud Datastore API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Datastore
  */
-function Datastore(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Datastore extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     /**
      * datastore.projects.allocateIds
      * @desc Allocates IDs for the given keys, which is useful for referencing
@@ -79,7 +84,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.beginTransaction
         * @desc Begins a new transaction.
@@ -115,7 +120,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.commit
         * @desc Commits a transaction, optionally creating, deleting or
@@ -152,7 +157,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.lookup
         * @desc Looks up entities by key.
@@ -188,7 +193,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.reserveIds
         * @desc Prevents the supplied keys' IDs from being auto-allocated by
@@ -225,7 +230,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.rollback
         * @desc Rolls back a transaction.
@@ -261,7 +266,7 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * datastore.projects.runQuery
         * @desc Queries for entities.
@@ -297,174 +302,181 @@ function Datastore(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    operations: {
-      /**
-       * datastore.projects.operations.cancel
-       * @desc Starts asynchronous cancellation on a long-running operation.
-       * The server makes a best effort to cancel the operation, but success is
-       * not guaranteed.  If the server doesn't support this method, it returns
-       * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-       * Operations.GetOperation or other methods to check whether the
-       * cancellation succeeded or whether the operation completed despite
-       * cancellation. On successful cancellation, the operation is not deleted;
-       * instead, it becomes an operation with an Operation.error value with a
-       * google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-       * @alias datastore.projects.operations.cancel
-       * @memberOf! datastore(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the operation resource to be cancelled.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      cancel(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * datastore.projects.operations.delete
-          * @desc Deletes a long-running operation. This method indicates that
-          * the client is no longer interested in the operation result. It does
-          * not cancel the operation. If the server doesn't support this method,
-          * it returns `google.rpc.Code.UNIMPLEMENTED`.
-          * @alias datastore.projects.operations.delete
-          * @memberOf! datastore(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the operation resource to be deleted.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * datastore.projects.operations.get
-          * @desc Gets the latest state of a long-running operation.  Clients
-          * can use this method to poll the operation result at intervals as
-          * recommended by the API service.
-          * @alias datastore.projects.operations.get
-          * @memberOf! datastore(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the operation resource.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * datastore.projects.operations.list
-          * @desc Lists operations that match the specified filter in the
-          * request. If the server doesn't support this method, it returns
-          * `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to
-          * override the binding to use different resource name schemes, such as
-          * `users/x/operations`. To override the binding, API services can add
-          * a binding such as `"/v1/{name=users/x}/operations"` to their service
-          * configuration. For backwards compatibility, the default name
-          * includes the operations collection id, however overriding users must
-          * ensure the name binding is the parent resource, without the
-          * operations collection id.
-          * @alias datastore.projects.operations.list
-          * @memberOf! datastore(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.filter The standard list filter.
-          * @param {string} params.name The name of the operation's parent resource.
-          * @param {integer=} params.pageSize The standard list page size.
-          * @param {string=} params.pageToken The standard list page token.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/operations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    operations:
+        {
+          /**
+           * datastore.projects.operations.cancel
+           * @desc Starts asynchronous cancellation on a long-running operation.
+           * The server makes a best effort to cancel the operation, but success
+           * is not guaranteed.  If the server doesn't support this method, it
+           * returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+           * Operations.GetOperation or other methods to check whether the
+           * cancellation succeeded or whether the operation completed despite
+           * cancellation. On successful cancellation, the operation is not
+           * deleted; instead, it becomes an operation with an Operation.error
+           * value with a google.rpc.Status.code of 1, corresponding to
+           * `Code.CANCELLED`.
+           * @alias datastore.projects.operations.cancel
+           * @memberOf! datastore(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The name of the operation resource to be cancelled.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          cancel(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://datastore.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}:cancel')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * datastore.projects.operations.delete
+              * @desc Deletes a long-running operation. This method indicates
+              * that the client is no longer interested in the operation result.
+              * It does not cancel the operation. If the server doesn't support
+              * this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+              * @alias datastore.projects.operations.delete
+              * @memberOf! datastore(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the operation resource to be deleted.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://datastore.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * datastore.projects.operations.get
+              * @desc Gets the latest state of a long-running operation.
+              * Clients can use this method to poll the operation result at
+              * intervals as recommended by the API service.
+              * @alias datastore.projects.operations.get
+              * @memberOf! datastore(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the operation resource.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://datastore.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * datastore.projects.operations.list
+              * @desc Lists operations that match the specified filter in the
+              * request. If the server doesn't support this method, it returns
+              * `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services
+              * to override the binding to use different resource name schemes,
+              * such as `users/x/operations`. To override the binding, API
+              * services can add a binding such as
+              * `"/v1/{name=users/x}/operations"` to their service
+              * configuration. For backwards compatibility, the default name
+              * includes the operations collection id, however overriding users
+              * must ensure the name binding is the parent resource, without the
+              * operations collection id.
+              * @alias datastore.projects.operations.list
+              * @memberOf! datastore(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.filter The standard list filter.
+              * @param {string} params.name The name of the operation's parent resource.
+              * @param {integer=} params.pageSize The standard list page size.
+              * @param {string=} params.pageToken The standard list page token.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://datastore.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}/operations')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -840,5 +852,3 @@ function Datastore(options: GlobalOptions) {
  * @property {string} stringValue A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 bytes. Otherwise, may be set to at least 1,000,000 bytes.
  * @property {string} timestampValue A timestamp value. When stored in the Datastore, precise only to microseconds; any additional precision is rounded down.
  */
-
-export = Datastore;

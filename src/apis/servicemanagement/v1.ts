@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Servicemanagement;
 
 /**
  * Google Service Management API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Servicemanagement
  */
-function Servicemanagement(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Servicemanagement extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * servicemanagement.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -65,8 +70,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -79,7 +84,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.operations.list
         * @desc Lists service operations that match the specified filter in the
@@ -104,8 +109,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -118,11 +123,11 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.services = {
+  services = {
     /**
      * servicemanagement.services.create
      * @desc Creates a new managed service. Please note one producer project can
@@ -144,8 +149,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -158,7 +163,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.delete
         * @desc Deletes a managed service. This method will change the service
@@ -175,7 +180,7 @@ function Servicemanagement(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -183,8 +188,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -198,7 +203,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.disable
         * @desc Disables a service for a project, so it can no longer be be used
@@ -223,8 +228,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -238,7 +243,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.enable
         * @desc Enables a service for a project, so it can be used for the
@@ -263,8 +268,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -278,7 +283,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.generateConfigReport
         * @desc Generates and returns a report (errors, warnings and changes
@@ -308,8 +313,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -323,7 +328,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.get
         * @desc Gets a managed service. Authentication is required unless the
@@ -344,8 +349,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -359,7 +364,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getConfig
         * @desc Gets a service configuration (version) for a managed service.
@@ -382,8 +387,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -397,7 +402,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.getIamPolicy
         * @desc Gets the access control policy for a resource. Returns an empty
@@ -420,8 +425,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -435,7 +440,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.list
         * @desc Lists managed services.  Returns all public services. For
@@ -464,8 +469,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -478,7 +483,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -501,8 +506,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -516,7 +521,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -543,8 +548,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -558,7 +563,7 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * servicemanagement.services.undelete
         * @desc Revives a previously deleted managed service. The method
@@ -582,8 +587,8 @@ function Servicemanagement(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+      const rootUrl = options.rootUrl ||
+          'https://content-servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -597,417 +602,423 @@ function Servicemanagement(options: GlobalOptions) {
         pathParams: ['serviceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    configs: {
-      /**
-       * servicemanagement.services.configs.create
-       * @desc Creates a new service configuration (version) for a managed
-       * service. This method only stores the service configuration. To roll out
-       * the service configuration to backend systems please call
-       * CreateServiceRollout.
-       * @alias servicemanagement.services.configs.create
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {servicemanagement(v1).Service} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/configs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.configs.get
-          * @desc Gets a service configuration (version) for a managed service.
-          * @alias servicemanagement.services.configs.get
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.configId The id of the service configuration resource.
-          * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-          * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/configs/{configId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName', 'configId'],
-          pathParams: ['configId', 'serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.configs.list
-          * @desc Lists the history of the service configuration for a managed
-          * service, from the newest to the oldest.
-          * @alias servicemanagement.services.configs.list
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize The max number of items to include in the response list.
-          * @param {string=} params.pageToken The token of the page to retrieve.
-          * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/configs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.configs.submit
-          * @desc Creates a new service configuration (version) for a managed
-          * service based on user-supplied configuration source files (for
-          * example: OpenAPI Specification). This method stores the source
-          * configurations as well as the generated service configuration. To
-          * rollout the service configuration to other services, please call
-          * CreateServiceRollout.  Operation<response:
-          * SubmitConfigSourceResponse>
-          * @alias servicemanagement.services.configs.submit
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-          * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      submit(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/configs:submit')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    configs:
+        {
+          /**
+           * servicemanagement.services.configs.create
+           * @desc Creates a new service configuration (version) for a managed
+           * service. This method only stores the service configuration. To roll
+           * out the service configuration to backend systems please call
+           * CreateServiceRollout.
+           * @alias servicemanagement.services.configs.create
+           * @memberOf! servicemanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+           * @param {servicemanagement(v1).Service} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/services/{serviceName}/configs')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName'],
+              pathParams: ['serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.configs.get
+              * @desc Gets a service configuration (version) for a managed
+              * service.
+              * @alias servicemanagement.services.configs.get
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.configId The id of the service configuration resource.
+              * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+              * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/services/{serviceName}/configs/{configId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName', 'configId'],
+              pathParams: ['configId', 'serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.configs.list
+              * @desc Lists the history of the service configuration for a
+              * managed service, from the newest to the oldest.
+              * @alias servicemanagement.services.configs.list
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize The max number of items to include in the response list.
+              * @param {string=} params.pageToken The token of the page to retrieve.
+              * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/services/{serviceName}/configs')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName'],
+              pathParams: ['serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.configs.submit
+              * @desc Creates a new service configuration (version) for a
+              * managed service based on user-supplied configuration source
+              * files (for example: OpenAPI Specification). This method stores
+              * the source configurations as well as the generated service
+              * configuration. To rollout the service configuration to other
+              * services, please call CreateServiceRollout.  Operation<response:
+              * SubmitConfigSourceResponse>
+              * @alias servicemanagement.services.configs.submit
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+              * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          submit(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/services/{serviceName}/configs:submit')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName'],
+              pathParams: ['serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    consumers: {
-      /**
-       * servicemanagement.services.consumers.getIamPolicy
-       * @desc Gets the access control policy for a resource. Returns an empty
-       * policy if the resource exists and does not have a policy set.
-       * @alias servicemanagement.services.consumers.getIamPolicy
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-       * @param {servicemanagement(v1).GetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.consumers.setIamPolicy
-          * @desc Sets the access control policy on the specified resource.
-          * Replaces any existing policy.
-          * @alias servicemanagement.services.consumers.setIamPolicy
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-          * @param {servicemanagement(v1).SetIamPolicyRequest} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      setIamPolicy(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.consumers.testIamPermissions
-          * @desc Returns permissions that a caller has on the specified
-          * resource. If the resource does not exist, this will return an empty
-          * set of permissions, not a NOT_FOUND error.  Note: This operation is
-          * designed to be used for building permission-aware UIs and
-          * command-line tools, not for authorization checking. This operation
-          * may "fail open" without warning.
-          * @alias servicemanagement.services.consumers.testIamPermissions
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-          * @param {servicemanagement(v1).TestIamPermissionsRequest} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      testIamPermissions(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    consumers:
+        {
+          /**
+           * servicemanagement.services.consumers.getIamPolicy
+           * @desc Gets the access control policy for a resource. Returns an
+           * empty policy if the resource exists and does not have a policy set.
+           * @alias servicemanagement.services.consumers.getIamPolicy
+           * @memberOf! servicemanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+           * @param {servicemanagement(v1).GetIamPolicyRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          getIamPolicy(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['resource'],
+              pathParams: ['resource'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.consumers.setIamPolicy
+              * @desc Sets the access control policy on the specified resource.
+              * Replaces any existing policy.
+              * @alias servicemanagement.services.consumers.setIamPolicy
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+              * @param {servicemanagement(v1).SetIamPolicyRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          setIamPolicy(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['resource'],
+              pathParams: ['resource'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.consumers.testIamPermissions
+              * @desc Returns permissions that a caller has on the specified
+              * resource. If the resource does not exist, this will return an
+              * empty set of permissions, not a NOT_FOUND error.  Note: This
+              * operation is designed to be used for building permission-aware
+              * UIs and command-line tools, not for authorization checking. This
+              * operation may "fail open" without warning.
+              * @alias servicemanagement.services.consumers.testIamPermissions
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+              * @param {servicemanagement(v1).TestIamPermissionsRequest} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          testIamPermissions(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['resource'],
+              pathParams: ['resource'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    rollouts: {
-      /**
-       * servicemanagement.services.rollouts.create
-       * @desc Creates a new service configuration rollout. Based on rollout,
-       * the Google Service Management will roll out the service configurations
-       * to different backend services. For example, the logging configuration
-       * will be pushed to Google Cloud Logging.  Please note that any previous
-       * pending and running Rollouts and associated Operations will be
-       * automatically cancelled so that the latest Rollout will not be blocked
-       * by previous Rollouts.  Operation<response: Rollout>
-       * @alias servicemanagement.services.rollouts.create
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {servicemanagement(v1).Rollout} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/rollouts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.rollouts.get
-          * @desc Gets a service configuration rollout.
-          * @alias servicemanagement.services.rollouts.get
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.rolloutId The id of the rollout resource.
-          * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/services/{serviceName}/rollouts/{rolloutId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName', 'rolloutId'],
-          pathParams: ['rolloutId', 'serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * servicemanagement.services.rollouts.list
-          * @desc Lists the history of the service configuration rollouts for a
-          * managed service, from the newest to the oldest.
-          * @alias servicemanagement.services.rollouts.list
-          * @memberOf! servicemanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
-          * @param {integer=} params.pageSize The max number of items to include in the response list.
-          * @param {string=} params.pageToken The token of the page to retrieve.
-          * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://servicemanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/services/{serviceName}/rollouts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    rollouts:
+        {
+          /**
+           * servicemanagement.services.rollouts.create
+           * @desc Creates a new service configuration rollout. Based on
+           * rollout, the Google Service Management will roll out the service
+           * configurations to different backend services. For example, the
+           * logging configuration will be pushed to Google Cloud Logging.
+           * Please note that any previous pending and running Rollouts and
+           * associated Operations will be automatically cancelled so that the
+           * latest Rollout will not be blocked by previous Rollouts.
+           * Operation<response: Rollout>
+           * @alias servicemanagement.services.rollouts.create
+           * @memberOf! servicemanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+           * @param {servicemanagement(v1).Rollout} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/services/{serviceName}/rollouts')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName'],
+              pathParams: ['serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.rollouts.get
+              * @desc Gets a service configuration rollout.
+              * @alias servicemanagement.services.rollouts.get
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.rolloutId The id of the rollout resource.
+              * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/services/{serviceName}/rollouts/{rolloutId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName', 'rolloutId'],
+              pathParams: ['rolloutId', 'serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * servicemanagement.services.rollouts.list
+              * @desc Lists the history of the service configuration rollouts
+              * for a managed service, from the newest to the oldest.
+              * @alias servicemanagement.services.rollouts.list
+              * @memberOf! servicemanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+              * @param {integer=} params.pageSize The max number of items to include in the response list.
+              * @param {string=} params.pageToken The token of the page to retrieve.
+              * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl ||
+                'https://content-servicemanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/services/{serviceName}/rollouts')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['serviceName'],
+              pathParams: ['serviceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -1741,5 +1752,3 @@ function Servicemanagement(options: GlobalOptions) {
  * @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`. Any of the listed labels can be used to grant the visibility.  If a rule has multiple labels, removing one of the labels but not all of them can break clients.  Example:      visibility:       rules:       - selector: google.calendar.Calendar.EnhancedSearch         restriction: GOOGLE_INTERNAL, TRUSTED_TESTER  Removing GOOGLE_INTERNAL from this restriction will break clients that rely on this method and only had access to it through GOOGLE_INTERNAL.
  * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.  Refer to selector for syntax details.
  */
-
-export = Servicemanagement;

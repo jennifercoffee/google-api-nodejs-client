@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Appengine;
 
 /**
  * App Engine Admin API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta5
  * @param {object=} options Options for Appengine
  */
-function Appengine(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.apps =
+export class Appengine extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  apps =
       {
         /**
          * appengine.apps.create
@@ -85,7 +90,7 @@ function Appengine(options: GlobalOptions) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * appengine.apps.get
             * @desc Gets information about an application.
@@ -121,7 +126,7 @@ function Appengine(options: GlobalOptions) {
             pathParams: ['appsId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * appengine.apps.patch
             * @desc Updates the specified Application resource. You can update
@@ -163,181 +168,184 @@ function Appengine(options: GlobalOptions) {
             pathParams: ['appsId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         },
-        locations: {
-          /**
-           * appengine.apps.locations.get
-           * @desc Get information about a location.
-           * @alias appengine.apps.locations.get
-           * @memberOf! appengine(v1beta5)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. Resource name for the location.
-           * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl +
-                          '/v1beta5/apps/{appsId}/locations/{locationsId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['appsId', 'locationsId'],
-              pathParams: ['appsId', 'locationsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * appengine.apps.locations.list
-              * @desc Lists information about the supported locations for this
-              * service.
-              * @alias appengine.apps.locations.list
-              * @memberOf! appengine(v1beta5)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-              * @param {string=} params.filter The standard list filter.
-              * @param {integer=} params.pageSize The standard list page size.
-              * @param {string=} params.pageToken The standard list page token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1beta5/apps/{appsId}/locations')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['appsId'],
-              pathParams: ['appsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
+        locations:
+            {
+              /**
+               * appengine.apps.locations.get
+               * @desc Get information about a location.
+               * @alias appengine.apps.locations.get
+               * @memberOf! appengine(v1beta5)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.appsId Part of `name`. Resource name for the location.
+               * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://appengine.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1beta5/apps/{appsId}/locations/{locationsId}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['appsId', 'locationsId'],
+                  pathParams: ['appsId', 'locationsId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * appengine.apps.locations.list
+                  * @desc Lists information about the supported locations for
+                  * this service.
+                  * @alias appengine.apps.locations.list
+                  * @memberOf! appengine(v1beta5)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
+                  * @param {string=} params.filter The standard list filter.
+                  * @param {integer=} params.pageSize The standard list page size.
+                  * @param {string=} params.pageToken The standard list page token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://appengine.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1beta5/apps/{appsId}/locations')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['appsId'],
+                  pathParams: ['appsId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-        },
-        operations: {
-          /**
-           * appengine.apps.operations.get
-           * @desc Gets the latest state of a long-running operation. Clients
-           * can use this method to poll the operation result at intervals as
-           * recommended by the API service.
-           * @alias appengine.apps.operations.get
-           * @memberOf! appengine(v1beta5)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.appsId Part of `name`. The name of the operation resource.
-           * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl +
-                          '/v1beta5/apps/{appsId}/operations/{operationsId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['appsId', 'operationsId'],
-              pathParams: ['appsId', 'operationsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * appengine.apps.operations.list
-              * @desc Lists operations that match the specified filter in the
-              * request. If the server doesn't support this method, it returns
-              * UNIMPLEMENTED.NOTE: the name binding allows API services to
-              * override the binding to use different resource name schemes,
-              * such as users/x/operations. To override the binding, API
-              * services can add a binding such as
-              * "/v1/{name=users/x}/operations" to their service configuration.
-              * For backwards compatibility, the default name includes the
-              * operations collection id, however overriding users must ensure
-              * the name binding is the parent resource, without the operations
-              * collection id.
-              * @alias appengine.apps.operations.list
-              * @memberOf! appengine(v1beta5)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
-              * @param {string=} params.filter The standard list filter.
-              * @param {integer=} params.pageSize The standard list page size.
-              * @param {string=} params.pageToken The standard list page token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://appengine.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1beta5/apps/{appsId}/operations')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['appsId'],
-              pathParams: ['appsId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
+            },
+        operations:
+            {
+              /**
+               * appengine.apps.operations.get
+               * @desc Gets the latest state of a long-running operation.
+               * Clients can use this method to poll the operation result at
+               * intervals as recommended by the API service.
+               * @alias appengine.apps.operations.get
+               * @memberOf! appengine(v1beta5)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.appsId Part of `name`. The name of the operation resource.
+               * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://appengine.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/v1beta5/apps/{appsId}/operations/{operationsId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['appsId', 'operationsId'],
+                  pathParams: ['appsId', 'operationsId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * appengine.apps.operations.list
+                  * @desc Lists operations that match the specified filter in
+                  * the request. If the server doesn't support this method, it
+                  * returns UNIMPLEMENTED.NOTE: the name binding allows API
+                  * services to override the binding to use different resource
+                  * name schemes, such as users/x/operations. To override the
+                  * binding, API services can add a binding such as
+                  * "/v1/{name=users/x}/operations" to their service
+                  * configuration. For backwards compatibility, the default name
+                  * includes the operations collection id, however overriding
+                  * users must ensure the name binding is the parent resource,
+                  * without the operations collection id.
+                  * @alias appengine.apps.operations.list
+                  * @memberOf! appengine(v1beta5)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
+                  * @param {string=} params.filter The standard list filter.
+                  * @param {integer=} params.pageSize The standard list page size.
+                  * @param {string=} params.pageToken The standard list page token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://appengine.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1beta5/apps/{appsId}/operations')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['appsId'],
+                  pathParams: ['appsId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-        },
+            },
         services:
             {
               /**
@@ -353,7 +361,7 @@ function Appengine(options: GlobalOptions) {
                * @param {callback} callback The callback that handles the response.
                * @return {object} Request object
                */
-              delete (
+              delete(
                   params: any, options: MethodOptions|BodyResponseCallback<any>,
                   callback?: BodyResponseCallback<any>) {
                 if (typeof options === 'function') {
@@ -377,7 +385,7 @@ function Appengine(options: GlobalOptions) {
                   pathParams: ['appsId', 'servicesId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.get
                   * @desc Gets the current configuration of the specified
@@ -415,7 +423,7 @@ function Appengine(options: GlobalOptions) {
                   pathParams: ['appsId', 'servicesId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.list
                   * @desc Lists all the services in the application.
@@ -453,7 +461,7 @@ function Appengine(options: GlobalOptions) {
                   pathParams: ['appsId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               }, /**
                   * appengine.apps.services.patch
                   * @desc Updates the configuration of the specified service.
@@ -494,440 +502,451 @@ function Appengine(options: GlobalOptions) {
                   pathParams: ['appsId', 'servicesId'],
                   context: self
                 };
-                return createAPIRequest(parameters, callback!);
+                createAPIRequest(parameters, callback!);
               },
-              versions: {
-                /**
-                 * appengine.apps.services.versions.create
-                 * @desc Deploys new code and resource files to a new version.
-                 * @alias appengine.apps.services.versions.create
-                 * @memberOf! appengine(v1beta5)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
-                 * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                 * @param {appengine(v1beta5).Version} params.resource Request body data
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                create(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://appengine.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta5/apps/{appsId}/services/{servicesId}/versions')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['appsId', 'servicesId'],
-                    pathParams: ['appsId', 'servicesId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * appengine.apps.services.versions.delete
-                    * @desc Deletes an existing version.
-                    * @alias appengine.apps.services.versions.delete
-                    * @memberOf! appengine(v1beta5)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-                    * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                    * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                delete (
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://appengine.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'DELETE'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['appsId', 'servicesId', 'versionsId'],
-                    pathParams: ['appsId', 'servicesId', 'versionsId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * appengine.apps.services.versions.get
-                    * @desc Gets the specified Version resource. By default,
-                    * only a BASIC_VIEW will be returned. Specify the FULL_VIEW
-                    * parameter to get the full resource.
-                    * @alias appengine.apps.services.versions.get
-                    * @memberOf! appengine(v1beta5)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-                    * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                    * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                    * @param {string=} params.view Controls the set of fields returned in the Get response.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://appengine.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['appsId', 'servicesId', 'versionsId'],
-                    pathParams: ['appsId', 'servicesId', 'versionsId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * appengine.apps.services.versions.list
-                    * @desc Lists the versions of a service.
-                    * @alias appengine.apps.services.versions.list
-                    * @memberOf! appengine(v1beta5)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
-                    * @param {integer=} params.pageSize Maximum results to return per page.
-                    * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-                    * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                    * @param {string=} params.view Controls the set of fields returned in the List response.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://appengine.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta5/apps/{appsId}/services/{servicesId}/versions')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['appsId', 'servicesId'],
-                    pathParams: ['appsId', 'servicesId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * appengine.apps.services.versions.patch
-                    * @desc Updates the specified Version resource. You can
-                    * specify the following fields depending on the App Engine
-                    * environment and type of scaling that the version resource
-                    * uses: serving_status
-                    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.serving_status):
-                    * For Version resources that use basic scaling, manual
-                    * scaling, or run in  the App Engine flexible environment.
-                    * instance_class
-                    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.instance_class):
-                    * For Version resources that run in the App Engine standard
-                    * environment. automatic_scaling.min_idle_instances
-                    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling):
-                    * For Version resources that use automatic scaling and run
-                    * in the App  Engine standard environment.
-                    * automatic_scaling.max_idle_instances
-                    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling):
-                    * For Version resources that use automatic scaling and run
-                    * in the App  Engine standard environment.
-                    * @alias appengine.apps.services.versions.patch
-                    * @memberOf! appengine(v1beta5)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
-                    * @param {string=} params.mask Standard field mask for the set of fields to be updated.
-                    * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                    * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                    * @param {appengine(v1beta5).Version} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                patch(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://appengine.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'PATCH'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['appsId', 'servicesId', 'versionsId'],
-                    pathParams: ['appsId', 'servicesId', 'versionsId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                },
-                instances:
-                    {
-                      /**
-                       * appengine.apps.services.versions.instances.debug
-                       * @desc Enables debugging on a VM instance. This allows
-                       * you to use the SSH command to connect to the virtual
-                       * machine where the instance lives. While in "debug
-                       * mode", the instance continues to serve live traffic.
-                       * You should delete the instance when you are done
-                       * debugging and then allow the system to take over and
-                       * determine if another instance should be started.Only
-                       * applicable for instances in App Engine flexible
-                       * environment.
-                       * @alias appengine.apps.services.versions.instances.debug
-                       * @memberOf! appengine(v1beta5)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-                       * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-                       * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                       * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                       * @param {appengine(v1beta5).DebugInstanceRequest} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      debug(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://appengine.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: [
-                            'appsId', 'servicesId', 'versionsId', 'instancesId'
-                          ],
-                          pathParams: [
-                            'appsId', 'instancesId', 'servicesId', 'versionsId'
-                          ],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * appengine.apps.services.versions.instances.delete
-                          * @desc Stops a running instance.
-                          * @alias
-                          * appengine.apps.services.versions.instances.delete
-                          * @memberOf! appengine(v1beta5)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1/instances/instance-1".
-                          * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-                          * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      delete (
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://appengine.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'DELETE'
-                              },
-                              options),
-                          params,
-                          requiredParams: [
-                            'appsId', 'servicesId', 'versionsId', 'instancesId'
-                          ],
-                          pathParams: [
-                            'appsId', 'instancesId', 'servicesId', 'versionsId'
-                          ],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * appengine.apps.services.versions.instances.get
-                          * @desc Gets instance information.
-                          * @alias
-                          * appengine.apps.services.versions.instances.get
-                          * @memberOf! appengine(v1beta5)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-                          * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-                          * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      get(params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://appengine.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: [
-                            'appsId', 'servicesId', 'versionsId', 'instancesId'
-                          ],
-                          pathParams: [
-                            'appsId', 'instancesId', 'servicesId', 'versionsId'
-                          ],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * appengine.apps.services.versions.instances.list
-                          * @desc Lists the instances of a version.Tip: To
-                          * aggregate details about instances over time, see the
-                          * Stackdriver Monitoring API
-                          * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-                          * @alias
-                          * appengine.apps.services.versions.instances.list
-                          * @memberOf! appengine(v1beta5)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-                          * @param {integer=} params.pageSize Maximum results to return per page.
-                          * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-                          * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-                          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      list(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://appengine.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['appsId', 'servicesId', 'versionsId'],
-                          pathParams: ['appsId', 'servicesId', 'versionsId'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
+              versions:
+                  {
+                    /**
+                     * appengine.apps.services.versions.create
+                     * @desc Deploys new code and resource files to a new
+                     * version.
+                     * @alias appengine.apps.services.versions.create
+                     * @memberOf! appengine(v1beta5)
+                     *
+                     * @param {object} params Parameters for request
+                     * @param {string} params.appsId Part of `name`. Name of the resource to update. For example: "apps/myapp/services/default".
+                     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                     * @param {appengine(v1beta5).Version} params.resource Request body data
+                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                     * @param {callback} callback The callback that handles the response.
+                     * @return {object} Request object
+                     */
+                    create(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
                       }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://appengine.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1beta5/apps/{appsId}/services/{servicesId}/versions')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['appsId', 'servicesId'],
+                        pathParams: ['appsId', 'servicesId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * appengine.apps.services.versions.delete
+                        * @desc Deletes an existing version.
+                        * @alias appengine.apps.services.versions.delete
+                        * @memberOf! appengine(v1beta5)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+                        * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                        * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    delete(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://appengine.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'DELETE'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['appsId', 'servicesId', 'versionsId'],
+                        pathParams: ['appsId', 'servicesId', 'versionsId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * appengine.apps.services.versions.get
+                        * @desc Gets the specified Version resource. By default,
+                        * only a BASIC_VIEW will be returned. Specify the
+                        * FULL_VIEW parameter to get the full resource.
+                        * @alias appengine.apps.services.versions.get
+                        * @memberOf! appengine(v1beta5)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+                        * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                        * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                        * @param {string=} params.view Controls the set of fields returned in the Get response.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://appengine.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['appsId', 'servicesId', 'versionsId'],
+                        pathParams: ['appsId', 'servicesId', 'versionsId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * appengine.apps.services.versions.list
+                        * @desc Lists the versions of a service.
+                        * @alias appengine.apps.services.versions.list
+                        * @memberOf! appengine(v1beta5)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+                        * @param {integer=} params.pageSize Maximum results to return per page.
+                        * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+                        * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                        * @param {string=} params.view Controls the set of fields returned in the List response.
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://appengine.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1beta5/apps/{appsId}/services/{servicesId}/versions')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['appsId', 'servicesId'],
+                        pathParams: ['appsId', 'servicesId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * appengine.apps.services.versions.patch
+                        * @desc Updates the specified Version resource. You can
+                        * specify the following fields depending on the App
+                        * Engine environment and type of scaling that the
+                        * version resource uses: serving_status
+                        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.serving_status):
+                        * For Version resources that use basic scaling, manual
+                        * scaling, or run in  the App Engine flexible
+                        * environment. instance_class
+                        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.instance_class):
+                        * For Version resources that run in the App Engine
+                        * standard environment.
+                        * automatic_scaling.min_idle_instances
+                        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling):
+                        * For Version resources that use automatic scaling and
+                        * run in the App  Engine standard environment.
+                        * automatic_scaling.max_idle_instances
+                        * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.automatic_scaling):
+                        * For Version resources that use automatic scaling and
+                        * run in the App  Engine standard environment.
+                        * @alias appengine.apps.services.versions.patch
+                        * @memberOf! appengine(v1beta5)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+                        * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+                        * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                        * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                        * @param {appengine(v1beta5).Version} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    patch(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://appengine.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'PATCH'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['appsId', 'servicesId', 'versionsId'],
+                        pathParams: ['appsId', 'servicesId', 'versionsId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    },
+                    instances:
+                        {
+                          /**
+                           * appengine.apps.services.versions.instances.debug
+                           * @desc Enables debugging on a VM instance. This
+                           * allows you to use the SSH command to connect to the
+                           * virtual machine where the instance lives. While in
+                           * "debug mode", the instance continues to serve live
+                           * traffic. You should delete the instance when you
+                           * are done debugging and then allow the system to
+                           * take over and determine if another instance should
+                           * be started.Only applicable for instances in App
+                           * Engine flexible environment.
+                           * @alias
+                           * appengine.apps.services.versions.instances.debug
+                           * @memberOf! appengine(v1beta5)
+                           *
+                           * @param {object} params Parameters for request
+                           * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+                           * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+                           * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                           * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                           * @param {appengine(v1beta5).DebugInstanceRequest} params.resource Request body data
+                           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                           * @param {callback} callback The callback that handles the response.
+                           * @return {object} Request object
+                           */
+                          debug(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://appengine.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'POST'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: [
+                                'appsId', 'servicesId', 'versionsId',
+                                'instancesId'
+                              ],
+                              pathParams: [
+                                'appsId', 'instancesId', 'servicesId',
+                                'versionsId'
+                              ],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * appengine.apps.services.versions.instances.delete
+                              * @desc Stops a running instance.
+                              * @alias
+                              * appengine.apps.services.versions.instances.delete
+                              * @memberOf! appengine(v1beta5)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.appsId Part of `name`. Name of the resource requested. For example: "apps/myapp/services/default/versions/v1/instances/instance-1".
+                              * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+                              * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          delete(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://appengine.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'DELETE'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: [
+                                'appsId', 'servicesId', 'versionsId',
+                                'instancesId'
+                              ],
+                              pathParams: [
+                                'appsId', 'instancesId', 'servicesId',
+                                'versionsId'
+                              ],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * appengine.apps.services.versions.instances.get
+                              * @desc Gets instance information.
+                              * @alias
+                              * appengine.apps.services.versions.instances.get
+                              * @memberOf! appengine(v1beta5)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+                              * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+                              * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          get(params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://appengine.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams: [
+                                'appsId', 'servicesId', 'versionsId',
+                                'instancesId'
+                              ],
+                              pathParams: [
+                                'appsId', 'instancesId', 'servicesId',
+                                'versionsId'
+                              ],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }, /**
+                              * appengine.apps.services.versions.instances.list
+                              * @desc Lists the instances of a version.Tip: To
+                              * aggregate details about instances over time, see
+                              * the Stackdriver Monitoring API
+                              * (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+                              * @alias
+                              * appengine.apps.services.versions.instances.list
+                              * @memberOf! appengine(v1beta5)
+                              *
+                              * @param {object} params Parameters for request
+                              * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+                              * @param {integer=} params.pageSize Maximum results to return per page.
+                              * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+                              * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
+                              * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+                              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                              * @param {callback} callback The callback that handles the response.
+                              * @return {object} Request object
+                              */
+                          list(
+                              params: any,
+                              options: MethodOptions|BodyResponseCallback<any>,
+                              callback?: BodyResponseCallback<any>) {
+                            if (typeof options === 'function') {
+                              callback = options;
+                              options = {};
+                            }
+                            options = options || {};
+                            const rootUrl = options.rootUrl ||
+                                'https://appengine.googleapis.com/';
+                            const parameters = {
+                              options: Object.assign(
+                                  {
+                                    url:
+                                        (rootUrl +
+                                         '/v1beta5/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances')
+                                            .replace(/([^:]\/)\/+/g, '$1'),
+                                    method: 'GET'
+                                  },
+                                  options),
+                              params,
+                              requiredParams:
+                                  ['appsId', 'servicesId', 'versionsId'],
+                              pathParams:
+                                  ['appsId', 'servicesId', 'versionsId'],
+                              context: self
+                            };
+                            createAPIRequest(parameters, callback!);
+                          }
 
-                    }
-              }
+                        }
+                  }
             }
       };
 }
@@ -1378,5 +1397,3 @@ function Appengine(options: GlobalOptions) {
  * @property {number} sizeGb Volume size in gigabytes.
  * @property {string} volumeType Underlying volume type, e.g. &#39;tmpfs&#39;.
  */
-
-export = Appengine;

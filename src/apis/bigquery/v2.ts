@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Bigquery;
 
 /**
  * BigQuery API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Bigquery
  */
-function Bigquery(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.datasets = {
+export class Bigquery extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  datasets = {
     /**
      * bigquery.datasets.delete
      * @desc Deletes the dataset specified by the datasetId value. Before you
@@ -112,7 +117,7 @@ function Bigquery(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -135,7 +140,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.get
         * @desc Returns the dataset specified by datasetID.
@@ -227,7 +232,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.insert
         * @desc Creates a new empty dataset.
@@ -320,7 +325,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.list
         * @desc Lists all datasets in the specified project to which you have
@@ -426,7 +431,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.patch
         * @desc Updates information in an existing dataset. The update method
@@ -529,7 +534,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.datasets.update
         * @desc Updates information in an existing dataset. The update method
@@ -631,11 +636,11 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.jobs = {
+  jobs = {
     /**
      * bigquery.jobs.cancel
      * @desc Requests that a job be cancelled. This call will return
@@ -732,7 +737,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.get
         * @desc Returns information about a specific job. Job information is
@@ -826,7 +831,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.getQueryResults
         * @desc Retrieves the results of a query job.
@@ -937,7 +942,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['jobId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.insert
         * @desc Starts a new asynchronous job. Requires the Can View project
@@ -1044,7 +1049,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.list
         * @desc Lists all jobs that you started in the specified project. Job
@@ -1156,7 +1161,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.jobs.query
         * @desc Runs a BigQuery SQL query synchronously and returns query
@@ -1250,11 +1255,11 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     /**
      * bigquery.projects.getServiceAccount
      * @desc Returns the email address of the service account for your project
@@ -1344,7 +1349,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.projects.list
         * @desc Lists all projects to which you have been granted any project
@@ -1444,11 +1449,11 @@ function Bigquery(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tabledata = {
+  tabledata = {
     /**
      * bigquery.tabledata.insertAll
      * @desc Streams data into BigQuery one record at a time without needing to
@@ -1552,7 +1557,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tabledata.list
         * @desc Retrieves table data from a specified set of rows. Requires the
@@ -1668,11 +1673,11 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tables = {
+  tables = {
     /**
      * bigquery.tables.delete
      * @desc Deletes the table specified by tableId from the dataset. If the
@@ -1744,7 +1749,7 @@ function Bigquery(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1768,7 +1773,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.get
         * @desc Gets the specified table resource by table ID. This method does
@@ -1868,7 +1873,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.insert
         * @desc Creates a new, empty table in the dataset.
@@ -1967,7 +1972,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.list
         * @desc Lists all tables in the specified dataset. Requires the READER
@@ -2077,7 +2082,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.patch
         * @desc Updates information in an existing table. The update method
@@ -2185,7 +2190,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * bigquery.tables.update
         * @desc Updates information in an existing table. The update method
@@ -2292,7 +2297,7 @@ function Bigquery(options: GlobalOptions) {
         pathParams: ['datasetId', 'projectId', 'tableId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2635,6 +2640,7 @@ function Bigquery(options: GlobalOptions) {
  * @property {bigquery(v2).QueryTimelineSample[]} timeline [Output-only] [Experimental] Describes a timeline of job execution.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
+ * @property {string} totalPartitionsProcessed [Output-only] Total number of partitions processed from all partitioned tables referenced in the job.
  * @property {string} totalSlotMs [Output-only] Slot-milliseconds for the job.
  * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
  */
@@ -2887,5 +2893,3 @@ function Bigquery(options: GlobalOptions) {
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
  * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
  */
-
-export = Bigquery;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Appstate;
 
 /**
  * Google App State API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Appstate
  */
-function Appstate(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.states = {
+export class Appstate extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  states = {
     /**
      * appstate.states.clear
      * @desc Clears (sets to empty) the data for the passed key if and only if
@@ -79,7 +84,7 @@ function Appstate(options: GlobalOptions) {
         pathParams: ['stateKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * appstate.states.delete
         * @desc Deletes a key and the data associated with it. The key is
@@ -97,7 +102,7 @@ function Appstate(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -119,7 +124,7 @@ function Appstate(options: GlobalOptions) {
         pathParams: ['stateKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * appstate.states.get
         * @desc Retrieves the data corresponding to the passed key. If the key
@@ -154,7 +159,7 @@ function Appstate(options: GlobalOptions) {
         pathParams: ['stateKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * appstate.states.list
         * @desc Lists all the states keys, and optionally the state data.
@@ -189,7 +194,7 @@ function Appstate(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * appstate.states.update
         * @desc Update the data associated with the input key if and only if the
@@ -228,7 +233,7 @@ function Appstate(options: GlobalOptions) {
         pathParams: ['stateKey'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -265,5 +270,3 @@ function Appstate(options: GlobalOptions) {
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string appstate#writeResult.
  * @property {integer} stateKey The written key.
  */
-
-export = Appstate;

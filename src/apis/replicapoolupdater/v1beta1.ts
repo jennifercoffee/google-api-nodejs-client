@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Replicapoolupdater;
 
 /**
  * Google Compute Engine Instance Group Updater API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Replicapoolupdater
  */
-function Replicapoolupdater(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.rollingUpdates = {
+export class Replicapoolupdater extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  rollingUpdates = {
     /**
      * replicapoolupdater.rollingUpdates.cancel
      * @desc Cancels an update. The update must be PAUSED before it can be
@@ -83,7 +88,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.get
         * @desc Returns information about an update.
@@ -121,7 +126,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.insert
         * @desc Inserts and starts a new update.
@@ -160,7 +165,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.list
         * @desc Lists recent updates for a given managed instance group, in
@@ -202,7 +207,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.listInstanceUpdates
         * @desc Lists the current status for each instance within a given
@@ -245,7 +250,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.pause
         * @desc Pauses the update in state from ROLLING_FORWARD or ROLLING_BACK.
@@ -285,7 +290,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.resume
         * @desc Continues an update in PAUSED state. Has no effect if invoked
@@ -325,7 +330,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.rollingUpdates.rollback
         * @desc Rolls back the update in state from ROLLING_FORWARD or PAUSED.
@@ -365,11 +370,11 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'rollingUpdate', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.zoneOperations = {
+  zoneOperations = {
     /**
      * replicapoolupdater.zoneOperations.get
      * @desc Retrieves the specified zone-specific operation resource.
@@ -407,7 +412,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapoolupdater.zoneOperations.list
         * @desc Retrieves the list of Operation resources contained within the
@@ -449,7 +454,7 @@ function Replicapoolupdater(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -538,5 +543,3 @@ function Replicapoolupdater(options: GlobalOptions) {
  * @property {string} nextPageToken A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] The fully qualified URL for the resource.
  */
-
-export = Replicapoolupdater;

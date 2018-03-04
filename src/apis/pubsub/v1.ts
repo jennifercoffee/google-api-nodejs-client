@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Pubsub;
 
 /**
  * Google Cloud Pub/Sub API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Pubsub
  */
-function Pubsub(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Pubsub extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     snapshots: {
       /**
        * pubsub.projects.snapshots.create
@@ -87,7 +92,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.delete
           * @desc Removes an existing snapshot. All messages retained in the
@@ -104,7 +109,7 @@ function Pubsub(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -125,7 +130,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['snapshot'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.get
           * @desc Gets the configuration details of a snapshot.
@@ -158,7 +163,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['snapshot'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -248,7 +253,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.list
           * @desc Lists the existing snapshots.
@@ -285,7 +290,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['project'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.patch
           * @desc Updates an existing snapshot. Note that certain properties of
@@ -321,7 +326,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -416,7 +421,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.snapshots.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -515,7 +520,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -616,7 +621,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.create
           * @desc Creates a subscription to a given topic. If the subscription
@@ -727,7 +732,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.delete
           * @desc Deletes an existing subscription. All messages retained in the
@@ -798,7 +803,7 @@ function Pubsub(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -820,7 +825,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.get
           * @desc Gets the configuration details of a subscription.
@@ -908,7 +913,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -999,7 +1004,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.list
           * @desc Lists matching subscriptions.
@@ -1105,7 +1110,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['project'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.modifyAckDeadline
           * @desc Modifies the ack deadline for a specific message. This method
@@ -1201,7 +1206,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.modifyPushConfig
           * @desc Modifies the `PushConfig` for a specified subscription.  This
@@ -1297,7 +1302,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.patch
           * @desc Updates an existing subscription. Note that certain properties
@@ -1333,7 +1338,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.pull
           * @desc Pulls messages from the server. Returns an empty list if there
@@ -1430,7 +1435,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.seek
           * @desc Seeks an existing subscription to a point in time or to a
@@ -1467,7 +1472,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['subscription'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -1563,7 +1568,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.subscriptions.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -1663,7 +1668,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1771,7 +1776,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.delete
           * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if
@@ -1841,7 +1846,7 @@ function Pubsub(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1862,7 +1867,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.get
           * @desc Gets the configuration of a topic.
@@ -1950,7 +1955,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.getIamPolicy
           * @desc Gets the access control policy for a resource. Returns an
@@ -2040,7 +2045,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.list
           * @desc Lists matching topics.
@@ -2145,7 +2150,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['project'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.publish
           * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if
@@ -2243,7 +2248,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['topic'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.setIamPolicy
           * @desc Sets the access control policy on the specified resource.
@@ -2338,7 +2343,7 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * pubsub.projects.topics.testIamPermissions
           * @desc Returns permissions that a caller has on the specified
@@ -2437,159 +2442,164 @@ function Pubsub(options: GlobalOptions) {
           pathParams: ['resource'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
-      snapshots: {
-        /**
-         * pubsub.projects.topics.snapshots.list
-         * @desc Lists the names of the snapshots on this topic.
-         * @alias pubsub.projects.topics.snapshots.list
-         * @memberOf! pubsub(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Maximum number of snapshot names to return.
-         * @param {string=} params.pageToken The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
-         * @param {string} params.topic The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{topic}/snapshots')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['topic'],
-            pathParams: ['topic'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
+      snapshots:
+          {
+            /**
+             * pubsub.projects.topics.snapshots.list
+             * @desc Lists the names of the snapshots on this topic.
+             * @alias pubsub.projects.topics.snapshots.list
+             * @memberOf! pubsub(v1)
+             *
+             * @param {object} params Parameters for request
+             * @param {integer=} params.pageSize Maximum number of snapshot names to return.
+             * @param {string=} params.pageToken The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
+             * @param {string} params.topic The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://pubsub.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1/{topic}/snapshots')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['topic'],
+                pathParams: ['topic'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
 
-      },
-      subscriptions: {
-        /**
-         * pubsub.projects.topics.subscriptions.list
-         * @desc Lists the names of the subscriptions on this topic.
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Google Cloud Pub/Sub API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/pubsub
-         * // 2. This sample uses Application Default Credentials for
-         * authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk and run
-         * //    `gcloud beta auth application-default login`.
-         * //    For more information, see
-         * //
-         * https://developers.google.com/identity/protocols/application-default-credentials
-         * // 3. Install the Node.js client library by running
-         * //    `npm install googleapis --save`
-         *
-         * var google = require('googleapis');
-         * var pubsub = google.pubsub('v1');
-         *
-         * authorize(function(authClient) {
-         *   var request = {
-         *     // The name of the topic that subscriptions are attached to.
-         *     // Format is `projects/{project}/topics/{topic}`.
-         *     topic: 'projects/my-project/topics/my-topic',  // TODO: Update
-         * placeholder value.
-         *
-         *     auth: authClient,
-         *   };
-         *
-         *   var handlePage = function(err, response) {
-         *     if (err) {
-         *       console.error(err);
-         *       return;
-         *     }
-         *
-         *     var subscriptionsPage = response['subscriptions'];
-         *     if (!subscriptionsPage) {
-         *       return;
-         *     }
-         *     for (var i = 0; i < subscriptionsPage.length; i++) {
-         *       // TODO: Change code below to process each resource in
-         * `subscriptionsPage`: console.log(JSON.stringify(subscriptionsPage[i],
-         * null, 2));
-         *     }
-         *
-         *     if (response.nextPageToken) {
-         *       request.pageToken = response.nextPageToken;
-         *       pubsub.projects.topics.subscriptions.list(request, handlePage);
-         *     }
-         *   };
-         *
-         *   pubsub.projects.topics.subscriptions.list(request, handlePage);
-         * });
-         *
-         * function authorize(callback) {
-         *   google.auth.getApplicationDefault(function(err, authClient) {
-         *     if (err) {
-         *       console.error('authentication failed: ', err);
-         *       return;
-         *     }
-         *     if (authClient.createScopedRequired &&
-         * authClient.createScopedRequired()) { var scopes =
-         * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-         * authClient.createScoped(scopes);
-         *     }
-         *     callback(authClient);
-         *   });
-         * }
-         * @alias pubsub.projects.topics.subscriptions.list
-         * @memberOf! pubsub(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Maximum number of subscription names to return.
-         * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
-         * @param {string} params.topic The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{topic}/subscriptions')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['topic'],
-            pathParams: ['topic'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
+          },
+      subscriptions:
+          {
+            /**
+             * pubsub.projects.topics.subscriptions.list
+             * @desc Lists the names of the subscriptions on this topic.
+             * @example
+             * // BEFORE RUNNING:
+             * // ---------------
+             * // 1. If not already done, enable the Google Cloud Pub/Sub API
+             * //    and check the quota for your project at
+             * //    https://console.developers.google.com/apis/api/pubsub
+             * // 2. This sample uses Application Default Credentials for
+             * authentication.
+             * //    If not already done, install the gcloud CLI from
+             * //    https://cloud.google.com/sdk and run
+             * //    `gcloud beta auth application-default login`.
+             * //    For more information, see
+             * //
+             * https://developers.google.com/identity/protocols/application-default-credentials
+             * // 3. Install the Node.js client library by running
+             * //    `npm install googleapis --save`
+             *
+             * var google = require('googleapis');
+             * var pubsub = google.pubsub('v1');
+             *
+             * authorize(function(authClient) {
+             *   var request = {
+             *     // The name of the topic that subscriptions are attached to.
+             *     // Format is `projects/{project}/topics/{topic}`.
+             *     topic: 'projects/my-project/topics/my-topic',  // TODO:
+             * Update placeholder value.
+             *
+             *     auth: authClient,
+             *   };
+             *
+             *   var handlePage = function(err, response) {
+             *     if (err) {
+             *       console.error(err);
+             *       return;
+             *     }
+             *
+             *     var subscriptionsPage = response['subscriptions'];
+             *     if (!subscriptionsPage) {
+             *       return;
+             *     }
+             *     for (var i = 0; i < subscriptionsPage.length; i++) {
+             *       // TODO: Change code below to process each resource in
+             * `subscriptionsPage`:
+             *       console.log(JSON.stringify(subscriptionsPage[i], null, 2));
+             *     }
+             *
+             *     if (response.nextPageToken) {
+             *       request.pageToken = response.nextPageToken;
+             *       pubsub.projects.topics.subscriptions.list(request,
+             * handlePage);
+             *     }
+             *   };
+             *
+             *   pubsub.projects.topics.subscriptions.list(request, handlePage);
+             * });
+             *
+             * function authorize(callback) {
+             *   google.auth.getApplicationDefault(function(err, authClient) {
+             *     if (err) {
+             *       console.error('authentication failed: ', err);
+             *       return;
+             *     }
+             *     if (authClient.createScopedRequired &&
+             * authClient.createScopedRequired()) { var scopes =
+             * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+             * authClient.createScoped(scopes);
+             *     }
+             *     callback(authClient);
+             *   });
+             * }
+             * @alias pubsub.projects.topics.subscriptions.list
+             * @memberOf! pubsub(v1)
+             *
+             * @param {object} params Parameters for request
+             * @param {integer=} params.pageSize Maximum number of subscription names to return.
+             * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+             * @param {string} params.topic The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://pubsub.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1/{topic}/subscriptions')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['topic'],
+                pathParams: ['topic'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
 
-      }
+          }
     }
   };
 }
@@ -2790,5 +2800,3 @@ function Pubsub(options: GlobalOptions) {
  * @property {pubsub(v1).Subscription} subscription The updated subscription object.
  * @property {string} updateMask Indicates which fields in the provided subscription to update. Must be specified and non-empty.
  */
-
-export = Pubsub;

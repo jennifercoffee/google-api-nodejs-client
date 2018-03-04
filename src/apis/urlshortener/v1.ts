@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Urlshortener;
 
 /**
  * URL Shortener API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Urlshortener
  */
-function Urlshortener(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.url = {
+export class Urlshortener extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  url = {
     /**
      * urlshortener.url.get
      * @desc Expands a short URL or gets creation time and analytics.
@@ -76,7 +81,7 @@ function Urlshortener(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * urlshortener.url.insert
         * @desc Creates a new short URL.
@@ -111,7 +116,7 @@ function Urlshortener(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * urlshortener.url.list
         * @desc Retrieves a list of URLs shortened by a user.
@@ -147,7 +152,7 @@ function Urlshortener(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -201,5 +206,3 @@ function Urlshortener(options: GlobalOptions) {
  * @property {string} nextPageToken A token to provide to get the next page of results.
  * @property {integer} totalItems Total number of short URLs associated with this user (may be approximate).
  */
-
-export = Urlshortener;

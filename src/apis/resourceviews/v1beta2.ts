@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Resourceviews;
 
 /**
  * Google Compute Engine Instance Groups API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Resourceviews
  */
-function Resourceviews(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.zoneOperations = {
+export class Resourceviews extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  zoneOperations = {
     /**
      * resourceviews.zoneOperations.get
      * @desc Retrieves the specified zone-specific operation resource.
@@ -80,7 +85,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneOperations.list
         * @desc Retrieves the list of operation resources contained within the
@@ -122,11 +127,11 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.zoneViews = {
+  zoneViews = {
     /**
      * resourceviews.zoneViews.addResources
      * @desc Add resources to the view.
@@ -166,7 +171,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.delete
         * @desc Delete a resource view.
@@ -181,7 +186,7 @@ function Resourceviews(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -205,7 +210,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.get
         * @desc Get the information of a zonal resource view.
@@ -243,7 +248,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.getService
         * @desc Get the service information of a resource view or a resource.
@@ -283,7 +288,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.insert
         * @desc Create a resource view.
@@ -322,7 +327,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.list
         * @desc List resource views.
@@ -362,7 +367,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.listResources
         * @desc List the resources of the resource view.
@@ -406,7 +411,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.removeResources
         * @desc Remove resources from the view.
@@ -446,7 +451,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.setService
         * @desc Update the service information of a resource view or a resource.
@@ -486,7 +491,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['project', 'resourceView', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -610,5 +615,3 @@ function Resourceviews(options: GlobalOptions) {
  * @property {string} fingerprint Fingerprint of the service information; a hash of the contents. This field is used for optimistic locking when updating the service entries.
  * @property {string} resourceName The name of the resource if user wants to update the service information of the resource.
  */
-
-export = Resourceviews;

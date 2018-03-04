@@ -19,12 +19,13 @@ import * as stream from 'stream';
 import {Endpoint} from './endpoint';
 import {SchemaParameters} from './schema';
 
-export interface APIRequestParams {
+// tslint:disable-next-line no-any
+export interface APIRequestParams<T = any> {
   options: AxiosRequestConfig;
   params: APIRequestMethodParams;
   requiredParams: string[];
   pathParams: string[];
-  context: APIRequestContext;
+  context: T;
   mediaUrl?: string|null;
 }
 

@@ -18,11 +18,12 @@
  * limitations under the License.
  */
 
-import {createAPIRequest} from '../../lib/apirequest';
+import { createAPIRequest, BaseAPI } from '../../lib/apirequest';
 import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/api';
+import { GoogleApis } from '../..';
 
-// TODO: We will eventually get the `any` in here cleared out, but in the interim we 
-// want to turn on no-implicit-any.  
+// TODO: We will eventually get the `any` in here cleared out, but in the interim we
+// want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
@@ -31,6 +32,8 @@ import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/ap
 {% set Version = api.version|replace('\.', '_')|capitalize %}
 {% endif %}
 {% set Namespace = [Name, Version]|join('') %}
+
+let self: {{ Name }};
 
 /**
  * {{ api.title }}
@@ -47,9 +50,11 @@ import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/ap
  * @variation {{ api.version }}
  * @param {object=} options Options for {{ Name }}
  */
-function {{ Name }} (options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
+export class {{ Name }} extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
     {{ method.render(m, mname, api, true) }}
@@ -57,7 +62,7 @@ function {{ Name }} (options: GlobalOptions) {
 {% endif %}
 {% if api.resources %}
 {% for rname, r in api.resources|dictsort %}
-  self.{{ rname }} = {
+  {{ rname }} = {
     {{ resource.render(r, api, false) }}
   };
 {% endfor %}
@@ -85,5 +90,3 @@ function {{ Name }} (options: GlobalOptions) {
  */
 {% endfor %}
 {% endif %}
-
-export = {{ Name }};

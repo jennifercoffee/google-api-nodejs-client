@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -23,10 +24,12 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-any
 
 
+let self: Dlp;
+
 /**
- * DLP API
+ * Cloud Data Loss Prevention (DLP) API
  *
- * The Google Data Loss Prevention API provides methods for detection of
+ * Provides methods for detection, risk analysis, and de-identification of
  * privacy-sensitive fragments in text, images, and Google Cloud Platform
  * storage repositories.
  *
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta1
  * @param {object=} options Options for Dlp
  */
-function Dlp(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.content = {
+export class Dlp extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  content = {
     /**
      * dlp.content.deidentify
      * @desc De-identifies potentially sensitive info from a list of strings.
@@ -79,7 +84,7 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dlp.content.inspect
         * @desc Finds potentially sensitive info in a list of strings. This
@@ -115,7 +120,7 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * dlp.content.redact
         * @desc Redacts potentially sensitive info from a list of strings. This
@@ -151,11 +156,11 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.dataSource = {
+  dataSource = {
     /**
      * dlp.dataSource.analyze
      * @desc Schedules a job to compute risk analysis metrics over content in a
@@ -191,11 +196,11 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.inspect = {
+  inspect = {
     operations: {
       /**
        * dlp.inspect.operations.cancel
@@ -234,7 +239,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.inspect.operations.create
           * @desc Schedules a job scanning content in a Google Cloud Platform
@@ -270,7 +275,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.inspect.operations.delete
           * @desc This method is not supported and the server returns
@@ -284,7 +289,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -306,7 +311,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.inspect.operations.get
           * @desc Gets the latest state of a long-running operation.  Clients
@@ -342,7 +347,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.inspect.operations.list
           * @desc Fetches the list of long running operations.
@@ -380,7 +385,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -424,13 +429,13 @@ function Dlp(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
     }
   };
-  self.riskAnalysis = {
+  riskAnalysis = {
     operations: {
       /**
        * dlp.riskAnalysis.operations.cancel
@@ -469,7 +474,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.riskAnalysis.operations.delete
           * @desc This method is not supported and the server returns
@@ -483,7 +488,7 @@ function Dlp(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -505,7 +510,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.riskAnalysis.operations.get
           * @desc Gets the latest state of a long-running operation.  Clients
@@ -541,7 +546,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * dlp.riskAnalysis.operations.list
           * @desc Fetches the list of long running operations.
@@ -579,12 +584,12 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.rootCategories = {
+  rootCategories = {
     /**
      * dlp.rootCategories.list
      * @desc Returns the list of root categories of sensitive information.
@@ -619,7 +624,7 @@ function Dlp(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     infoTypes: {
       /**
@@ -657,7 +662,7 @@ function Dlp(options: GlobalOptions) {
           pathParams: ['category'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1530,5 +1535,3 @@ function Dlp(options: GlobalOptions) {
  * @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
  * @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
  */
-
-export = Dlp;

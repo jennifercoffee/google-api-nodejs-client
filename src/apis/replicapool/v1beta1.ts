@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Replicapool;
 
 /**
  * Replica Pool API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.pools = {
+export class Replicapool extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  pools = {
     /**
      * replicapool.pools.delete
      * @desc Deletes a replica pool.
@@ -58,7 +63,7 @@ function Replicapool(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -82,7 +87,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.get
         * @desc Gets information about a single replica pool.
@@ -120,7 +125,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.insert
         * @desc Inserts a new replica pool.
@@ -159,7 +164,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.list
         * @desc List all replica pools.
@@ -199,7 +204,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.resize
         * @desc Resize a pool. This is an asynchronous operation, and multiple
@@ -241,7 +246,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.pools.updatetemplate
         * @desc Update the template used by the pool.
@@ -281,11 +286,11 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.replicas = {
+  replicas = {
     /**
      * replicapool.replicas.delete
      * @desc Deletes a replica from the pool.
@@ -302,7 +307,7 @@ function Replicapool(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -326,7 +331,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.get
         * @desc Gets information about a specific replica.
@@ -365,7 +370,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.list
         * @desc Lists all replicas in a pool.
@@ -406,7 +411,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.replicas.restart
         * @desc Restarts a replica in a pool.
@@ -446,7 +451,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -652,5 +657,3 @@ function Replicapool(options: GlobalOptions) {
  * @property {replicapool(v1beta1).ServiceAccount[]} serviceAccounts A list of Service Accounts to enable for this instance.
  * @property {replicapool(v1beta1).Tag} tags A list of tags to apply to the Google Compute Engine instance to identify resources.
  */
-
-export = Replicapool;

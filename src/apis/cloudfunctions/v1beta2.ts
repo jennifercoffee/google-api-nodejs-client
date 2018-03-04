@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Cloudfunctions;
 
 /**
  * Google Cloud Functions API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Cloudfunctions
  */
-function Cloudfunctions(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Cloudfunctions extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * cloudfunctions.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -78,7 +83,7 @@ function Cloudfunctions(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudfunctions.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -125,11 +130,11 @@ function Cloudfunctions(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     locations: {
       /**
        * cloudfunctions.projects.locations.list
@@ -169,7 +174,7 @@ function Cloudfunctions(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
       functions: {
         /**
@@ -209,7 +214,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.create
             * @desc Creates a new function. If a function with the given name
@@ -248,7 +253,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['location'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.delete
             * @desc Deletes a function with the given name from the specified
@@ -263,7 +268,7 @@ function Cloudfunctions(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -286,7 +291,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.generateDownloadUrl
             * @desc Returns a signed URL for downloading deployed function
@@ -328,7 +333,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.generateUploadUrl
             * @desc Returns a signed URL for uploading a function source code.
@@ -377,7 +382,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['parent'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.get
             * @desc Returns a function with the given name from the requested
@@ -413,7 +418,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.list
             * @desc Returns a list of functions that belong to the requested
@@ -452,7 +457,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['location'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * cloudfunctions.projects.locations.functions.update
             * @desc Updates existing function.
@@ -489,7 +494,7 @@ function Cloudfunctions(options: GlobalOptions) {
             pathParams: ['name'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -659,5 +664,3 @@ function Cloudfunctions(options: GlobalOptions) {
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
-
-export = Cloudfunctions;

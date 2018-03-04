@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Language;
 
 /**
  * Cloud Natural Language API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Language
  */
-function Language(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.documents = {
+export class Language extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  documents = {
     /**
      * language.documents.analyzeEntities
      * @desc Finds named entities (currently proper names and common nouns) in
@@ -80,7 +85,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeEntitySentiment
         * @desc Finds entities, similar to AnalyzeEntities in the text and
@@ -116,7 +121,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeSentiment
         * @desc Analyzes the sentiment of the provided text.
@@ -151,7 +156,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.analyzeSyntax
         * @desc Analyzes the syntax of the text and provides sentence boundaries
@@ -188,7 +193,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.annotateText
         * @desc A convenience method that provides all the features that
@@ -225,7 +230,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * language.documents.classifyText
         * @desc Classifies a document into categories.
@@ -260,7 +265,7 @@ function Language(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -461,5 +466,3 @@ function Language(options: GlobalOptions) {
  * @property {language(v1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
  * @property {language(v1).TextSpan} text The token text.
  */
-
-export = Language;

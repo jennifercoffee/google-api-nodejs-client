@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Poly;
 
 /**
  * Poly API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Poly
  */
-function Poly(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.assets = {
+export class Poly extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  assets = {
     /**
      * poly.assets.get
      * @desc Returns detailed information about an asset given its name. PRIVATE
@@ -77,7 +82,7 @@ function Poly(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * poly.assets.list
         * @desc Lists all public, remixable assets. These are assets with an
@@ -119,11 +124,11 @@ function Poly(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     assets: {
       /**
        * poly.users.assets.list
@@ -167,7 +172,7 @@ function Poly(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -212,7 +217,7 @@ function Poly(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -342,5 +347,3 @@ function Poly(options: GlobalOptions) {
  * @type object
  * @property {poly(v1).Asset} asset An Asset.
  */
-
-export = Poly;

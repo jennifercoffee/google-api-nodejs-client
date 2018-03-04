@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Manufacturers;
 
 /**
  * Manufacturer Center API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Manufacturers
  */
-function Manufacturers(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Manufacturers extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     products: {
       /**
        * manufacturers.accounts.products.delete
@@ -56,7 +61,7 @@ function Manufacturers(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -65,7 +70,7 @@ function Manufacturers(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -79,7 +84,7 @@ function Manufacturers(options: GlobalOptions) {
           pathParams: ['name', 'parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * manufacturers.accounts.products.get
           * @desc Gets the product from a Manufacturer Center account, including
@@ -105,7 +110,7 @@ function Manufacturers(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -119,7 +124,7 @@ function Manufacturers(options: GlobalOptions) {
           pathParams: ['name', 'parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * manufacturers.accounts.products.list
           * @desc Lists all the products in a Manufacturer Center account.
@@ -143,7 +148,7 @@ function Manufacturers(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -157,7 +162,7 @@ function Manufacturers(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * manufacturers.accounts.products.update
           * @desc Inserts or updates the attributes of the product in a
@@ -193,7 +198,7 @@ function Manufacturers(options: GlobalOptions) {
         }
         options = options || {};
         const rootUrl =
-            options.rootUrl || 'https://manufacturers.googleapis.com/';
+            options.rootUrl || 'https://content-manufacturers.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -207,7 +212,7 @@ function Manufacturers(options: GlobalOptions) {
           pathParams: ['name', 'parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -333,5 +338,3 @@ function Manufacturers(options: GlobalOptions) {
  * @property {string} attributeValue The value of the attribute.
  * @property {string} sectionName A short section name that can be reused between multiple product details.
  */
-
-export = Manufacturers;

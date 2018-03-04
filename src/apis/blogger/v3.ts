@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Blogger;
 
 /**
  * Blogger API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Blogger
  */
-function Blogger(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.blogs = {
+export class Blogger extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  blogs = {
     /**
      * blogger.blogs.get
      * @desc Gets one blog by ID.
@@ -77,7 +82,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.blogs.getByUrl
         * @desc Retrieve a Blog by URL.
@@ -113,7 +118,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.blogs.listByUser
         * @desc Retrieves a list of blogs, possibly filtered.
@@ -152,11 +157,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.blogUserInfos = {
+  blogUserInfos = {
     /**
      * blogger.blogUserInfos.get
      * @desc Gets one blog and user info pair by blogId and userId.
@@ -192,11 +197,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * blogger.comments.approve
      * @desc Marks a comment as not spam.
@@ -235,7 +240,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.delete
         * @desc Delete a comment by ID.
@@ -250,7 +255,7 @@ function Blogger(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -274,7 +279,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.get
         * @desc Gets one comment by ID.
@@ -313,7 +318,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.list
         * @desc Retrieves the comments for a post, possibly filtered.
@@ -357,7 +362,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.listByBlog
         * @desc Retrieves the comments for a blog, across all posts, possibly
@@ -399,7 +404,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.markAsSpam
         * @desc Marks a comment as spam.
@@ -438,7 +443,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.removeContent
         * @desc Removes the content of a comment.
@@ -477,11 +482,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pages = {
+  pages = {
     /**
      * blogger.pages.delete
      * @desc Delete a page by ID.
@@ -495,7 +500,7 @@ function Blogger(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -517,7 +522,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.get
         * @desc Gets one blog page by ID.
@@ -553,7 +558,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.insert
         * @desc Add a page.
@@ -590,7 +595,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.list
         * @desc Retrieves the pages for a blog, optionally including non-LIVE
@@ -631,7 +636,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.patch
         * @desc Update a page. This method supports patch semantics.
@@ -670,7 +675,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.publish
         * @desc Publishes a draft page.
@@ -707,7 +712,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.revert
         * @desc Revert a published or scheduled page to draft state.
@@ -744,7 +749,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.update
         * @desc Update a page.
@@ -783,11 +788,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pageViews = {
+  pageViews = {
     /**
      * blogger.pageViews.get
      * @desc Retrieve pageview stats for a Blog.
@@ -822,11 +827,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.posts = {
+  posts = {
     /**
      * blogger.posts.delete
      * @desc Delete a post by ID.
@@ -840,7 +845,7 @@ function Blogger(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -862,7 +867,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.get
         * @desc Get a post by ID.
@@ -901,7 +906,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.getByPath
         * @desc Retrieve a Post by Path.
@@ -939,7 +944,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.insert
         * @desc Add a post.
@@ -978,7 +983,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.list
         * @desc Retrieves a list of posts, possibly filtered.
@@ -1023,7 +1028,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.patch
         * @desc Update a post. This method supports patch semantics.
@@ -1065,7 +1070,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.publish
         * @desc Publishes a draft post, optionally at the specific time of the
@@ -1104,7 +1109,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.revert
         * @desc Revert a published or scheduled post to draft state.
@@ -1141,7 +1146,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.search
         * @desc Search for a post.
@@ -1179,7 +1184,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.update
         * @desc Update a post.
@@ -1221,11 +1226,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.postUserInfos = {
+  postUserInfos = {
     /**
      * blogger.postUserInfos.get
      * @desc Gets one post and user info pair, by post ID and user ID. The post
@@ -1265,7 +1270,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.postUserInfos.list
         * @desc Retrieves a list of post and post user info pairs, possibly
@@ -1312,11 +1317,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * blogger.users.get
      * @desc Gets one user by ID.
@@ -1350,7 +1355,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1533,5 +1538,3 @@ function Blogger(options: GlobalOptions) {
  * @property {string} selfLink The API REST URL to fetch this resource from.
  * @property {string} url The user&#39;s profile page.
  */
-
-export = Blogger;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Analytics;
 
 /**
  * Google Analytics API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Analytics
  */
-function Analytics(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.data = {
+export class Analytics extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  data = {
     ga: {
       /**
        * analytics.data.ga.get
@@ -88,7 +93,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -136,7 +141,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -179,12 +184,12 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.management = {
+  management = {
     accounts: {
       /**
        * analytics.management.accounts.list
@@ -221,7 +226,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -262,7 +267,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -280,7 +285,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -304,7 +309,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.accountUserLinks.insert
           * @desc Adds a new user to the given account.
@@ -342,7 +347,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.accountUserLinks.list
           * @desc Lists account-user links for a given account.
@@ -381,7 +386,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.accountUserLinks.update
           * @desc Updates permissions for an existing user on the given account.
@@ -420,7 +425,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -464,7 +469,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -506,7 +511,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customDimensions.insert
           * @desc Create a new custom dimension.
@@ -545,7 +550,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customDimensions.list
           * @desc Lists custom dimensions to which the user has access.
@@ -585,7 +590,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customDimensions.patch
           * @desc Updates an existing custom dimension. This method supports
@@ -627,7 +632,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customDimensions.update
           * @desc Updates an existing custom dimension.
@@ -668,7 +673,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -710,7 +715,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customMetrics.insert
           * @desc Create a new custom metric.
@@ -749,7 +754,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customMetrics.list
           * @desc Lists custom metrics to which the user has access.
@@ -789,7 +794,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customMetrics.patch
           * @desc Updates an existing custom metric. This method supports patch
@@ -831,7 +836,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.customMetrics.update
           * @desc Updates an existing custom metric.
@@ -872,7 +877,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -892,7 +897,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -918,7 +923,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.experiments.get
           * @desc Returns an experiment to which the user has access.
@@ -959,7 +964,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.experiments.insert
           * @desc Create a new experiment.
@@ -999,7 +1004,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.experiments.list
           * @desc Lists experiments to which the user has access.
@@ -1041,7 +1046,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.experiments.patch
           * @desc Update an existing experiment. This method supports patch
@@ -1085,7 +1090,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.experiments.update
           * @desc Update an existing experiment.
@@ -1128,7 +1133,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1146,7 +1151,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1170,7 +1175,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'filterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.filters.get
           * @desc Returns a filters to which the user has access.
@@ -1207,7 +1212,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'filterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.filters.insert
           * @desc Create a new filter.
@@ -1244,7 +1249,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.filters.list
           * @desc Lists all filters for an account
@@ -1282,7 +1287,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.filters.patch
           * @desc Updates an existing filter. This method supports patch
@@ -1322,7 +1327,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'filterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.filters.update
           * @desc Updates an existing filter.
@@ -1361,7 +1366,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'filterId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1404,7 +1409,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.goals.insert
           * @desc Create a new goal.
@@ -1444,7 +1449,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.goals.list
           * @desc Lists goals to which the user has access.
@@ -1485,7 +1490,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.goals.patch
           * @desc Updates an existing goal. This method supports patch
@@ -1527,7 +1532,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.goals.update
           * @desc Updates an existing goal.
@@ -1568,7 +1573,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1588,7 +1593,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1612,7 +1617,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileFilterLinks.get
           * @desc Returns a single profile filter link.
@@ -1651,7 +1656,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileFilterLinks.insert
           * @desc Create a new profile filter link.
@@ -1691,7 +1696,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileFilterLinks.list
           * @desc Lists all profile filter links for a profile.
@@ -1732,7 +1737,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileFilterLinks.patch
           * @desc Update an existing profile filter link. This method supports
@@ -1774,7 +1779,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileFilterLinks.update
           * @desc Update an existing profile filter link.
@@ -1815,7 +1820,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -1834,7 +1839,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -1858,7 +1863,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profiles.get
           * @desc Gets a view (profile) to which the user has access.
@@ -1896,7 +1901,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profiles.insert
           * @desc Create a new view (profile).
@@ -1935,7 +1940,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profiles.list
           * @desc Lists views (profiles) to which the user has access.
@@ -1975,7 +1980,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profiles.patch
           * @desc Updates an existing view (profile). This method supports patch
@@ -2016,7 +2021,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profiles.update
           * @desc Updates an existing view (profile).
@@ -2056,7 +2061,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2076,7 +2081,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -2100,7 +2105,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileUserLinks.insert
           * @desc Adds a new user to the given view (profile).
@@ -2140,7 +2145,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileUserLinks.list
           * @desc Lists profile-user links for a given view (profile).
@@ -2181,7 +2186,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.profileUserLinks.update
           * @desc Updates permissions for an existing user on the given view
@@ -2223,7 +2228,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2242,7 +2247,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -2267,7 +2272,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.remarketingAudience.get
           * @desc Gets a remarketing audience to which the user has access.
@@ -2306,7 +2311,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.remarketingAudience.insert
           * @desc Creates a new remarketing audience.
@@ -2345,7 +2350,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.remarketingAudience.list
           * @desc Lists remarketing audiences to which the user has access.
@@ -2386,7 +2391,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.remarketingAudience.patch
           * @desc Updates an existing remarketing audience. This method supports
@@ -2428,7 +2433,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.remarketingAudience.update
           * @desc Updates an existing remarketing audience.
@@ -2469,7 +2474,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2509,7 +2514,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2530,7 +2535,7 @@ function Analytics(options: GlobalOptions) {
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete (
+          delete(
               params: any, options: MethodOptions|BodyResponseCallback<any>,
               callback?: BodyResponseCallback<any>) {
             if (typeof options === 'function') {
@@ -2558,7 +2563,7 @@ function Analytics(options: GlobalOptions) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * analytics.management.unsampledReports.get
               * @desc Returns a single unsampled report.
@@ -2601,7 +2606,7 @@ function Analytics(options: GlobalOptions) {
               ],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * analytics.management.unsampledReports.insert
               * @desc Create a new unsampled report.
@@ -2641,7 +2646,7 @@ function Analytics(options: GlobalOptions) {
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }, /**
               * analytics.management.unsampledReports.list
               * @desc Lists unsampled reports to which the user has access.
@@ -2682,7 +2687,7 @@ function Analytics(options: GlobalOptions) {
               pathParams: ['accountId', 'profileId', 'webPropertyId'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           }
 
         },
@@ -2726,7 +2731,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.uploads.get
           * @desc List uploads to which the user has access.
@@ -2767,7 +2772,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.uploads.list
           * @desc List uploads to which the user has access.
@@ -2808,7 +2813,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.uploads.uploadData
           * @desc Upload data for a custom data source.
@@ -2854,7 +2859,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2895,7 +2900,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webproperties.insert
           * @desc Create a new property if the account has fewer than 20
@@ -2935,7 +2940,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webproperties.list
           * @desc Lists web properties to which the user has access.
@@ -2974,7 +2979,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webproperties.patch
           * @desc Updates an existing web property. This method supports patch
@@ -3014,7 +3019,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webproperties.update
           * @desc Updates an existing web property.
@@ -3053,7 +3058,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -3072,7 +3077,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -3098,7 +3103,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webPropertyAdWordsLinks.get
           * @desc Returns a web property-AdWords link to which the user has
@@ -3139,7 +3144,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webPropertyAdWordsLinks.insert
           * @desc Creates a webProperty-AdWords link.
@@ -3178,7 +3183,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webPropertyAdWordsLinks.list
           * @desc Lists webProperty-AdWords links for a given web property.
@@ -3218,7 +3223,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webPropertyAdWordsLinks.patch
           * @desc Updates an existing webProperty-AdWords link. This method
@@ -3261,7 +3266,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webPropertyAdWordsLinks.update
           * @desc Updates an existing webProperty-AdWords link.
@@ -3303,7 +3308,7 @@ function Analytics(options: GlobalOptions) {
               ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -3322,7 +3327,7 @@ function Analytics(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -3346,7 +3351,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webpropertyUserLinks.insert
           * @desc Adds a new user to the given web property.
@@ -3385,7 +3390,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webpropertyUserLinks.list
           * @desc Lists webProperty-user links for a given web property.
@@ -3425,7 +3430,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * analytics.management.webpropertyUserLinks.update
           * @desc Updates permissions for an existing user on the given web
@@ -3466,12 +3471,12 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'linkId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.metadata = {
+  metadata = {
     columns: {
       /**
        * analytics.metadata.columns.list
@@ -3507,12 +3512,12 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['reportType'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.provisioning = {
+  provisioning = {
     /**
      * analytics.provisioning.createAccountTicket
      * @desc Creates an account ticket.
@@ -3547,7 +3552,7 @@ function Analytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * analytics.provisioning.createAccountTree
         * @desc Provision account.
@@ -3572,7 +3577,7 @@ function Analytics(options: GlobalOptions) {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/analytics/v3/provisioning/createAccount')
+              url: (rootUrl + '/analytics/v3/provisioning/createAccountTree')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -3582,7 +3587,7 @@ function Analytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4349,5 +4354,3 @@ function Analytics(options: GlobalOptions) {
  * @property {boolean} starred Indicates whether this web property is starred or not.
  * @property {string} websiteUrl Website url for this web property.
  */
-
-export = Analytics;

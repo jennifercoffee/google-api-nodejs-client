@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Deploymentmanager;
 
 /**
  * Google Cloud Deployment Manager API V2Beta Methods
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2beta
  * @param {object=} options Options for Deploymentmanager
  */
-function Deploymentmanager(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.compositeTypes = {
+export class Deploymentmanager extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  compositeTypes = {
     /**
      * deploymentmanager.compositeTypes.delete
      * @desc Deletes a composite type.
@@ -56,7 +61,7 @@ function Deploymentmanager(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -80,7 +85,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['compositeType', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.compositeTypes.get
         * @desc Gets information about a specific composite type.
@@ -117,7 +122,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['compositeType', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.compositeTypes.insert
         * @desc Creates a composite type.
@@ -155,7 +160,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.compositeTypes.list
         * @desc Lists all composite types for Deployment Manager.
@@ -196,7 +201,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.compositeTypes.patch
         * @desc Updates a composite type. This method supports patch semantics.
@@ -235,7 +240,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['compositeType', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.compositeTypes.update
         * @desc Updates a composite type.
@@ -274,11 +279,11 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['compositeType', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.deployments = {
+  deployments = {
     /**
      * deploymentmanager.deployments.cancelPreview
      * @desc Cancels and removes the preview currently associated with the
@@ -318,7 +323,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.delete
         * @desc Deletes a deployment and all of the resources in the deployment.
@@ -333,7 +338,7 @@ function Deploymentmanager(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -357,7 +362,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.get
         * @desc Gets information about a specific deployment.
@@ -394,7 +399,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.getIamPolicy
         * @desc Gets the access control policy for a resource. May be empty if
@@ -433,7 +438,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.insert
         * @desc Creates a deployment and all of the resources described by the
@@ -442,7 +447,7 @@ function Deploymentmanager(options: GlobalOptions) {
         * @memberOf! deploymentmanager(v2beta)
         *
         * @param {object} params Parameters for request
-        * @param {string=} params.createPolicy
+        * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
         * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
         * @param {string} params.project The project ID for this request.
         * @param {deploymentmanager(v2beta).Deployment} params.resource Request body data
@@ -474,7 +479,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.list
         * @desc Lists all deployments for a given project.
@@ -515,7 +520,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.patch
         * @desc Updates a deployment and all of the resources described by the
@@ -558,7 +563,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.setIamPolicy
         * @desc Sets the access control policy on the specified resource.
@@ -598,7 +603,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.stop
         * @desc Stops an ongoing operation. This does not roll back any work
@@ -639,7 +644,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -678,7 +683,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.deployments.update
         * @desc Updates a deployment and all of the resources described by the
@@ -721,11 +726,11 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.manifests = {
+  manifests = {
     /**
      * deploymentmanager.manifests.get
      * @desc Gets information about a specific manifest.
@@ -763,7 +768,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'manifest', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.manifests.list
         * @desc Lists all manifests for a given deployment.
@@ -805,11 +810,11 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.operations = {
+  operations = {
     /**
      * deploymentmanager.operations.get
      * @desc Gets information about a specific operation.
@@ -846,7 +851,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.operations.list
         * @desc Lists all operations for a project.
@@ -887,11 +892,11 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.resources = {
+  resources = {
     /**
      * deploymentmanager.resources.get
      * @desc Gets information about a single resource.
@@ -929,7 +934,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project', 'resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * deploymentmanager.resources.list
         * @desc Lists all resources in a given deployment.
@@ -971,11 +976,11 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['deployment', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.typeProviders =
+  typeProviders =
       {
         /**
          * deploymentmanager.typeProviders.delete
@@ -990,7 +995,7 @@ function Deploymentmanager(options: GlobalOptions) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -1014,7 +1019,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.get
             * @desc Gets information about a specific type provider.
@@ -1051,7 +1056,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.getType
             * @desc Gets a type info for a type provided by a TypeProvider.
@@ -1090,7 +1095,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'type', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.insert
             * @desc Creates a type provider.
@@ -1128,7 +1133,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.list
             * @desc Lists all resource type providers for Deployment Manager.
@@ -1169,7 +1174,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.listTypes
             * @desc Lists all the type info for a TypeProvider.
@@ -1211,7 +1216,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.patch
             * @desc Updates a type provider. This method supports patch
@@ -1251,7 +1256,7 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * deploymentmanager.typeProviders.update
             * @desc Updates a type provider.
@@ -1290,11 +1295,11 @@ function Deploymentmanager(options: GlobalOptions) {
             pathParams: ['project', 'typeProvider'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       };
-  self.types = {
+  types = {
     /**
      * deploymentmanager.types.list
      * @desc Lists all resource types for Deployment Manager.
@@ -1334,7 +1339,7 @@ function Deploymentmanager(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1833,5 +1838,3 @@ function Deploymentmanager(options: GlobalOptions) {
  * @property {string} schemaValidation Customize how deployment manager will validate the resource against schema errors.
  * @property {string} undeclaredProperties Specify what to do with extra properties when executing a request.
  */
-
-export = Deploymentmanager;

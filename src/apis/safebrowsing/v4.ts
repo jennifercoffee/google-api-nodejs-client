@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Safebrowsing;
 
 /**
  * Google Safe Browsing API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Safebrowsing
  */
-function Safebrowsing(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.encodedFullHashes = {
+export class Safebrowsing extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  encodedFullHashes = {
     /**
      * safebrowsing.encodedFullHashes.get
      * @alias safebrowsing.encodedFullHashes.get
@@ -77,11 +82,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: ['encodedRequest'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.encodedUpdates = {
+  encodedUpdates = {
     /**
      * safebrowsing.encodedUpdates.get
      * @alias safebrowsing.encodedUpdates.get
@@ -116,11 +121,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: ['encodedRequest'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.fullHashes = {
+  fullHashes = {
     /**
      * safebrowsing.fullHashes.find
      * @desc Finds the full hashes that match the requested hash prefixes.
@@ -155,11 +160,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.threatHits = {
+  threatHits = {
     /**
      * safebrowsing.threatHits.create
      * @desc Reports a Safe Browsing threat list hit to Google. Only projects
@@ -194,11 +199,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.threatLists = {
+  threatLists = {
     /**
      * safebrowsing.threatLists.list
      * @desc Lists the Safe Browsing threat lists available for download.
@@ -231,11 +236,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.threatListUpdates = {
+  threatListUpdates = {
     /**
      * safebrowsing.threatListUpdates.fetch
      * @desc Fetches the most recent threat list updates. A client can request
@@ -271,11 +276,11 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.threatMatches = {
+  threatMatches = {
     /**
      * safebrowsing.threatMatches.find
      * @desc Finds the threat entries that match the Safe Browsing lists.
@@ -310,7 +315,7 @@ function Safebrowsing(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -525,5 +530,3 @@ function Safebrowsing(options: GlobalOptions) {
  * @property {string} regionCode The UN M.49 region code associated with the user&#39;s location.
  * @property {string} userId Unique user identifier defined by the client.
  */
-
-export = Safebrowsing;

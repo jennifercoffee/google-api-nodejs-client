@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Blogger;
 
 /**
  * Blogger API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Blogger
  */
-function Blogger(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.blogs = {
+export class Blogger extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  blogs = {
     /**
      * blogger.blogs.get
      * @desc Gets one blog by id.
@@ -75,11 +80,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * blogger.comments.get
      * @desc Gets one comment by id.
@@ -117,7 +122,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'commentId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.comments.list
         * @desc Retrieves the comments for a blog, possibly filtered.
@@ -158,11 +163,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pages = {
+  pages = {
     /**
      * blogger.pages.get
      * @desc Gets one blog page by id.
@@ -197,7 +202,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.pages.list
         * @desc Retrieves pages for a blog, possibly filtered.
@@ -233,11 +238,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.posts = {
+  posts = {
     /**
      * blogger.posts.get
      * @desc Get a post by id.
@@ -272,7 +277,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId', 'postId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * blogger.posts.list
         * @desc Retrieves a list of posts, possibly filtered.
@@ -311,11 +316,11 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['blogId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * blogger.users.get
      * @desc Gets one user by id.
@@ -349,7 +354,7 @@ function Blogger(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     blogs: {
       /**
@@ -386,7 +391,7 @@ function Blogger(options: GlobalOptions) {
           pathParams: ['userId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -501,5 +506,3 @@ function Blogger(options: GlobalOptions) {
  * @property {string} selfLink The API REST URL to fetch this resource from.
  * @property {string} url The user&#39;s profile page.
  */
-
-export = Blogger;

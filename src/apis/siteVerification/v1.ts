@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Siteverification;
 
 /**
  * Google Site Verification API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Siteverification
  */
-function Siteverification(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.webResource = {
+export class Siteverification extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  webResource = {
     /**
      * siteVerification.webResource.delete
      * @desc Relinquish ownership of a website or domain.
@@ -54,7 +59,7 @@ function Siteverification(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -76,7 +81,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.get
         * @desc Get the most current data for a website or domain.
@@ -110,7 +115,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.getToken
         * @desc Get a verification token for placing on a website or domain.
@@ -145,7 +150,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.insert
         * @desc Attempt verification of a website or domain.
@@ -181,7 +186,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.list
         * @desc Get the list of your verified websites and domains.
@@ -215,7 +220,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.patch
         * @desc Modify the list of owners for your website or domain. This
@@ -252,7 +257,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * siteVerification.webResource.update
         * @desc Modify the list of owners for your website or domain.
@@ -288,7 +293,7 @@ function Siteverification(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -321,5 +326,3 @@ function Siteverification(options: GlobalOptions) {
  * @property {string[]} owners The email addresses of all verified owners.
  * @property {object} site The address and type of a site that is verified or will be verified.
  */
-
-export = Siteverification;

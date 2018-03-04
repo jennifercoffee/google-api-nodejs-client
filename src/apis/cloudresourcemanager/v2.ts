@@ -34,12 +34,12 @@ let self: Cloudresourcemanager;
  *
  * @example
  * const google = require('googleapis');
- * const cloudresourcemanager = google.cloudresourcemanager('v2beta1');
+ * const cloudresourcemanager = google.cloudresourcemanager('v2');
  *
  * @namespace cloudresourcemanager
  * @type {Function}
- * @version v2beta1
- * @variation v2beta1
+ * @version v2
+ * @variation v2
  * @param {object=} options Options for Cloudresourcemanager
  */
 export class Cloudresourcemanager extends BaseAPI {
@@ -69,11 +69,11 @@ export class Cloudresourcemanager extends BaseAPI {
      * via the the Operation.error field.  The caller must have
      * `resourcemanager.folders.create` permission on the identified parent.
      * @alias cloudresourcemanager.folders.create
-     * @memberOf! cloudresourcemanager(v2beta1)
+     * @memberOf! cloudresourcemanager(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.parent The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
-     * @param {cloudresourcemanager(v2beta1).Folder} params.resource Request body data
+     * @param {cloudresourcemanager(v2).Folder} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -91,7 +91,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -110,7 +110,7 @@ export class Cloudresourcemanager extends BaseAPI {
         * Folders or Projects in the ACTIVE state. The caller must have
         * `resourcemanager.folders.delete` permission on the identified folder.
         * @alias cloudresourcemanager.folders.delete
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.name the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
@@ -131,7 +131,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -148,7 +148,7 @@ export class Cloudresourcemanager extends BaseAPI {
         * example, `folders/1234`). The caller must have
         * `resourcemanager.folders.get` permission on the identified folder.
         * @alias cloudresourcemanager.folders.get
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.name The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
@@ -168,7 +168,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -186,11 +186,11 @@ export class Cloudresourcemanager extends BaseAPI {
         * caller must have `resourcemanager.folders.getIamPolicy` permission on
         * the identified folder.
         * @alias cloudresourcemanager.folders.getIamPolicy
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-        * @param {cloudresourcemanager(v2beta1).GetIamPolicyRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).GetIamPolicyRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -208,7 +208,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{resource}:getIamPolicy')
+              url: (rootUrl + '/v2/{resource}:getIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -228,7 +228,7 @@ export class Cloudresourcemanager extends BaseAPI {
         * caller must have `resourcemanager.folders.list` permission on the
         * identified parent.
         * @alias cloudresourcemanager.folders.list
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {integer=} params.pageSize The maximum number of Folders to return in the response. This field is optional.
@@ -252,7 +252,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -279,11 +279,11 @@ export class Cloudresourcemanager extends BaseAPI {
         * `resourcemanager.folders.move` permission on the folder's current and
         * proposed new parent.
         * @alias cloudresourcemanager.folders.move
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.name The resource name of the Folder to move. Must be of the form folders/{folder_id}
-        * @param {cloudresourcemanager(v2beta1).MoveFolderRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).MoveFolderRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -301,8 +301,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{name}:move')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{name}:move').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -327,12 +326,12 @@ export class Cloudresourcemanager extends BaseAPI {
         * PreconditionFailure explaining this violation will be returned in the
         * Status.details field.
         * @alias cloudresourcemanager.folders.patch
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
         * @param {string=} params.updateMask Fields to be updated. Only the `display_name` can be updated.
-        * @param {cloudresourcemanager(v2beta1).Folder} params.resource Request body data
+        * @param {cloudresourcemanager(v2).Folder} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -350,7 +349,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
             options),
@@ -368,10 +367,10 @@ export class Cloudresourcemanager extends BaseAPI {
         * return folders on which the caller has the permission
         * `resourcemanager.folders.get`.
         * @alias cloudresourcemanager.folders.search
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
-        * @param {cloudresourcemanager(v2beta1).SearchFoldersRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).SearchFoldersRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -389,7 +388,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/folders:search')
+              url: (rootUrl + '/v2/folders:search')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -408,11 +407,11 @@ export class Cloudresourcemanager extends BaseAPI {
         * `resourcemanager.folders.setIamPolicy` permission on the identified
         * folder.
         * @alias cloudresourcemanager.folders.setIamPolicy
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-        * @param {cloudresourcemanager(v2beta1).SetIamPolicyRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).SetIamPolicyRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -430,7 +429,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{resource}:setIamPolicy')
+              url: (rootUrl + '/v2/{resource}:setIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -448,11 +447,11 @@ export class Cloudresourcemanager extends BaseAPI {
         * "folders/1234".  There are no permissions required for making this API
         * call.
         * @alias cloudresourcemanager.folders.testIamPermissions
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-        * @param {cloudresourcemanager(v2beta1).TestIamPermissionsRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).TestIamPermissionsRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -470,7 +469,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{resource}:testIamPermissions')
+              url: (rootUrl + '/v2/{resource}:testIamPermissions')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -491,11 +490,11 @@ export class Cloudresourcemanager extends BaseAPI {
         * documentation. The caller must have `resourcemanager.folders.undelete`
         * permission on the identified folder.
         * @alias cloudresourcemanager.folders.undelete
-        * @memberOf! cloudresourcemanager(v2beta1)
+        * @memberOf! cloudresourcemanager(v2)
         *
         * @param {object} params Parameters for request
         * @param {string} params.name The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
-        * @param {cloudresourcemanager(v2beta1).UndeleteFolderRequest} params.resource Request body data
+        * @param {cloudresourcemanager(v2).UndeleteFolderRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -513,7 +512,7 @@ export class Cloudresourcemanager extends BaseAPI {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta1/{name}:undelete')
+              url: (rootUrl + '/v2/{name}:undelete')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -530,28 +529,28 @@ export class Cloudresourcemanager extends BaseAPI {
 }
 /**
  * @typedef AuditConfig
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
- * @property {cloudresourcemanager(v2beta1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
+ * @property {cloudresourcemanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission. Next ID: 4
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
  * @property {string} logType The log type that this config enables.
  */
 /**
  * @typedef Binding
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that represents all the    users of that domain. For example, `google.com` or `example.com`.
  * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
  */
 /**
  * @typedef Folder
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string} createTime Output only. Timestamp when the Folder was created. Assigned by the server.
  * @property {string} displayName The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
@@ -561,7 +560,7 @@ export class Cloudresourcemanager extends BaseAPI {
  */
 /**
  * @typedef FolderOperation
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string} destinationParent The resource name of the folder or organization we are either creating the folder under or moving the folder to.
  * @property {string} displayName The display name of the folder.
@@ -570,50 +569,50 @@ export class Cloudresourcemanager extends BaseAPI {
  */
 /**
  * @typedef FolderOperationError
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string} errorMessageId The type of operation error experienced.
  */
 /**
  * @typedef GetIamPolicyRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  */
 /**
  * @typedef ListFoldersResponse
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
- * @property {cloudresourcemanager(v2beta1).Folder[]} folders A possibly paginated list of Folders that are direct descendants of the specified parent resource.
+ * @property {cloudresourcemanager(v2).Folder[]} folders A possibly paginated list of Folders that are direct descendants of the specified parent resource.
  * @property {string} nextPageToken A pagination token returned from a previous call to `ListFolders` that indicates from where listing should continue. This field is optional.
  */
 /**
  * @typedef MoveFolderRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string} destinationParent The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
  */
 /**
  * @typedef Operation
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
- * @property {cloudresourcemanager(v2beta1).Status} error The error result of the operation in case of failure or cancellation.
+ * @property {cloudresourcemanager(v2).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} metadata Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} response The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
  */
 /**
  * @typedef Policy
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
- * @property {cloudresourcemanager(v2beta1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
- * @property {cloudresourcemanager(v2beta1).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+ * @property {cloudresourcemanager(v2).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+ * @property {cloudresourcemanager(v2).Binding[]} bindings Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
  * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
  * @property {integer} version Deprecated.
  */
 /**
  * @typedef ProjectCreationStatus
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string} createTime Creation time of the project creation workflow.
  * @property {boolean} gettable True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
@@ -621,29 +620,29 @@ export class Cloudresourcemanager extends BaseAPI {
  */
 /**
  * @typedef SearchFoldersRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {integer} pageSize The maximum number of folders to return in the response. This field is optional.
  * @property {string} pageToken A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue. This field is optional.
- * @property {string} query Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned.  Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`.  Some example queries are:  |Query | Description| |----- | -----------| |displayName=Test*|Folders whose display name starts with &quot;Test&quot;.| |lifecycleState=ACTIVE|Folders whose lifecycleState is ACTIVE.| |parent=folders/123|Folders whose parent is &quot;folders/123&quot;.| |parent=folders/123 AND lifecycleState=ACTIVE|Active folders whose parent is &quot;folders/123&quot;.|
+ * @property {string} query Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned.  Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`.  Some example queries are:  |Query | Description| |----- | -----------| |displayName=Test* | Folders whose display name starts with &quot;Test&quot;. |lifecycleState=ACTIVE | Folders whose lifecycleState is ACTIVE. |parent=folders/123 | Folders whose parent is &quot;folders/123&quot;. |parent=folders/123 AND lifecycleState=ACTIVE | Active folders whose parent is &quot;folders/123&quot;.|
  */
 /**
  * @typedef SearchFoldersResponse
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
- * @property {cloudresourcemanager(v2beta1).Folder[]} folders A possibly paginated folder search results. the specified parent resource.
+ * @property {cloudresourcemanager(v2).Folder[]} folders A possibly paginated folder search results. the specified parent resource.
  * @property {string} nextPageToken A pagination token returned from a previous call to `SearchFolders` that indicates from where searching should continue. This field is optional.
  */
 /**
  * @typedef SetIamPolicyRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
- * @property {cloudresourcemanager(v2beta1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+ * @property {cloudresourcemanager(v2).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
  * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
  */
 /**
  * @typedef Status
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {object[]} details A list of messages that carry the error details.  There is a common set of message types for APIs to use.
@@ -651,18 +650,18 @@ export class Cloudresourcemanager extends BaseAPI {
  */
 /**
  * @typedef TestIamPermissionsRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
  */
 /**
  * @typedef TestIamPermissionsResponse
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
 /**
  * @typedef UndeleteFolderRequest
- * @memberOf! cloudresourcemanager(v2beta1)
+ * @memberOf! cloudresourcemanager(v2)
  * @type object
  */

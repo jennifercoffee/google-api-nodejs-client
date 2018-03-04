@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Oauth2;
 
 /**
  * Google OAuth2 API
@@ -38,9 +41,11 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Oauth2
  */
-function Oauth2(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
+export class Oauth2 extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
   /**
    * oauth2.getCertForOpenIdConnect
    * @alias oauth2.getCertForOpenIdConnect
@@ -51,7 +56,7 @@ function Oauth2(options: GlobalOptions) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect =
+  getCertForOpenIdConnect =
       (params: any, options: MethodOptions|BodyResponseCallback<any>,
        callback?: BodyResponseCallback<any>) => {
         if (typeof options === 'function') {
@@ -73,7 +78,7 @@ function Oauth2(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       };
   /**
    * oauth2.tokeninfo
@@ -88,7 +93,7 @@ function Oauth2(options: GlobalOptions) {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.tokeninfo =
+  tokeninfo =
       (params: any, options: MethodOptions|BodyResponseCallback<any>,
        callback?: BodyResponseCallback<any>) => {
         if (typeof options === 'function') {
@@ -110,9 +115,9 @@ function Oauth2(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       };
-  self.userinfo = {
+  userinfo = {
     /**
      * oauth2.userinfo.get
      * @alias oauth2.userinfo.get
@@ -144,7 +149,7 @@ function Oauth2(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     v2: {
       me: {
@@ -179,7 +184,7 @@ function Oauth2(options: GlobalOptions) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -222,5 +227,3 @@ function Oauth2(options: GlobalOptions) {
  * @property {string} picture URL of the user&#39;s picture image.
  * @property {boolean} verified_email Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
  */
-
-export = Oauth2;

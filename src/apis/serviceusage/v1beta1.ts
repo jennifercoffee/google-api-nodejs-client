@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Serviceusage;
 
 /**
  * Service Usage API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Serviceusage
  */
-function Serviceusage(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Serviceusage extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * serviceusage.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -78,7 +83,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -124,11 +129,11 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.services = {
+  services = {
     /**
      * serviceusage.services.batchEnable
      * @desc Enable multiple services on a project. The operation is atomic: if
@@ -138,7 +143,7 @@ function Serviceusage(options: GlobalOptions) {
      * @memberOf! serviceusage(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Parent to enable services on.  An example name would be: projects/123  The `BatchEnableServices` method currently only supports projects.
+     * @param {string} params.parent Parent to enable services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).  The `BatchEnableServices` method currently only supports projects.
      * @param {serviceusage(v1beta1).BatchEnableServicesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -166,7 +171,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.disable
         * @desc Disable a service so that it can no longer be used with a
@@ -179,7 +184,7 @@ function Serviceusage(options: GlobalOptions) {
         * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
         * @param {serviceusage(v1beta1).DisableServiceRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
@@ -207,7 +212,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.enable
         * @desc Enable a service so that it can be used with a project.
@@ -216,7 +221,7 @@ function Serviceusage(options: GlobalOptions) {
         * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {string} params.name Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
         * @param {serviceusage(v1beta1).EnableServiceRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
@@ -244,7 +249,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.get
         * @desc Returns the service configuration and enabled state for a given
@@ -253,7 +258,7 @@ function Serviceusage(options: GlobalOptions) {
         * @memberOf! serviceusage(v1beta1)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.name Name of the consumer and service to get the `ConsumerState` for.  An example name would be: projects/123/services/serviceusage.googleapis.com
+        * @param {string} params.name Name of the consumer and service to get the `ConsumerState` for.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -278,7 +283,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceusage.services.list
         * @desc List all services available to the specified project, and the
@@ -295,7 +300,7 @@ function Serviceusage(options: GlobalOptions) {
         * @param {string=} params.filter Only list services that conform to the given filter. The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
         * @param {integer=} params.pageSize Requested size of the next page of data. Requested page size cannot exceed 200.  If not set, the default page size is 50.
         * @param {string=} params.pageToken Token identifying which result to start with, which is returned by a previous list call.
-        * @param {string} params.parent Parent to search for services on.  An example name would be: projects/123
+        * @param {string} params.parent Parent to search for services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
@@ -322,7 +327,7 @@ function Serviceusage(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -578,7 +583,6 @@ function Serviceusage(options: GlobalOptions) {
  * @property {string} title The product title for this service.
  * @property {serviceusage(v1beta1).Type[]} types A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
  * @property {serviceusage(v1beta1).Usage} usage Configuration controlling usage of this service.
- * @property {serviceusage(v1beta1).Visibility} visibility API visibility configuration.
  */
 /**
  * @typedef Http
@@ -897,18 +901,3 @@ function Serviceusage(options: GlobalOptions) {
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
  * @property {boolean} skipServiceControl If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
  */
-/**
- * @typedef Visibility
- * @memberOf! serviceusage(v1beta1)
- * @type object
- * @property {serviceusage(v1beta1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
- */
-/**
- * @typedef VisibilityRule
- * @memberOf! serviceusage(v1beta1)
- * @type object
- * @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`. Any of the listed labels can be used to grant the visibility.  If a rule has multiple labels, removing one of the labels but not all of them can break clients.  Example:      visibility:       rules:       - selector: google.calendar.Calendar.EnhancedSearch         restriction: GOOGLE_INTERNAL, TRUSTED_TESTER  Removing GOOGLE_INTERNAL from this restriction will break clients that rely on this method and only had access to it through GOOGLE_INTERNAL.
- * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.  Refer to selector for syntax details.
- */
-
-export = Serviceusage;

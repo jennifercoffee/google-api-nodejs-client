@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Appsactivity;
 
 /**
  * G Suite Activity API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Appsactivity
  */
-function Appsactivity(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.activities = {
+export class Appsactivity extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  activities = {
     /**
      * appsactivity.activities.list
      * @desc Returns a list of activities visible to the current logged in user.
@@ -87,7 +92,7 @@ function Appsactivity(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -184,5 +189,3 @@ function Appsactivity(options: GlobalOptions) {
  * @property {string} permissionId The permission ID associated with this user. Equivalent to the Drive API&#39;s permission ID for this user, returned as part of the Drive Permissions resource.
  * @property {appsactivity(v1).Photo} photo The profile photo of the user. Not present if the user has no profile photo.
  */
-
-export = Appsactivity;

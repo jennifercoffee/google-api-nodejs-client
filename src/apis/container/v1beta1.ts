@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Container;
 
 /**
  * Google Kubernetes Engine API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Container
  */
-function Container(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects =
+export class Container extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects =
       {
         locations: {
           /**
@@ -83,7 +88,7 @@ function Container(options: GlobalOptions) {
               pathParams: ['name'],
               context: self
             };
-            return createAPIRequest(parameters, callback!);
+            createAPIRequest(parameters, callback!);
           },
           clusters:
               {
@@ -125,7 +130,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.create
                     * @desc Creates a cluster, consisting of the specified
@@ -172,7 +177,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.delete
                     * @desc Deletes the cluster, including the Kubernetes
@@ -194,7 +199,7 @@ function Container(options: GlobalOptions) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (
+                delete(
                     params: any,
                     options: MethodOptions|BodyResponseCallback<any>,
                     callback?: BodyResponseCallback<any>) {
@@ -218,7 +223,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.get
                     * @desc Gets the details of a specific cluster.
@@ -257,7 +262,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.list
                     * @desc Lists all clusters owned by a project in either the
@@ -297,7 +302,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setAddons
                     * @desc Sets the addons of a specific cluster.
@@ -335,7 +340,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setLegacyAbac
                     * @desc Enables or disables the ABAC authorization mechanism
@@ -374,7 +379,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setLocations
                     * @desc Sets the locations of a specific cluster.
@@ -412,7 +417,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setLogging
                     * @desc Sets the logging service of a specific cluster.
@@ -450,7 +455,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setMaintenancePolicy
                     * @desc Sets the maintenance policy for a cluster.
@@ -490,7 +495,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setMasterAuth
                     * @desc Used to set master auth materials. Currently
@@ -532,7 +537,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setMonitoring
                     * @desc Sets the monitoring service of a specific cluster.
@@ -570,7 +575,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setNetworkPolicy
                     * @desc Enables/Disables Network Policy for a cluster.
@@ -609,7 +614,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.setResourceLabels
                     * @desc Sets labels on a cluster.
@@ -648,7 +653,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.startIpRotation
                     * @desc Start master IP rotation.
@@ -687,7 +692,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.update
                     * @desc Updates the settings of a specific cluster.
@@ -725,7 +730,7 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * container.projects.locations.clusters.updateMaster
                     * @desc Updates the master of a specific cluster.
@@ -763,374 +768,377 @@ function Container(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 },
-                nodePools: {
-                  /**
-                   * container.projects.locations.clusters.nodePools.create
-                   * @desc Creates a node pool for a cluster.
-                   * @alias
-                   * container.projects.locations.clusters.nodePools.create
-                   * @memberOf! container(v1beta1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                   * @param {container(v1beta1).CreateNodePoolRequest} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                  create(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{parent}/nodePools')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['parent'],
-                      pathParams: ['parent'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.delete
-                      * @desc Deletes a node pool from a cluster.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.delete
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {string=} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-                      * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                      * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  delete (
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'DELETE'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.get
-                      * @desc Retrieves the node pool requested.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.get
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {string=} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-                      * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                      * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  get(params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'GET'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.list
-                      * @desc Lists the node pools for a cluster.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.list
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-                      * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
-                      * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-                      * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  list(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{parent}/nodePools')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'GET'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['parent'],
-                      pathParams: ['parent'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.rollback
-                      * @desc Roll back the previously Aborted or Failed
-                      * NodePool upgrade. This will be an no-op if the last
-                      * upgrade successfully completed.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.rollback
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {container(v1beta1).RollbackNodePoolUpgradeRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  rollback(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}:rollback')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.setAutoscaling
-                      * @desc Sets the autoscaling settings of a specific node
-                      * pool.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.setAutoscaling
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {container(v1beta1).SetNodePoolAutoscalingRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  setAutoscaling(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}:setAutoscaling')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.setManagement
-                      * @desc Sets the NodeManagement options for a node pool.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.setManagement
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {container(v1beta1).SetNodePoolManagementRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  setManagement(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}:setManagement')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.setSize
-                      * @desc Sets the size of a specific node pool.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.setSize
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {container(v1beta1).SetNodePoolSizeRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  setSize(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}:setSize')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * container.projects.locations.clusters.nodePools.update
-                      * @desc Updates the version and/or image type of a
-                      * specific node pool.
-                      * @alias
-                      * container.projects.locations.clusters.nodePools.update
-                      * @memberOf! container(v1beta1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                      * @param {container(v1beta1).UpdateNodePoolRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  update(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://container.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1beta1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'PUT'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }
+                nodePools:
+                    {
+                      /**
+                       * container.projects.locations.clusters.nodePools.create
+                       * @desc Creates a node pool for a cluster.
+                       * @alias
+                       * container.projects.locations.clusters.nodePools.create
+                       * @memberOf! container(v1beta1)
+                       *
+                       * @param {object} params Parameters for request
+                       * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                       * @param {container(v1beta1).CreateNodePoolRequest} params.resource Request body data
+                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                       * @param {callback} callback The callback that handles the response.
+                       * @return {object} Request object
+                       */
+                      create(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{parent}/nodePools')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['parent'],
+                          pathParams: ['parent'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.delete
+                          * @desc Deletes a node pool from a cluster.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.delete
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                          * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {string=} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+                          * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                          * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      delete(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'DELETE'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.get
+                          * @desc Retrieves the node pool requested.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.get
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                          * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {string=} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+                          * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                          * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      get(params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'GET'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.list
+                          * @desc Lists the node pools for a cluster.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.list
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+                          * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+                          * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+                          * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{parent}/nodePools')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'GET'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['parent'],
+                          pathParams: ['parent'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.rollback
+                          * @desc Roll back the previously Aborted or Failed
+                          * NodePool upgrade. This will be an no-op if the last
+                          * upgrade successfully completed.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.rollback
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {container(v1beta1).RollbackNodePoolUpgradeRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      rollback(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}:rollback')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.setAutoscaling
+                          * @desc Sets the autoscaling settings of a specific
+                          * node pool.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.setAutoscaling
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {container(v1beta1).SetNodePoolAutoscalingRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      setAutoscaling(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url:
+                                    (rootUrl + '/v1beta1/{name}:setAutoscaling')
+                                        .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.setManagement
+                          * @desc Sets the NodeManagement options for a node
+                          * pool.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.setManagement
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {container(v1beta1).SetNodePoolManagementRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      setManagement(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}:setManagement')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.setSize
+                          * @desc Sets the size of a specific node pool.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.setSize
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {container(v1beta1).SetNodePoolSizeRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      setSize(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}:setSize')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * container.projects.locations.clusters.nodePools.update
+                          * @desc Updates the version and/or image type of a
+                          * specific node pool.
+                          * @alias
+                          * container.projects.locations.clusters.nodePools.update
+                          * @memberOf! container(v1beta1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                          * @param {container(v1beta1).UpdateNodePoolRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      update(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://container.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1beta1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'PUT'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }
 
-                }
+                    }
               },
           operations: {
             /**
@@ -1169,7 +1177,7 @@ function Container(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * container.projects.locations.operations.get
                 * @desc Gets the specified operation.
@@ -1207,7 +1215,7 @@ function Container(options: GlobalOptions) {
                 pathParams: ['name'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }, /**
                 * container.projects.locations.operations.list
                 * @desc Lists all operations in a project in a specific zone or
@@ -1246,1344 +1254,1311 @@ function Container(options: GlobalOptions) {
                 pathParams: ['parent'],
                 context: self
               };
-              return createAPIRequest(parameters, callback!);
+              createAPIRequest(parameters, callback!);
             }
 
           }
         },
-        zones:
-            {
-              /**
-               * container.projects.zones.getServerconfig
-               * @desc Returns configuration info about the Kubernetes Engine
-               * service.
-               * @alias container.projects.zones.getServerconfig
-               * @memberOf! container(v1beta1)
-               *
-               * @param {object} params Parameters for request
-               * @param {string=} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
-               * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-               * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
-               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-               * @param {callback} callback The callback that handles the response.
-               * @return {object} Request object
-               */
-              getServerconfig(
-                  params: any, options: MethodOptions|BodyResponseCallback<any>,
-                  callback?: BodyResponseCallback<any>) {
-                if (typeof options === 'function') {
-                  callback = options;
-                  options = {};
-                }
-                options = options || {};
-                const rootUrl =
-                    options.rootUrl || 'https://container.googleapis.com/';
-                const parameters = {
-                  options: Object.assign(
-                      {
-                        url:
-                            (rootUrl +
-                             '/v1beta1/projects/{projectId}/zones/{zone}/serverconfig')
-                                .replace(/([^:]\/)\/+/g, '$1'),
-                        method: 'GET'
-                      },
-                      options),
-                  params,
-                  requiredParams: ['projectId', 'zone'],
-                  pathParams: ['projectId', 'zone'],
-                  context: self
-                };
-                return createAPIRequest(parameters, callback!);
-              },
-              clusters:
-                  {
-                    /**
-                     * container.projects.zones.clusters.addons
-                     * @desc Sets the addons of a specific cluster.
-                     * @alias container.projects.zones.clusters.addons
-                     * @memberOf! container(v1beta1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                     * @param {container(v1beta1).SetAddonsConfigRequest} params.resource Request body data
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    addons(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/addons')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.completeIpRotation
-                        * @desc Completes master IP rotation.
-                        * @alias
-                        * container.projects.zones.clusters.completeIpRotation
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).CompleteIPRotationRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    completeIpRotation(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:completeIpRotation')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.create
-                        * @desc Creates a cluster, consisting of the specified
-                        * number and type of Google Compute Engine instances.
-                        * By default, the cluster is created in the project's
-                        * [default
-                        * network](/compute/docs/networks-and-firewalls#networks).
-                        * One firewall is added for the cluster. After cluster
-                        * creation, the cluster creates routes for each node to
-                        * allow the containers on that node to communicate with
-                        * all other instances in the cluster.  Finally, an entry
-                        * is added to the project's global metadata indicating
-                        * which CIDR range is being used by the cluster.
-                        * @alias container.projects.zones.clusters.create
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-                        * @param {container(v1beta1).CreateClusterRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    create(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone'],
-                        pathParams: ['projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.delete
-                        * @desc Deletes the cluster, including the Kubernetes
-                        * endpoint and all worker nodes.  Firewalls and routes
-                        * that were configured during cluster creation are also
-                        * deleted.  Other Google Compute Engine resources that
-                        * might be in use by the cluster (e.g. load balancer
-                        * resources) will not be deleted if they weren't present
-                        * at the initial create time.
-                        * @alias container.projects.zones.clusters.delete
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
-                        * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    delete (
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'DELETE'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.get
-                        * @desc Gets the details of a specific cluster.
-                        * @alias container.projects.zones.clusters.get
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
-                        * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    get(params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.legacyAbac
-                        * @desc Enables or disables the ABAC authorization
-                        * mechanism on a cluster.
-                        * @alias container.projects.zones.clusters.legacyAbac
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetLegacyAbacRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    legacyAbac(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/legacyAbac')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.list
-                        * @desc Lists all clusters owned by a project in either
-                        * the specified zone or all zones.
-                        * @alias container.projects.zones.clusters.list
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    list(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone'],
-                        pathParams: ['projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.locations
-                        * @desc Sets the locations of a specific cluster.
-                        * @alias container.projects.zones.clusters.locations
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetLocationsRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    locations(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/locations')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.logging
-                        * @desc Sets the logging service of a specific cluster.
-                        * @alias container.projects.zones.clusters.logging
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetLoggingServiceRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    logging(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/logging')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.master
-                        * @desc Updates the master of a specific cluster.
-                        * @alias container.projects.zones.clusters.master
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).UpdateMasterRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    master(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/master')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.monitoring
-                        * @desc Sets the monitoring service of a specific
-                        * cluster.
-                        * @alias container.projects.zones.clusters.monitoring
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetMonitoringServiceRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    monitoring(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/monitoring')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.resourceLabels
-                        * @desc Sets labels on a cluster.
-                        * @alias
-                        * container.projects.zones.clusters.resourceLabels
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetLabelsRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    resourceLabels(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/resourceLabels')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.setMaintenancePolicy
-                        * @desc Sets the maintenance policy for a cluster.
-                        * @alias
-                        * container.projects.zones.clusters.setMaintenancePolicy
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId The name of the cluster to update.
-                        * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-                        * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
-                        * @param {container(v1beta1).SetMaintenancePolicyRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    setMaintenancePolicy(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMaintenancePolicy')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.setMasterAuth
-                        * @desc Used to set master auth materials. Currently
-                        * supports :- Changing the admin password of a specific
-                        * cluster. This can be either via password generation or
-                        * explicitly set. Modify basic_auth.csv and reset the
-                        * K8S API server.
-                        * @alias container.projects.zones.clusters.setMasterAuth
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetMasterAuthRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    setMasterAuth(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMasterAuth')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.setNetworkPolicy
-                        * @desc Enables/Disables Network Policy for a cluster.
-                        * @alias
-                        * container.projects.zones.clusters.setNetworkPolicy
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).SetNetworkPolicyRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    setNetworkPolicy(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setNetworkPolicy')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.startIpRotation
-                        * @desc Start master IP rotation.
-                        * @alias
-                        * container.projects.zones.clusters.startIpRotation
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).StartIPRotationRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    startIpRotation(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:startIpRotation')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'POST'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }, /**
-                        * container.projects.zones.clusters.update
-                        * @desc Updates the settings of a specific cluster.
-                        * @alias container.projects.zones.clusters.update
-                        * @memberOf! container(v1beta1)
-                        *
-                        * @param {object} params Parameters for request
-                        * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                        * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                        * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                        * @param {container(v1beta1).UpdateClusterRequest} params.resource Request body data
-                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                        * @param {callback} callback The callback that handles the response.
-                        * @return {object} Request object
-                        */
-                    update(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl = options.rootUrl ||
-                          'https://container.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url:
-                                  (rootUrl +
-                                   '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
-                                      .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'PUT'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['projectId', 'zone', 'clusterId'],
-                        pathParams: ['clusterId', 'projectId', 'zone'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    },
-                    nodePools: {
-                      /**
-                       * container.projects.zones.clusters.nodePools.autoscaling
-                       * @desc Sets the autoscaling settings of a specific node
-                       * pool.
-                       * @alias
-                       * container.projects.zones.clusters.nodePools.autoscaling
-                       * @memberOf! container(v1beta1)
-                       *
-                       * @param {object} params Parameters for request
-                       * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                       * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-                       * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                       * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                       * @param {container(v1beta1).SetNodePoolAutoscalingRequest} params.resource Request body data
-                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                       * @param {callback} callback The callback that handles the response.
-                       * @return {object} Request object
-                       */
-                      autoscaling(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/autoscaling')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.create
-                          * @desc Creates a node pool for a cluster.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.create
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-                          * @param {container(v1beta1).CreateNodePoolRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      create(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'zone', 'clusterId'],
-                          pathParams: ['clusterId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.delete
-                          * @desc Deletes a node pool from a cluster.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.delete
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                          * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      delete (
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'DELETE'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.get
-                          * @desc Retrieves the node pool requested.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.get
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-                          * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      get(params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.list
-                          * @desc Lists the node pools for a cluster.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.list
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-                          * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      list(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'GET'
-                              },
-                              options),
-                          params,
-                          requiredParams: ['projectId', 'zone', 'clusterId'],
-                          pathParams: ['clusterId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.rollback
-                          * @desc Roll back the previously Aborted or Failed
-                          * NodePool upgrade. This will be an no-op if the last
-                          * upgrade successfully completed.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.rollback
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {container(v1beta1).RollbackNodePoolUpgradeRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      rollback(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}:rollback')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.setManagement
-                          * @desc Sets the NodeManagement options for a node
-                          * pool.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.setManagement
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {container(v1beta1).SetNodePoolManagementRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      setManagement(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setManagement')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.setSize
-                          * @desc Sets the size of a specific node pool.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.setSize
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {container(v1beta1).SetNodePoolSizeRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      setSize(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }, /**
-                          * container.projects.zones.clusters.nodePools.update
-                          * @desc Updates the version and/or image type of a
-                          * specific node pool.
-                          * @alias
-                          * container.projects.zones.clusters.nodePools.update
-                          * @memberOf! container(v1beta1)
-                          *
-                          * @param {object} params Parameters for request
-                          * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-                          * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                          * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                          * @param {container(v1beta1).UpdateNodePoolRequest} params.resource Request body data
-                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                          * @param {callback} callback The callback that handles the response.
-                          * @return {object} Request object
-                          */
-                      update(
-                          params: any,
-                          options: MethodOptions|BodyResponseCallback<any>,
-                          callback?: BodyResponseCallback<any>) {
-                        if (typeof options === 'function') {
-                          callback = options;
-                          options = {};
-                        }
-                        options = options || {};
-                        const rootUrl = options.rootUrl ||
-                            'https://container.googleapis.com/';
-                        const parameters = {
-                          options: Object.assign(
-                              {
-                                url:
-                                    (rootUrl +
-                                     '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/update')
-                                        .replace(/([^:]\/)\/+/g, '$1'),
-                                method: 'POST'
-                              },
-                              options),
-                          params,
-                          requiredParams:
-                              ['projectId', 'zone', 'clusterId', 'nodePoolId'],
-                          pathParams:
-                              ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-                          context: self
-                        };
-                        return createAPIRequest(parameters, callback!);
-                      }
-
-                    }
-                  },
-              operations: {
-                /**
-                 * container.projects.zones.operations.cancel
-                 * @desc Cancels the specified operation.
-                 * @alias container.projects.zones.operations.cancel
-                 * @memberOf! container(v1beta1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-                 * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                 * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
-                 * @param {container(v1beta1).CancelOperationRequest} params.resource Request body data
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                cancel(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://container.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}:cancel')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'zone', 'operationId'],
-                    pathParams: ['operationId', 'projectId', 'zone'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * container.projects.zones.operations.get
-                    * @desc Gets the specified operation.
-                    * @alias container.projects.zones.operations.get
-                    * @memberOf! container(v1beta1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
-                    * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-                    * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-                    * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                get(params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://container.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'zone', 'operationId'],
-                    pathParams: ['operationId', 'projectId', 'zone'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * container.projects.zones.operations.list
-                    * @desc Lists all operations in a project in a specific zone
-                    * or all zones.
-                    * @alias container.projects.zones.operations.list
-                    * @memberOf! container(v1beta1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-                    * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-                    * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://container.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1beta1/projects/{projectId}/zones/{zone}/operations')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['projectId', 'zone'],
-                    pathParams: ['projectId', 'zone'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }
-
-              }
+        zones: {
+          /**
+           * container.projects.zones.getServerconfig
+           * @desc Returns configuration info about the Kubernetes Engine
+           * service.
+           * @alias container.projects.zones.getServerconfig
+           * @memberOf! container(v1beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
+           * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+           * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          getServerconfig(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
             }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://container.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/v1beta1/projects/{projectId}/zones/{zone}/serverconfig')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['projectId', 'zone'],
+              pathParams: ['projectId', 'zone'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          },
+          clusters: {
+            /**
+             * container.projects.zones.clusters.addons
+             * @desc Sets the addons of a specific cluster.
+             * @alias container.projects.zones.clusters.addons
+             * @memberOf! container(v1beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+             * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+             * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+             * @param {container(v1beta1).SetAddonsConfigRequest} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            addons(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/addons')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.completeIpRotation
+                * @desc Completes master IP rotation.
+                * @alias container.projects.zones.clusters.completeIpRotation
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).CompleteIPRotationRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            completeIpRotation(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:completeIpRotation')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.create
+                * @desc Creates a cluster, consisting of the specified number
+                * and type of Google Compute Engine instances.  By default, the
+                * cluster is created in the project's [default
+                * network](/compute/docs/networks-and-firewalls#networks).  One
+                * firewall is added for the cluster. After cluster creation, the
+                * cluster creates routes for each node to allow the containers
+                * on that node to communicate with all other instances in the
+                * cluster.  Finally, an entry is added to the project's global
+                * metadata indicating which CIDR range is being used by the
+                * cluster.
+                * @alias container.projects.zones.clusters.create
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+                * @param {container(v1beta1).CreateClusterRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone'],
+                pathParams: ['projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.delete
+                * @desc Deletes the cluster, including the Kubernetes endpoint
+                * and all worker nodes.  Firewalls and routes that were
+                * configured during cluster creation are also deleted.  Other
+                * Google Compute Engine resources that might be in use by the
+                * cluster (e.g. load balancer resources) will not be deleted if
+                * they weren't present at the initial create time.
+                * @alias container.projects.zones.clusters.delete
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+                * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.get
+                * @desc Gets the details of a specific cluster.
+                * @alias container.projects.zones.clusters.get
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+                * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.legacyAbac
+                * @desc Enables or disables the ABAC authorization mechanism on
+                * a cluster.
+                * @alias container.projects.zones.clusters.legacyAbac
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetLegacyAbacRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            legacyAbac(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/legacyAbac')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.list
+                * @desc Lists all clusters owned by a project in either the
+                * specified zone or all zones.
+                * @alias container.projects.zones.clusters.list
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone'],
+                pathParams: ['projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.locations
+                * @desc Sets the locations of a specific cluster.
+                * @alias container.projects.zones.clusters.locations
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetLocationsRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            locations(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/locations')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.logging
+                * @desc Sets the logging service of a specific cluster.
+                * @alias container.projects.zones.clusters.logging
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetLoggingServiceRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            logging(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/logging')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.master
+                * @desc Updates the master of a specific cluster.
+                * @alias container.projects.zones.clusters.master
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).UpdateMasterRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            master(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/master')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.monitoring
+                * @desc Sets the monitoring service of a specific cluster.
+                * @alias container.projects.zones.clusters.monitoring
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetMonitoringServiceRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            monitoring(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/monitoring')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.resourceLabels
+                * @desc Sets labels on a cluster.
+                * @alias container.projects.zones.clusters.resourceLabels
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetLabelsRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            resourceLabels(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/resourceLabels')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.setMaintenancePolicy
+                * @desc Sets the maintenance policy for a cluster.
+                * @alias container.projects.zones.clusters.setMaintenancePolicy
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId The name of the cluster to update.
+                * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+                * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
+                * @param {container(v1beta1).SetMaintenancePolicyRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            setMaintenancePolicy(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMaintenancePolicy')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.setMasterAuth
+                * @desc Used to set master auth materials. Currently supports :-
+                * Changing the admin password of a specific cluster. This can be
+                * either via password generation or explicitly set. Modify
+                * basic_auth.csv and reset the K8S API server.
+                * @alias container.projects.zones.clusters.setMasterAuth
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetMasterAuthRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            setMasterAuth(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMasterAuth')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.setNetworkPolicy
+                * @desc Enables/Disables Network Policy for a cluster.
+                * @alias container.projects.zones.clusters.setNetworkPolicy
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).SetNetworkPolicyRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            setNetworkPolicy(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setNetworkPolicy')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.startIpRotation
+                * @desc Start master IP rotation.
+                * @alias container.projects.zones.clusters.startIpRotation
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).StartIPRotationRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            startIpRotation(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:startIpRotation')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.clusters.update
+                * @desc Updates the settings of a specific cluster.
+                * @alias container.projects.zones.clusters.update
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {container(v1beta1).UpdateClusterRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            update(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'PUT'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'clusterId'],
+                pathParams: ['clusterId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            },
+            nodePools:
+                {
+                  /**
+                   * container.projects.zones.clusters.nodePools.autoscaling
+                   * @desc Sets the autoscaling settings of a specific node
+                   * pool.
+                   * @alias
+                   * container.projects.zones.clusters.nodePools.autoscaling
+                   * @memberOf! container(v1beta1)
+                   *
+                   * @param {object} params Parameters for request
+                   * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                   * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+                   * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                   * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                   * @param {container(v1beta1).SetNodePoolAutoscalingRequest} params.resource Request body data
+                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                   * @param {callback} callback The callback that handles the response.
+                   * @return {object} Request object
+                   */
+                  autoscaling(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/autoscaling')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.create
+                      * @desc Creates a node pool for a cluster.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.create
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+                      * @param {container(v1beta1).CreateNodePoolRequest} params.resource Request body data
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  create(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams: ['projectId', 'zone', 'clusterId'],
+                      pathParams: ['clusterId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.delete
+                      * @desc Deletes a node pool from a cluster.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.delete
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                      * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  delete(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'DELETE'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.get
+                      * @desc Retrieves the node pool requested.
+                      * @alias container.projects.zones.clusters.nodePools.get
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+                      * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  get(params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'GET'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.list
+                      * @desc Lists the node pools for a cluster.
+                      * @alias container.projects.zones.clusters.nodePools.list
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+                      * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  list(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'GET'
+                          },
+                          options),
+                      params,
+                      requiredParams: ['projectId', 'zone', 'clusterId'],
+                      pathParams: ['clusterId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.rollback
+                      * @desc Roll back the previously Aborted or Failed
+                      * NodePool upgrade. This will be an no-op if the last
+                      * upgrade successfully completed.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.rollback
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {container(v1beta1).RollbackNodePoolUpgradeRequest} params.resource Request body data
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  rollback(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}:rollback')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.setManagement
+                      * @desc Sets the NodeManagement options for a node pool.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.setManagement
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {container(v1beta1).SetNodePoolManagementRequest} params.resource Request body data
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  setManagement(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setManagement')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.setSize
+                      * @desc Sets the size of a specific node pool.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.setSize
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {container(v1beta1).SetNodePoolSizeRequest} params.resource Request body data
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  setSize(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }, /**
+                      * container.projects.zones.clusters.nodePools.update
+                      * @desc Updates the version and/or image type of a
+                      * specific node pool.
+                      * @alias
+                      * container.projects.zones.clusters.nodePools.update
+                      * @memberOf! container(v1beta1)
+                      *
+                      * @param {object} params Parameters for request
+                      * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+                      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                      * @param {container(v1beta1).UpdateNodePoolRequest} params.resource Request body data
+                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                      * @param {callback} callback The callback that handles the response.
+                      * @return {object} Request object
+                      */
+                  update(
+                      params: any,
+                      options: MethodOptions|BodyResponseCallback<any>,
+                      callback?: BodyResponseCallback<any>) {
+                    if (typeof options === 'function') {
+                      callback = options;
+                      options = {};
+                    }
+                    options = options || {};
+                    const rootUrl =
+                        options.rootUrl || 'https://container.googleapis.com/';
+                    const parameters = {
+                      options: Object.assign(
+                          {
+                            url:
+                                (rootUrl +
+                                 '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/update')
+                                    .replace(/([^:]\/)\/+/g, '$1'),
+                            method: 'POST'
+                          },
+                          options),
+                      params,
+                      requiredParams:
+                          ['projectId', 'zone', 'clusterId', 'nodePoolId'],
+                      pathParams:
+                          ['clusterId', 'nodePoolId', 'projectId', 'zone'],
+                      context: self
+                    };
+                    createAPIRequest(parameters, callback!);
+                  }
+
+                }
+          },
+          operations: {
+            /**
+             * container.projects.zones.operations.cancel
+             * @desc Cancels the specified operation.
+             * @alias container.projects.zones.operations.cancel
+             * @memberOf! container(v1beta1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+             * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+             * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+             * @param {container(v1beta1).CancelOperationRequest} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            cancel(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}:cancel')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'operationId'],
+                pathParams: ['operationId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.operations.get
+                * @desc Gets the specified operation.
+                * @alias container.projects.zones.operations.get
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+                * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone', 'operationId'],
+                pathParams: ['operationId', 'projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * container.projects.zones.operations.list
+                * @desc Lists all operations in a project in a specific zone or
+                * all zones.
+                * @alias container.projects.zones.operations.list
+                * @memberOf! container(v1beta1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+                * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+                * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://container.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url:
+                          (rootUrl +
+                           '/v1beta1/projects/{projectId}/zones/{zone}/operations')
+                              .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['projectId', 'zone'],
+                pathParams: ['projectId', 'zone'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
+
+          }
+        }
       };
 }
 /**
@@ -2645,7 +2620,7 @@ function Container(options: GlobalOptions) {
  * @property {boolean} enableKubernetesAlpha Kubernetes alpha features are enabled on this cluster. This includes alpha API groups (e.g. v1beta1) and features that may not be production ready in the kubernetes version of the master and nodes. The cluster has no SLA for uptime and master/node upgrades are disabled. Alpha enabled clusters are automatically deleted thirty days after creation.
  * @property {string} endpoint [Output only] The IP address of this cluster&#39;s master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`.  See the `masterAuth` property of this resource for username and password information.
  * @property {string} expireTime [Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
- * @property {string} initialClusterVersion The initial Kubernetes version for this cluster.  Valid versions are those found in validMasterVersions returned by getServerConfig.  The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion.
+ * @property {string} initialClusterVersion The initial Kubernetes version for this cluster.  Valid versions are those found in validMasterVersions returned by getServerConfig.  The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;&quot;,&quot;-&quot;: picks the default Kubernetes version
  * @property {integer} initialNodeCount The number of nodes to create in this cluster. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.
  * @property {string[]} instanceGroupUrls Deprecated. Use node_pools.instance_group_urls.
  * @property {container(v1beta1).IPAllocationPolicy} ipAllocationPolicy Configuration for cluster IP allocation.
@@ -2657,20 +2632,22 @@ function Container(options: GlobalOptions) {
  * @property {container(v1beta1).MaintenancePolicy} maintenancePolicy Configure the maintenance policy for this cluster.
  * @property {container(v1beta1).MasterAuth} masterAuth The authentication information for accessing the master endpoint.
  * @property {container(v1beta1).MasterAuthorizedNetworksConfig} masterAuthorizedNetworksConfig The configuration options for master authorized networks feature.
+ * @property {string} masterIpv4CidrBlock The IP prefix in CIDR notation to use for the hosted master network. This prefix will be used for assigning private IP addresses to the master or set of masters, as well as the ILB VIP.
  * @property {string} monitoringService The monitoring service the cluster should use to write metrics. Currently available options:  * `monitoring.googleapis.com` - the Google Cloud Monitoring service. * `none` - no metrics will be exported from the cluster. * if left as an empty string, `monitoring.googleapis.com` will be used.
  * @property {string} name The name of this cluster. The name must be unique within this project and zone, and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
- * @property {string} network The name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. If left unspecified, the `default` network will be used.
+ * @property {string} network The name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. If left unspecified, the `default` network will be used. On output this shows the network ID instead of the name.
  * @property {container(v1beta1).NetworkPolicy} networkPolicy Configuration options for the NetworkPolicy feature.
  * @property {container(v1beta1).NodeConfig} nodeConfig Parameters used in creating the cluster&#39;s nodes. See `nodeConfig` for the description of its properties. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;initial_node_count&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time. For responses, this field will be populated with the node configuration of the first node pool.  If unspecified, the defaults are used.
  * @property {integer} nodeIpv4CidrSize [Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range.
  * @property {container(v1beta1).NodePool[]} nodePools The node pools associated with this cluster. This field should not be set if &quot;node_config&quot; or &quot;initial_node_count&quot; are specified.
  * @property {container(v1beta1).PodSecurityPolicyConfig} podSecurityPolicyConfig Configuration for the PodSecurityPolicy feature.
+ * @property {boolean} privateCluster If this is a private cluster setup. Private clusters are clusters that, by default have no external IP addresses on the nodes and where nodes and the master communicate over private IP addresses.
  * @property {object} resourceLabels The resource labels for the cluster to use to annotate any related GCE resources.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  * @property {string} servicesIpv4Cidr [Output only] The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
  * @property {string} status [Output only] The current status of this cluster.
  * @property {string} statusMessage [Output only] Additional information about the current status of this cluster, if available.
- * @property {string} subnetwork The name of the Google Compute Engine [subnetwork](/compute/docs/subnetworks) to which the cluster is connected.
+ * @property {string} subnetwork The name of the Google Compute Engine [subnetwork](/compute/docs/subnetworks) to which the cluster is connected. On output this shows the subnetwork ID instead of the name.
  * @property {string} zone [Output only] The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
  */
 /**
@@ -2681,11 +2658,11 @@ function Container(options: GlobalOptions) {
  * @property {string} desiredImageType The desired image type for the node pool. NOTE: Set the &quot;desired_node_pool&quot; field as well.
  * @property {string[]} desiredLocations The desired list of Google Compute Engine [locations](/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed.  This list must always include the cluster&#39;s primary zone.
  * @property {container(v1beta1).MasterAuthorizedNetworksConfig} desiredMasterAuthorizedNetworksConfig The desired configuration options for master authorized networks feature.
- * @property {string} desiredMasterVersion The Kubernetes version to change the master to. The only valid value is the latest supported version. Use &quot;-&quot; to have the server automatically select the latest version.
+ * @property {string} desiredMasterVersion The Kubernetes version to change the master to. The only valid value is the latest supported version.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
  * @property {string} desiredMonitoringService The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
  * @property {container(v1beta1).NodePoolAutoscaling} desiredNodePoolAutoscaling Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
  * @property {string} desiredNodePoolId The node pool to be upgraded. This field is mandatory if &quot;desired_node_version&quot;, &quot;desired_image_family&quot; or &quot;desired_node_pool_autoscaling&quot; is specified and there is more than one node pool on the cluster.
- * @property {string} desiredNodeVersion The Kubernetes version to change the nodes to (typically an upgrade). Use `-` to upgrade to the latest version supported by the server.
+ * @property {string} desiredNodeVersion The Kubernetes version to change the nodes to (typically an upgrade).  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
  * @property {container(v1beta1).PodSecurityPolicyConfig} desiredPodSecurityPolicyConfig The desired configuration options for the PodSecurityPolicy feature.
  */
 /**
@@ -3081,7 +3058,7 @@ function Container(options: GlobalOptions) {
  * @memberOf! container(v1beta1)
  * @type object
  * @property {string} clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
- * @property {string} masterVersion The Kubernetes version to change the master to. The only valid value is the latest supported version. Use &quot;-&quot; to have the server automatically select the latest version.
+ * @property {string} masterVersion The Kubernetes version to change the master to.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
  * @property {string} name The name (project, location, cluster) of the cluster to update. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
  * @property {string} projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
  * @property {string} zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
@@ -3094,7 +3071,7 @@ function Container(options: GlobalOptions) {
  * @property {string} imageType The desired image type for the node pool.
  * @property {string} name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
  * @property {string} nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
- * @property {string} nodeVersion The Kubernetes version to change the nodes to (typically an upgrade). Use `-` to upgrade to the latest version supported by the server.
+ * @property {string} nodeVersion The Kubernetes version to change the nodes to (typically an upgrade).  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
  * @property {string} projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
  * @property {string} zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
  */
@@ -3104,5 +3081,3 @@ function Container(options: GlobalOptions) {
  * @type object
  * @property {string} nodeMetadata NodeMetadata is the configuration for how to expose the node metadata to the workload running on the node.
  */
-
-export = Container;

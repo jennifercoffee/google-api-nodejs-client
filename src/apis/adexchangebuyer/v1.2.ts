@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Adexchangebuyer;
 
 /**
  * Ad Exchange Buyer API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1.2
  * @param {object=} options Options for Adexchangebuyer
  */
-function Adexchangebuyer(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Adexchangebuyer extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     /**
      * adexchangebuyer.accounts.get
      * @desc Gets one account by ID.
@@ -76,7 +81,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.list
         * @desc Retrieves the authenticated user's list of accounts.
@@ -110,7 +115,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.patch
         * @desc Updates an existing account. This method supports patch
@@ -147,7 +152,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.update
         * @desc Updates an existing account.
@@ -183,11 +188,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.creatives = {
+  creatives = {
     /**
      * adexchangebuyer.creatives.get
      * @desc Gets the status for a single creative. A creative will be available
@@ -225,7 +230,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.insert
         * @desc Submit a new creative.
@@ -260,7 +265,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.list
         * @desc Retrieves a list of the authenticated user's active creatives. A
@@ -298,7 +303,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -359,5 +364,3 @@ function Adexchangebuyer(options: GlobalOptions) {
  * @property {string} kind Resource type.
  * @property {string} nextPageToken Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
-export = Adexchangebuyer;

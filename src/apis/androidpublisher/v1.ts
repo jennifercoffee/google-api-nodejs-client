@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Androidpublisher;
 
 /**
  * Google Play Developer API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.purchases = {
+export class Androidpublisher extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  purchases = {
     /**
      * androidpublisher.purchases.cancel
      * @desc Cancels a user's subscription purchase. The subscription remains
@@ -81,7 +86,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.purchases.get
         * @desc Checks whether a user's subscription purchase is valid and
@@ -120,7 +125,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'subscriptionId', 'token'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -134,5 +139,3 @@ function Androidpublisher(options: GlobalOptions) {
  * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
  * @property {string} validUntilTimestampMsec Time at which the subscription will expire, in milliseconds since the Epoch.
  */
-
-export = Androidpublisher;

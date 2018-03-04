@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Appengine;
 
 /**
  * App Engine Admin API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1alpha
  * @param {object=} options Options for Appengine
  */
-function Appengine(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.apps = {
+export class Appengine extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  apps = {
     authorizedCertificates: {
       /**
        * appengine.apps.authorizedCertificates.create
@@ -79,7 +84,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.authorizedCertificates.delete
           * @desc Deletes the specified SSL certificate.
@@ -93,7 +98,7 @@ function Appengine(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -117,7 +122,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.authorizedCertificates.get
           * @desc Gets the specified SSL certificate.
@@ -155,7 +160,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.authorizedCertificates.list
           * @desc Lists all SSL certificates the user is authorized to
@@ -194,7 +199,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.authorizedCertificates.patch
           * @desc Updates the specified SSL certificate. To renew a certificate
@@ -238,7 +243,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'authorizedCertificatesId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -279,7 +284,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -324,7 +329,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.domainMappings.delete
           * @desc Deletes the specified domain mapping. A user must be
@@ -340,7 +345,7 @@ function Appengine(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -364,7 +369,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.domainMappings.get
           * @desc Gets the specified domain mapping.
@@ -401,7 +406,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.domainMappings.list
           * @desc Lists the domain mappings on an application.
@@ -438,7 +443,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.domainMappings.patch
           * @desc Updates the specified domain mapping. To map an SSL
@@ -483,7 +488,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'domainMappingsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -523,7 +528,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'locationsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.locations.list
           * @desc Lists information about the supported locations for this
@@ -562,7 +567,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -604,7 +609,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId', 'operationsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * appengine.apps.operations.list
           * @desc Lists operations that match the specified filter in the
@@ -651,7 +656,7 @@ function Appengine(options: GlobalOptions) {
           pathParams: ['appsId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -862,5 +867,3 @@ function Appengine(options: GlobalOptions) {
  * @property {object[]} details A list of messages that carry the error details. There is a common set of message types for APIs to use.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  */
-
-export = Appengine;

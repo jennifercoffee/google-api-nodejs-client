@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
@@ -23,8 +24,10 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-any
 
 
+let self: Speech;
+
 /**
- * Google Cloud Speech API
+ * Cloud Speech API
  *
  * Converts audio to text by applying powerful neural network models.
  *
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Speech
  */
-function Speech(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Speech extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * speech.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -77,11 +82,11 @@ function Speech(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.speech = {
+  speech = {
     /**
      * speech.speech.longrunningrecognize
      * @desc Performs asynchronous speech recognition: receive results via the
@@ -119,7 +124,7 @@ function Speech(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * speech.speech.recognize
         * @desc Performs synchronous speech recognition: receive results after
@@ -155,7 +160,7 @@ function Speech(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -245,5 +250,3 @@ function Speech(options: GlobalOptions) {
  * @property {string} startTime *Output-only* Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
  * @property {string} word *Output-only* The word corresponding to this set of information.
  */
-
-export = Speech;

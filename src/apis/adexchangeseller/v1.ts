@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Adexchangeseller;
 
 /**
  * Ad Exchange Seller API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Adexchangeseller
  */
-function Adexchangeseller(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.adclients = {
+export class Adexchangeseller extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  adclients = {
     /**
      * adexchangeseller.adclients.list
      * @desc List all ad clients in this Ad Exchange account.
@@ -77,11 +82,11 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.adunits = {
+  adunits = {
     /**
      * adexchangeseller.adunits.get
      * @desc Gets the specified ad unit in the specified ad client.
@@ -118,7 +123,7 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: ['adClientId', 'adUnitId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangeseller.adunits.list
         * @desc List all ad units in the specified ad client for this Ad
@@ -158,54 +163,56 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    customchannels: {
-      /**
-       * adexchangeseller.adunits.customchannels.list
-       * @desc List all custom channels which the specified ad unit belongs to.
-       * @alias adexchangeseller.adunits.customchannels.list
-       * @memberOf! adexchangeseller(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client which contains the ad unit.
-       * @param {string} params.adUnitId Ad unit for which to list custom channels.
-       * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}/customchannels')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'adUnitId'],
-          pathParams: ['adClientId', 'adUnitId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    customchannels:
+        {
+          /**
+           * adexchangeseller.adunits.customchannels.list
+           * @desc List all custom channels which the specified ad unit belongs
+           * to.
+           * @alias adexchangeseller.adunits.customchannels.list
+           * @memberOf! adexchangeseller(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.adClientId Ad client which contains the ad unit.
+           * @param {string} params.adUnitId Ad unit for which to list custom channels.
+           * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+           * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}/customchannels')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['adClientId', 'adUnitId'],
+              pathParams: ['adClientId', 'adUnitId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.customchannels = {
+  customchannels = {
     /**
      * adexchangeseller.customchannels.get
      * @desc Get the specified custom channel from the specified ad client.
@@ -242,7 +249,7 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: ['adClientId', 'customChannelId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangeseller.customchannels.list
         * @desc List all custom channels in the specified ad client for this Ad
@@ -282,55 +289,56 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    adunits: {
-      /**
-       * adexchangeseller.customchannels.adunits.list
-       * @desc List all ad units in the specified custom channel.
-       * @alias adexchangeseller.customchannels.adunits.list
-       * @memberOf! adexchangeseller(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.adClientId Ad client which contains the custom channel.
-       * @param {string} params.customChannelId Custom channel for which to list ad units.
-       * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-       * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-       * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}/adunits')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'customChannelId'],
-          pathParams: ['adClientId', 'customChannelId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    adunits:
+        {
+          /**
+           * adexchangeseller.customchannels.adunits.list
+           * @desc List all ad units in the specified custom channel.
+           * @alias adexchangeseller.customchannels.adunits.list
+           * @memberOf! adexchangeseller(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.adClientId Ad client which contains the custom channel.
+           * @param {string} params.customChannelId Custom channel for which to list ad units.
+           * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+           * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+           * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}/adunits')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['adClientId', 'customChannelId'],
+              pathParams: ['adClientId', 'customChannelId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.reports = {
+  reports = {
     /**
      * adexchangeseller.reports.generate
      * @desc Generate an Ad Exchange report based on the report request sent in
@@ -375,7 +383,7 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     saved: {
       /**
@@ -416,7 +424,7 @@ function Adexchangeseller(options: GlobalOptions) {
           pathParams: ['savedReportId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * adexchangeseller.reports.saved.list
           * @desc List all saved reports in this Ad Exchange account.
@@ -452,12 +460,12 @@ function Adexchangeseller(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.urlchannels = {
+  urlchannels = {
     /**
      * adexchangeseller.urlchannels.list
      * @desc List all URL channels in the specified ad client for this Ad
@@ -496,7 +504,7 @@ function Adexchangeseller(options: GlobalOptions) {
         pathParams: ['adClientId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -604,5 +612,3 @@ function Adexchangeseller(options: GlobalOptions) {
  * @property {string} kind Kind of list this is, in this case adexchangeseller#urlChannels.
  * @property {string} nextPageToken Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
  */
-
-export = Adexchangeseller;

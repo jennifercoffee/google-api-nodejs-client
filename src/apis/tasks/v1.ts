@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Tasks;
 
 /**
  * Tasks API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Tasks
  */
-function Tasks(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.tasklists = {
+export class Tasks extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  tasklists = {
     /**
      * tasks.tasklists.delete
      * @desc Deletes the authenticated user's specified task list.
@@ -54,7 +59,7 @@ function Tasks(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -76,7 +81,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasklists.get
         * @desc Returns the authenticated user's specified task list.
@@ -110,7 +115,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasklists.insert
         * @desc Creates a new task list and adds it to the authenticated user's
@@ -146,7 +151,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasklists.list
         * @desc Returns all the authenticated user's task lists.
@@ -182,7 +187,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasklists.patch
         * @desc Updates the authenticated user's specified task list. This
@@ -219,7 +224,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasklists.update
         * @desc Updates the authenticated user's specified task list.
@@ -255,11 +260,11 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tasks = {
+  tasks = {
     /**
      * tasks.tasks.clear
      * @desc Clears all completed tasks from the specified task list. The
@@ -296,7 +301,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.delete
         * @desc Deletes the specified task from the task list.
@@ -310,7 +315,7 @@ function Tasks(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -332,7 +337,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['task', 'tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.get
         * @desc Returns the specified task.
@@ -367,7 +372,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['task', 'tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.insert
         * @desc Creates a new task on the specified task list.
@@ -405,7 +410,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.list
         * @desc Returns all tasks in the specified task list.
@@ -450,7 +455,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.move
         * @desc Moves the specified task to another position in the task list.
@@ -490,7 +495,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['task', 'tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.patch
         * @desc Updates the specified task. This method supports patch
@@ -528,7 +533,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['task', 'tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * tasks.tasks.update
         * @desc Updates the specified task.
@@ -565,7 +570,7 @@ function Tasks(options: GlobalOptions) {
         pathParams: ['task', 'tasklist'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -619,5 +624,3 @@ function Tasks(options: GlobalOptions) {
  * @property {string} kind Type of the resource. This is always &quot;tasks#tasks&quot;.
  * @property {string} nextPageToken Token used to access the next page of this result.
  */
-
-export = Tasks;

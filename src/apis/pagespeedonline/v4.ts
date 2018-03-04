@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Pagespeedonline;
 
 /**
  * PageSpeed Insights API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v4
  * @param {object=} options Options for Pagespeedonline
  */
-function Pagespeedonline(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.pagespeedapi = {
+export class Pagespeedonline extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  pagespeedapi = {
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
      * @desc Runs PageSpeed analysis on the page at the specified URL, and
@@ -87,7 +92,7 @@ function Pagespeedonline(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -128,5 +133,3 @@ function Pagespeedonline(options: GlobalOptions) {
  * @property {string} title Title of the page, as displayed in the browser&#39;s title bar.
  * @property {object} version The version of PageSpeed used to generate these results.
  */
-
-export = Pagespeedonline;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Gamesmanagement;
 
 /**
  * Google Play Game Services Management API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1management
  * @param {object=} options Options for Gamesmanagement
  */
-function Gamesmanagement(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.achievements = {
+export class Gamesmanagement extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  achievements = {
     /**
      * gamesManagement.achievements.reset
      * @desc Resets the achievement with the given ID for the currently
@@ -79,7 +84,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetAll
         * @desc Resets all achievements for the currently authenticated player
@@ -115,7 +120,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetAllForAllPlayers
         * @desc Resets all draft achievements for all players. This method is
@@ -151,7 +156,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetForAllPlayers
         * @desc Resets the achievement with the given ID for all players. This
@@ -190,7 +195,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.achievements.resetMultipleForAllPlayers
         * @desc Resets achievements with the given IDs for all players. This
@@ -229,11 +234,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.applications = {
+  applications = {
     /**
      * gamesManagement.applications.listHidden
      * @desc Get the list of players hidden from the given application. This
@@ -273,11 +278,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.events = {
+  events = {
     /**
      * gamesManagement.events.reset
      * @desc Resets all player progress on the event with the given ID for the
@@ -315,7 +320,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetAll
         * @desc Resets all player progress on all events for the currently
@@ -352,7 +357,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetAllForAllPlayers
         * @desc Resets all draft events for all players. This method is only
@@ -389,7 +394,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetForAllPlayers
         * @desc Resets the event with the given ID for all players. This method
@@ -428,7 +433,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.events.resetMultipleForAllPlayers
         * @desc Resets events with the given IDs for all players. This method is
@@ -467,11 +472,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.players = {
+  players = {
     /**
      * gamesManagement.players.hide
      * @desc Hide the given player's leaderboard scores from the given
@@ -511,7 +516,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['applicationId', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.players.unhide
         * @desc Unhide the given player's leaderboard scores from the given
@@ -551,11 +556,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['applicationId', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.quests = {
+  quests = {
     /**
      * gamesManagement.quests.reset
      * @desc Resets all player progress on the quest with the given ID for the
@@ -592,7 +597,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetAll
         * @desc Resets all player progress on all quests for the currently
@@ -628,7 +633,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetAllForAllPlayers
         * @desc Resets all draft quests for all players. This method is only
@@ -664,7 +669,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetForAllPlayers
         * @desc Resets all player progress on the quest with the given ID for
@@ -702,7 +707,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.quests.resetMultipleForAllPlayers
         * @desc Resets quests with the given IDs for all players. This method is
@@ -740,11 +745,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.rooms = {
+  rooms = {
     /**
      * gamesManagement.rooms.reset
      * @desc Reset all rooms for the currently authenticated player for your
@@ -780,7 +785,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.rooms.resetForAllPlayers
         * @desc Deletes rooms where the only room participants are from
@@ -816,11 +821,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.scores = {
+  scores = {
     /**
      * gamesManagement.scores.reset
      * @desc Resets scores for the leaderboard with the given ID for the
@@ -859,7 +864,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetAll
         * @desc Resets all scores for all leaderboards for the currently
@@ -895,7 +900,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetAllForAllPlayers
         * @desc Resets scores for all draft leaderboards for all players. This
@@ -931,7 +936,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetForAllPlayers
         * @desc Resets scores for the leaderboard with the given ID for all
@@ -970,7 +975,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.scores.resetMultipleForAllPlayers
         * @desc Resets scores for the leaderboards with the given IDs for all
@@ -1008,11 +1013,11 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.turnBasedMatches = {
+  turnBasedMatches = {
     /**
      * gamesManagement.turnBasedMatches.reset
      * @desc Reset all turn-based match data for a user. This method is only
@@ -1047,7 +1052,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * gamesManagement.turnBasedMatches.resetForAllPlayers
         * @desc Deletes turn-based matches where the only match participants are
@@ -1084,7 +1089,7 @@ function Gamesmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1212,5 +1217,3 @@ function Gamesmanagement(options: GlobalOptions) {
  * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.
  * @property {string[]} leaderboard_ids The IDs of leaderboards to reset.
  */
-
-export = Gamesmanagement;

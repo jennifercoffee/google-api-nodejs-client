@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Androidmanagement;
 
 /**
  * Android Management API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidmanagement
  */
-function Androidmanagement(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.enterprises = {
+export class Androidmanagement extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  enterprises = {
     /**
      * androidmanagement.enterprises.create
      * @desc Creates an enterprise. This is the last step in the enterprise
@@ -81,7 +86,7 @@ function Androidmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidmanagement.enterprises.get
         * @desc Gets an enterprise.
@@ -115,7 +120,7 @@ function Androidmanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidmanagement.enterprises.patch
         * @desc Updates an enterprise.
@@ -152,673 +157,693 @@ function Androidmanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    applications: {
-      /**
-       * androidmanagement.enterprises.applications.get
-       * @desc Gets info about an application.
-       * @alias androidmanagement.enterprises.applications.get
-       * @memberOf! androidmanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.languageCode The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
-       * @param {string} params.name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    devices: {
-      /**
-       * androidmanagement.enterprises.devices.delete
-       * @desc Deletes a device. This operation wipes the device.
-       * @alias androidmanagement.enterprises.devices.delete
-       * @memberOf! androidmanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.devices.get
-          * @desc Gets a device.
-          * @alias androidmanagement.enterprises.devices.get
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.devices.issueCommand
-          * @desc Issues a command to a device. The Operation resource returned
-          * contains a Command in its metadata field. Use the get operation
-          * method to get the status of the command.
-          * @alias androidmanagement.enterprises.devices.issueCommand
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-          * @param {androidmanagement(v1).Command} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      issueCommand(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:issueCommand')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.devices.list
-          * @desc Lists devices for a given enterprise.
-          * @alias androidmanagement.enterprises.devices.list
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-          * @param {string=} params.pageToken A token identifying a page of results returned by the server.
-          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/devices')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.devices.patch
-          * @desc Updates a device.
-          * @alias androidmanagement.enterprises.devices.patch
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-          * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-          * @param {androidmanagement(v1).Device} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      },
-      operations: {
-        /**
-         * androidmanagement.enterprises.devices.operations.cancel
-         * @desc Starts asynchronous cancellation on a long-running operation.
-         * The server makes a best effort to cancel the operation, but success
-         * is not guaranteed. If the server doesn't support this method, it
-         * returns google.rpc.Code.UNIMPLEMENTED. Clients can use
-         * Operations.GetOperation or other methods to check whether the
-         * cancellation succeeded or whether the operation completed despite
-         * cancellation. On successful cancellation, the operation is not
-         * deleted; instead, it becomes an operation with an Operation.error
-         * value with a google.rpc.Status.code of 1, corresponding to
-         * Code.CANCELLED.
-         * @alias androidmanagement.enterprises.devices.operations.cancel
-         * @memberOf! androidmanagement(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the operation resource to be cancelled.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        cancel(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
+    applications:
+        {
+          /**
+           * androidmanagement.enterprises.applications.get
+           * @desc Gets info about an application.
+           * @alias androidmanagement.enterprises.applications.get
+           * @memberOf! androidmanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.languageCode The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
+           * @param {string} params.name The name of the application in the form enterprises/{enterpriseId}/applications/{package_name}.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
           }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://androidmanagement.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{name}:cancel')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * androidmanagement.enterprises.devices.operations.delete
-            * @desc Deletes a long-running operation. This method indicates that
-            * the client is no longer interested in the operation result. It
-            * does not cancel the operation. If the server doesn't support this
-            * method, it returns google.rpc.Code.UNIMPLEMENTED.
-            * @alias androidmanagement.enterprises.devices.operations.delete
-            * @memberOf! androidmanagement(v1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The name of the operation resource to be deleted.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        delete (
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
+
+        },
+    devices:
+        {
+          /**
+           * androidmanagement.enterprises.devices.delete
+           * @desc Deletes a device. This operation wipes the device.
+           * @alias androidmanagement.enterprises.devices.delete
+           * @memberOf! androidmanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.devices.get
+              * @desc Gets a device.
+              * @alias androidmanagement.enterprises.devices.get
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.devices.issueCommand
+              * @desc Issues a command to a device. The Operation resource
+              * returned contains a Command in its metadata field. Use the get
+              * operation method to get the status of the command.
+              * @alias androidmanagement.enterprises.devices.issueCommand
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+              * @param {androidmanagement(v1).Command} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          issueCommand(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}:issueCommand')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.devices.list
+              * @desc Lists devices for a given enterprise.
+              * @alias androidmanagement.enterprises.devices.list
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
+              * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+              * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/devices')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.devices.patch
+              * @desc Updates a device.
+              * @alias androidmanagement.enterprises.devices.patch
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
+              * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+              * @param {androidmanagement(v1).Device} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          },
+          operations:
+              {
+                /**
+                 * androidmanagement.enterprises.devices.operations.cancel
+                 * @desc Starts asynchronous cancellation on a long-running
+                 * operation. The server makes a best effort to cancel the
+                 * operation, but success is not guaranteed. If the server
+                 * doesn't support this method, it returns
+                 * google.rpc.Code.UNIMPLEMENTED. Clients can use
+                 * Operations.GetOperation or other methods to check whether the
+                 * cancellation succeeded or whether the operation completed
+                 * despite cancellation. On successful cancellation, the
+                 * operation is not deleted; instead, it becomes an operation
+                 * with an Operation.error value with a google.rpc.Status.code
+                 * of 1, corresponding to Code.CANCELLED.
+                 * @alias
+                 * androidmanagement.enterprises.devices.operations.cancel
+                 * @memberOf! androidmanagement(v1)
+                 *
+                 * @param {object} params Parameters for request
+                 * @param {string} params.name The name of the operation resource to be cancelled.
+                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                 * @param {callback} callback The callback that handles the response.
+                 * @return {object} Request object
+                 */
+                cancel(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl = options.rootUrl ||
+                      'https://androidmanagement.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}:cancel')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'POST'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * androidmanagement.enterprises.devices.operations.delete
+                    * @desc Deletes a long-running operation. This method
+                    * indicates that the client is no longer interested in the
+                    * operation result. It does not cancel the operation. If the
+                    * server doesn't support this method, it returns
+                    * google.rpc.Code.UNIMPLEMENTED.
+                    * @alias
+                    * androidmanagement.enterprises.devices.operations.delete
+                    * @memberOf! androidmanagement(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name The name of the operation resource to be deleted.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                delete(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl = options.rootUrl ||
+                      'https://androidmanagement.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'DELETE'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * androidmanagement.enterprises.devices.operations.get
+                    * @desc Gets the latest state of a long-running operation.
+                    * Clients can use this method to poll the operation result
+                    * at intervals as recommended by the API service.
+                    * @alias
+                    * androidmanagement.enterprises.devices.operations.get
+                    * @memberOf! androidmanagement(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string} params.name The name of the operation resource.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                get(params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl = options.rootUrl ||
+                      'https://androidmanagement.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }, /**
+                    * androidmanagement.enterprises.devices.operations.list
+                    * @desc Lists operations that match the specified filter in
+                    * the request. If the server doesn't support this method, it
+                    * returns UNIMPLEMENTED.NOTE: the name binding allows API
+                    * services to override the binding to use different resource
+                    * name schemes, such as users/x/operations. To override the
+                    * binding, API services can add a binding such as
+                    * "/v1/{name=users/x}/operations" to their service
+                    * configuration. For backwards compatibility, the default
+                    * name includes the operations collection id, however
+                    * overriding users must ensure the name binding is the
+                    * parent resource, without the operations collection id.
+                    * @alias
+                    * androidmanagement.enterprises.devices.operations.list
+                    * @memberOf! androidmanagement(v1)
+                    *
+                    * @param {object} params Parameters for request
+                    * @param {string=} params.filter The standard list filter.
+                    * @param {string} params.name The name of the operation's parent resource.
+                    * @param {integer=} params.pageSize The standard list page size.
+                    * @param {string=} params.pageToken The standard list page token.
+                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                    * @param {callback} callback The callback that handles the response.
+                    * @return {object} Request object
+                    */
+                list(
+                    params: any,
+                    options: MethodOptions|BodyResponseCallback<any>,
+                    callback?: BodyResponseCallback<any>) {
+                  if (typeof options === 'function') {
+                    callback = options;
+                    options = {};
+                  }
+                  options = options || {};
+                  const rootUrl = options.rootUrl ||
+                      'https://androidmanagement.googleapis.com/';
+                  const parameters = {
+                    options: Object.assign(
+                        {
+                          url: (rootUrl + '/v1/{name}')
+                                   .replace(/([^:]\/)\/+/g, '$1'),
+                          method: 'GET'
+                        },
+                        options),
+                    params,
+                    requiredParams: ['name'],
+                    pathParams: ['name'],
+                    context: self
+                  };
+                  createAPIRequest(parameters, callback!);
+                }
+
+              }
+        },
+    enrollmentTokens:
+        {
+          /**
+           * androidmanagement.enterprises.enrollmentTokens.create
+           * @desc Creates an enrollment token for a given enterprise.
+           * @alias androidmanagement.enterprises.enrollmentTokens.create
+           * @memberOf! androidmanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+           * @param {androidmanagement(v1).EnrollmentToken} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/enrollmentTokens')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.enrollmentTokens.delete
+              * @desc Deletes an enrollment token. This operation invalidates
+              * the token, preventing its future use.
+              * @alias androidmanagement.enterprises.enrollmentTokens.delete
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
           }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://androidmanagement.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * androidmanagement.enterprises.devices.operations.get
-            * @desc Gets the latest state of a long-running operation. Clients
-            * can use this method to poll the operation result at intervals as
-            * recommended by the API service.
-            * @alias androidmanagement.enterprises.devices.operations.get
-            * @memberOf! androidmanagement(v1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The name of the operation resource.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
+
+        },
+    policies:
+        {
+          /**
+           * androidmanagement.enterprises.policies.delete
+           * @desc Deletes a policy. This operation is only permitted if no
+           * devices are currently referencing the policy.
+           * @alias androidmanagement.enterprises.policies.delete
+           * @memberOf! androidmanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.policies.get
+              * @desc Gets a policy.
+              * @alias androidmanagement.enterprises.policies.get
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.policies.list
+              * @desc Lists policies for a given enterprise.
+              * @alias androidmanagement.enterprises.policies.list
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
+              * @param {string=} params.pageToken A token identifying a page of results returned by the server.
+              * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/policies')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * androidmanagement.enterprises.policies.patch
+              * @desc Updates or creates a policy.
+              * @alias androidmanagement.enterprises.policies.patch
+              * @memberOf! androidmanagement(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
+              * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
+              * @param {androidmanagement(v1).Policy} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          patch(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'PATCH'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
           }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://androidmanagement.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * androidmanagement.enterprises.devices.operations.list
-            * @desc Lists operations that match the specified filter in the
-            * request. If the server doesn't support this method, it returns
-            * UNIMPLEMENTED.NOTE: the name binding allows API services to
-            * override the binding to use different resource name schemes, such
-            * as users/x/operations. To override the binding, API services can
-            * add a binding such as "/v1/{name=users/x}/operations" to their
-            * service configuration. For backwards compatibility, the default
-            * name includes the operations collection id, however overriding
-            * users must ensure the name binding is the parent resource, without
-            * the operations collection id.
-            * @alias androidmanagement.enterprises.devices.operations.list
-            * @memberOf! androidmanagement(v1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter The standard list filter.
-            * @param {string} params.name The name of the operation's parent resource.
-            * @param {integer=} params.pageSize The standard list page size.
-            * @param {string=} params.pageToken The standard list page token.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
+
+        },
+    webTokens:
+        {
+          /**
+           * androidmanagement.enterprises.webTokens.create
+           * @desc Creates a web token to access an embeddable managed Google
+           * Play web UI for a given enterprise.
+           * @alias androidmanagement.enterprises.webTokens.create
+           * @memberOf! androidmanagement(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
+           * @param {androidmanagement(v1).WebToken} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://androidmanagement.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{parent}/webTokens')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['parent'],
+              pathParams: ['parent'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
           }
-          options = options || {};
-          const rootUrl =
-              options.rootUrl || 'https://androidmanagement.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
 
-      }
-    },
-    enrollmentTokens: {
-      /**
-       * androidmanagement.enterprises.enrollmentTokens.create
-       * @desc Creates an enrollment token for a given enterprise.
-       * @alias androidmanagement.enterprises.enrollmentTokens.create
-       * @memberOf! androidmanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-       * @param {androidmanagement(v1).EnrollmentToken} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
         }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/enrollmentTokens')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.enrollmentTokens.delete
-          * @desc Deletes an enrollment token. This operation invalidates the
-          * token, preventing its future use.
-          * @alias androidmanagement.enterprises.enrollmentTokens.delete
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    policies: {
-      /**
-       * androidmanagement.enterprises.policies.delete
-       * @desc Deletes a policy. This operation is only permitted if no devices
-       * are currently referencing the policy.
-       * @alias androidmanagement.enterprises.policies.delete
-       * @memberOf! androidmanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.policies.get
-          * @desc Gets a policy.
-          * @alias androidmanagement.enterprises.policies.get
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.policies.list
-          * @desc Lists policies for a given enterprise.
-          * @alias androidmanagement.enterprises.policies.list
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer=} params.pageSize The requested page size. The actual page size may be fixed to a min or max value.
-          * @param {string=} params.pageToken A token identifying a page of results returned by the server.
-          * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/policies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidmanagement.enterprises.policies.patch
-          * @desc Updates or creates a policy.
-          * @alias androidmanagement.enterprises.policies.patch
-          * @memberOf! androidmanagement(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
-          * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-          * @param {androidmanagement(v1).Policy} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    webTokens: {
-      /**
-       * androidmanagement.enterprises.webTokens.create
-       * @desc Creates a web token to access an embeddable managed Google Play
-       * web UI for a given enterprise.
-       * @alias androidmanagement.enterprises.webTokens.create
-       * @memberOf! androidmanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-       * @param {androidmanagement(v1).WebToken} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://androidmanagement.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/webTokens')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    }
   };
-  self.signupUrls = {
+  signupUrls = {
     /**
      * androidmanagement.signupUrls.create
      * @desc Creates an enterprise signup URL.
@@ -854,7 +879,7 @@ function Androidmanagement(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -911,6 +936,7 @@ function Androidmanagement(options: GlobalOptions) {
  * @property {string} newPassword For commands of type RESET_PASSWORD, optionally specifies the new password.
  * @property {string[]} resetPasswordFlags For commands of type RESET_PASSWORD, optionally specifies flags.
  * @property {string} type The type of the command.
+ * @property {string} userName The resource name of the user that owns the device in the form enterprises/{enterpriseId}/users/{userId}. This is automatically generated by the server based on the device the command is sent to.
  */
 /**
  * @typedef ComplianceRule
@@ -1182,6 +1208,7 @@ function Androidmanagement(options: GlobalOptions) {
  * @property {boolean} adjustVolumeDisabled Whether adjusting the master volume is disabled.
  * @property {androidmanagement(v1).AlwaysOnVpnPackage} alwaysOnVpnPackage Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting.
  * @property {string[]} androidDevicePolicyTracks The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.
+ * @property {string} appAutoUpdatePolicy The auto update policy value. Specifies whether the user is given a choice to configure the app update policy, or otherwise contains the enforced update policy
  * @property {androidmanagement(v1).ApplicationPolicy[]} applications Policy applied to apps.
  * @property {boolean} autoTimeRequired Whether auto time is required, which prevents the user from manually setting the date and time.
  * @property {boolean} blockApplicationsEnabled Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
@@ -1322,5 +1349,3 @@ function Androidmanagement(options: GlobalOptions) {
  * @property {string[]} permissions Permissions available to an admin in the embedded UI. An admin must have all of these permissions in order to view the UI.
  * @property {string} value The token value which is used in the hosting page to generate the iframe with the embedded UI. This is a read-only field generated by the server.
  */
-
-export = Androidmanagement;

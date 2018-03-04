@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Youtubereporting;
 
 /**
  * YouTube Reporting API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Youtubereporting
  */
-function Youtubereporting(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.jobs = {
+export class Youtubereporting extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  jobs = {
     /**
      * youtubereporting.jobs.create
      * @desc Creates a job and returns it.
@@ -78,7 +83,7 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubereporting.jobs.delete
         * @desc Deletes a job.
@@ -92,7 +97,7 @@ function Youtubereporting(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -114,7 +119,7 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: ['jobId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubereporting.jobs.get
         * @desc Gets a job.
@@ -149,7 +154,7 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: ['jobId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * youtubereporting.jobs.list
         * @desc Lists jobs.
@@ -187,94 +192,95 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    reports: {
-      /**
-       * youtubereporting.jobs.reports.get
-       * @desc Gets the metadata of a specific report.
-       * @alias youtubereporting.jobs.reports.get
-       * @memberOf! youtubereporting(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.jobId The ID of the job.
-       * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-       * @param {string} params.reportId The ID of the report to retrieve.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://youtubereporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/jobs/{jobId}/reports/{reportId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['jobId', 'reportId'],
-          pathParams: ['jobId', 'reportId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * youtubereporting.jobs.reports.list
-          * @desc Lists reports created by a specific job. Returns NOT_FOUND if
-          * the job does not exist.
-          * @alias youtubereporting.jobs.reports.list
-          * @memberOf! youtubereporting(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
-          * @param {string} params.jobId The ID of the job.
-          * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-          * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
-          * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
-          * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
-          * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://youtubereporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/jobs/{jobId}/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['jobId'],
-          pathParams: ['jobId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    reports:
+        {
+          /**
+           * youtubereporting.jobs.reports.get
+           * @desc Gets the metadata of a specific report.
+           * @alias youtubereporting.jobs.reports.get
+           * @memberOf! youtubereporting(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.jobId The ID of the job.
+           * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+           * @param {string} params.reportId The ID of the report to retrieve.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://youtubereporting.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/jobs/{jobId}/reports/{reportId}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['jobId', 'reportId'],
+              pathParams: ['jobId', 'reportId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * youtubereporting.jobs.reports.list
+              * @desc Lists reports created by a specific job. Returns NOT_FOUND
+              * if the job does not exist.
+              * @alias youtubereporting.jobs.reports.list
+              * @memberOf! youtubereporting(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
+              * @param {string} params.jobId The ID of the job.
+              * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+              * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
+              * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
+              * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
+              * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://youtubereporting.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/jobs/{jobId}/reports')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['jobId'],
+              pathParams: ['jobId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.media = {
+  media = {
     /**
      * youtubereporting.media.download
      * @desc Method for media download. Download is supported on the URI
@@ -311,11 +317,11 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.reportTypes = {
+  reportTypes = {
     /**
      * youtubereporting.reportTypes.list
      * @desc Lists report types.
@@ -353,7 +359,7 @@ function Youtubereporting(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -540,5 +546,3 @@ function Youtubereporting(options: GlobalOptions) {
  * @property {string} name The name of the report type (max. 100 characters).
  * @property {boolean} systemManaged True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method.
  */
-
-export = Youtubereporting;

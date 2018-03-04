@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Cloudbilling;
 
 /**
  * Cloud Billing API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudbilling
  */
-function Cloudbilling(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.billingAccounts = {
+export class Cloudbilling extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  billingAccounts = {
     /**
      * cloudbilling.billingAccounts.create
      * @desc Creates a billing account. This method can only be used to create
@@ -84,7 +89,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.get
         * @desc Gets information about a billing account. The current
@@ -175,7 +180,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.getIamPolicy
         * @desc Gets the access control policy for a billing account. The caller
@@ -215,7 +220,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.list
         * @desc Lists the billing accounts that the current authenticated user
@@ -318,7 +323,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.patch
         * @desc Updates a billing account's fields. Currently the only field
@@ -360,7 +365,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.setIamPolicy
         * @desc Sets the access control policy for a billing account. Replaces
@@ -402,7 +407,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.billingAccounts.testIamPermissions
         * @desc Tests the access control policy for a billing account. This
@@ -442,126 +447,130 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    projects: {
-      /**
-       * cloudbilling.billingAccounts.projects.list
-       * @desc Lists the projects associated with a billing account. The current
-       * authenticated user must have the `billing.resourceAssociations.list`
-       * IAM permission, which is often given to billing account
-       * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Billing API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/cloudbilling
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var cloudbilling = google.cloudbilling('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The resource name of the billing account associated with the
-       * projects that
-       *     // you want to list. For example,
-       * `billingAccounts/012345-567890-ABCDEF`. name:
-       * 'billingAccounts/my-billing-account',  // TODO: Update placeholder
-       * value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var projectBillingInfoPage = response['projectBillingInfo'];
-       *     if (!projectBillingInfoPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < projectBillingInfoPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `projectBillingInfoPage`:
-       *       console.log(JSON.stringify(projectBillingInfoPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       cloudbilling.billingAccounts.projects.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   cloudbilling.billingAccounts.projects.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias cloudbilling.billingAccounts.projects.list
-       * @memberOf! cloudbilling(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
-       * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
-       * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudbilling.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/projects')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    projects:
+        {
+          /**
+           * cloudbilling.billingAccounts.projects.list
+           * @desc Lists the projects associated with a billing account. The
+           * current authenticated user must have the
+           * `billing.resourceAssociations.list` IAM permission, which is often
+           * given to billing account
+           * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Google Cloud Billing API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/cloudbilling
+           * // 2. This sample uses Application Default Credentials for
+           * authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk and run
+           * //    `gcloud beta auth application-default login`.
+           * //    For more information, see
+           * //
+           * https://developers.google.com/identity/protocols/application-default-credentials
+           * // 3. Install the Node.js client library by running
+           * //    `npm install googleapis --save`
+           *
+           * var google = require('googleapis');
+           * var cloudbilling = google.cloudbilling('v1');
+           *
+           * authorize(function(authClient) {
+           *   var request = {
+           *     // The resource name of the billing account associated with the
+           * projects that
+           *     // you want to list. For example,
+           * `billingAccounts/012345-567890-ABCDEF`. name:
+           * 'billingAccounts/my-billing-account',  // TODO: Update placeholder
+           * value.
+           *
+           *     auth: authClient,
+           *   };
+           *
+           *   var handlePage = function(err, response) {
+           *     if (err) {
+           *       console.error(err);
+           *       return;
+           *     }
+           *
+           *     var projectBillingInfoPage = response['projectBillingInfo'];
+           *     if (!projectBillingInfoPage) {
+           *       return;
+           *     }
+           *     for (var i = 0; i < projectBillingInfoPage.length; i++) {
+           *       // TODO: Change code below to process each resource in
+           * `projectBillingInfoPage`:
+           *       console.log(JSON.stringify(projectBillingInfoPage[i], null,
+           * 2));
+           *     }
+           *
+           *     if (response.nextPageToken) {
+           *       request.pageToken = response.nextPageToken;
+           *       cloudbilling.billingAccounts.projects.list(request,
+           * handlePage);
+           *     }
+           *   };
+           *
+           *   cloudbilling.billingAccounts.projects.list(request, handlePage);
+           * });
+           *
+           * function authorize(callback) {
+           *   google.auth.getApplicationDefault(function(err, authClient) {
+           *     if (err) {
+           *       console.error('authentication failed: ', err);
+           *       return;
+           *     }
+           *     if (authClient.createScopedRequired &&
+           * authClient.createScopedRequired()) { var scopes =
+           * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+           * authClient.createScoped(scopes);
+           *     }
+           *     callback(authClient);
+           *   });
+           * }
+           * @alias cloudbilling.billingAccounts.projects.list
+           * @memberOf! cloudbilling(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+           * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
+           * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://cloudbilling.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{name}/projects')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['name'],
+              pathParams: ['name'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.projects = {
+  projects = {
     /**
      * cloudbilling.projects.getBillingInfo
      * @desc Gets the billing information for a project. The current
@@ -653,7 +662,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudbilling.projects.updateBillingInfo
         * @desc Sets or updates the billing account associated with a project.
@@ -775,11 +784,11 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.services = {
+  services = {
     /**
      * cloudbilling.services.list
      * @desc Lists all public cloud services.
@@ -877,7 +886,7 @@ function Cloudbilling(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     skus: {
       /**
@@ -987,7 +996,7 @@ function Cloudbilling(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -1162,5 +1171,3 @@ function Cloudbilling(options: GlobalOptions) {
  * @property {number} startUsageAmount Usage is priced at this rate only after this amount. Example: start_usage_amount of 10 indicates that the usage will be priced at the unit_price after the first 10 usage_units.
  * @property {cloudbilling(v1).Money} unitPrice The price per unit of usage. Example: unit_price of amount $10 indicates that each unit will cost $10.
  */
-
-export = Cloudbilling;

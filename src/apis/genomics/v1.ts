@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Genomics;
 
 /**
  * Genomics API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Genomics
  */
-function Genomics(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.annotations = {
+export class Genomics extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  annotations = {
     /**
      * genomics.annotations.batchCreate
      * @desc Creates one or more new annotations atomically. All annotations
@@ -139,7 +144,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotations.create
         * @desc Creates a new annotation. Caller must have WRITE permission for
@@ -235,7 +240,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotations.delete
         * @desc Deletes an annotation. Caller must have WRITE permission for the
@@ -300,7 +305,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -322,7 +327,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotations.get
         * @desc Gets an annotation. Caller must have READ permission for the
@@ -411,7 +416,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotations.search
         * @desc Searches for annotations that match the given criteria. Results
@@ -521,7 +526,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotations.update
         * @desc Updates an annotation. Caller must have WRITE permission for the
@@ -619,11 +624,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.annotationsets = {
+  annotationsets = {
     /**
      * genomics.annotationsets.create
      * @desc Creates a new annotation set. Caller must have WRITE permission for
@@ -716,7 +721,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotationsets.delete
         * @desc Deletes an annotation set. Caller must have WRITE permission for
@@ -781,7 +786,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -803,7 +808,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotationsets.get
         * @desc Gets an annotation set. Caller must have READ permission for the
@@ -892,7 +897,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotationsets.search
         * @desc Searches for annotation sets that match the given criteria.
@@ -1000,7 +1005,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.annotationsets.update
         * @desc Updates an annotation set. The update must respect all
@@ -1100,11 +1105,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['annotationSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.callsets = {
+  callsets = {
     /**
      * genomics.callsets.create
      * @desc Creates a new call set.  For the definitions of call sets and other
@@ -1194,7 +1199,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.callsets.delete
         * @desc Deletes a call set.  For the definitions of call sets and other
@@ -1259,7 +1264,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1281,7 +1286,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['callSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.callsets.get
         * @desc Gets a call set by ID.  For the definitions of call sets and
@@ -1370,7 +1375,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['callSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.callsets.patch
         * @desc Updates a call set.  For the definitions of call sets and other
@@ -1469,7 +1474,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['callSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.callsets.search
         * @desc Gets a list of call sets matching the criteria.  For the
@@ -1576,11 +1581,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.datasets = {
+  datasets = {
     /**
      * genomics.datasets.create
      * @desc Creates a new dataset.  For the definitions of datasets and other
@@ -1670,7 +1675,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.delete
         * @desc Deletes a dataset and all of its contents (all read group sets,
@@ -1738,7 +1743,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1760,7 +1765,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['datasetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.get
         * @desc Gets a dataset by ID.  For the definitions of datasets and other
@@ -1849,7 +1854,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['datasetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.getIamPolicy
         * @desc Gets the access control policy for the dataset. This is empty if
@@ -1950,7 +1955,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.list
         * @desc Lists datasets within a project.  For the definitions of
@@ -2051,7 +2056,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.patch
         * @desc Updates a dataset.  For the definitions of datasets and other
@@ -2150,7 +2155,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['datasetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.setIamPolicy
         * @desc Sets the access control policy on the specified dataset.
@@ -2251,7 +2256,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.testIamPermissions
         * @desc Returns permissions that a caller has on the specified resource.
@@ -2349,7 +2354,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.datasets.undelete
         * @desc Undeletes a dataset by restoring a dataset which was deleted via
@@ -2447,11 +2452,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['datasetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.operations = {
+  operations = {
     /**
      * genomics.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation. The
@@ -2545,7 +2550,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -2634,7 +2639,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -2738,11 +2743,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.readgroupsets = {
+  readgroupsets = {
     /**
      * genomics.readgroupsets.delete
      * @desc Deletes a read group set.  For the definitions of read group sets
@@ -2810,7 +2815,7 @@ function Genomics(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2832,7 +2837,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['readGroupSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.readgroupsets.export
         * @desc Exports a read group set to a BAM file in Google Cloud Storage.
@@ -2934,7 +2939,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['readGroupSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.readgroupsets.get
         * @desc Gets a read group set by ID.  For the definitions of read group
@@ -3024,7 +3029,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['readGroupSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.readgroupsets.import
         * @desc Creates read group sets by asynchronously importing the provided
@@ -3125,7 +3130,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.readgroupsets.patch
         * @desc Updates a read group set.  For the definitions of read group
@@ -3227,7 +3232,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['readGroupSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.readgroupsets.search
         * @desc Searches for read group sets matching the criteria.  For the
@@ -3335,134 +3340,137 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    coveragebuckets: {
-      /**
-       * genomics.readgroupsets.coveragebuckets.list
-       * @desc Lists fixed width coverage buckets for a read group set, each of
-       * which correspond to a range of a reference sequence. Each bucket
-       * summarizes coverage information across its corresponding genomic range.
-       * For the definitions of read group sets and other genomics resources,
-       * see [Fundamentals of Google
-       * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-       * Coverage is defined as the number of reads which are aligned to a given
-       * base in the reference sequence. Coverage buckets are available at
-       * several precomputed bucket widths, enabling retrieval of various
-       * coverage 'zoom levels'. The caller must have READ permissions for the
-       * target read group set.
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Genomics API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/genomics
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var genomics = google.genomics('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Required. The ID of the read group set over which coverage is
-       * requested. readGroupSetId: 'my-read-group-set-id',  // TODO: Update
-       * placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var coverageBucketsPage = response['coverageBuckets'];
-       *     if (!coverageBucketsPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < coverageBucketsPage.length; i++) {
-       *       // TODO: Change code below to process each resource in
-       * `coverageBucketsPage`:
-       *       console.log(JSON.stringify(coverageBucketsPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       genomics.readgroupsets.coveragebuckets.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   genomics.readgroupsets.coveragebuckets.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias genomics.readgroupsets.coveragebuckets.list
-       * @memberOf! genomics(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.end The end position of the range on the reference, 0-based exclusive. If specified, `referenceName` must also be specified. If unset or 0, defaults to the length of the reference.
-       * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-       * @param {string} params.readGroupSetId Required. The ID of the read group set over which coverage is requested.
-       * @param {string=} params.referenceName The name of the reference to query, within the reference set associated with this query. Optional.
-       * @param {string=} params.start The start position of the range on the reference, 0-based inclusive. If specified, `referenceName` must also be specified. Defaults to 0.
-       * @param {string=} params.targetBucketWidth The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as `bucketWidth` in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed `bucketWidth` is currently 2048 base pairs; this is subject to change.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/readgroupsets/{readGroupSetId}/coveragebuckets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    coveragebuckets:
+        {
+          /**
+           * genomics.readgroupsets.coveragebuckets.list
+           * @desc Lists fixed width coverage buckets for a read group set, each
+           * of which correspond to a range of a reference sequence. Each bucket
+           * summarizes coverage information across its corresponding genomic
+           * range.  For the definitions of read group sets and other genomics
+           * resources, see [Fundamentals of Google
+           * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+           * Coverage is defined as the number of reads which are aligned to a
+           * given base in the reference sequence. Coverage buckets are
+           * available at several precomputed bucket widths, enabling retrieval
+           * of various coverage 'zoom levels'. The caller must have READ
+           * permissions for the target read group set.
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Genomics API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/genomics
+           * // 2. This sample uses Application Default Credentials for
+           * authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk and run
+           * //    `gcloud beta auth application-default login`.
+           * //    For more information, see
+           * //
+           * https://developers.google.com/identity/protocols/application-default-credentials
+           * // 3. Install the Node.js client library by running
+           * //    `npm install googleapis --save`
+           *
+           * var google = require('googleapis');
+           * var genomics = google.genomics('v1');
+           *
+           * authorize(function(authClient) {
+           *   var request = {
+           *     // Required. The ID of the read group set over which coverage
+           * is requested. readGroupSetId: 'my-read-group-set-id',  // TODO:
+           * Update placeholder value.
+           *
+           *     auth: authClient,
+           *   };
+           *
+           *   var handlePage = function(err, response) {
+           *     if (err) {
+           *       console.error(err);
+           *       return;
+           *     }
+           *
+           *     var coverageBucketsPage = response['coverageBuckets'];
+           *     if (!coverageBucketsPage) {
+           *       return;
+           *     }
+           *     for (var i = 0; i < coverageBucketsPage.length; i++) {
+           *       // TODO: Change code below to process each resource in
+           * `coverageBucketsPage`:
+           *       console.log(JSON.stringify(coverageBucketsPage[i], null, 2));
+           *     }
+           *
+           *     if (response.nextPageToken) {
+           *       request.pageToken = response.nextPageToken;
+           *       genomics.readgroupsets.coveragebuckets.list(request,
+           * handlePage);
+           *     }
+           *   };
+           *
+           *   genomics.readgroupsets.coveragebuckets.list(request, handlePage);
+           * });
+           *
+           * function authorize(callback) {
+           *   google.auth.getApplicationDefault(function(err, authClient) {
+           *     if (err) {
+           *       console.error('authentication failed: ', err);
+           *       return;
+           *     }
+           *     if (authClient.createScopedRequired &&
+           * authClient.createScopedRequired()) { var scopes =
+           * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+           * authClient.createScoped(scopes);
+           *     }
+           *     callback(authClient);
+           *   });
+           * }
+           * @alias genomics.readgroupsets.coveragebuckets.list
+           * @memberOf! genomics(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.end The end position of the range on the reference, 0-based exclusive. If specified, `referenceName` must also be specified. If unset or 0, defaults to the length of the reference.
+           * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 1024. The maximum value is 2048.
+           * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+           * @param {string} params.readGroupSetId Required. The ID of the read group set over which coverage is requested.
+           * @param {string=} params.referenceName The name of the reference to query, within the reference set associated with this query. Optional.
+           * @param {string=} params.start The start position of the range on the reference, 0-based inclusive. If specified, `referenceName` must also be specified. Defaults to 0.
+           * @param {string=} params.targetBucketWidth The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as `bucketWidth` in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed `bucketWidth` is currently 2048 base pairs; this is subject to change.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://genomics.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1/readgroupsets/{readGroupSetId}/coveragebuckets')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['readGroupSetId'],
+              pathParams: ['readGroupSetId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.reads = {
+  reads = {
     /**
      * genomics.reads.search
      * @desc Gets a list of reads for one or more read group sets.  For the
@@ -3580,11 +3588,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.references = {
+  references = {
     /**
      * genomics.references.get
      * @desc Gets a reference.  For the definitions of references and other
@@ -3675,7 +3683,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['referenceId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.references.search
         * @desc Searches for references which match the given criteria.  For the
@@ -3783,122 +3791,125 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    bases: {
-      /**
-       * genomics.references.bases.list
-       * @desc Lists the bases in a reference, optionally restricted to a range.
-       * For the definitions of references and other genomics resources, see
-       * [Fundamentals of Google
-       * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-       * Implements
-       * [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Genomics API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/genomics
-       * // 2. This sample uses Application Default Credentials for
-       * authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //
-       * https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var genomics = google.genomics('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The ID of the reference.
-       *     referenceId: 'my-reference-id',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient,
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.error(err);
-       *       return;
-       *     }
-       *
-       *     var nextPageTokenPage = response['nextPageToken'];
-       *     if (!nextPageTokenPage) {
-       *       return;
-       *     }
-       *     // TODO: Change code below to process each `nextPageTokenPage`
-       * resource: console.log(nextPageTokenPage);
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       genomics.references.bases.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   genomics.references.bases.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient) {
-       *     if (err) {
-       *       console.error('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired &&
-       * authClient.createScopedRequired()) { var scopes =
-       * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-       * authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       * @alias genomics.references.bases.list
-       * @memberOf! genomics(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.end The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
-       * @param {integer=} params.pageSize The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
-       * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-       * @param {string} params.referenceId The ID of the reference.
-       * @param {string=} params.start The start position (0-based) of this query. Defaults to 0.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/references/{referenceId}/bases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['referenceId'],
-          pathParams: ['referenceId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    bases:
+        {
+          /**
+           * genomics.references.bases.list
+           * @desc Lists the bases in a reference, optionally restricted to a
+           * range.  For the definitions of references and other genomics
+           * resources, see [Fundamentals of Google
+           * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+           * Implements
+           * [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Genomics API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/genomics
+           * // 2. This sample uses Application Default Credentials for
+           * authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk and run
+           * //    `gcloud beta auth application-default login`.
+           * //    For more information, see
+           * //
+           * https://developers.google.com/identity/protocols/application-default-credentials
+           * // 3. Install the Node.js client library by running
+           * //    `npm install googleapis --save`
+           *
+           * var google = require('googleapis');
+           * var genomics = google.genomics('v1');
+           *
+           * authorize(function(authClient) {
+           *   var request = {
+           *     // The ID of the reference.
+           *     referenceId: 'my-reference-id',  // TODO: Update placeholder
+           * value.
+           *
+           *     auth: authClient,
+           *   };
+           *
+           *   var handlePage = function(err, response) {
+           *     if (err) {
+           *       console.error(err);
+           *       return;
+           *     }
+           *
+           *     var nextPageTokenPage = response['nextPageToken'];
+           *     if (!nextPageTokenPage) {
+           *       return;
+           *     }
+           *     // TODO: Change code below to process each `nextPageTokenPage`
+           * resource: console.log(nextPageTokenPage);
+           *
+           *     if (response.nextPageToken) {
+           *       request.pageToken = response.nextPageToken;
+           *       genomics.references.bases.list(request, handlePage);
+           *     }
+           *   };
+           *
+           *   genomics.references.bases.list(request, handlePage);
+           * });
+           *
+           * function authorize(callback) {
+           *   google.auth.getApplicationDefault(function(err, authClient) {
+           *     if (err) {
+           *       console.error('authentication failed: ', err);
+           *       return;
+           *     }
+           *     if (authClient.createScopedRequired &&
+           * authClient.createScopedRequired()) { var scopes =
+           * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
+           * authClient.createScoped(scopes);
+           *     }
+           *     callback(authClient);
+           *   });
+           * }
+           * @alias genomics.references.bases.list
+           * @memberOf! genomics(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.end The end position (0-based, exclusive) of this query. Defaults to the length of this reference.
+           * @param {integer=} params.pageSize The maximum number of bases to return in a single page. If unspecified, defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega base pairs).
+           * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
+           * @param {string} params.referenceId The ID of the reference.
+           * @param {string=} params.start The start position (0-based) of this query. Defaults to 0.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://genomics.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/references/{referenceId}/bases')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['referenceId'],
+              pathParams: ['referenceId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.referencesets = {
+  referencesets = {
     /**
      * genomics.referencesets.get
      * @desc Gets a reference set.  For the definitions of references and other
@@ -3990,7 +4001,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['referenceSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.referencesets.search
         * @desc Searches for reference sets which match the given criteria.  For
@@ -4098,11 +4109,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.variants = {
+  variants = {
     /**
      * genomics.variants.create
      * @desc Creates a new variant.  For the definitions of variants and other
@@ -4192,7 +4203,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.delete
         * @desc Deletes a variant.  For the definitions of variants and other
@@ -4257,7 +4268,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -4279,7 +4290,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.get
         * @desc Gets a variant by ID.  For the definitions of variants and other
@@ -4368,7 +4379,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.import
         * @desc Creates variant data by asynchronously importing the provided
@@ -4470,7 +4481,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.merge
         * @desc Merges the given variants with existing variants.  For the
@@ -4593,7 +4604,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.patch
         * @desc Updates a variant.  For the definitions of variants and other
@@ -4693,7 +4704,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variants.search
         * @desc Gets a list of variants matching the criteria.  For the
@@ -4800,11 +4811,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.variantsets = {
+  variantsets = {
     /**
      * genomics.variantsets.create
      * @desc Creates a new variant set.  For the definitions of variant sets and
@@ -4897,7 +4908,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variantsets.delete
         * @desc Deletes a variant set including all variants, call sets, and
@@ -4964,7 +4975,7 @@ function Genomics(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -4986,7 +4997,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variantsets.export
         * @desc Exports variant set data to an external destination.  For the
@@ -5085,7 +5096,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variantsets.get
         * @desc Gets a variant set by ID.  For the definitions of variant sets
@@ -5175,7 +5186,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variantsets.patch
         * @desc Updates a variant set using patch semantics.  For the
@@ -5275,7 +5286,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['variantSetId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * genomics.variantsets.search
         * @desc Returns a list of all variant sets matching search criteria.
@@ -5383,7 +5394,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -6123,5 +6134,3 @@ function Genomics(options: GlobalOptions) {
  * @property {string} instance The worker&#39;s instance name.
  * @property {string} zone The zone the worker was running in.
  */
-
-export = Genomics;

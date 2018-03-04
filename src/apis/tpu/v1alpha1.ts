@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Tpu;
 
 /**
  * Cloud TPU API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1alpha1
  * @param {object=} options Options for Tpu
  */
-function Tpu(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Tpu extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     locations: {
       /**
        * tpu.projects.locations.get
@@ -62,7 +67,8 @@ function Tpu(options: GlobalOptions) {
           options = {};
         }
         options = options || {};
-        const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+        const rootUrl =
+            options.rootUrl || 'https://content-tpu.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -76,7 +82,7 @@ function Tpu(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * tpu.projects.locations.list
           * @desc Lists information about the supported locations for this
@@ -101,7 +107,8 @@ function Tpu(options: GlobalOptions) {
           options = {};
         }
         options = options || {};
-        const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+        const rootUrl =
+            options.rootUrl || 'https://content-tpu.googleapis.com/';
         const parameters = {
           options: Object.assign(
               {
@@ -115,552 +122,665 @@ function Tpu(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
-      nodes: {
-        /**
-         * tpu.projects.locations.nodes.create
-         * @desc Creates a node.
-         * @alias tpu.projects.locations.nodes.create
-         * @memberOf! tpu(v1alpha1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.nodeId The unqualified resource name.
-         * @param {string} params.parent The parent resource name.
-         * @param {tpu(v1alpha1).Node} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{parent}/nodes')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.delete
-            * @desc Deletes a node.
-            * @alias tpu.projects.locations.nodes.delete
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        delete (
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.get
-            * @desc Gets the details of a node.
-            * @alias tpu.projects.locations.nodes.get
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.list
-            * @desc Lists nodes.
-            * @alias tpu.projects.locations.nodes.list
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {integer=} params.pageSize The maximum number of items to return.
-            * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-            * @param {string} params.parent The parent resource name.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{parent}/nodes')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.reimage
-            * @desc Reimages a node's OS.
-            * @alias tpu.projects.locations.nodes.reimage
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {tpu(v1alpha1).ReimageNodeRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        reimage(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}:reimage')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.reset
-            * @desc Resets a node, which stops and starts the VM.
-            * @alias tpu.projects.locations.nodes.reset
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {tpu(v1alpha1).ResetNodeRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        reset(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}:reset')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.start
-            * @desc Starts a node.
-            * @alias tpu.projects.locations.nodes.start
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {tpu(v1alpha1).StartNodeRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        start(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}:start')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.nodes.stop
-            * @desc Stops a node.
-            * @alias tpu.projects.locations.nodes.stop
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The resource name.
-            * @param {tpu(v1alpha1).StopNodeRequest} params.resource Request body data
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        stop(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}:stop')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
+      acceleratorTypes:
+          {
+            /**
+             * tpu.projects.locations.acceleratorTypes.get
+             * @desc Gets AcceleratorType.
+             * @alias tpu.projects.locations.acceleratorTypes.get
+             * @memberOf! tpu(v1alpha1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.name The resource name.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.acceleratorTypes.list
+                * @desc Lists accelerator types supported by this API.
+                * @alias tpu.projects.locations.acceleratorTypes.list
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.filter List filter.
+                * @param {string=} params.orderBy Sort results.
+                * @param {integer=} params.pageSize The maximum number of items to return.
+                * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+                * @param {string} params.parent The parent resource name.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{parent}/acceleratorTypes')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
 
-      },
-      operations: {
-        /**
-         * tpu.projects.locations.operations.cancel
-         * @desc Starts asynchronous cancellation on a long-running operation.
-         * The server makes a best effort to cancel the operation, but success
-         * is not guaranteed.  If the server doesn't support this method, it
-         * returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-         * Operations.GetOperation or other methods to check whether the
-         * cancellation succeeded or whether the operation completed despite
-         * cancellation. On successful cancellation, the operation is not
-         * deleted; instead, it becomes an operation with an Operation.error
-         * value with a google.rpc.Status.code of 1, corresponding to
-         * `Code.CANCELLED`.
-         * @alias tpu.projects.locations.operations.cancel
-         * @memberOf! tpu(v1alpha1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the operation resource to be cancelled.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        cancel(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}:cancel')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'POST'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.operations.delete
-            * @desc Deletes a long-running operation. This method indicates that
-            * the client is no longer interested in the operation result. It
-            * does not cancel the operation. If the server doesn't support this
-            * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-            * @alias tpu.projects.locations.operations.delete
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The name of the operation resource to be deleted.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        delete (
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'DELETE'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.operations.get
-            * @desc Gets the latest state of a long-running operation.  Clients
-            * can use this method to poll the operation result at intervals as
-            * recommended by the API service.
-            * @alias tpu.projects.locations.operations.get
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string} params.name The name of the operation resource.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.operations.list
-            * @desc Lists operations that match the specified filter in the
-            * request. If the server doesn't support this method, it returns
-            * `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to
-            * override the binding to use different resource name schemes, such
-            * as `users/x/operations`. To override the binding, API services can
-            * add a binding such as `"/v1/{name=users/x}/operations"` to their
-            * service configuration. For backwards compatibility, the default
-            * name includes the operations collection id, however overriding
-            * users must ensure the name binding is the parent resource, without
-            * the operations collection id.
-            * @alias tpu.projects.locations.operations.list
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter The standard list filter.
-            * @param {string} params.name The name of the operation's parent resource.
-            * @param {integer=} params.pageSize The standard list page size.
-            * @param {string=} params.pageToken The standard list page token.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}/operations')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
+          },
+      nodes:
+          {
+            /**
+             * tpu.projects.locations.nodes.create
+             * @desc Creates a node.
+             * @alias tpu.projects.locations.nodes.create
+             * @memberOf! tpu(v1alpha1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string=} params.nodeId The unqualified resource name.
+             * @param {string} params.parent The parent resource name.
+             * @param {tpu(v1alpha1).Node} params.resource Request body data
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            create(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{parent}/nodes')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.delete
+                * @desc Deletes a node.
+                * @alias tpu.projects.locations.nodes.delete
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.get
+                * @desc Gets the details of a node.
+                * @alias tpu.projects.locations.nodes.get
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.list
+                * @desc Lists nodes.
+                * @alias tpu.projects.locations.nodes.list
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {integer=} params.pageSize The maximum number of items to return.
+                * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+                * @param {string} params.parent The parent resource name.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{parent}/nodes')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.reimage
+                * @desc Reimages a node's OS.
+                * @alias tpu.projects.locations.nodes.reimage
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {tpu(v1alpha1).ReimageNodeRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            reimage(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}:reimage')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.reset
+                * @desc Resets a node, which stops and starts the VM.
+                * @alias tpu.projects.locations.nodes.reset
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {tpu(v1alpha1).ResetNodeRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            reset(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}:reset')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.start
+                * @desc Starts a node.
+                * @alias tpu.projects.locations.nodes.start
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {tpu(v1alpha1).StartNodeRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            start(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}:start')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.nodes.stop
+                * @desc Stops a node.
+                * @alias tpu.projects.locations.nodes.stop
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The resource name.
+                * @param {tpu(v1alpha1).StopNodeRequest} params.resource Request body data
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            stop(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}:stop')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
 
-      },
-      tensorflowVersions: {
-        /**
-         * tpu.projects.locations.tensorflowVersions.get
-         * @desc Gets TensorFlow Version.
-         * @alias tpu.projects.locations.tensorflowVersions.get
-         * @memberOf! tpu(v1alpha1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The resource name.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{name}')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }, /**
-            * tpu.projects.locations.tensorflowVersions.list
-            * @desc Lists TensorFlow versions supported by this API.
-            * @alias tpu.projects.locations.tensorflowVersions.list
-            * @memberOf! tpu(v1alpha1)
-            *
-            * @param {object} params Parameters for request
-            * @param {string=} params.filter List filter.
-            * @param {string=} params.orderBy Sort results.
-            * @param {integer=} params.pageSize The maximum number of items to return.
-            * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-            * @param {string} params.parent The parent resource name.
-            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-            * @param {callback} callback The callback that handles the response.
-            * @return {object} Request object
-            */
-        list(
-            params: any, options: MethodOptions|BodyResponseCallback<any>,
-            callback?: BodyResponseCallback<any>) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options = options || {};
-          const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-          const parameters = {
-            options: Object.assign(
-                {
-                  url: (rootUrl + '/v1alpha1/{parent}/tensorflowVersions')
-                           .replace(/([^:]\/)\/+/g, '$1'),
-                  method: 'GET'
-                },
-                options),
-            params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-          return createAPIRequest(parameters, callback!);
-        }
+          },
+      operations:
+          {
+            /**
+             * tpu.projects.locations.operations.cancel
+             * @desc Starts asynchronous cancellation on a long-running
+             * operation.  The server makes a best effort to cancel the
+             * operation, but success is not guaranteed.  If the server doesn't
+             * support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+             * Clients can use Operations.GetOperation or other methods to check
+             * whether the cancellation succeeded or whether the operation
+             * completed despite cancellation. On successful cancellation, the
+             * operation is not deleted; instead, it becomes an operation with
+             * an Operation.error value with a google.rpc.Status.code of 1,
+             * corresponding to `Code.CANCELLED`.
+             * @alias tpu.projects.locations.operations.cancel
+             * @memberOf! tpu(v1alpha1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.name The name of the operation resource to be cancelled.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            cancel(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}:cancel')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'POST'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.operations.delete
+                * @desc Deletes a long-running operation. This method indicates
+                * that the client is no longer interested in the operation
+                * result. It does not cancel the operation. If the server
+                * doesn't support this method, it returns
+                * `google.rpc.Code.UNIMPLEMENTED`.
+                * @alias tpu.projects.locations.operations.delete
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The name of the operation resource to be deleted.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            delete(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'DELETE'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.operations.get
+                * @desc Gets the latest state of a long-running operation.
+                * Clients can use this method to poll the operation result at
+                * intervals as recommended by the API service.
+                * @alias tpu.projects.locations.operations.get
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string} params.name The name of the operation resource.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.operations.list
+                * @desc Lists operations that match the specified filter in the
+                * request. If the server doesn't support this method, it returns
+                * `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services
+                * to override the binding to use different resource name
+                * schemes, such as `users/x/operations`. To override the
+                * binding, API services can add a binding such as
+                * `"/v1/{name=users/x}/operations"` to their service
+                * configuration. For backwards compatibility, the default name
+                * includes the operations collection id, however overriding
+                * users must ensure the name binding is the parent resource,
+                * without the operations collection id.
+                * @alias tpu.projects.locations.operations.list
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.filter The standard list filter.
+                * @param {string} params.name The name of the operation's parent resource.
+                * @param {integer=} params.pageSize The standard list page size.
+                * @param {string=} params.pageToken The standard list page token.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}/operations')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
 
-      }
+          },
+      tensorflowVersions:
+          {
+            /**
+             * tpu.projects.locations.tensorflowVersions.get
+             * @desc Gets TensorFlow Version.
+             * @alias tpu.projects.locations.tensorflowVersions.get
+             * @memberOf! tpu(v1alpha1)
+             *
+             * @param {object} params Parameters for request
+             * @param {string} params.name The resource name.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+             * @param {callback} callback The callback that handles the response.
+             * @return {object} Request object
+             */
+            get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{name}')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['name'],
+                pathParams: ['name'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }, /**
+                * tpu.projects.locations.tensorflowVersions.list
+                * @desc Lists TensorFlow versions supported by this API.
+                * @alias tpu.projects.locations.tensorflowVersions.list
+                * @memberOf! tpu(v1alpha1)
+                *
+                * @param {object} params Parameters for request
+                * @param {string=} params.filter List filter.
+                * @param {string=} params.orderBy Sort results.
+                * @param {integer=} params.pageSize The maximum number of items to return.
+                * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+                * @param {string} params.parent The parent resource name.
+                * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                * @param {callback} callback The callback that handles the response.
+                * @return {object} Request object
+                */
+            list(
+                params: any, options: MethodOptions|BodyResponseCallback<any>,
+                callback?: BodyResponseCallback<any>) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options = options || {};
+              const rootUrl =
+                  options.rootUrl || 'https://content-tpu.googleapis.com/';
+              const parameters = {
+                options: Object.assign(
+                    {
+                      url: (rootUrl + '/v1alpha1/{parent}/tensorflowVersions')
+                               .replace(/([^:]\/)\/+/g, '$1'),
+                      method: 'GET'
+                    },
+                    options),
+                params,
+                requiredParams: ['parent'],
+                pathParams: ['parent'],
+                context: self
+              };
+              createAPIRequest(parameters, callback!);
+            }
+
+          }
     }
   };
 }
 /**
+ * @typedef AcceleratorType
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ * @property {string} name The resource name.
+ * @property {string} type the accelerator type.
+ */
+/**
  * @typedef Empty
  * @memberOf! tpu(v1alpha1)
  * @type object
+ */
+/**
+ * @typedef ListAcceleratorTypesResponse
+ * @memberOf! tpu(v1alpha1)
+ * @type object
+ * @property {tpu(v1alpha1).AcceleratorType[]} acceleratorTypes The listed nodes.
+ * @property {string} nextPageToken The next page token or empty if none.
  */
 /**
  * @typedef ListLocationsResponse
@@ -694,6 +814,7 @@ function Tpu(options: GlobalOptions) {
  * @typedef Location
  * @memberOf! tpu(v1alpha1)
  * @type object
+ * @property {string} displayName The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
  * @property {object} labels Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
@@ -784,5 +905,3 @@ function Tpu(options: GlobalOptions) {
  * @property {string} name The resource name.
  * @property {string} version the tensorflow version.
  */
-
-export = Tpu;

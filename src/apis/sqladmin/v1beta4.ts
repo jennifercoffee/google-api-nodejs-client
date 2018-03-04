@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Sqladmin;
 
 /**
  * Cloud SQL Administration API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta4
  * @param {object=} options Options for Sqladmin
  */
-function Sqladmin(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.backupRuns = {
+export class Sqladmin extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  backupRuns = {
     /**
      * sql.backupRuns.delete
      * @desc Deletes the backup taken by a backup run.
@@ -57,7 +62,7 @@ function Sqladmin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -81,7 +86,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['id', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.get
         * @desc Retrieves a resource containing information about a backup run.
@@ -119,7 +124,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['id', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.insert
         * @desc Creates a new backup run on demand. This method is applicable
@@ -159,7 +164,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.backupRuns.list
         * @desc Lists all backup runs associated with a given instance and
@@ -200,11 +205,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.databases = {
+  databases = {
     /**
      * sql.databases.delete
      * @desc Deletes a database from a Cloud SQL instance.
@@ -219,7 +224,7 @@ function Sqladmin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -243,7 +248,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.get
         * @desc Retrieves a resource containing information about a database
@@ -282,7 +287,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.insert
         * @desc Inserts a resource containing information about a database
@@ -322,7 +327,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.list
         * @desc Lists databases in the specified Cloud SQL instance.
@@ -360,7 +365,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.patch
         * @desc Updates a resource containing information about a database
@@ -401,7 +406,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.databases.update
         * @desc Updates a resource containing information about a database
@@ -442,11 +447,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['database', 'instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.flags = {
+  flags = {
     /**
      * sql.flags.list
      * @desc List all available database flags for Google Cloud SQL instances.
@@ -481,11 +486,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.instances = {
+  instances = {
     /**
      * sql.instances.clone
      * @desc Creates a Cloud SQL instance as a clone of the source instance. The
@@ -525,7 +530,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.delete
         * @desc Deletes a Cloud SQL instance.
@@ -539,7 +544,7 @@ function Sqladmin(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -562,7 +567,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.demoteMaster
         * @desc Reserved for future use.
@@ -601,7 +606,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.export
         * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
@@ -641,7 +646,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.failover
         * @desc Failover the instance to its failover replica instance.
@@ -680,7 +685,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.get
         * @desc Retrieves a resource containing information about a Cloud SQL
@@ -717,7 +722,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.import
         * @desc Imports data into a Cloud SQL instance from a MySQL dump file in
@@ -757,7 +762,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.insert
         * @desc Creates a new Cloud SQL instance.
@@ -793,7 +798,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.list
         * @desc Lists instances under a given project in the alphabetical order
@@ -832,7 +837,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.patch
         * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
@@ -873,7 +878,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.promoteReplica
         * @desc Promotes the read replica instance to be a stand-alone Cloud SQL
@@ -912,7 +917,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.resetSslConfig
         * @desc Deletes all client certificates and generates a new server SSL
@@ -953,7 +958,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.restart
         * @desc Restarts a Cloud SQL instance.
@@ -991,7 +996,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.restoreBackup
         * @desc Restores a backup of a Cloud SQL instance.
@@ -1030,7 +1035,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.startReplica
         * @desc Starts the replication in the read replica instance.
@@ -1068,7 +1073,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.stopReplica
         * @desc Stops the replication in the read replica instance.
@@ -1106,7 +1111,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.truncateLog
         * @desc Truncate MySQL general and slow query log tables
@@ -1145,7 +1150,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.instances.update
         * @desc Updates settings of a Cloud SQL instance. Caution: This is not a
@@ -1185,11 +1190,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.operations = {
+  operations = {
     /**
      * sql.operations.get
      * @desc Retrieves an instance operation that has been performed on an
@@ -1226,7 +1231,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['operation', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.operations.list
         * @desc Lists all instance operations that have been performed on the
@@ -1266,11 +1271,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.sslCerts = {
+  sslCerts = {
     /**
      * sql.sslCerts.createEphemeral
      * @desc Generates a short-lived X509 certificate containing the provided
@@ -1312,7 +1317,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.delete
         * @desc Deletes the SSL certificate. The change will not take effect
@@ -1328,7 +1333,7 @@ function Sqladmin(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1352,7 +1357,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.get
         * @desc Retrieves a particular SSL certificate. Does not include the
@@ -1392,7 +1397,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.insert
         * @desc Creates an SSL certificate and returns it along with the private
@@ -1433,7 +1438,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.sslCerts.list
         * @desc Lists all of the current SSL certificates for the instance.
@@ -1471,11 +1476,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.tiers = {
+  tiers = {
     /**
      * sql.tiers.list
      * @desc Lists all available service tiers for Google Cloud SQL, for example
@@ -1511,11 +1516,11 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * sql.users.delete
      * @desc Deletes a user from a Cloud SQL instance.
@@ -1531,7 +1536,7 @@ function Sqladmin(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1555,7 +1560,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.insert
         * @desc Creates a new user in a Cloud SQL instance.
@@ -1594,7 +1599,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.list
         * @desc Lists users in the specified Cloud SQL instance.
@@ -1632,7 +1637,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * sql.users.update
         * @desc Updates an existing user in a Cloud SQL instance.
@@ -1673,7 +1678,7 @@ function Sqladmin(options: GlobalOptions) {
         pathParams: ['instance', 'project'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1694,7 +1699,7 @@ function Sqladmin(options: GlobalOptions) {
  * @property {boolean} binaryLogEnabled Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well.
  * @property {boolean} enabled Whether this configuration is enabled.
  * @property {string} kind This is always sql#backupConfiguration.
- * @property {boolean} replicationLogArchivingEnabled Whether replication log archiving is enabled. Replication log archiving is required for the point-in-time recovery (PITR) feature. PostgreSQL instances only.
+ * @property {boolean} replicationLogArchivingEnabled Reserved for future use.
  * @property {string} startTime Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
  */
 /**
@@ -1737,7 +1742,7 @@ function Sqladmin(options: GlobalOptions) {
  * @property {sqladmin(v1beta4).BinLogCoordinates} binLogCoordinates Binary log coordinates, if specified, indentify the the position up to which the source instance should be cloned. If not specified, the source instance is cloned up to the most recent binary log coordintes.
  * @property {string} destinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  * @property {string} kind This is always sql#cloneContext.
- * @property {string} pitrTimestampMs The epoch timestamp, in milliseconds, of the time to which a point-in-time recovery (PITR) is performed. PostgreSQL instances only. For MySQL instances, use the binLogCoordinates property.
+ * @property {string} pitrTimestampMs Reserved for future use.
  */
 /**
  * @typedef Database
@@ -2155,5 +2160,3 @@ function Sqladmin(options: GlobalOptions) {
  * @property {string} kind This is always sql#usersList.
  * @property {string} nextPageToken An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
  */
-
-export = Sqladmin;

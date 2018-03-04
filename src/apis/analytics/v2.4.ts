@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Analytics;
 
 /**
  * Google Analytics API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2.4
  * @param {object=} options Options for Analytics
  */
-function Analytics(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.data = {
+export class Analytics extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  data = {
     /**
      * analytics.data.get
      * @desc Returns Analytics report data for a view (profile).
@@ -84,11 +89,11 @@ function Analytics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.management = {
+  management = {
     accounts: {
       /**
        * analytics.management.accounts.list
@@ -125,7 +130,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -170,7 +175,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -214,7 +219,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -254,7 +259,7 @@ function Analytics(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -297,11 +302,9 @@ function Analytics(options: GlobalOptions) {
           pathParams: ['accountId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
 }
-
-export = Analytics;

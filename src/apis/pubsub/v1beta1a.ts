@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Pubsub;
 
 /**
  * Google Cloud Pub/Sub API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1a
  * @param {object=} options Options for Pubsub
  */
-function Pubsub(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.subscriptions = {
+export class Pubsub extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  subscriptions = {
     /**
      * pubsub.subscriptions.acknowledge
      * @desc Acknowledges a particular received message: the Pub/Sub system can
@@ -80,7 +85,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.create
         * @desc Creates a subscription on a given topic for a given subscriber.
@@ -119,7 +124,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.delete
         * @desc Deletes an existing subscription. All pending messages in the
@@ -134,7 +139,7 @@ function Pubsub(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -156,7 +161,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: ['subscription'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.get
         * @desc Gets the configuration details of a subscription.
@@ -190,7 +195,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: ['subscription'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.list
         * @desc Lists matching subscriptions.
@@ -227,7 +232,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.modifyAckDeadline
         * @desc Modifies the Ack deadline for a message received from a pull
@@ -263,7 +268,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.modifyPushConfig
         * @desc Modifies the <code>PushConfig</code> for a specified
@@ -302,7 +307,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.pull
         * @desc Pulls a single message from the server. If return_immediately is
@@ -341,7 +346,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.subscriptions.pullBatch
         * @desc Pulls messages from the server. Returns an empty list if there
@@ -379,11 +384,11 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.topics = {
+  topics = {
     /**
      * pubsub.topics.create
      * @desc Creates the given topic with the given name.
@@ -417,7 +422,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.topics.delete
         * @desc Deletes the topic with the given name. Returns NOT_FOUND if the
@@ -432,7 +437,7 @@ function Pubsub(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -454,7 +459,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: ['topic'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.topics.get
         * @desc Gets the configuration of a topic. Since the topic only has the
@@ -491,7 +496,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: ['topic'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.topics.list
         * @desc Lists matching topics.
@@ -527,7 +532,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.topics.publish
         * @desc Adds a message to the topic.  Returns NOT_FOUND if the topic
@@ -563,7 +568,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * pubsub.topics.publishBatch
         * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the
@@ -599,7 +604,7 @@ function Pubsub(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -741,5 +746,3 @@ function Pubsub(options: GlobalOptions) {
  * @type object
  * @property {string} name Name of the topic.
  */
-
-export = Pubsub;

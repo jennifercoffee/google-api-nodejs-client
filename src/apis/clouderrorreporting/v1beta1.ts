@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Clouderrorreporting;
 
 /**
  * Stackdriver Error Reporting API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Clouderrorreporting
  */
-function Clouderrorreporting(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Clouderrorreporting extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     /**
      * clouderrorreporting.projects.deleteEvents
      * @desc Deletes all error events of a given project.
@@ -79,7 +84,7 @@ function Clouderrorreporting(options: GlobalOptions) {
         pathParams: ['projectName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     events: {
       /**
@@ -124,7 +129,7 @@ function Clouderrorreporting(options: GlobalOptions) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * clouderrorreporting.projects.events.report
           * @desc Report an individual error event.  This endpoint accepts
@@ -166,7 +171,7 @@ function Clouderrorreporting(options: GlobalOptions) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -205,7 +210,7 @@ function Clouderrorreporting(options: GlobalOptions) {
           pathParams: ['groupName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * clouderrorreporting.projects.groups.update
           * @desc Replace the data for the specified group. Fails if the group
@@ -243,7 +248,7 @@ function Clouderrorreporting(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -294,7 +299,7 @@ function Clouderrorreporting(options: GlobalOptions) {
           pathParams: ['projectName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -423,5 +428,3 @@ function Clouderrorreporting(options: GlobalOptions) {
  * @type object
  * @property {string} url A URL pointing to a related entry in an issue tracking system. Example: https://github.com/user/project/issues/4
  */
-
-export = Clouderrorreporting;

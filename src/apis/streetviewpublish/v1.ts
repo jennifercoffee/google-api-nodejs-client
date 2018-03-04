@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Streetviewpublish;
 
 /**
  * Street View Publish API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Streetviewpublish
  */
-function Streetviewpublish(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.photo = {
+export class Streetviewpublish extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  photo = {
     /**
      * streetviewpublish.photo.create
      * @desc After the client finishes uploading the photo with the returned
@@ -89,7 +94,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.delete
         * @desc Deletes a Photo and its metadata.  This method returns the
@@ -105,7 +110,7 @@ function Streetviewpublish(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -128,7 +133,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: ['photoId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.get
         * @desc Gets the metadata of the specified Photo.  This method returns
@@ -169,7 +174,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: ['photoId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.startUpload
         * @desc Creates an upload session to start uploading photo bytes. The
@@ -217,7 +222,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photo.update
         * @desc Updates the metadata of a Photo, such as pose, place
@@ -265,11 +270,11 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.photos = {
+  photos = {
     /**
      * streetviewpublish.photos.batchDelete
      * @desc Deletes a list of Photos and their metadata.  Note that if
@@ -311,7 +316,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.batchGet
         * @desc Gets the metadata of the specified Photo batch.  Note that if
@@ -354,7 +359,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.batchUpdate
         * @desc Updates the metadata of Photos, such as pose, place association,
@@ -401,7 +406,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * streetviewpublish.photos.list
         * @desc Lists all the Photos that belong to the user.  <aside
@@ -441,7 +446,7 @@ function Streetviewpublish(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -584,5 +589,3 @@ function Streetviewpublish(options: GlobalOptions) {
  * @type object
  * @property {string} uploadUrl Required. An upload reference should be unique for each user. It follows the form: &quot;https://streetviewpublish.googleapis.com/media/user/{account_id}/photo/{upload_reference}&quot;
  */
-
-export = Streetviewpublish;

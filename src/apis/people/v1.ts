@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: People;
 
 /**
  * People API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for People
  */
-function People(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.contactGroups = {
+export class People extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  contactGroups = {
     /**
      * people.contactGroups.batchGet
      * @desc Get a list of contact groups owned by the authenticated user by
@@ -78,7 +83,7 @@ function People(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.create
         * @desc Create a new contact group owned by the authenticated user.
@@ -113,7 +118,7 @@ function People(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.delete
         * @desc Delete an existing contact group owned by the authenticated user
@@ -128,7 +133,7 @@ function People(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -150,7 +155,7 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.get
         * @desc Get a specific contact group owned by the authenticated user by
@@ -186,7 +191,7 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.list
         * @desc List all contact groups owned by the authenticated user. Members
@@ -224,7 +229,7 @@ function People(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.contactGroups.update
         * @desc Update the name of an existing contact group owned by the
@@ -261,51 +266,52 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    members: {
-      /**
-       * people.contactGroups.members.modify
-       * @desc Modify the members of a contact group owned by the authenticated
-       * user.
-       * @alias people.contactGroups.members.modify
-       * @memberOf! people(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resourceName The resource name of the contact group to modify.
-       * @param {people(v1).ModifyContactGroupMembersRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      modify(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}/members:modify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    members:
+        {
+          /**
+           * people.contactGroups.members.modify
+           * @desc Modify the members of a contact group owned by the
+           * authenticated user.
+           * @alias people.contactGroups.members.modify
+           * @memberOf! people(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.resourceName The resource name of the contact group to modify.
+           * @param {people(v1).ModifyContactGroupMembersRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          modify(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{resourceName}/members:modify')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['resourceName'],
+              pathParams: ['resourceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.people = {
+  people = {
     /**
      * people.people.createContact
      * @desc Create a new contact and return the person resource for that
@@ -342,7 +348,7 @@ function People(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.people.deleteContact
         * @desc Delete a contact person. Any non-contact data will not be
@@ -378,7 +384,7 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.people.get
         * @desc Provides information about a person by specifying a resource
@@ -416,7 +422,7 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.people.getBatchGet
         * @desc Provides information about a list of specific people by
@@ -456,7 +462,7 @@ function People(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * people.people.updateContact
         * @desc Update contact data for an existing contact person. Any
@@ -501,56 +507,57 @@ function People(options: GlobalOptions) {
         pathParams: ['resourceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    connections: {
-      /**
-       * people.people.connections.list
-       * @desc Provides a list of the authenticated user's contacts merged with
-       * any connected profiles. <br> The request throws a 400 error if
-       * 'personFields' is not specified.
-       * @alias people.people.connections.list
-       * @memberOf! people(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100.
-       * @param {string=} params.pageToken The token of the page to be returned.
-       * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
-       * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-       * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
-       * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
-       * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
-       * @param {string=} params.syncToken A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}/connections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    connections:
+        {
+          /**
+           * people.people.connections.list
+           * @desc Provides a list of the authenticated user's contacts merged
+           * with any connected profiles. <br> The request throws a 400 error if
+           * 'personFields' is not specified.
+           * @alias people.people.connections.list
+           * @memberOf! people(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100.
+           * @param {string=} params.pageToken The token of the page to be returned.
+           * @param {string=} params.personFields **Required.** A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * skills * taglines * urls
+           * @param {string=} params.requestMask.includeField **Required.** Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
+           * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+           * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
+           * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
+           * @param {string=} params.syncToken A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1/{resourceName}/connections')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['resourceName'],
+              pathParams: ['resourceName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -1000,5 +1007,3 @@ function People(options: GlobalOptions) {
  * @property {people(v1).FieldMetadata} metadata Metadata about the user defined data.
  * @property {string} value The end user specified value of the user defined data.
  */
-
-export = People;

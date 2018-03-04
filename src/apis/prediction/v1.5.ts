@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Prediction;
 
 /**
  * Prediction API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1.5
  * @param {object=} options Options for Prediction
  */
-function Prediction(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.hostedmodels = {
+export class Prediction extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  hostedmodels = {
     /**
      * prediction.hostedmodels.predict
      * @desc Submit input and request an output against a hosted model.
@@ -79,11 +84,11 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['hostedModelName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.trainedmodels = {
+  trainedmodels = {
     /**
      * prediction.trainedmodels.analyze
      * @desc Get analysis of the model and the data the model was trained on.
@@ -118,7 +123,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.delete
         * @desc Delete a trained model.
@@ -131,7 +136,7 @@ function Prediction(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -153,7 +158,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.get
         * @desc Check training status of your model.
@@ -187,7 +192,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.insert
         * @desc Begin training your model.
@@ -222,7 +227,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.list
         * @desc List available models.
@@ -258,7 +263,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.predict
         * @desc Submit model id and request a prediction.
@@ -294,7 +299,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * prediction.trainedmodels.update
         * @desc Add new data to a trained model.
@@ -330,7 +335,7 @@ function Prediction(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -398,5 +403,3 @@ function Prediction(options: GlobalOptions) {
  * @property {string} label The class label of this instance
  * @property {string} output The generic output value - could be regression value or class label
  */
-
-export = Prediction;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Clouddebugger;
 
 /**
  * Stackdriver Debugger API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Clouddebugger
  */
-function Clouddebugger(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.controller = {
+export class Clouddebugger extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  controller = {
     debuggees: {
       /**
        * clouddebugger.controller.debuggees.register
@@ -138,7 +143,7 @@ function Clouddebugger(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
       breakpoints: {
         /**
@@ -240,7 +245,7 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.controller.debuggees.breakpoints.update
             * @desc Updates the breakpoint state or mutable fields. The entire
@@ -348,13 +353,13 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['debuggeeId', 'id'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
     }
   };
-  self.debugger = {
+  debugger = {
     debuggees: {
       /**
        * clouddebugger.debugger.debuggees.list
@@ -441,7 +446,7 @@ function Clouddebugger(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       },
       breakpoints: {
         /**
@@ -510,7 +515,7 @@ function Clouddebugger(options: GlobalOptions) {
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -535,7 +540,7 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['breakpointId', 'debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.get
             * @desc Gets breakpoint information.
@@ -630,7 +635,7 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['breakpointId', 'debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.list
             * @desc Lists all breakpoints for the debuggee.
@@ -725,7 +730,7 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * clouddebugger.debugger.debuggees.breakpoints.set
             * @desc Sets the breakpoint to the debuggee.
@@ -819,7 +824,7 @@ function Clouddebugger(options: GlobalOptions) {
             pathParams: ['debuggeeId'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }
 
       }
@@ -1043,5 +1048,3 @@ function Clouddebugger(options: GlobalOptions) {
  * @property {string} value Simple value of the variable.
  * @property {integer} varTableIndex Reference to a variable in the shared variable table. More than one variable can reference the same variable in the table. The `var_table_index` field is an index into `variable_table` in Breakpoint.
  */
-
-export = Clouddebugger;

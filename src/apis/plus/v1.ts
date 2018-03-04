@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Plus;
 
 /**
  * Google+ API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Plus
  */
-function Plus(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.activities = {
+export class Plus extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  activities = {
     /**
      * plus.activities.get
      * @desc Get an activity.
@@ -75,7 +80,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.activities.list
         * @desc List all of the activities in the specified collection for a
@@ -115,7 +120,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.activities.search
         * @desc Search public activities.
@@ -154,11 +159,11 @@ function Plus(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.comments = {
+  comments = {
     /**
      * plus.comments.get
      * @desc Get a comment.
@@ -192,7 +197,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['commentId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.comments.list
         * @desc List all of the comments for an activity.
@@ -230,11 +235,11 @@ function Plus(options: GlobalOptions) {
         pathParams: ['activityId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.people = {
+  people = {
     /**
      * plus.people.get
      * @desc Get a person's profile. If your app uses scope
@@ -270,7 +275,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.list
         * @desc List all of the people in the specified collection.
@@ -309,7 +314,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['collection', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.listByActivity
         * @desc List all of the people in the specified collection for a
@@ -349,7 +354,7 @@ function Plus(options: GlobalOptions) {
         pathParams: ['activityId', 'collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * plus.people.search
         * @desc Search all public profiles.
@@ -386,7 +391,7 @@ function Plus(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -532,5 +537,3 @@ function Plus(options: GlobalOptions) {
  * @property {string} id The ID of the entry. For entries of type &quot;person&quot; or &quot;circle&quot;, this is the ID of the resource. For other types, this property is not set.
  * @property {string} type The type of entry describing to whom access is granted. Possible values are:   - &quot;person&quot; - Access to an individual.  - &quot;circle&quot; - Access to members of a circle.  - &quot;myCircles&quot; - Access to members of all the person&#39;s circles.  - &quot;extendedCircles&quot; - Access to members of all the person&#39;s circles, plus all of the people in their circles.  - &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain.  - &quot;public&quot; - Access to anyone on the web.
  */
-
-export = Plus;

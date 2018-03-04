@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Adexchangebuyer;
 
 /**
  * Ad Exchange Buyer API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1.4
  * @param {object=} options Options for Adexchangebuyer
  */
-function Adexchangebuyer(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Adexchangebuyer extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     /**
      * adexchangebuyer.accounts.get
      * @desc Gets one account by ID.
@@ -76,7 +81,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.list
         * @desc Retrieves the authenticated user's list of accounts.
@@ -110,7 +115,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.patch
         * @desc Updates an existing account. This method supports patch
@@ -148,7 +153,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.accounts.update
         * @desc Updates an existing account.
@@ -185,11 +190,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.billingInfo = {
+  billingInfo = {
     /**
      * adexchangebuyer.billingInfo.get
      * @desc Returns the billing information for one account specified by
@@ -224,7 +229,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.billingInfo.list
         * @desc Retrieves a list of billing information for all accounts of the
@@ -259,11 +264,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.budget = {
+  budget = {
     /**
      * adexchangebuyer.budget.get
      * @desc Returns the budget information for the adgroup specified by the
@@ -300,7 +305,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.budget.patch
         * @desc Updates the budget amount for the budget of the adgroup
@@ -340,7 +345,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.budget.update
         * @desc Updates the budget amount for the budget of the adgroup
@@ -380,11 +385,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'billingId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.creatives = {
+  creatives = {
     /**
      * adexchangebuyer.creatives.addDeal
      * @desc Add a deal id association for the creative.
@@ -423,7 +428,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'buyerCreativeId', 'dealId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.get
         * @desc Gets the status for a single creative. A creative will be
@@ -461,7 +466,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.insert
         * @desc Submit a new creative.
@@ -496,7 +501,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.list
         * @desc Retrieves a list of the authenticated user's active creatives. A
@@ -537,7 +542,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.listDeals
         * @desc Lists the external deal ids associated with the creative.
@@ -575,7 +580,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'buyerCreativeId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.creatives.removeDeal
         * @desc Remove a deal id associated with the creative.
@@ -614,11 +619,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'buyerCreativeId', 'dealId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.marketplacedeals = {
+  marketplacedeals = {
     /**
      * adexchangebuyer.marketplacedeals.delete
      * @desc Delete the specified deals from the proposal
@@ -632,7 +637,7 @@ function Adexchangebuyer(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -655,7 +660,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.insert
         * @desc Add new deals for the specified proposal
@@ -692,7 +697,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.list
         * @desc List all the deals for a given proposal
@@ -729,7 +734,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacedeals.update
         * @desc Replaces all the deals in the proposal with the passed in deals
@@ -766,11 +771,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.marketplacenotes = {
+  marketplacenotes = {
     /**
      * adexchangebuyer.marketplacenotes.insert
      * @desc Add notes to the proposal
@@ -807,7 +812,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.marketplacenotes.list
         * @desc Get all the notes associated with a proposal
@@ -844,11 +849,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.marketplaceprivateauction = {
+  marketplaceprivateauction = {
     /**
      * adexchangebuyer.marketplaceprivateauction.updateproposal
      * @desc Update a given private auction proposal
@@ -886,11 +891,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['privateAuctionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.performanceReport = {
+  performanceReport = {
     /**
      * adexchangebuyer.performanceReport.list
      * @desc Retrieves the authenticated user's list of performance metrics.
@@ -929,11 +934,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pretargetingConfig = {
+  pretargetingConfig = {
     /**
      * adexchangebuyer.pretargetingConfig.delete
      * @desc Deletes an existing pretargeting config.
@@ -947,7 +952,7 @@ function Adexchangebuyer(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -971,7 +976,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.get
         * @desc Gets a specific pretargeting configuration
@@ -1008,7 +1013,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.insert
         * @desc Inserts a new pretargeting configuration.
@@ -1045,7 +1050,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.list
         * @desc Retrieves a list of the authenticated user's pretargeting
@@ -1082,7 +1087,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.patch
         * @desc Updates an existing pretargeting config. This method supports
@@ -1122,7 +1127,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.pretargetingConfig.update
         * @desc Updates an existing pretargeting config.
@@ -1161,11 +1166,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId', 'configId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.products = {
+  products = {
     /**
      * adexchangebuyer.products.get
      * @desc Gets the requested product by id.
@@ -1199,7 +1204,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.products.search
         * @desc Gets the requested product.
@@ -1234,11 +1239,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.proposals = {
+  proposals = {
     /**
      * adexchangebuyer.proposals.get
      * @desc Get a proposal given its id
@@ -1272,7 +1277,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.insert
         * @desc Create the given list of proposals
@@ -1307,7 +1312,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.patch
         * @desc Update the given proposal. This method supports patch semantics.
@@ -1347,7 +1352,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId', 'revisionNumber', 'updateAction'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.search
         * @desc Search for proposals using pql query
@@ -1382,7 +1387,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.setupcomplete
         * @desc Update the given proposal to indicate that setup has been
@@ -1420,7 +1425,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * adexchangebuyer.proposals.update
         * @desc Update the given proposal
@@ -1460,11 +1465,11 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['proposalId', 'revisionNumber', 'updateAction'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pubprofiles = {
+  pubprofiles = {
     /**
      * adexchangebuyer.pubprofiles.list
      * @desc Gets the requested publisher profile(s) by publisher accountId.
@@ -1500,7 +1505,7 @@ function Adexchangebuyer(options: GlobalOptions) {
         pathParams: ['accountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2152,5 +2157,3 @@ function Adexchangebuyer(options: GlobalOptions) {
  * @property {string} proposalRevisionNumber The current revision number of the proposal to be updated.
  * @property {string} updateAction The proposed action on the private auction proposal.
  */
-
-export = Adexchangebuyer;

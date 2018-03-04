@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Content;
 
 /**
  * Content API for Shopping
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Content
  */
-function Content(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Content extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     /**
      * content.accounts.authinfo
      * @desc Returns information about the authenticated user.
@@ -76,7 +81,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.claimwebsite
         * @desc Claims the website of a Merchant Center sub-account.
@@ -115,7 +120,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.custombatch
         * @desc Retrieves, inserts, updates, and deletes multiple Merchant
@@ -152,7 +157,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.delete
         * @desc Deletes a Merchant Center sub-account.
@@ -168,7 +173,7 @@ function Content(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -190,7 +195,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.get
         * @desc Retrieves a Merchant Center account.
@@ -225,7 +230,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.insert
         * @desc Creates a Merchant Center sub-account.
@@ -262,7 +267,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.list
         * @desc Lists the sub-accounts in your Merchant Center account.
@@ -299,7 +304,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.patch
         * @desc Updates a Merchant Center account. This method supports patch
@@ -338,7 +343,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounts.update
         * @desc Updates a Merchant Center account.
@@ -376,11 +381,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.accountstatuses = {
+  accountstatuses = {
     /**
      * content.accountstatuses.custombatch
      * @alias content.accountstatuses.custombatch
@@ -414,7 +419,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accountstatuses.get
         * @desc Retrieves the status of a Merchant Center account.
@@ -450,7 +455,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accountstatuses.list
         * @desc Lists the statuses of the sub-accounts in your Merchant Center
@@ -488,11 +493,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.accounttax = {
+  accounttax = {
     /**
      * content.accounttax.custombatch
      * @desc Retrieves and updates tax settings of multiple accounts in a single
@@ -529,7 +534,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.get
         * @desc Retrieves the tax settings of the account.
@@ -564,7 +569,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.list
         * @desc Lists the tax settings of the sub-accounts in your Merchant
@@ -602,7 +607,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.patch
         * @desc Updates the tax settings of the account. This method supports
@@ -641,7 +646,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.accounttax.update
         * @desc Updates the tax settings of the account.
@@ -679,11 +684,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.datafeeds = {
+  datafeeds = {
     /**
      * content.datafeeds.custombatch
      * @alias content.datafeeds.custombatch
@@ -718,7 +723,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.delete
         * @desc Deletes a datafeed configuration from your Merchant Center
@@ -734,7 +739,7 @@ function Content(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -756,7 +761,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.get
         * @desc Retrieves a datafeed configuration from your Merchant Center
@@ -792,7 +797,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.insert
         * @desc Registers a datafeed configuration with your Merchant Center
@@ -830,7 +835,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.list
         * @desc Lists the configurations for datafeeds in your Merchant Center
@@ -868,7 +873,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.patch
         * @desc Updates a datafeed configuration of your Merchant Center
@@ -907,7 +912,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeeds.update
         * @desc Updates a datafeed configuration of your Merchant Center
@@ -946,11 +951,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.datafeedstatuses = {
+  datafeedstatuses = {
     /**
      * content.datafeedstatuses.custombatch
      * @alias content.datafeedstatuses.custombatch
@@ -984,7 +989,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeedstatuses.get
         * @desc Retrieves the status of a datafeed from your Merchant Center
@@ -1023,7 +1028,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['datafeedId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.datafeedstatuses.list
         * @desc Lists the statuses of the datafeeds in your Merchant Center
@@ -1061,11 +1066,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.inventory = {
+  inventory = {
     /**
      * content.inventory.custombatch
      * @desc Updates price and availability for multiple products or stores in a
@@ -1103,7 +1108,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.inventory.set
         * @desc Updates price and availability of a product in your Merchant
@@ -1144,11 +1149,364 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'productId', 'storeCode'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.orders = {
+  liasettings = {
+    /**
+     * content.liasettings.custombatch
+     * @desc Retrieves and/or updates the LIA settings of multiple accounts in a
+     * single request.
+     * @alias content.liasettings.custombatch
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {content(v2).LiasettingsCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/liasettings/batch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.get
+        * @desc Retrieves the LIA settings of the account.
+        * @alias content.liasettings.get
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2/{merchantId}/liasettings/{accountId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.getaccessiblegmbaccounts
+        * @desc Retrieves the list of accessible Google My Business accounts.
+        * @alias content.liasettings.getaccessiblegmbaccounts
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    getaccessiblegmbaccounts(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/liasettings/{accountId}/accessiblegmbaccounts')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.list
+        * @desc Lists the LIA settings of the sub-accounts in your Merchant
+        * Center account.
+        * @alias content.liasettings.list
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {integer=} params.maxResults The maximum number of LIA settings to return in the response, used for paging.
+        * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
+        * @param {string=} params.pageToken The token returned by the previous request.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    list(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/{merchantId}/liasettings')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.patch
+        * @desc Updates the LIA settings of the account. This method supports
+        * patch semantics.
+        * @alias content.liasettings.patch
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).LiaSettings} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    patch(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2/{merchantId}/liasettings/{accountId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.requestgmbaccess
+        * @desc Requests access to a specified Google My Business account.
+        * @alias content.liasettings.requestgmbaccess
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which GMB access is requested.
+        * @param {string=} params.gmbEmail The email of the Google My Business account.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    requestgmbaccess(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/liasettings/{accountId}/requestgmbaccess')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.requestinventoryverification
+        * @desc Requests inventory validation for the specified country.
+        * @alias content.liasettings.requestinventoryverification
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string} params.country The country for which inventory validation is requested.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    requestinventoryverification(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/liasettings/{accountId}/requestinventoryverification/{country}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId', 'country'],
+        pathParams: ['accountId', 'country', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.setinventoryverificationcontact
+        * @desc Sets the inventory verification contract for the specified
+        * country.
+        * @alias content.liasettings.setinventoryverificationcontact
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
+        * @param {string=} params.contactEmail The email of the inventory verification contact.
+        * @param {string=} params.contactName The name of the inventory verification contact.
+        * @param {string=} params.country The country for which inventory verification is requested.
+        * @param {string=} params.language The language for which inventory verification is requested.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    setinventoryverificationcontact(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/liasettings/{accountId}/setinventoryverificationcontact')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }, /**
+        * content.liasettings.update
+        * @desc Updates the LIA settings of the account.
+        * @alias content.liasettings.update
+        * @memberOf! content(v2)
+        *
+        * @param {object} params Parameters for request
+        * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
+        * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+        * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+        * @param {content(v2).LiaSettings} params.resource Request body data
+        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+        * @param {callback} callback The callback that handles the response.
+        * @return {object} Request object
+        */
+    update(
+        params: any, options: MethodOptions|BodyResponseCallback<any>,
+        callback?: BodyResponseCallback<any>) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2/{merchantId}/liasettings/{accountId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+      createAPIRequest(parameters, callback!);
+    }
+
+  };
+  orders = {
     /**
      * content.orders.acknowledge
      * @desc Marks an order as acknowledged.
@@ -1186,7 +1544,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.advancetestorder
         * @desc Sandbox only. Moves a test order from state "inProgress" to
@@ -1224,7 +1582,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancel
         * @desc Cancels all line items in an order, making a full refund.
@@ -1262,7 +1620,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.cancellineitem
         * @desc Cancels a line item, making a full refund.
@@ -1300,7 +1658,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.createtestorder
         * @desc Sandbox only. Creates a test order.
@@ -1336,7 +1694,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.custombatch
         * @desc Retrieves or modifies multiple orders in a single request.
@@ -1371,7 +1729,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.get
         * @desc Retrieves an order from your Merchant Center account.
@@ -1406,7 +1764,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.getbymerchantorderid
         * @desc Retrieves an order using merchant order id.
@@ -1444,7 +1802,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'merchantOrderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.gettestordertemplate
         * @desc Sandbox only. Retrieves an order template that can be used to
@@ -1483,7 +1841,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'templateName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.instorerefundlineitem
         * @desc Notifies that item return and refund was handled directly in
@@ -1523,7 +1881,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.list
         * @desc Lists the orders in your Merchant Center account.
@@ -1565,7 +1923,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.refund
         * @desc Refund a portion of the order, up to the full amount paid.
@@ -1603,7 +1961,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.rejectreturnlineitem
         * @desc Rejects return on an line item.
@@ -1642,7 +2000,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnlineitem
         * @desc Returns a line item.
@@ -1680,7 +2038,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.returnrefundlineitem
         * @desc Returns and refunds a line item. Note that this method can only
@@ -1720,7 +2078,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.setlineitemmetadata
         * @desc Sets (overrides) merchant provided annotations on the line item.
@@ -1759,7 +2117,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.shiplineitems
         * @desc Marks line item(s) as shipped.
@@ -1797,7 +2155,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatelineitemshippingdetails
         * @desc Updates ship by and delivery by dates for a line item.
@@ -1836,7 +2194,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updatemerchantorderid
         * @desc Updates the merchant order ID for a given order.
@@ -1875,7 +2233,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.orders.updateshipment
         * @desc Updates a shipment's status, carrier, and/or tracking ID.
@@ -1913,11 +2271,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'orderId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pos = {
+  pos = {
     /**
      * content.pos.custombatch
      * @desc Batches multiple POS-related calls in a single request.
@@ -1953,7 +2311,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.delete
         * @desc Deletes a store for the given merchant.
@@ -1962,14 +2320,14 @@ function Content(options: GlobalOptions) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.storeCode A store code that is unique per merchant.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1993,7 +2351,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.get
         * @desc Retrieves information about the given store.
@@ -2001,7 +2359,7 @@ function Content(options: GlobalOptions) {
         * @memberOf! content(v2)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.storeCode A store code that is unique per merchant.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2031,7 +2389,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.insert
         * @desc Creates a store for the given merchant.
@@ -2040,7 +2398,7 @@ function Content(options: GlobalOptions) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {content(v2).PosStore} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2070,7 +2428,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.inventory
         * @desc Submit inventory for the given merchant.
@@ -2079,7 +2437,7 @@ function Content(options: GlobalOptions) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {content(v2).PosInventoryRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2109,7 +2467,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.list
         * @desc Lists the stores of the target merchant.
@@ -2117,7 +2475,7 @@ function Content(options: GlobalOptions) {
         * @memberOf! content(v2)
         *
         * @param {object} params Parameters for request
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
         * @param {callback} callback The callback that handles the response.
@@ -2146,7 +2504,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.pos.sale
         * @desc Submit a sale event for the given merchant.
@@ -2155,7 +2513,7 @@ function Content(options: GlobalOptions) {
         *
         * @param {object} params Parameters for request
         * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
-        * @param {string} params.merchantId The ID of the POS provider.
+        * @param {string} params.merchantId The ID of the POS or inventory data provider.
         * @param {string} params.targetMerchantId The ID of the target merchant.
         * @param {content(v2).PosSaleRequest} params.resource Request body data
         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2185,11 +2543,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'targetMerchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.products = {
+  products = {
     /**
      * content.products.custombatch
      * @desc Retrieves, inserts, and deletes multiple products in a single
@@ -2226,7 +2584,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.products.delete
         * @desc Deletes a product from your Merchant Center account.
@@ -2241,7 +2599,7 @@ function Content(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2263,7 +2621,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.products.get
         * @desc Retrieves a product from your Merchant Center account.
@@ -2298,7 +2656,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.products.insert
         * @desc Uploads a product to your Merchant Center account. If an item
@@ -2337,7 +2695,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.products.list
         * @desc Lists the products in your Merchant Center account.
@@ -2375,11 +2733,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.productstatuses = {
+  productstatuses = {
     /**
      * content.productstatuses.custombatch
      * @desc Gets the statuses of multiple products in a single request.
@@ -2415,7 +2773,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.productstatuses.get
         * @desc Gets the status of a product from your Merchant Center account.
@@ -2452,7 +2810,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.productstatuses.list
         * @desc Lists the statuses of the products in your Merchant Center
@@ -2492,11 +2850,11 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.shippingsettings = {
+  shippingsettings = {
     /**
      * content.shippingsettings.custombatch
      * @desc Retrieves and updates the shipping settings of multiple accounts in
@@ -2533,7 +2891,7 @@ function Content(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.get
         * @desc Retrieves the shipping settings of the account.
@@ -2569,7 +2927,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.getsupportedcarriers
         * @desc Retrieves supported carriers and carrier services for an
@@ -2605,7 +2963,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.getsupportedholidays
         * @desc Retrieves supported holidays for an account.
@@ -2640,7 +2998,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.list
         * @desc Lists the shipping settings of the sub-accounts in your Merchant
@@ -2678,7 +3036,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.patch
         * @desc Updates the shipping settings of the account. This method
@@ -2718,7 +3076,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * content.shippingsettings.update
         * @desc Updates the shipping settings of the account.
@@ -2757,7 +3115,7 @@ function Content(options: GlobalOptions) {
         pathParams: ['accountId', 'merchantId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3212,6 +3570,22 @@ function Content(options: GlobalOptions) {
  * @property {string} message The message of the first error in errors.
  */
 /**
+ * @typedef GmbAccounts
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account.
+ * @property {content(v2).GmbAccountsGmbAccount[]} gmbAccounts A list of GMB accounts which are available to the merchant.
+ */
+/**
+ * @typedef GmbAccountsGmbAccount
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} email The email which identifies the GMB account.
+ * @property {string} listingCount Number of listings under this account.
+ * @property {string} name The name of the GMB account.
+ * @property {string} type The type of the GMB account (User or Business).
+ */
+/**
  * @typedef Headers
  * @memberOf! content(v2)
  * @type object
@@ -3323,6 +3697,119 @@ function Content(options: GlobalOptions) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventorySetResponse&quot;.
  */
 /**
+ * @typedef LiaAboutPageSettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} status The status of the verification process for the About page.
+ * @property {string} url The URL for the About page.
+ */
+/**
+ * @typedef LiaCountrySettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).LiaAboutPageSettings} about The settings for the About page.
+ * @property {string} country CLDR country code (e.g. &quot;US&quot;).
+ * @property {boolean} hostedLocalStorefrontActive The status of the &quot;Merchant hosted local storefront&quot; feature.
+ * @property {content(v2).LiaInventorySettings} inventory LIA inventory verification settings.
+ * @property {content(v2).LiaOnDisplayToOrderSettings} onDisplayToOrder LIA &quot;On Display To Order&quot; settings.
+ * @property {boolean} storePickupActive The status of the &quot;Store pickup&quot; feature.
+ */
+/**
+ * @typedef LiaInventorySettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} inventoryVerificationContactEmail The email of the contact for the inventory verification process.
+ * @property {string} inventoryVerificationContactName The name of the contact for the inventory verification process.
+ * @property {string} inventoryVerificationContactStatus The status of the verification contact.
+ * @property {string} status The status of the inventory verification process.
+ */
+/**
+ * @typedef LiaOnDisplayToOrderSettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} shippingCostPolicyUrl Shipping cost and policy URL.
+ * @property {string} status The status of the ?On display to order? feature.
+ */
+/**
+ * @typedef LiaSettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account to which these LIA settings belong. Ignored upon update, always present in get request responses.
+ * @property {content(v2).LiaCountrySettings[]} countrySettings The LIA settings for each country.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liaSettings&quot;.
+ */
+/**
+ * @typedef LiasettingsCustomBatchRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).LiasettingsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
+ */
+/**
+ * @typedef LiasettingsCustomBatchRequestEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account for which to get/update account shipping settings.
+ * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {string} contactEmail Inventory validation contact email. Required only for SetInventoryValidationContact.
+ * @property {string} contactName Inventory validation contact name. Required only for SetInventoryValidationContact.
+ * @property {string} country The country code. Required only for RequestInventoryVerification.
+ * @property {string} gmbEmail The GMB account. Required only for RequestGmbAccess.
+ * @property {content(v2).LiaSettings} liaSettings The account Lia settings to update. Only defined if the method is update.
+ * @property {string} merchantId The ID of the managing account.
+ * @property {string} method
+ */
+/**
+ * @typedef LiasettingsCustomBatchResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).LiasettingsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponse&quot;.
+ */
+/**
+ * @typedef LiasettingsCustomBatchResponseEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {integer} batchId The ID of the request entry to which this entry responds.
+ * @property {content(v2).Errors} errors A list of errors defined if, and only if, the request failed.
+ * @property {content(v2).GmbAccounts} gmbAccounts The the list of accessible GMB accounts.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponseEntry&quot;.
+ * @property {content(v2).LiaSettings} liaSettings The retrieved or updated Lia settings.
+ */
+/**
+ * @typedef LiasettingsGetAccessibleGmbAccountsResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account.
+ * @property {content(v2).GmbAccountsGmbAccount[]} gmbAccounts A list of GMB accounts which are available to the merchant.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsGetAccessibleGmbAccountsResponse&quot;.
+ */
+/**
+ * @typedef LiasettingsListResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListResponse&quot;.
+ * @property {string} nextPageToken The token for the retrieval of the next page of LIA settings.
+ * @property {content(v2).LiaSettings[]} resources
+ */
+/**
+ * @typedef LiasettingsRequestGmbAccessResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestGmbAccessResponse&quot;.
+ */
+/**
+ * @typedef LiasettingsRequestInventoryVerificationResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestInventoryVerificationResponse&quot;.
+ */
+/**
+ * @typedef LiasettingsSetInventoryVerificationContactResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
+ */
+/**
  * @typedef LocationIdSet
  * @memberOf! content(v2)
  * @type object
@@ -3388,7 +3875,7 @@ function Content(options: GlobalOptions) {
  * @typedef OrderCustomer
  * @memberOf! content(v2)
  * @type object
- * @property {string} email Email address of the customer.
+ * @property {string} email Email address that should be used for order related communications. In certain cases this might not be a real users email, but a proxy email.
  * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
  * @property {string} fullName Full name of the customer.
  */
@@ -4028,7 +4515,7 @@ function Content(options: GlobalOptions) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventory&quot;.
  * @property {content(v2).Price} price The current price of the item.
  * @property {string} quantity The available quantity of the item.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4041,7 +4528,7 @@ function Content(options: GlobalOptions) {
  * @property {string} itemId A unique identifier for the item.
  * @property {content(v2).Price} price The current price of the item.
  * @property {string} quantity The available quantity of the item.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4055,7 +4542,7 @@ function Content(options: GlobalOptions) {
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventoryResponse&quot;.
  * @property {content(v2).Price} price The current price of the item.
  * @property {string} quantity The available quantity of the item.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4077,7 +4564,7 @@ function Content(options: GlobalOptions) {
  * @property {content(v2).Price} price The price of the item.
  * @property {string} quantity The relative change of the available quantity. Negative for items sold.
  * @property {string} saleId A unique ID to group items from the same sale event.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4091,7 +4578,7 @@ function Content(options: GlobalOptions) {
  * @property {content(v2).Price} price The price of the item.
  * @property {string} quantity The relative change of the available quantity. Negative for items sold.
  * @property {string} saleId A unique ID to group items from the same sale event.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4106,7 +4593,7 @@ function Content(options: GlobalOptions) {
  * @property {content(v2).Price} price The price of the item.
  * @property {string} quantity The relative change of the available quantity. Negative for items sold.
  * @property {string} saleId A unique ID to group items from the same sale event.
- * @property {string} storeCode The identifier of the merchant&#39;s store.
+ * @property {string} storeCode The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
  * @property {string} targetCountry The CLDR territory code for the item.
  * @property {string} timestamp The inventory timestamp, in ISO 8601 format.
  */
@@ -4606,5 +5093,3 @@ function Content(options: GlobalOptions) {
  * @property {string} unit The weight unit.
  * @property {string} value The weight represented as a number.
  */
-
-export = Content;

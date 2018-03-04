@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Cloudiot;
 
 /**
  * Cloud IoT API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudiot
  */
-function Cloudiot(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Cloudiot extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     locations:
         {
           registries:
@@ -84,7 +89,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.delete
                     * @desc Deletes a device registry configuration.
@@ -97,7 +102,7 @@ function Cloudiot(options: GlobalOptions) {
                     * @param {callback} callback The callback that handles the response.
                     * @return {object} Request object
                     */
-                delete (
+                delete(
                     params: any,
                     options: MethodOptions|BodyResponseCallback<any>,
                     callback?: BodyResponseCallback<any>) {
@@ -121,7 +126,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.get
                     * @desc Gets a device registry configuration.
@@ -157,7 +162,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.getIamPolicy
                     * @desc Gets the access control policy for a resource.
@@ -197,7 +202,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.list
                     * @desc Lists device registries.
@@ -236,7 +241,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['parent'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.patch
                     * @desc Updates a device registry configuration.
@@ -275,7 +280,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['name'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.setIamPolicy
                     * @desc Sets the access control policy on the specified
@@ -314,7 +319,7 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 }, /**
                     * cloudiot.projects.locations.registries.testIamPermissions
                     * @desc Returns permissions that a caller has on the
@@ -356,340 +361,347 @@ function Cloudiot(options: GlobalOptions) {
                     pathParams: ['resource'],
                     context: self
                   };
-                  return createAPIRequest(parameters, callback!);
+                  createAPIRequest(parameters, callback!);
                 },
-                devices: {
-                  /**
-                   * cloudiot.projects.locations.registries.devices.create
-                   * @desc Creates a device in a device registry.
-                   * @alias
-                   * cloudiot.projects.locations.registries.devices.create
-                   * @memberOf! cloudiot(v1)
-                   *
-                   * @param {object} params Parameters for request
-                   * @param {string} params.parent The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
-                   * @param {cloudiot(v1).Device} params.resource Request body data
-                   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                   * @param {callback} callback The callback that handles the response.
-                   * @return {object} Request object
-                   */
-                  create(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
+                devices:
+                    {
+                      /**
+                       * cloudiot.projects.locations.registries.devices.create
+                       * @desc Creates a device in a device registry.
+                       * @alias
+                       * cloudiot.projects.locations.registries.devices.create
+                       * @memberOf! cloudiot(v1)
+                       *
+                       * @param {object} params Parameters for request
+                       * @param {string} params.parent The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+                       * @param {cloudiot(v1).Device} params.resource Request body data
+                       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                       * @param {callback} callback The callback that handles the response.
+                       * @return {object} Request object
+                       */
+                      create(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{parent}/devices')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['parent'],
+                          pathParams: ['parent'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * cloudiot.projects.locations.registries.devices.delete
+                          * @desc Deletes a device.
+                          * @alias
+                          * cloudiot.projects.locations.registries.devices.delete
+                          * @memberOf! cloudiot(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      delete(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'DELETE'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * cloudiot.projects.locations.registries.devices.get
+                          * @desc Gets details about a device.
+                          * @alias
+                          * cloudiot.projects.locations.registries.devices.get
+                          * @memberOf! cloudiot(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
+                          * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      get(params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'GET'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * cloudiot.projects.locations.registries.devices.list
+                          * @desc List devices in a device registry.
+                          * @alias
+                          * cloudiot.projects.locations.registries.devices.list
+                          * @memberOf! cloudiot(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
+                          * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
+                          * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
+                          * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
+                          * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
+                          * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      list(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{parent}/devices')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'GET'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['parent'],
+                          pathParams: ['parent'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
+                          * @desc Modifies the configuration for the device,
+                          * which is eventually sent from the Cloud IoT Core
+                          * servers. Returns the modified configuration version
+                          * and its metadata.
+                          * @alias
+                          * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
+                          * @memberOf! cloudiot(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+                          * @param {cloudiot(v1).ModifyCloudToDeviceConfigRequest} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      modifyCloudToDeviceConfig(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl +
+                                      '/v1/{name}:modifyCloudToDeviceConfig')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'POST'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      }, /**
+                          * cloudiot.projects.locations.registries.devices.patch
+                          * @desc Updates a device.
+                          * @alias
+                          * cloudiot.projects.locations.registries.devices.patch
+                          * @memberOf! cloudiot(v1)
+                          *
+                          * @param {object} params Parameters for request
+                          * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
+                          * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
+                          * @param {cloudiot(v1).Device} params.resource Request body data
+                          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                          * @param {callback} callback The callback that handles the response.
+                          * @return {object} Request object
+                          */
+                      patch(
+                          params: any,
+                          options: MethodOptions|BodyResponseCallback<any>,
+                          callback?: BodyResponseCallback<any>) {
+                        if (typeof options === 'function') {
+                          callback = options;
+                          options = {};
+                        }
+                        options = options || {};
+                        const rootUrl = options.rootUrl ||
+                            'https://cloudiot.googleapis.com/';
+                        const parameters = {
+                          options: Object.assign(
+                              {
+                                url: (rootUrl + '/v1/{name}')
+                                         .replace(/([^:]\/)\/+/g, '$1'),
+                                method: 'PATCH'
+                              },
+                              options),
+                          params,
+                          requiredParams: ['name'],
+                          pathParams: ['name'],
+                          context: self
+                        };
+                        createAPIRequest(parameters, callback!);
+                      },
+                      configVersions:
                           {
-                            url: (rootUrl + '/v1/{parent}/devices')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['parent'],
-                      pathParams: ['parent'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * cloudiot.projects.locations.registries.devices.delete
-                      * @desc Deletes a device.
-                      * @alias
-                      * cloudiot.projects.locations.registries.devices.delete
-                      * @memberOf! cloudiot(v1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  delete (
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'DELETE'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * cloudiot.projects.locations.registries.devices.get
-                      * @desc Gets details about a device.
-                      * @alias
-                      * cloudiot.projects.locations.registries.devices.get
-                      * @memberOf! cloudiot(v1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
-                      * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  get(params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'GET'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * cloudiot.projects.locations.registries.devices.list
-                      * @desc List devices in a device registry.
-                      * @alias
-                      * cloudiot.projects.locations.registries.devices.list
-                      * @memberOf! cloudiot(v1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
-                      * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
-                      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
-                      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
-                      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
-                      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  list(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1/{parent}/devices')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'GET'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['parent'],
-                      pathParams: ['parent'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
-                      * @desc Modifies the configuration for the device, which
-                      * is eventually sent from the Cloud IoT Core servers.
-                      * Returns the modified configuration version and its
-                      * metadata.
-                      * @alias
-                      * cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig
-                      * @memberOf! cloudiot(v1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-                      * @param {cloudiot(v1).ModifyCloudToDeviceConfigRequest} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  modifyCloudToDeviceConfig(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl +
-                                  '/v1/{name}:modifyCloudToDeviceConfig')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'POST'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  }, /**
-                      * cloudiot.projects.locations.registries.devices.patch
-                      * @desc Updates a device.
-                      * @alias
-                      * cloudiot.projects.locations.registries.devices.patch
-                      * @memberOf! cloudiot(v1)
-                      *
-                      * @param {object} params Parameters for request
-                      * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
-                      * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `enabled_state`, and `metadata`
-                      * @param {cloudiot(v1).Device} params.resource Request body data
-                      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                      * @param {callback} callback The callback that handles the response.
-                      * @return {object} Request object
-                      */
-                  patch(
-                      params: any,
-                      options: MethodOptions|BodyResponseCallback<any>,
-                      callback?: BodyResponseCallback<any>) {
-                    if (typeof options === 'function') {
-                      callback = options;
-                      options = {};
-                    }
-                    options = options || {};
-                    const rootUrl =
-                        options.rootUrl || 'https://cloudiot.googleapis.com/';
-                    const parameters = {
-                      options: Object.assign(
-                          {
-                            url: (rootUrl + '/v1/{name}')
-                                     .replace(/([^:]\/)\/+/g, '$1'),
-                            method: 'PATCH'
-                          },
-                          options),
-                      params,
-                      requiredParams: ['name'],
-                      pathParams: ['name'],
-                      context: self
-                    };
-                    return createAPIRequest(parameters, callback!);
-                  },
-                  configVersions: {
-                    /**
-                     * cloudiot.projects.locations.registries.devices.configVersions.list
-                     * @desc Lists the last few versions of the device
-                     * configuration in descending order (i.e.: newest first).
-                     * @alias
-                     * cloudiot.projects.locations.registries.devices.configVersions.list
-                     * @memberOf! cloudiot(v1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-                     * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    list(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://cloudiot.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1/{name}/configVersions')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }
+                            /**
+                             * cloudiot.projects.locations.registries.devices.configVersions.list
+                             * @desc Lists the last few versions of the device
+                             * configuration in descending order (i.e.: newest
+                             * first).
+                             * @alias
+                             * cloudiot.projects.locations.registries.devices.configVersions.list
+                             * @memberOf! cloudiot(v1)
+                             *
+                             * @param {object} params Parameters for request
+                             * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+                             * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
+                             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                             * @param {callback} callback The callback that handles the response.
+                             * @return {object} Request object
+                             */
+                            list(
+                                params: any,
+                                options: MethodOptions|
+                                BodyResponseCallback<any>,
+                                callback?: BodyResponseCallback<any>) {
+                              if (typeof options === 'function') {
+                                callback = options;
+                                options = {};
+                              }
+                              options = options || {};
+                              const rootUrl = options.rootUrl ||
+                                  'https://cloudiot.googleapis.com/';
+                              const parameters = {
+                                options: Object.assign(
+                                    {
+                                      url: (rootUrl +
+                                            '/v1/{name}/configVersions')
+                                               .replace(/([^:]\/)\/+/g, '$1'),
+                                      method: 'GET'
+                                    },
+                                    options),
+                                params,
+                                requiredParams: ['name'],
+                                pathParams: ['name'],
+                                context: self
+                              };
+                              createAPIRequest(parameters, callback!);
+                            }
 
-                  },
-                  states: {
-                    /**
-                     * cloudiot.projects.locations.registries.devices.states.list
-                     * @desc Lists the last few versions of the device state in
-                     * descending order (i.e.: newest first).
-                     * @alias
-                     * cloudiot.projects.locations.registries.devices.states.list
-                     * @memberOf! cloudiot(v1)
-                     *
-                     * @param {object} params Parameters for request
-                     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-                     * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
-                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                     * @param {callback} callback The callback that handles the response.
-                     * @return {object} Request object
-                     */
-                    list(
-                        params: any,
-                        options: MethodOptions|BodyResponseCallback<any>,
-                        callback?: BodyResponseCallback<any>) {
-                      if (typeof options === 'function') {
-                        callback = options;
-                        options = {};
-                      }
-                      options = options || {};
-                      const rootUrl =
-                          options.rootUrl || 'https://cloudiot.googleapis.com/';
-                      const parameters = {
-                        options: Object.assign(
-                            {
-                              url: (rootUrl + '/v1/{name}/states')
-                                       .replace(/([^:]\/)\/+/g, '$1'),
-                              method: 'GET'
-                            },
-                            options),
-                        params,
-                        requiredParams: ['name'],
-                        pathParams: ['name'],
-                        context: self
-                      };
-                      return createAPIRequest(parameters, callback!);
-                    }
+                          },
+                      states:
+                          {
+                            /**
+                             * cloudiot.projects.locations.registries.devices.states.list
+                             * @desc Lists the last few versions of the device
+                             * state in descending order (i.e.: newest first).
+                             * @alias
+                             * cloudiot.projects.locations.registries.devices.states.list
+                             * @memberOf! cloudiot(v1)
+                             *
+                             * @param {object} params Parameters for request
+                             * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+                             * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
+                             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                             * @param {callback} callback The callback that handles the response.
+                             * @return {object} Request object
+                             */
+                            list(
+                                params: any,
+                                options: MethodOptions|
+                                BodyResponseCallback<any>,
+                                callback?: BodyResponseCallback<any>) {
+                              if (typeof options === 'function') {
+                                callback = options;
+                                options = {};
+                              }
+                              options = options || {};
+                              const rootUrl = options.rootUrl ||
+                                  'https://cloudiot.googleapis.com/';
+                              const parameters = {
+                                options: Object.assign(
+                                    {
+                                      url: (rootUrl + '/v1/{name}/states')
+                                               .replace(/([^:]\/)\/+/g, '$1'),
+                                      method: 'GET'
+                                    },
+                                    options),
+                                params,
+                                requiredParams: ['name'],
+                                pathParams: ['name'],
+                                context: self
+                              };
+                              createAPIRequest(parameters, callback!);
+                            }
 
-                  }
-                }
+                          }
+                    }
               }
         }
   };
@@ -890,5 +902,3 @@ function Cloudiot(options: GlobalOptions) {
  * @property {string} startTime The time the certificate becomes valid.
  * @property {string} subject The entity the certificate and public key belong to.
  */
-
-export = Cloudiot;

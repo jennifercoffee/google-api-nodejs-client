@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Cloudresourcemanager;
 
 /**
  * Cloud Resource Manager API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Cloudresourcemanager
  */
-function Cloudresourcemanager(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.folders = {
+export class Cloudresourcemanager extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  folders = {
     /**
      * cloudresourcemanager.folders.clearOrgPolicy
      * @desc Clears a `Policy` from a resource.
@@ -118,8 +123,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -133,7 +138,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.getEffectiveOrgPolicy
         * @desc Gets the effective `Policy` on a resource. This is the result of
@@ -215,8 +220,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -230,7 +235,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.getOrgPolicy
         * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
@@ -313,8 +318,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -328,7 +333,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.listAvailableOrgPolicyConstraints
         * @desc Lists `Constraints` that could be applied on the specified
@@ -426,8 +431,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -442,7 +447,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.listOrgPolicies
         * @desc Lists all the `Policies` set for a particular resource.
@@ -537,8 +542,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -552,7 +557,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.folders.setOrgPolicy
         * @desc Updates the specified `Policy` on the resource. Creates a new
@@ -634,8 +639,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -649,11 +654,11 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.liens = {
+  liens = {
     /**
      * cloudresourcemanager.liens.create
      * @desc Create a Lien which applies to the resource denoted by the `parent`
@@ -732,8 +737,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -746,7 +751,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.liens.delete
         * @desc Delete a Lien by `name`.  Callers of this method will require
@@ -813,7 +818,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -821,8 +826,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -835,7 +840,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.liens.list
         * @desc List all Liens applied to the `parent` resource.  Callers of
@@ -925,8 +930,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -939,11 +944,11 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.operations = {
+  operations = {
     /**
      * cloudresourcemanager.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
@@ -1018,8 +1023,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1032,11 +1037,11 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.organizations = {
+  organizations = {
     /**
      * cloudresourcemanager.organizations.clearOrgPolicy
      * @desc Clears a `Policy` from a resource.
@@ -1111,8 +1116,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1126,7 +1131,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.get
         * @desc Fetches an Organization resource identified by the specified
@@ -1200,8 +1205,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1214,7 +1219,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.getEffectiveOrgPolicy
         * @desc Gets the effective `Policy` on a resource. This is the result of
@@ -1296,8 +1301,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1311,7 +1316,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.getIamPolicy
         * @desc Gets the access control policy for an Organization resource. May
@@ -1396,8 +1401,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1411,7 +1416,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.getOrgPolicy
         * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
@@ -1494,8 +1499,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1509,7 +1514,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
         * @desc Lists `Constraints` that could be applied on the specified
@@ -1608,8 +1613,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1624,7 +1629,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.listOrgPolicies
         * @desc Lists all the `Policies` set for a particular resource.
@@ -1720,8 +1725,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1735,7 +1740,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.search
         * @desc Searches Organization resources that are visible to the user and
@@ -1829,8 +1834,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1844,7 +1849,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.setIamPolicy
         * @desc Sets the access control policy on an Organization resource.
@@ -1929,8 +1934,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1944,7 +1949,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.setOrgPolicy
         * @desc Updates the specified `Policy` on the resource. Creates a new
@@ -2026,8 +2031,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2041,7 +2046,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.organizations.testIamPermissions
         * @desc Returns permissions that a caller has on the specified
@@ -2125,8 +2130,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2140,11 +2145,11 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     /**
      * cloudresourcemanager.projects.clearOrgPolicy
      * @desc Clears a `Policy` from a resource.
@@ -2220,8 +2225,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2235,7 +2240,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.create
         * @desc Request that a new Project be created. The result is an
@@ -2319,8 +2324,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2333,20 +2338,18 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.delete
         * @desc Marks the Project identified by the specified `project_id` (for
         * example, `my-project-123`) for deletion. This method will only affect
-        * the Project if the following criteria are met:  + The Project does not
-        * have a billing account associated with it. + The Project has a
-        * lifecycle state of ACTIVE.  This method changes the Project's
-        * lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts
-        * at an unspecified time, at which point the Project is no longer
-        * accessible.  Until the deletion completes, you can check the lifecycle
-        * state checked by retrieving the Project with GetProject, and the
-        * Project remains visible to ListProjects. However, you cannot update
-        * the project.  After the deletion completes, the Project is not
+        * the Project if it has a lifecycle state of ACTIVE.  This method
+        * changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED.
+        * The deletion starts at an unspecified time, at which point the Project
+        * is no longer accessible.  Until the deletion completes, you can check
+        * the lifecycle state checked by retrieving the Project with GetProject,
+        * and the Project remains visible to ListProjects. However, you cannot
+        * update the project.  After the deletion completes, the Project is not
         * retrievable by the  GetProject and ListProjects methods.  The caller
         * must have modify permissions for this Project.
         * @example
@@ -2410,7 +2413,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2418,8 +2421,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2433,7 +2436,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.get
         * @desc Retrieves the Project identified by the specified `project_id`
@@ -2510,8 +2513,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2525,7 +2528,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getAncestry
         * @desc Gets a list of ancestors in the resource hierarchy for the
@@ -2607,8 +2610,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2622,7 +2625,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getEffectiveOrgPolicy
         * @desc Gets the effective `Policy` on a resource. This is the result of
@@ -2704,8 +2707,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2719,7 +2722,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getIamPolicy
         * @desc Returns the IAM access control policy for the specified Project.
@@ -2804,8 +2807,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2819,7 +2822,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.getOrgPolicy
         * @desc Gets a `Policy` on a resource.  If no `Policy` is set on the
@@ -2902,8 +2905,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2917,7 +2920,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.list
         * @desc Lists Projects that are visible to the user and satisfy the
@@ -3010,8 +3013,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3024,7 +3027,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.listAvailableOrgPolicyConstraints
         * @desc Lists `Constraints` that could be applied on the specified
@@ -3122,8 +3125,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3138,7 +3141,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.listOrgPolicies
         * @desc Lists all the `Policies` set for a particular resource.
@@ -3233,8 +3236,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3248,7 +3251,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.setIamPolicy
         * @desc Sets the IAM access control policy for the specified Project.
@@ -3355,8 +3358,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3370,7 +3373,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.setOrgPolicy
         * @desc Updates the specified `Policy` on the resource. Creates a new
@@ -3452,8 +3455,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3467,7 +3470,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.testIamPermissions
         * @desc Returns permissions that a caller has on the specified Project.
@@ -3549,8 +3552,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3564,7 +3567,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['resource'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.undelete
         * @desc Restores the Project identified by the specified `project_id`
@@ -3646,8 +3649,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3661,7 +3664,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * cloudresourcemanager.projects.update
         * @desc Updates the attributes of the Project identified by the
@@ -3744,8 +3747,8 @@ function Cloudresourcemanager(options: GlobalOptions) {
         options = {};
       }
       options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://content-cloudresourcemanager.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -3759,7 +3762,7 @@ function Cloudresourcemanager(options: GlobalOptions) {
         pathParams: ['projectId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4070,5 +4073,3 @@ function Cloudresourcemanager(options: GlobalOptions) {
  * @memberOf! cloudresourcemanager(v1)
  * @type object
  */
-
-export = Cloudresourcemanager;

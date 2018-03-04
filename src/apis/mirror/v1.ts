@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Mirror;
 
 /**
  * Google Mirror API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Mirror
  */
-function Mirror(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.accounts = {
+export class Mirror extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  accounts = {
     /**
      * mirror.accounts.insert
      * @desc Inserts a new account for a user
@@ -81,11 +86,11 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['accountName', 'accountType', 'userToken'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.contacts = {
+  contacts = {
     /**
      * mirror.contacts.delete
      * @desc Deletes a contact.
@@ -98,7 +103,7 @@ function Mirror(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -120,7 +125,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.contacts.get
         * @desc Gets a single contact by ID.
@@ -154,7 +159,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.contacts.insert
         * @desc Inserts a new contact.
@@ -189,7 +194,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.contacts.list
         * @desc Retrieves a list of contacts for the authenticated user.
@@ -223,7 +228,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.contacts.patch
         * @desc Updates a contact in place. This method supports patch
@@ -260,7 +265,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.contacts.update
         * @desc Updates a contact in place.
@@ -296,11 +301,11 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.locations = {
+  locations = {
     /**
      * mirror.locations.get
      * @desc Gets a single location by ID.
@@ -334,7 +339,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.locations.list
         * @desc Retrieves a list of locations for the user.
@@ -368,11 +373,11 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.settings = {
+  settings = {
     /**
      * mirror.settings.get
      * @desc Gets a single setting by ID.
@@ -406,11 +411,11 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.subscriptions = {
+  subscriptions = {
     /**
      * mirror.subscriptions.delete
      * @desc Deletes a subscription.
@@ -423,7 +428,7 @@ function Mirror(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -445,7 +450,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.subscriptions.insert
         * @desc Creates a new subscription.
@@ -480,7 +485,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.subscriptions.list
         * @desc Retrieves a list of subscriptions for the authenticated user and
@@ -515,7 +520,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.subscriptions.update
         * @desc Updates an existing subscription in place.
@@ -551,11 +556,11 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.timeline = {
+  timeline = {
     /**
      * mirror.timeline.delete
      * @desc Deletes a timeline item.
@@ -568,7 +573,7 @@ function Mirror(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -590,7 +595,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.timeline.get
         * @desc Gets a single timeline item by ID.
@@ -624,7 +629,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.timeline.insert
         * @desc Inserts a new item into the timeline.
@@ -664,7 +669,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.timeline.list
         * @desc Retrieves a list of timeline items for the authenticated user.
@@ -705,7 +710,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.timeline.patch
         * @desc Updates a timeline item in place. This method supports patch
@@ -742,7 +747,7 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * mirror.timeline.update
         * @desc Updates a timeline item in place.
@@ -783,162 +788,165 @@ function Mirror(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    attachments: {
-      /**
-       * mirror.timeline.attachments.delete
-       * @desc Deletes an attachment from a timeline item.
-       * @alias mirror.timeline.attachments.delete
-       * @memberOf! mirror(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.attachmentId The ID of the attachment.
-       * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['itemId', 'attachmentId'],
-          pathParams: ['attachmentId', 'itemId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * mirror.timeline.attachments.get
-          * @desc Retrieves an attachment on a timeline item by item ID and
-          * attachment ID.
-          * @alias mirror.timeline.attachments.get
-          * @memberOf! mirror(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.attachmentId The ID of the attachment.
-          * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['itemId', 'attachmentId'],
-          pathParams: ['attachmentId', 'itemId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * mirror.timeline.attachments.insert
-          * @desc Adds a new attachment to a timeline item.
-          * @alias mirror.timeline.attachments.insert
-          * @memberOf! mirror(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
-          * @param {object} params.media Media object
-          * @param {string} params.media.mimeType Media mime-type
-          * @param {string|object} params.media.body Media body contents
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      insert(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['itemId'],
-          pathParams: ['itemId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * mirror.timeline.attachments.list
-          * @desc Returns a list of attachments for a timeline item.
-          * @alias mirror.timeline.attachments.list
-          * @memberOf! mirror(v1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.itemId The ID of the timeline item whose attachments should be listed.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['itemId'],
-          pathParams: ['itemId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    attachments:
+        {
+          /**
+           * mirror.timeline.attachments.delete
+           * @desc Deletes an attachment from a timeline item.
+           * @alias mirror.timeline.attachments.delete
+           * @memberOf! mirror(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.attachmentId The ID of the attachment.
+           * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['itemId', 'attachmentId'],
+              pathParams: ['attachmentId', 'itemId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * mirror.timeline.attachments.get
+              * @desc Retrieves an attachment on a timeline item by item ID and
+              * attachment ID.
+              * @alias mirror.timeline.attachments.get
+              * @memberOf! mirror(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.attachmentId The ID of the attachment.
+              * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url:
+                        (rootUrl +
+                         '/mirror/v1/timeline/{itemId}/attachments/{attachmentId}')
+                            .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['itemId', 'attachmentId'],
+              pathParams: ['attachmentId', 'itemId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * mirror.timeline.attachments.insert
+              * @desc Adds a new attachment to a timeline item.
+              * @alias mirror.timeline.attachments.insert
+              * @memberOf! mirror(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.itemId The ID of the timeline item the attachment belongs to.
+              * @param {object} params.media Media object
+              * @param {string} params.media.mimeType Media mime-type
+              * @param {string|object} params.media.body Media body contents
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          insert(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              mediaUrl:
+                  (rootUrl + '/upload/mirror/v1/timeline/{itemId}/attachments')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              requiredParams: ['itemId'],
+              pathParams: ['itemId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * mirror.timeline.attachments.list
+              * @desc Returns a list of attachments for a timeline item.
+              * @alias mirror.timeline.attachments.list
+              * @memberOf! mirror(v1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.itemId The ID of the timeline item whose attachments should be listed.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/mirror/v1/timeline/{itemId}/attachments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['itemId'],
+              pathParams: ['itemId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
 }
 /**
@@ -1142,5 +1150,3 @@ function Mirror(options: GlobalOptions) {
  * @property {string} key
  * @property {string} value
  */
-
-export = Mirror;

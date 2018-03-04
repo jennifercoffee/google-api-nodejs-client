@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Serviceconsumermanagement;
 
 /**
  * Service Consumer Management API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Serviceconsumermanagement
  */
-function Serviceconsumermanagement(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.operations = {
+export class Serviceconsumermanagement extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  operations = {
     /**
      * serviceconsumermanagement.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The
@@ -87,7 +92,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -103,7 +108,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -125,7 +130,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -161,7 +166,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * serviceconsumermanagement.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -207,11 +212,11 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.services = {
+  services = {
     /**
      * serviceconsumermanagement.services.search
      * @desc Search tenancy units for a service.
@@ -219,10 +224,10 @@ function Serviceconsumermanagement(options: GlobalOptions) {
      * @memberOf! serviceconsumermanagement(v1)
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If page_size is not provided or provided a number larger than 1000, it will be automatically set to 1000.  Optional.
+     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If page_size is not provided or the size provided is a number larger than 1000, it will be automatically set to 1000.  Optional.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
      * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and`tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with given resource name 'projects/123456', use query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
+     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with given resource name 'projects/123456', use query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -250,16 +255,16 @@ function Serviceconsumermanagement(options: GlobalOptions) {
         pathParams: ['parent'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     tenancyUnits: {
       /**
        * serviceconsumermanagement.services.tenancyUnits.addProject
        * @desc Add a new tenant project to the tenancy unit. There can be at
-       * most 512 tenant projects in a tenancy units. If there are previously
-       * failed AddTenantProject calls, you might need to call
-       * RemoveTenantProject first to clean them before you can make another
-       * AddTenantProject with the same tag. Operation<response: Empty>.
+       * most 512 tenant projects in a tenancy unit. If there are previously
+       * failed `AddTenantProject` calls, you might need to call
+       * `RemoveTenantProject` first to clean them before you can make another
+       * `AddTenantProject` with the same tag. Operation<response: Empty>.
        * @alias serviceconsumermanagement.services.tenancyUnits.addProject
        * @memberOf! serviceconsumermanagement(v1)
        *
@@ -293,7 +298,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.create
           * @desc Creates a tenancy unit with no tenant resources.
@@ -330,11 +335,11 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.delete
-          * @desc Delete tenancy unit.  Before the tenancy unit is deleted,
-          * there should be no tenant resource in it. Operation<response:
+          * @desc Delete a tenancy unit.  Before the tenancy unit is deleted,
+          * there should be no tenant resources in it. Operation<response:
           * Empty>.
           * @alias serviceconsumermanagement.services.tenancyUnits.delete
           * @memberOf! serviceconsumermanagement(v1)
@@ -345,7 +350,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -367,13 +372,13 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.list
-          * @desc Find tenancy unit for a service and consumer. This method
-          * should not be used in producers' runtime path, e.g. finding the
-          * tenant project number when creating VMs. Producers should persist
-          * the tenant project information after the project is created.
+          * @desc Find the tenancy unit for a service and consumer. This method
+          * should not be used in producers' runtime path, for example finding
+          * the tenant project number when creating VMs. Producers should
+          * persist the tenant project information after the project is created.
           * @alias serviceconsumermanagement.services.tenancyUnits.list
           * @memberOf! serviceconsumermanagement(v1)
           *
@@ -409,7 +414,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           pathParams: ['parent'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * serviceconsumermanagement.services.tenancyUnits.removeProject
           * @desc Removes specified project resource identified by tenant
@@ -450,7 +455,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -587,7 +592,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @typedef CreateTenancyUnitRequest
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {string} tenancyUnitId Optional producer provided identifier of the tenancy unit Must be no longer than 40 characters and preferably URI friendly If it is not provided, UID for the tenancy unit will be auto generated It must be unique across a service. If the tenancy unit already exists for the service and consumer pair, CreateTenancyUnit will return existing tenancy unit if provided identifier is identical or empty, otherwise the call will fail.
+ * @property {string} tenancyUnitId Optional producer provided identifier of the tenancy unit. Must be no longer than 40 characters and preferably URI friendly. If it is not provided, a UID for the tenancy unit will be auto generated. It must be unique across a service. If the tenancy unit already exists for the service and consumer pair, `CreateTenancyUnit` will return the existing tenancy unit if the provided identifier is identical or empty, otherwise the call will fail.
  */
 /**
  * @typedef CustomAuthRequirements
@@ -734,7 +739,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
  * @property {string} nextPageToken Pagination token for large results.
- * @property {serviceconsumermanagement(v1).TenancyUnit[]} tenancyUnits Tenancy Units matching the request.
+ * @property {serviceconsumermanagement(v1).TenancyUnit[]} tenancyUnits Tenancy units matching the request.
  */
 /**
  * @typedef LogDescriptor
@@ -881,7 +886,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @typedef PolicyBinding
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {string[]} members Uses the same format as in IAM policy. `member` must include both prefix and id. E.g., `user:{emailId}`, `serviceAccount:{emailId}`, `group:{emailId}`.
+ * @property {string[]} members Uses the same format as in IAM policy. `member` must include both prefix and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`, `group:{emailId}`.
  * @property {string} role Role. (https://cloud.google.com/iam/docs/understanding-roles) For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
  */
 /**
@@ -951,14 +956,13 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @property {string} title The product title for this service.
  * @property {serviceconsumermanagement(v1).Type[]} types A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
  * @property {serviceconsumermanagement(v1).Usage} usage Configuration controlling usage of this service.
- * @property {serviceconsumermanagement(v1).Visibility} visibility API visibility configuration.
  */
 /**
  * @typedef ServiceAccountConfig
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
  * @property {string} accountId ID of the IAM service account to be created in tenant project. The email format of the service account will be &quot;&lt;account-id&gt;@&lt;tenant-project-id&gt;.iam.gserviceaccount.com&quot;. This account id has to be unique within tenant project and producers have to guarantee it.
- * @property {string[]} tenantProjectRoles Roles for the service account above on tenant project.
+ * @property {string[]} tenantProjectRoles Roles for the associated service account for the tenant project.
  */
 /**
  * @typedef SourceContext
@@ -1005,7 +1009,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @typedef TenancyUnit
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {string} consumer @OutputOnly Cloud resource One Platform Name of the consumer of this service. For example &#39;projects/123456&#39;.
+ * @property {string} consumer @OutputOnly Cloud resource name of the consumer of this service. For example &#39;projects/123456&#39;.
  * @property {string} createTime @OutputOnly The time this tenancy unit was created.
  * @property {string} name Globally unique identifier of this tenancy unit &quot;services/{service}/{collection id}/{resource id}/tenancyUnits/{unit}&quot;
  * @property {string} service @OutputOnly Google Cloud API name of the service owning this tenancy unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
@@ -1015,11 +1019,11 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @typedef TenantProjectConfig
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {serviceconsumermanagement(v1).BillingConfig} billingConfig Billing account properties. It may be specified explicitly, or created from the specified group during provisioning
+ * @property {serviceconsumermanagement(v1).BillingConfig} billingConfig Billing account properties. It might be specified explicitly, or created from the specified group during provisioning
  * @property {string} folder Folder where project in this tenancy unit must be located This folder must have been previously created with proper permissions for the caller to create and configure a project in it. Valid folder resource names have the format `folders/{folder_number}` (for example, `folders/123456`).
  * @property {object} labels Labels that will be applied to this project.
  * @property {serviceconsumermanagement(v1).ServiceAccountConfig} serviceAccountConfig Configuration for IAM service account on tenant project.
- * @property {string[]} services Google Cloud API names of services that will be activated on this project during provisioning.  If any of these services can not be activated, addTenantProject method will fail. For example: &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
+ * @property {string[]} services Google Cloud API names of services that will be activated on this project during provisioning.  If any of these services can not be activated, request will fail. For example: &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
  * @property {serviceconsumermanagement(v1).TenantProjectPolicy} tenantProjectPolicy Describes ownership and policies for the new tenant project. Required.
  */
 /**
@@ -1032,7 +1036,7 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @typedef TenantResource
  * @memberOf! serviceconsumermanagement(v1)
  * @type object
- * @property {string} resource @OutputOnly Identifier of the tenant resource. For cloud projects it is in the form &#39;projects/{number}&#39;. For example &#39;projects/123456&#39;.
+ * @property {string} resource @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form &#39;projects/{number}&#39;. For example &#39;projects/123456&#39;.
  * @property {string} status Status of tenant resource.
  * @property {string} tag Unique per single tenancy unit.
  */
@@ -1063,18 +1067,3 @@ function Serviceconsumermanagement(options: GlobalOptions) {
  * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
  * @property {boolean} skipServiceControl If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
  */
-/**
- * @typedef Visibility
- * @memberOf! serviceconsumermanagement(v1)
- * @type object
- * @property {serviceconsumermanagement(v1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
- */
-/**
- * @typedef VisibilityRule
- * @memberOf! serviceconsumermanagement(v1)
- * @type object
- * @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`. Any of the listed labels can be used to grant the visibility.  If a rule has multiple labels, removing one of the labels but not all of them can break clients.  Example:      visibility:       rules:       - selector: google.calendar.Calendar.EnhancedSearch         restriction: GOOGLE_INTERNAL, TRUSTED_TESTER  Removing GOOGLE_INTERNAL from this restriction will break clients that rely on this method and only had access to it through GOOGLE_INTERNAL.
- * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.  Refer to selector for syntax details.
- */
-
-export = Serviceconsumermanagement;

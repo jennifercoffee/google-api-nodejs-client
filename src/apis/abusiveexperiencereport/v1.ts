@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Abusiveexperiencereport;
 
 /**
  * Google Abusive Experience Report API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Abusiveexperiencereport
  */
-function Abusiveexperiencereport(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.sites = {
+export class Abusiveexperiencereport extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  sites = {
     /**
      * abusiveexperiencereport.sites.get
      * @desc Gets a summary of the abusive experience rating of a site.
@@ -76,11 +81,11 @@ function Abusiveexperiencereport(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.violatingSites = {
+  violatingSites = {
     /**
      * abusiveexperiencereport.violatingSites.list
      * @desc Lists sites with Abusive Experience Report statuses of "Failing".
@@ -115,7 +120,7 @@ function Abusiveexperiencereport(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -138,5 +143,3 @@ function Abusiveexperiencereport(options: GlobalOptions) {
  * @type object
  * @property {abusiveexperiencereport(v1).SiteSummaryResponse[]} violatingSites A list of summaries of violating sites.
  */
-
-export = Abusiveexperiencereport;

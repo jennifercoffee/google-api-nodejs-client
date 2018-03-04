@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Androidpublisher;
 
 /**
  * Google Play Developer API
@@ -38,1660 +41,1731 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Androidpublisher
  */
-function Androidpublisher(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.edits = {
-    /**
-     * androidpublisher.edits.commit
-     * @desc Commits/applies the changes made in this edit back to the app.
-     * @alias androidpublisher.edits.commit
-     * @memberOf! androidpublisher(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    commit(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'editId'],
-        pathParams: ['editId', 'packageName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * androidpublisher.edits.delete
-        * @desc Deletes an edit for an app. Creating a new edit will
-        * automatically delete any of your previous edits so this method need
-        * only be called if you want to preemptively abandon an edit.
-        * @alias androidpublisher.edits.delete
-        * @memberOf! androidpublisher(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.editId Unique identifier for this edit.
-        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    delete (
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'editId'],
-        pathParams: ['editId', 'packageName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * androidpublisher.edits.get
-        * @desc Returns information about the edit specified. Calls will fail if
-        * the edit is no long active (e.g. has been deleted, superseded or
-        * expired).
-        * @alias androidpublisher.edits.get
-        * @memberOf! androidpublisher(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.editId Unique identifier for this edit.
-        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'editId'],
-        pathParams: ['editId', 'packageName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * androidpublisher.edits.insert
-        * @desc Creates a new edit for an app, populated with the app's current
-        * state.
-        * @alias androidpublisher.edits.insert
-        * @memberOf! androidpublisher(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-        * @param {androidpublisher(v2).AppEdit} params.resource Request body data
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    insert(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidpublisher/v2/applications/{packageName}/edits')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['packageName'],
-        pathParams: ['packageName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    }, /**
-        * androidpublisher.edits.validate
-        * @desc Checks that the edit can be successfully committed. The edit's
-        * changes are not applied to the live app.
-        * @alias androidpublisher.edits.validate
-        * @memberOf! androidpublisher(v2)
-        *
-        * @param {object} params Parameters for request
-        * @param {string} params.editId Unique identifier for this edit.
-        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-        * @param {callback} callback The callback that handles the response.
-        * @return {object} Request object
-        */
-    validate(
-        params: any, options: MethodOptions|BodyResponseCallback<any>,
-        callback?: BodyResponseCallback<any>) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options = options || {};
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['packageName', 'editId'],
-        pathParams: ['editId', 'packageName'],
-        context: self
-      };
-      return createAPIRequest(parameters, callback!);
-    },
-    apklistings: {
-      /**
-       * androidpublisher.edits.apklistings.delete
-       * @desc Deletes the APK-specific localized listing for a specified APK
-       * and language code.
-       * @alias androidpublisher.edits.apklistings.delete
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apklistings.deleteall
-          * @desc Deletes all the APK-specific localized listings for a
-          * specified APK.
-          * @alias androidpublisher.edits.apklistings.deleteall
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      deleteall(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'apkVersionCode'],
-          pathParams: ['apkVersionCode', 'editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apklistings.get
-          * @desc Fetches the APK-specific localized listing for a specified APK
-          * and language code.
-          * @alias androidpublisher.edits.apklistings.get
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apklistings.list
-          * @desc Lists all the APK-specific localized listings for a specified
-          * APK.
-          * @alias androidpublisher.edits.apklistings.list
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'apkVersionCode'],
-          pathParams: ['apkVersionCode', 'editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apklistings.patch
-          * @desc Updates or creates the APK-specific localized listing for a
-          * specified APK and language code. This method supports patch
-          * semantics.
-          * @alias androidpublisher.edits.apklistings.patch
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).ApkListing} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apklistings.update
-          * @desc Updates or creates the APK-specific localized listing for a
-          * specified APK and language code.
-          * @alias androidpublisher.edits.apklistings.update
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).ApkListing} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    apks: {
-      /**
-       * androidpublisher.edits.apks.addexternallyhosted
-       * @desc Creates a new APK without uploading the APK itself to Google
-       * Play, instead hosting the APK at a specified URL. This function is only
-       * available to enterprises using Google Play for Work whose application
-       * is configured to restrict distribution to the enterprise domain.
-       * @alias androidpublisher.edits.apks.addexternallyhosted
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {androidpublisher(v2).ApksAddExternallyHostedRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      addexternallyhosted(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apks.list
-          * @alias androidpublisher.edits.apks.list
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.apks.upload
-          * @alias androidpublisher.edits.apks.upload
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} params.media Media object
-          * @param {string} params.media.mimeType Media mime-type
-          * @param {string|object} params.media.body Media body contents
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      upload(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    deobfuscationfiles: {
-      /**
-       * androidpublisher.edits.deobfuscationfiles.upload
-       * @desc Uploads the deobfuscation file of the specified APK. If a
-       * deobfuscation file already exists, it will be replaced.
-       * @alias androidpublisher.edits.deobfuscationfiles.upload
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {integer} params.apkVersionCode The version code of the APK whose deobfuscation file is being uploaded.
-       * @param {string} params.deobfuscationFileType
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
-       * @param {object} params.media Media object
-       * @param {string} params.media.mimeType Media mime-type
-       * @param {string|object} params.media.body Media body contents
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      upload(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: [
-            'packageName', 'editId', 'apkVersionCode', 'deobfuscationFileType'
-          ],
-          pathParams: [
-            'apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'
-          ],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    details: {
-      /**
-       * androidpublisher.edits.details.get
-       * @desc Fetches app details for this edit. This includes the default
-       * language and developer support contact information.
-       * @alias androidpublisher.edits.details.get
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.details.patch
-          * @desc Updates app details for this edit. This method supports patch
-          * semantics.
-          * @alias androidpublisher.edits.details.patch
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).AppDetails} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.details.update
-          * @desc Updates app details for this edit.
-          * @alias androidpublisher.edits.details.update
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).AppDetails} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
-
-    },
-    expansionfiles:
-        {
-          /**
-           * androidpublisher.edits.expansionfiles.get
-           * @desc Fetches the Expansion File configuration for the APK
-           * specified.
-           * @alias androidpublisher.edits.expansionfiles.get
-           * @memberOf! androidpublisher(v2)
-           *
-           * @param {object} params Parameters for request
-           * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-           * @param {string} params.editId Unique identifier for this edit.
-           * @param {string} params.expansionFileType
-           * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: [
-                'packageName', 'editId', 'apkVersionCode', 'expansionFileType'
-              ],
-              pathParams: [
-                'apkVersionCode', 'editId', 'expansionFileType', 'packageName'
-              ],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * androidpublisher.edits.expansionfiles.patch
-              * @desc Updates the APK's Expansion File configuration to
-              * reference another APK's Expansion Files. To add a new Expansion
-              * File use the Upload method. This method supports patch
-              * semantics.
-              * @alias androidpublisher.edits.expansionfiles.patch
-              * @memberOf! androidpublisher(v2)
-              *
-              * @param {object} params Parameters for request
-              * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-              * @param {string} params.editId Unique identifier for this edit.
-              * @param {string} params.expansionFileType
-              * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-              * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          patch(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'PATCH'
-                  },
-                  options),
-              params,
-              requiredParams: [
-                'packageName', 'editId', 'apkVersionCode', 'expansionFileType'
-              ],
-              pathParams: [
-                'apkVersionCode', 'editId', 'expansionFileType', 'packageName'
-              ],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * androidpublisher.edits.expansionfiles.update
-              * @desc Updates the APK's Expansion File configuration to
-              * reference another APK's Expansion Files. To add a new Expansion
-              * File use the Upload method.
-              * @alias androidpublisher.edits.expansionfiles.update
-              * @memberOf! androidpublisher(v2)
-              *
-              * @param {object} params Parameters for request
-              * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-              * @param {string} params.editId Unique identifier for this edit.
-              * @param {string} params.expansionFileType
-              * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-              * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          update(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'PUT'
-                  },
-                  options),
-              params,
-              requiredParams: [
-                'packageName', 'editId', 'apkVersionCode', 'expansionFileType'
-              ],
-              pathParams: [
-                'apkVersionCode', 'editId', 'expansionFileType', 'packageName'
-              ],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * androidpublisher.edits.expansionfiles.upload
-              * @desc Uploads and attaches a new Expansion File to the APK
-              * specified.
-              * @alias androidpublisher.edits.expansionfiles.upload
-              * @memberOf! androidpublisher(v2)
-              *
-              * @param {object} params Parameters for request
-              * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
-              * @param {string} params.editId Unique identifier for this edit.
-              * @param {string} params.expansionFileType
-              * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-              * @param {object} params.media Media object
-              * @param {string} params.media.mimeType Media mime-type
-              * @param {string|object} params.media.body Media body contents
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          upload(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              mediaUrl:
-                  (rootUrl +
-                   '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              requiredParams: [
-                'packageName', 'editId', 'apkVersionCode', 'expansionFileType'
-              ],
-              pathParams: [
-                'apkVersionCode', 'editId', 'expansionFileType', 'packageName'
-              ],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
+export class Androidpublisher extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  edits =
+      {
+        /**
+         * androidpublisher.edits.commit
+         * @desc Commits/applies the changes made in this edit back to the app.
+         * @alias androidpublisher.edits.commit
+         * @memberOf! androidpublisher(v2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.editId Unique identifier for this edit.
+         * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        commit(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
           }
-
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['packageName', 'editId'],
+            pathParams: ['editId', 'packageName'],
+            context: self
+          };
+          createAPIRequest(parameters, callback!);
+        }, /**
+            * androidpublisher.edits.delete
+            * @desc Deletes an edit for an app. Creating a new edit will
+            * automatically delete any of your previous edits so this method
+            * need only be called if you want to preemptively abandon an edit.
+            * @alias androidpublisher.edits.delete
+            * @memberOf! androidpublisher(v2)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.editId Unique identifier for this edit.
+            * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        delete(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'DELETE'
+                },
+                options),
+            params,
+            requiredParams: ['packageName', 'editId'],
+            pathParams: ['editId', 'packageName'],
+            context: self
+          };
+          createAPIRequest(parameters, callback!);
+        }, /**
+            * androidpublisher.edits.get
+            * @desc Returns information about the edit specified. Calls will
+            * fail if the edit is no long active (e.g. has been deleted,
+            * superseded or expired).
+            * @alias androidpublisher.edits.get
+            * @memberOf! androidpublisher(v2)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.editId Unique identifier for this edit.
+            * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'GET'
+                },
+                options),
+            params,
+            requiredParams: ['packageName', 'editId'],
+            pathParams: ['editId', 'packageName'],
+            context: self
+          };
+          createAPIRequest(parameters, callback!);
+        }, /**
+            * androidpublisher.edits.insert
+            * @desc Creates a new edit for an app, populated with the app's
+            * current state.
+            * @alias androidpublisher.edits.insert
+            * @memberOf! androidpublisher(v2)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+            * @param {androidpublisher(v2).AppEdit} params.resource Request body data
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        insert(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url: (rootUrl +
+                        '/androidpublisher/v2/applications/{packageName}/edits')
+                           .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['packageName'],
+            pathParams: ['packageName'],
+            context: self
+          };
+          createAPIRequest(parameters, callback!);
+        }, /**
+            * androidpublisher.edits.validate
+            * @desc Checks that the edit can be successfully committed. The
+            * edit's changes are not applied to the live app.
+            * @alias androidpublisher.edits.validate
+            * @memberOf! androidpublisher(v2)
+            *
+            * @param {object} params Parameters for request
+            * @param {string} params.editId Unique identifier for this edit.
+            * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+            * @param {callback} callback The callback that handles the response.
+            * @return {object} Request object
+            */
+        validate(
+            params: any, options: MethodOptions|BodyResponseCallback<any>,
+            callback?: BodyResponseCallback<any>) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options = options || {};
+          const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+          const parameters = {
+            options: Object.assign(
+                {
+                  url:
+                      (rootUrl +
+                       '/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  method: 'POST'
+                },
+                options),
+            params,
+            requiredParams: ['packageName', 'editId'],
+            pathParams: ['editId', 'packageName'],
+            context: self
+          };
+          createAPIRequest(parameters, callback!);
         },
-    images: {
-      /**
-       * androidpublisher.edits.images.delete
-       * @desc Deletes the image (specified by id) from the edit.
-       * @alias androidpublisher.edits.images.delete
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
-       * @param {string} params.imageType
-       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'language', 'imageType', 'imageId'],
-          pathParams:
-              ['editId', 'imageId', 'imageType', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.images.deleteall
-          * @desc Deletes all images for the specified language and image type.
-          * @alias androidpublisher.edits.images.deleteall
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.imageType
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      deleteall(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.images.list
-          * @desc Lists all images for the specified language and image type.
-          * @alias androidpublisher.edits.images.list
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.imageType
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.images.upload
-          * @desc Uploads a new image and adds it to the list of images for the
-          * specified language and image type.
-          * @alias androidpublisher.edits.images.upload
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.imageType
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} params.media Media object
-          * @param {string} params.media.mimeType Media mime-type
-          * @param {string|object} params.media.body Media body contents
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      upload(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        apklistings:
+            {
+              /**
+               * androidpublisher.edits.apklistings.delete
+               * @desc Deletes the APK-specific localized listing for a
+               * specified APK and language code.
+               * @alias androidpublisher.edits.apklistings.delete
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'apkVersionCode', 'language'],
+                  pathParams:
+                      ['apkVersionCode', 'editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apklistings.deleteall
+                  * @desc Deletes all the APK-specific localized listings for a
+                  * specified APK.
+                  * @alias androidpublisher.edits.apklistings.deleteall
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              deleteall(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'apkVersionCode'],
+                  pathParams: ['apkVersionCode', 'editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apklistings.get
+                  * @desc Fetches the APK-specific localized listing for a
+                  * specified APK and language code.
+                  * @alias androidpublisher.edits.apklistings.get
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'apkVersionCode', 'language'],
+                  pathParams:
+                      ['apkVersionCode', 'editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apklistings.list
+                  * @desc Lists all the APK-specific localized listings for a
+                  * specified APK.
+                  * @alias androidpublisher.edits.apklistings.list
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'apkVersionCode'],
+                  pathParams: ['apkVersionCode', 'editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apklistings.patch
+                  * @desc Updates or creates the APK-specific localized listing
+                  * for a specified APK and language code. This method supports
+                  * patch semantics.
+                  * @alias androidpublisher.edits.apklistings.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).ApkListing} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'apkVersionCode', 'language'],
+                  pathParams:
+                      ['apkVersionCode', 'editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apklistings.update
+                  * @desc Updates or creates the APK-specific localized listing
+                  * for a specified APK and language code.
+                  * @alias androidpublisher.edits.apklistings.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).ApkListing} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'apkVersionCode', 'language'],
+                  pathParams:
+                      ['apkVersionCode', 'editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-    },
-    listings: {
-      /**
-       * androidpublisher.edits.listings.delete
-       * @desc Deletes the specified localized store listing from an edit.
-       * @alias androidpublisher.edits.listings.delete
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.listings.deleteall
-          * @desc Deletes all localized listings from an edit.
-          * @alias androidpublisher.edits.listings.deleteall
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      deleteall(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.listings.get
-          * @desc Fetches information about a localized store listing.
-          * @alias androidpublisher.edits.listings.get
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.listings.list
-          * @desc Returns all of the localized store listings attached to this
-          * edit.
-          * @alias androidpublisher.edits.listings.list
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.listings.patch
-          * @desc Creates or updates a localized store listing. This method
-          * supports patch semantics.
-          * @alias androidpublisher.edits.listings.patch
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).Listing} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.listings.update
-          * @desc Creates or updates a localized store listing.
-          * @alias androidpublisher.edits.listings.update
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {androidpublisher(v2).Listing} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+            },
+        apks:
+            {
+              /**
+               * androidpublisher.edits.apks.addexternallyhosted
+               * @desc Creates a new APK without uploading the APK itself to
+               * Google Play, instead hosting the APK at a specified URL. This
+               * function is only available to enterprises using Google Play for
+               * Work whose application is configured to restrict distribution
+               * to the enterprise domain.
+               * @alias androidpublisher.edits.apks.addexternallyhosted
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {androidpublisher(v2).ApksAddExternallyHostedRequest} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              addexternallyhosted(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apks.list
+                  * @alias androidpublisher.edits.apks.list
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.apks.upload
+                  * @alias androidpublisher.edits.apks.upload
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} params.media Media object
+                  * @param {string} params.media.mimeType Media mime-type
+                  * @param {string|object} params.media.body Media body contents
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              upload(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  mediaUrl:
+                      (rootUrl +
+                       '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-    },
-    testers: {
-      /**
-       * androidpublisher.edits.testers.get
-       * @alias androidpublisher.edits.testers.get
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.testers.patch
-          * @alias androidpublisher.edits.testers.patch
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-          * @param {androidpublisher(v2).Testers} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.testers.update
-          * @alias androidpublisher.edits.testers.update
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-          * @param {androidpublisher(v2).Testers} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+            },
+        deobfuscationfiles:
+            {
+              /**
+               * androidpublisher.edits.deobfuscationfiles.upload
+               * @desc Uploads the deobfuscation file of the specified APK. If a
+               * deobfuscation file already exists, it will be replaced.
+               * @alias androidpublisher.edits.deobfuscationfiles.upload
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {integer} params.apkVersionCode The version code of the APK whose deobfuscation file is being uploaded.
+               * @param {string} params.deobfuscationFileType
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
+               * @param {object} params.media Media object
+               * @param {string} params.media.mimeType Media mime-type
+               * @param {string|object} params.media.body Media body contents
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              upload(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  mediaUrl:
+                      (rootUrl +
+                       '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  requiredParams: [
+                    'packageName', 'editId', 'apkVersionCode',
+                    'deobfuscationFileType'
+                  ],
+                  pathParams: [
+                    'apkVersionCode', 'deobfuscationFileType', 'editId',
+                    'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-    },
-    tracks: {
-      /**
-       * androidpublisher.edits.tracks.get
-       * @desc Fetches the track configuration for the specified track type.
-       * Includes the APK version codes that are in this track.
-       * @alias androidpublisher.edits.tracks.get
-       * @memberOf! androidpublisher(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.editId Unique identifier for this edit.
-       * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-       * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.tracks.list
-          * @desc Lists all the track configurations for this edit.
-          * @alias androidpublisher.edits.tracks.list
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.tracks.patch
-          * @desc Updates the track configuration for the specified track type.
-          * When halted, the rollout track cannot be updated without adding new
-          * APKs, and adding new APKs will cause it to resume. This method
-          * supports patch semantics.
-          * @alias androidpublisher.edits.tracks.patch
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-          * @param {androidpublisher(v2).Track} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      patch(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * androidpublisher.edits.tracks.update
-          * @desc Updates the track configuration for the specified track type.
-          * When halted, the rollout track cannot be updated without adding new
-          * APKs, and adding new APKs will cause it to resume.
-          * @alias androidpublisher.edits.tracks.update
-          * @memberOf! androidpublisher(v2)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.editId Unique identifier for this edit.
-          * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-          * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production" or "rollout".
-          * @param {androidpublisher(v2).Track} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      update(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+            },
+        details:
+            {
+              /**
+               * androidpublisher.edits.details.get
+               * @desc Fetches app details for this edit. This includes the
+               * default language and developer support contact information.
+               * @alias androidpublisher.edits.details.get
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.details.patch
+                  * @desc Updates app details for this edit. This method
+                  * supports patch semantics.
+                  * @alias androidpublisher.edits.details.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).AppDetails} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.details.update
+                  * @desc Updates app details for this edit.
+                  * @alias androidpublisher.edits.details.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).AppDetails} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>, callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-    }
-  };
-  self.entitlements = {
+            },
+        expansionfiles:
+            {
+              /**
+               * androidpublisher.edits.expansionfiles.get
+               * @desc Fetches the Expansion File configuration for the APK
+               * specified.
+               * @alias androidpublisher.edits.expansionfiles.get
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.expansionFileType
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'packageName', 'editId', 'apkVersionCode',
+                    'expansionFileType'
+                  ],
+                  pathParams: [
+                    'apkVersionCode', 'editId', 'expansionFileType',
+                    'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.expansionfiles.patch
+                  * @desc Updates the APK's Expansion File configuration to
+                  * reference another APK's Expansion Files. To add a new
+                  * Expansion File use the Upload method. This method supports
+                  * patch semantics.
+                  * @alias androidpublisher.edits.expansionfiles.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.expansionFileType
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'packageName', 'editId', 'apkVersionCode',
+                    'expansionFileType'
+                  ],
+                  pathParams: [
+                    'apkVersionCode', 'editId', 'expansionFileType',
+                    'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.expansionfiles.update
+                  * @desc Updates the APK's Expansion File configuration to
+                  * reference another APK's Expansion Files. To add a new
+                  * Expansion File use the Upload method.
+                  * @alias androidpublisher.edits.expansionfiles.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.expansionFileType
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'packageName', 'editId', 'apkVersionCode',
+                    'expansionFileType'
+                  ],
+                  pathParams: [
+                    'apkVersionCode', 'editId', 'expansionFileType',
+                    'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.expansionfiles.upload
+                  * @desc Uploads and attaches a new Expansion File to the APK
+                  * specified.
+                  * @alias androidpublisher.edits.expansionfiles.upload
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {integer} params.apkVersionCode The version code of the APK whose Expansion File configuration is being read or modified.
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.expansionFileType
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} params.media Media object
+                  * @param {string} params.media.mimeType Media mime-type
+                  * @param {string|object} params.media.body Media body contents
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              upload(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  mediaUrl:
+                      (rootUrl +
+                       '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  requiredParams: [
+                    'packageName', 'editId', 'apkVersionCode',
+                    'expansionFileType'
+                  ],
+                  pathParams: [
+                    'apkVersionCode', 'editId', 'expansionFileType',
+                    'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        images:
+            {
+              /**
+               * androidpublisher.edits.images.delete
+               * @desc Deletes the image (specified by id) from the edit.
+               * @alias androidpublisher.edits.images.delete
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.imageId Unique identifier an image within the set of images attached to this edit.
+               * @param {string} params.imageType
+               * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: [
+                    'packageName', 'editId', 'language', 'imageType', 'imageId'
+                  ],
+                  pathParams: [
+                    'editId', 'imageId', 'imageType', 'language', 'packageName'
+                  ],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.images.deleteall
+                  * @desc Deletes all images for the specified language and
+                  * image type.
+                  * @alias androidpublisher.edits.images.deleteall
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.imageType
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              deleteall(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'language', 'imageType'],
+                  pathParams:
+                      ['editId', 'imageType', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.images.list
+                  * @desc Lists all images for the specified language and image
+                  * type.
+                  * @alias androidpublisher.edits.images.list
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.imageType
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams:
+                      ['packageName', 'editId', 'language', 'imageType'],
+                  pathParams:
+                      ['editId', 'imageType', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.images.upload
+                  * @desc Uploads a new image and adds it to the list of images
+                  * for the specified language and image type.
+                  * @alias androidpublisher.edits.images.upload
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.imageType
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} params.media Media object
+                  * @param {string} params.media.mimeType Media mime-type
+                  * @param {string|object} params.media.body Media body contents
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              upload(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  mediaUrl:
+                      (rootUrl +
+                       '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                          .replace(/([^:]\/)\/+/g, '$1'),
+                  requiredParams:
+                      ['packageName', 'editId', 'language', 'imageType'],
+                  pathParams:
+                      ['editId', 'imageType', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        listings:
+            {
+              /**
+               * androidpublisher.edits.listings.delete
+               * @desc Deletes the specified localized store listing from an
+               * edit.
+               * @alias androidpublisher.edits.listings.delete
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'language'],
+                  pathParams: ['editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.listings.deleteall
+                  * @desc Deletes all localized listings from an edit.
+                  * @alias androidpublisher.edits.listings.deleteall
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              deleteall(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.listings.get
+                  * @desc Fetches information about a localized store listing.
+                  * @alias androidpublisher.edits.listings.get
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'language'],
+                  pathParams: ['editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.listings.list
+                  * @desc Returns all of the localized store listings attached
+                  * to this edit.
+                  * @alias androidpublisher.edits.listings.list
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.listings.patch
+                  * @desc Creates or updates a localized store listing. This
+                  * method supports patch semantics.
+                  * @alias androidpublisher.edits.listings.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).Listing} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'language'],
+                  pathParams: ['editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.listings.update
+                  * @desc Creates or updates a localized store listing.
+                  * @alias androidpublisher.edits.listings.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {androidpublisher(v2).Listing} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'language'],
+                  pathParams: ['editId', 'language', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        testers:
+            {
+              /**
+               * androidpublisher.edits.testers.get
+               * @alias androidpublisher.edits.testers.get
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.testers.patch
+                  * @alias androidpublisher.edits.testers.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+                  * @param {androidpublisher(v2).Testers} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.testers.update
+                  * @alias androidpublisher.edits.testers.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+                  * @param {androidpublisher(v2).Testers} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        tracks:
+            {
+              /**
+               * androidpublisher.edits.tracks.get
+               * @desc Fetches the track configuration for the specified track
+               * type. Includes the APK version codes that are in this track.
+               * @alias androidpublisher.edits.tracks.get
+               * @memberOf! androidpublisher(v2)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.editId Unique identifier for this edit.
+               * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+               * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.tracks.list
+                  * @desc Lists all the track configurations for this edit.
+                  * @alias androidpublisher.edits.tracks.list
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId'],
+                  pathParams: ['editId', 'packageName'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.tracks.patch
+                  * @desc Updates the track configuration for the specified
+                  * track type. When halted, the rollout track cannot be updated
+                  * without adding new APKs, and adding new APKs will cause it
+                  * to resume. This method supports patch semantics.
+                  * @alias androidpublisher.edits.tracks.patch
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+                  * @param {androidpublisher(v2).Track} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * androidpublisher.edits.tracks.update
+                  * @desc Updates the track configuration for the specified
+                  * track type. When halted, the rollout track cannot be updated
+                  * without adding new APKs, and adding new APKs will cause it
+                  * to resume.
+                  * @alias androidpublisher.edits.tracks.update
+                  * @memberOf! androidpublisher(v2)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.editId Unique identifier for this edit.
+                  * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+                  * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+                  * @param {androidpublisher(v2).Track} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              update(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://www.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PUT'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['packageName', 'editId', 'track'],
+                  pathParams: ['editId', 'packageName', 'track'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            }
+      };
+  entitlements = {
     /**
      * androidpublisher.entitlements.list
      * @desc Lists the user's current inapp item or subscription entitlements
@@ -1732,11 +1806,11 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.inappproducts = {
+  inappproducts = {
     /**
      * androidpublisher.inappproducts.delete
      * @desc Delete an in-app product for an app.
@@ -1750,7 +1824,7 @@ function Androidpublisher(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1774,7 +1848,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.get
         * @desc Returns information about the in-app product specified.
@@ -1811,7 +1885,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.insert
         * @desc Creates a new in-app product for an app.
@@ -1850,7 +1924,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.list
         * @desc List all the in-app products for an Android app, both
@@ -1891,7 +1965,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.patch
         * @desc Updates the details of an in-app product. This method supports
@@ -1932,7 +2006,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.inappproducts.update
         * @desc Updates the details of an in-app product.
@@ -1972,11 +2046,11 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'sku'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.purchases = {
+  purchases = {
     products: {
       /**
        * androidpublisher.purchases.products.get
@@ -2015,7 +2089,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'productId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2059,7 +2133,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.defer
           * @desc Defers a user's subscription purchase until a specified future
@@ -2100,7 +2174,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.get
           * @desc Checks whether a user's subscription purchase is valid and
@@ -2139,7 +2213,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.refund
           * @desc Refunds a user's subscription purchase, but the subscription
@@ -2180,7 +2254,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * androidpublisher.purchases.subscriptions.revoke
           * @desc Refunds and immediately revokes a user's subscription
@@ -2221,7 +2295,7 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName', 'subscriptionId', 'token'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2267,12 +2341,12 @@ function Androidpublisher(options: GlobalOptions) {
           pathParams: ['packageName'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.reviews = {
+  reviews = {
     /**
      * androidpublisher.reviews.get
      * @desc Returns a single review.
@@ -2310,7 +2384,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'reviewId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.reviews.list
         * @desc Returns a list of reviews. Only reviews from last week will be
@@ -2351,7 +2425,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidpublisher.reviews.reply
         * @desc Reply to a single review, or update an existing reply.
@@ -2390,7 +2464,7 @@ function Androidpublisher(options: GlobalOptions) {
         pathParams: ['packageName', 'reviewId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -2731,13 +2805,18 @@ function Androidpublisher(options: GlobalOptions) {
  * @property {integer} cancelReason The reason why a subscription was canceled or is not auto-renewing. Possible values are:   - User canceled the subscription  - Subscription was canceled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was canceled by the developer
  * @property {string} countryCode ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
  * @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
+ * @property {string} emailAddress The email address of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
  * @property {string} expiryTimeMillis Time at which the subscription will expire, in milliseconds since the Epoch.
+ * @property {string} familyName The family name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+ * @property {string} givenName The given name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
  * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
  * @property {string} linkedPurchaseToken The purchase token of the originating purchase if this subscription is one of the following:   - Re-signup of a canceled but non-lapsed subscription  - Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
  * @property {string} orderId The order id of the latest recurring order associated with the purchase of the subscription.
  * @property {integer} paymentState The payment state of the subscription. Possible values are:   - Payment pending  - Payment received  - Free trial
  * @property {string} priceAmountMicros Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
  * @property {string} priceCurrencyCode ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
+ * @property {string} profileId The profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
+ * @property {string} profileName The profile name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
  * @property {integer} purchaseType The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
  * @property {string} startTimeMillis Time at which the subscription was granted, in milliseconds since the Epoch.
  * @property {string} userCancellationTimeMillis The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
@@ -2779,7 +2858,7 @@ function Androidpublisher(options: GlobalOptions) {
  * @typedef Track
  * @memberOf! androidpublisher(v2)
  * @type object
- * @property {string} track Identifier for this track. One of &quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot; or &quot;rollout&quot;.
+ * @property {string} track Identifier for this track. One of &quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;, &quot;rollout&quot; or &quot;internal&quot;.
  * @property {number} userFraction
  * @property {integer[]} versionCodes
  */
@@ -2824,5 +2903,3 @@ function Androidpublisher(options: GlobalOptions) {
  * @property {androidpublisher(v2).TokenPagination} tokenPagination
  * @property {androidpublisher(v2).VoidedPurchase[]} voidedPurchases
  */
-
-export = Androidpublisher;

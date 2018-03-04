@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Groupssettings;
 
 /**
  * Groups Settings API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Groupssettings
  */
-function Groupssettings(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.groups = {
+export class Groupssettings extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  groups = {
     /**
      * groupsSettings.groups.get
      * @desc Gets one resource by id.
@@ -75,7 +80,7 @@ function Groupssettings(options: GlobalOptions) {
         pathParams: ['groupUniqueId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * groupsSettings.groups.patch
         * @desc Updates an existing resource. This method supports patch
@@ -112,7 +117,7 @@ function Groupssettings(options: GlobalOptions) {
         pathParams: ['groupUniqueId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * groupsSettings.groups.update
         * @desc Updates an existing resource.
@@ -148,7 +153,7 @@ function Groupssettings(options: GlobalOptions) {
         pathParams: ['groupUniqueId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -189,5 +194,3 @@ function Groupssettings(options: GlobalOptions) {
  * @property {string} whoCanViewGroup Permissions to view group. Possible values are: ANYONE_CAN_VIEW ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  * @property {string} whoCanViewMembership Permissions to view membership. Possible values are: ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
  */
-
-export = Groupssettings;

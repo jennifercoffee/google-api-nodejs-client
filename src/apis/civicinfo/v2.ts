@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Civicinfo;
 
 /**
  * Google Civic Information API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Civicinfo
  */
-function Civicinfo(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.divisions = {
+export class Civicinfo extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  divisions = {
     /**
      * civicinfo.divisions.search
      * @desc Searches for political divisions by their natural name or OCD ID.
@@ -78,11 +83,11 @@ function Civicinfo(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.elections = {
+  elections = {
     /**
      * civicinfo.elections.electionQuery
      * @desc List of available elections to query.
@@ -117,7 +122,7 @@ function Civicinfo(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * civicinfo.elections.voterInfoQuery
         * @desc Looks up information relevant to a voter based on the voter's
@@ -157,11 +162,11 @@ function Civicinfo(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.representatives = {
+  representatives = {
     /**
      * civicinfo.representatives.representativeInfoByAddress
      * @desc Looks up political geography and representative information for a
@@ -201,7 +206,7 @@ function Civicinfo(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * civicinfo.representatives.representativeInfoByDivision
         * @desc Looks up representative information for a single geographic
@@ -241,7 +246,7 @@ function Civicinfo(options: GlobalOptions) {
         pathParams: ['ocdId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -555,5 +560,3 @@ function Civicinfo(options: GlobalOptions) {
  * @property {civicinfo(v2).VoterInfoRequest} request
  * @property {civicinfo(v2).VoterInfoResponse} response
  */
-
-export = Civicinfo;

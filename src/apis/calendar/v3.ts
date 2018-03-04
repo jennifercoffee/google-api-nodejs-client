@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Calendar;
 
 /**
  * Calendar API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v3
  * @param {object=} options Options for Calendar
  */
-function Calendar(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.acl = {
+export class Calendar extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  acl = {
     /**
      * calendar.acl.delete
      * @desc Deletes an access control rule.
@@ -55,7 +60,7 @@ function Calendar(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -78,7 +83,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'ruleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.get
         * @desc Returns an access control rule.
@@ -114,7 +119,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'ruleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.insert
         * @desc Creates an access control rule.
@@ -151,7 +156,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.list
         * @desc Returns the rules in the access control list for the calendar.
@@ -190,7 +195,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.patch
         * @desc Updates an access control rule. This method supports patch
@@ -230,7 +235,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'ruleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.update
         * @desc Updates an access control rule.
@@ -269,7 +274,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'ruleId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.acl.watch
         * @desc Watch for changes to ACL resources.
@@ -309,11 +314,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.calendarList = {
+  calendarList = {
     /**
      * calendar.calendarList.delete
      * @desc Deletes an entry on the user's calendar list.
@@ -326,7 +331,7 @@ function Calendar(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -348,7 +353,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.get
         * @desc Returns an entry on the user's calendar list.
@@ -382,7 +387,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.insert
         * @desc Adds an entry to the user's calendar list.
@@ -418,7 +423,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.list
         * @desc Returns entries on the user's calendar list.
@@ -458,7 +463,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.patch
         * @desc Updates an entry on the user's calendar list. This method
@@ -496,7 +501,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.update
         * @desc Updates an entry on the user's calendar list.
@@ -533,7 +538,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendarList.watch
         * @desc Watch for changes to CalendarList resources.
@@ -574,11 +579,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.calendars = {
+  calendars = {
     /**
      * calendar.calendars.clear
      * @desc Clears a primary calendar. This operation deletes all events
@@ -614,7 +619,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendars.delete
         * @desc Deletes a secondary calendar. Use calendars.clear for clearing
@@ -628,7 +633,7 @@ function Calendar(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -650,7 +655,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendars.get
         * @desc Returns metadata for a calendar.
@@ -684,7 +689,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendars.insert
         * @desc Creates a secondary calendar.
@@ -719,7 +724,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendars.patch
         * @desc Updates metadata for a calendar. This method supports patch
@@ -756,7 +761,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.calendars.update
         * @desc Updates metadata for a calendar.
@@ -792,11 +797,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.channels = {
+  channels = {
     /**
      * calendar.channels.stop
      * @desc Stop watching resources through this channel
@@ -831,11 +836,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.colors = {
+  colors = {
     /**
      * calendar.colors.get
      * @desc Returns the color definitions for calendars and events.
@@ -868,11 +873,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.events = {
+  events = {
     /**
      * calendar.events.delete
      * @desc Deletes an event.
@@ -887,7 +892,7 @@ function Calendar(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -910,7 +915,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.get
         * @desc Returns an event.
@@ -949,7 +954,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.import
         * @desc Imports an event. This operation is used to add a private copy
@@ -989,7 +994,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.insert
         * @desc Creates an event.
@@ -1029,7 +1034,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.instances
         * @desc Returns instances of the specified recurring event.
@@ -1076,7 +1081,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.list
         * @desc Returns events on the specified calendar.
@@ -1128,7 +1133,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.move
         * @desc Moves an event to another calendar, i.e. changes an event's
@@ -1168,7 +1173,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.patch
         * @desc Updates an event. This method supports patch semantics.
@@ -1211,7 +1216,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.quickAdd
         * @desc Creates an event based on a simple text string.
@@ -1249,7 +1254,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.update
         * @desc Updates an event.
@@ -1292,7 +1297,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId', 'eventId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.events.watch
         * @desc Watch for changes to Events resources.
@@ -1346,11 +1351,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['calendarId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.freebusy = {
+  freebusy = {
     /**
      * calendar.freebusy.query
      * @desc Returns free/busy information for a set of calendars.
@@ -1385,11 +1390,11 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.settings = {
+  settings = {
     /**
      * calendar.settings.get
      * @desc Returns a single user setting.
@@ -1423,7 +1428,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: ['setting'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.settings.list
         * @desc Returns all user settings for the authenticated user.
@@ -1460,7 +1465,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * calendar.settings.watch
         * @desc Watch for changes to Settings resources.
@@ -1498,7 +1503,7 @@ function Calendar(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1852,5 +1857,3 @@ function Calendar(options: GlobalOptions) {
  * @property {string} end The (exclusive) end of the time period.
  * @property {string} start The (inclusive) start of the time period.
  */
-
-export = Calendar;

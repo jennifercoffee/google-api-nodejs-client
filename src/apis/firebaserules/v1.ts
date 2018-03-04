@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Firebaserules;
 
 /**
  * Firebase Rules API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Firebaserules
  */
-function Firebaserules(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.projects = {
+export class Firebaserules extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  projects = {
     /**
      * firebaserules.projects.test
      * @desc Test `Source` for syntactic and semantic correctness. Issues
@@ -90,7 +95,7 @@ function Firebaserules(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     releases: {
       /**
@@ -144,7 +149,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.releases.delete
           * @desc Delete a `Release` by resource name.
@@ -157,7 +162,7 @@ function Firebaserules(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -179,7 +184,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.releases.get
           * @desc Get a `Release` by name.
@@ -213,7 +218,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.releases.getExecutable
           * @desc Get the `Release` executable to use when enforcing rules.
@@ -250,7 +255,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.releases.list
           * @desc List the `Release` values for a project. This list may
@@ -291,7 +296,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.releases.patch
           * @desc Update a `Release` via PATCH.  Only updates to the
@@ -330,7 +335,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -375,7 +380,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.rulesets.delete
           * @desc Delete a `Ruleset` by resource name.  If the `Ruleset` is
@@ -389,7 +394,7 @@ function Firebaserules(options: GlobalOptions) {
           * @param {callback} callback The callback that handles the response.
           * @return {object} Request object
           */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -411,7 +416,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.rulesets.get
           * @desc Get a `Ruleset` by name including the full `Source` contents.
@@ -445,7 +450,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * firebaserules.projects.rulesets.list
           * @desc List `Ruleset` metadata only and optionally filter the results
@@ -486,7 +491,7 @@ function Firebaserules(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -642,5 +647,3 @@ function Firebaserules(options: GlobalOptions) {
  * @property {firebaserules(v1).Release} release `Release` to update.
  * @property {string} updateMask Specifies which fields to update.
  */
-
-export = Firebaserules;

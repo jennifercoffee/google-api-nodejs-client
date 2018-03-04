@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Discovery;
 
 /**
  * APIs Discovery Service
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Discovery
  */
-function Discovery(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.apis = {
+export class Discovery extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  apis = {
     /**
      * discovery.apis.getRest
      * @desc Retrieve the description of a particular version of an api.
@@ -78,7 +83,7 @@ function Discovery(options: GlobalOptions) {
         pathParams: ['api', 'version'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * discovery.apis.list
         * @desc Retrieve the list of APIs supported at this endpoint.
@@ -114,7 +119,7 @@ function Discovery(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -214,5 +219,3 @@ function Discovery(options: GlobalOptions) {
  * @property {object} methods Methods on this resource.
  * @property {object} resources Sub-resources on this resource.
  */
-
-export = Discovery;

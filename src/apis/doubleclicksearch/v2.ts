@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Doubleclicksearch;
 
 /**
  * DoubleClick Search API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Doubleclicksearch
  */
-function Doubleclicksearch(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.conversion = {
+export class Doubleclicksearch extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  conversion = {
     /**
      * doubleclicksearch.conversion.get
      * @desc Retrieves a list of conversions from a DoubleClick Search engine
@@ -92,7 +97,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.insert
         * @desc Inserts a batch of new conversions into DoubleClick Search.
@@ -127,7 +132,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.patch
         * @desc Updates a batch of conversions in DoubleClick Search. This
@@ -173,7 +178,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.update
         * @desc Updates a batch of conversions in DoubleClick Search.
@@ -208,7 +213,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.conversion.updateAvailability
         * @desc Updates the availabilities of a batch of floodlight activities
@@ -245,11 +250,11 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.reports = {
+  reports = {
     /**
      * doubleclicksearch.reports.generate
      * @desc Generates and returns a report immediately.
@@ -284,7 +289,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.get
         * @desc Polls for the status of a report request.
@@ -318,7 +323,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: ['reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.getFile
         * @desc Downloads a report file encoded in UTF-8.
@@ -356,7 +361,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: ['reportFragment', 'reportId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * doubleclicksearch.reports.request
         * @desc Inserts a report request into the reporting system.
@@ -391,11 +396,11 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.savedColumns = {
+  savedColumns = {
     /**
      * doubleclicksearch.savedColumns.list
      * @desc Retrieve the list of saved columns for a specified advertiser.
@@ -433,7 +438,7 @@ function Doubleclicksearch(options: GlobalOptions) {
         pathParams: ['advertiserId', 'agencyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -588,5 +593,3 @@ function Doubleclicksearch(options: GlobalOptions) {
  * @type object
  * @property {doubleclicksearch(v2).Availability[]} availabilities The availabilities being returned.
  */
-
-export = Doubleclicksearch;

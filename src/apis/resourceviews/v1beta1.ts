@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Resourceviews;
 
 /**
  * Resource Views API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Resourceviews
  */
-function Resourceviews(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.regionViews = {
+export class Resourceviews extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  regionViews = {
     /**
      * resourceviews.regionViews.addresources
      * @desc Add resources to the view.
@@ -82,7 +87,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.delete
         * @desc Delete a resource view.
@@ -97,7 +102,7 @@ function Resourceviews(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -121,7 +126,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.get
         * @desc Get the information of a resource view.
@@ -159,7 +164,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.insert
         * @desc Create a resource view.
@@ -198,7 +203,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.list
         * @desc List resource views.
@@ -238,7 +243,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.listresources
         * @desc List the resources in the view.
@@ -279,7 +284,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.regionViews.removeresources
         * @desc Remove resources from the view.
@@ -319,11 +324,11 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'region', 'resourceViewName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.zoneViews = {
+  zoneViews = {
     /**
      * resourceviews.zoneViews.addresources
      * @desc Add resources to the view.
@@ -363,7 +368,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.delete
         * @desc Delete a resource view.
@@ -378,7 +383,7 @@ function Resourceviews(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -402,7 +407,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.get
         * @desc Get the information of a zonal resource view.
@@ -440,7 +445,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.insert
         * @desc Create a resource view.
@@ -479,7 +484,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.list
         * @desc List resource views.
@@ -519,7 +524,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.listresources
         * @desc List the resources of the resource view.
@@ -560,7 +565,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * resourceviews.zoneViews.removeresources
         * @desc Remove resources from the view.
@@ -600,7 +605,7 @@ function Resourceviews(options: GlobalOptions) {
         pathParams: ['projectName', 'resourceViewName', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -691,5 +696,3 @@ function Resourceviews(options: GlobalOptions) {
  * @type object
  * @property {string[]} resources The list of resources to be removed.
  */
-
-export = Resourceviews;

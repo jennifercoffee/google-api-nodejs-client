@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Proximitybeacon;
 
 /**
  * Proximity Beacon API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta1
  * @param {object=} options Options for Proximitybeacon
  */
-function Proximitybeacon(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.beaconinfo = {
+export class Proximitybeacon extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  beaconinfo = {
     /**
      * proximitybeacon.beaconinfo.getforobserved
      * @desc Given one or more beacon observations, returns any beacon
@@ -81,11 +86,11 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.beacons = {
+  beacons = {
     /**
      * proximitybeacon.beacons.activate
      * @desc Activates a beacon. A beacon that is active will return information
@@ -128,7 +133,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.deactivate
         * @desc Deactivates a beacon. Once deactivated, the API will not return
@@ -172,7 +177,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.decommission
         * @desc Decommissions the specified beacon in the service. This beacon
@@ -215,7 +220,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.delete
         * @desc Deletes the specified beacon including all diagnostics data for
@@ -235,7 +240,7 @@ function Proximitybeacon(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -258,7 +263,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.get
         * @desc Returns detailed information about the specified beacon.
@@ -303,7 +308,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.list
         * @desc Searches the beacon registry for beacons that match the given
@@ -346,7 +351,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.register
         * @desc Registers a previously unregistered beacon given its
@@ -388,7 +393,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.beacons.update
         * @desc Updates the information about the specified beacon. **Any field
@@ -435,250 +440,255 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['beaconName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    attachments: {
-      /**
-       * proximitybeacon.beacons.attachments.batchDelete
-       * @desc Deletes multiple attachments on a given beacon. This operation is
-       * permanent and cannot be undone.  You can optionally specify
-       * `namespacedType` to choose which attachments should be deleted. If you
-       * do not specify `namespacedType`,  all your attachments on the given
-       * beacon will be deleted. You also may explicitly specify `x/x` to delete
-       * all.  Authenticate using an [OAuth access
-       * token](https://developers.google.com/identity/protocols/OAuth2) from a
-       * signed-in user with **Is owner** or **Can edit** permissions in the
-       * Google Developers Console project.
-       * @alias proximitybeacon.beacons.attachments.batchDelete
-       * @memberOf! proximitybeacon(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-       * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
-       * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      batchDelete(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * proximitybeacon.beacons.attachments.create
-          * @desc Associates the given data with the specified beacon.
-          * Attachment data must contain two parts: <ul> <li>A namespaced
-          * type.</li> <li>The actual attachment data itself.</li> </ul> The
-          * namespaced type consists of two parts, the namespace and the type.
-          * The namespace must be one of the values returned by the `namespaces`
-          * endpoint, while the type can be a string of any characters except
-          * for the forward slash (`/`) up to 100 characters in length.
-          * Attachment data can be up to 1024 bytes long.  Authenticate using an
-          * [OAuth access
-          * token](https://developers.google.com/identity/protocols/OAuth2) from
-          * a signed-in user with **Is owner** or **Can edit** permissions in
-          * the Google Developers Console project.
-          * @alias proximitybeacon.beacons.attachments.create
-          * @memberOf! proximitybeacon(v1beta1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-          * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
-          * @param {proximitybeacon(v1beta1).BeaconAttachment} params.resource Request body data
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * proximitybeacon.beacons.attachments.delete
-          * @desc Deletes the specified attachment for the given beacon. Each
-          * attachment has a unique attachment name (`attachmentName`) which is
-          * returned when you fetch the attachment data via this API. You
-          * specify this with the delete request to control which attachment is
-          * removed. This operation cannot be undone.  Authenticate using an
-          * [OAuth access
-          * token](https://developers.google.com/identity/protocols/OAuth2) from
-          * a signed-in user with **Is owner** or **Can edit** permissions in
-          * the Google Developers Console project.
-          * @alias proximitybeacon.beacons.attachments.delete
-          * @memberOf! proximitybeacon(v1beta1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.attachmentName The attachment name (`attachmentName`) of the attachment to remove. For example: `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738`. For Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be the beacon's current EID, or its "stable" Eddystone-UID. Required.
-          * @param {string=} params.projectId The project id of the attachment to delete. If not provided, the project that is making the request is used. Optional.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      delete (
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{attachmentName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['attachmentName'],
-          pathParams: ['attachmentName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }, /**
-          * proximitybeacon.beacons.attachments.list
-          * @desc Returns the attachments for the specified beacon that match
-          * the specified namespaced-type pattern.  To control which namespaced
-          * types are returned, you add the `namespacedType` query parameter to
-          * the request. You must either use `x/x`, to return all attachments,
-          * or the namespace must be one of the ones returned from the
-          * `namespaces` endpoint.  Authenticate using an [OAuth access
-          * token](https://developers.google.com/identity/protocols/OAuth2) from
-          * a signed-in user with **viewer**, **Is owner** or **Can edit**
-          * permissions in the Google Developers Console project.
-          * @alias proximitybeacon.beacons.attachments.list
-          * @memberOf! proximitybeacon(v1beta1)
-          *
-          * @param {object} params Parameters for request
-          * @param {string} params.beaconName Beacon whose attachments should be fetched. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-          * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in <var>namespace/type</var> format. Accepts `x/x` to specify "all types in all namespaces".
-          * @param {string=} params.projectId The project id to list beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-          * @param {callback} callback The callback that handles the response.
-          * @return {object} Request object
-          */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/attachments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    attachments:
+        {
+          /**
+           * proximitybeacon.beacons.attachments.batchDelete
+           * @desc Deletes multiple attachments on a given beacon. This
+           * operation is permanent and cannot be undone.  You can optionally
+           * specify `namespacedType` to choose which attachments should be
+           * deleted. If you do not specify `namespacedType`,  all your
+           * attachments on the given beacon will be deleted. You also may
+           * explicitly specify `x/x` to delete all.  Authenticate using an
+           * [OAuth access
+           * token](https://developers.google.com/identity/protocols/OAuth2)
+           * from a signed-in user with **Is owner** or **Can edit** permissions
+           * in the Google Developers Console project.
+           * @alias proximitybeacon.beacons.attachments.batchDelete
+           * @memberOf! proximitybeacon(v1beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+           * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
+           * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          batchDelete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl +
+                          '/v1beta1/{beaconName}/attachments:batchDelete')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['beaconName'],
+              pathParams: ['beaconName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * proximitybeacon.beacons.attachments.create
+              * @desc Associates the given data with the specified beacon.
+              * Attachment data must contain two parts: <ul> <li>A namespaced
+              * type.</li> <li>The actual attachment data itself.</li> </ul> The
+              * namespaced type consists of two parts, the namespace and the
+              * type. The namespace must be one of the values returned by the
+              * `namespaces` endpoint, while the type can be a string of any
+              * characters except for the forward slash (`/`) up to 100
+              * characters in length.  Attachment data can be up to 1024 bytes
+              * long.  Authenticate using an [OAuth access
+              * token](https://developers.google.com/identity/protocols/OAuth2)
+              * from a signed-in user with **Is owner** or **Can edit**
+              * permissions in the Google Developers Console project.
+              * @alias proximitybeacon.beacons.attachments.create
+              * @memberOf! proximitybeacon(v1beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+              * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
+              * @param {proximitybeacon(v1beta1).BeaconAttachment} params.resource Request body data
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['beaconName'],
+              pathParams: ['beaconName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * proximitybeacon.beacons.attachments.delete
+              * @desc Deletes the specified attachment for the given beacon.
+              * Each attachment has a unique attachment name (`attachmentName`)
+              * which is returned when you fetch the attachment data via this
+              * API. You specify this with the delete request to control which
+              * attachment is removed. This operation cannot be undone.
+              * Authenticate using an [OAuth access
+              * token](https://developers.google.com/identity/protocols/OAuth2)
+              * from a signed-in user with **Is owner** or **Can edit**
+              * permissions in the Google Developers Console project.
+              * @alias proximitybeacon.beacons.attachments.delete
+              * @memberOf! proximitybeacon(v1beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.attachmentName The attachment name (`attachmentName`) of the attachment to remove. For example: `beacons/3!893737abc9/attachments/c5e937-af0-494-959-ec49d12738`. For Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be the beacon's current EID, or its "stable" Eddystone-UID. Required.
+              * @param {string=} params.projectId The project id of the attachment to delete. If not provided, the project that is making the request is used. Optional.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          delete(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1beta1/{attachmentName}')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'DELETE'
+                  },
+                  options),
+              params,
+              requiredParams: ['attachmentName'],
+              pathParams: ['attachmentName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }, /**
+              * proximitybeacon.beacons.attachments.list
+              * @desc Returns the attachments for the specified beacon that
+              * match the specified namespaced-type pattern.  To control which
+              * namespaced types are returned, you add the `namespacedType`
+              * query parameter to the request. You must either use `x/x`, to
+              * return all attachments, or the namespace must be one of the ones
+              * returned from the  `namespaces` endpoint.  Authenticate using an
+              * [OAuth access
+              * token](https://developers.google.com/identity/protocols/OAuth2)
+              * from a signed-in user with **viewer**, **Is owner** or **Can
+              * edit** permissions in the Google Developers Console project.
+              * @alias proximitybeacon.beacons.attachments.list
+              * @memberOf! proximitybeacon(v1beta1)
+              *
+              * @param {object} params Parameters for request
+              * @param {string} params.beaconName Beacon whose attachments should be fetched. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+              * @param {string=} params.namespacedType Specifies the namespace and type of attachment to include in response in <var>namespace/type</var> format. Accepts `x/x` to specify "all types in all namespaces".
+              * @param {string=} params.projectId The project id to list beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
+              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+              * @param {callback} callback The callback that handles the response.
+              * @return {object} Request object
+              */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['beaconName'],
+              pathParams: ['beaconName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    },
-    diagnostics: {
-      /**
-       * proximitybeacon.beacons.diagnostics.list
-       * @desc List the diagnostics for a single beacon. You can also list
-       * diagnostics for all the beacons owned by your Google Developers Console
-       * project by using the beacon name `beacons/-`.  Authenticate using an
-       * [OAuth access
-       * token](https://developers.google.com/identity/protocols/OAuth2) from a
-       * signed-in user with **viewer**, **Is owner** or **Can edit**
-       * permissions in the Google Developers Console project.
-       * @alias proximitybeacon.beacons.diagnostics.list
-       * @memberOf! proximitybeacon(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
-       * @param {string} params.beaconName Beacon that the diagnostics are for.
-       * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
-       * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
-       * @param {string=} params.projectId Requests only diagnostic records for the given project id. If not set, then the project making the request will be used for looking up diagnostic records. Optional.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://proximitybeacon.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{beaconName}/diagnostics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+        },
+    diagnostics:
+        {
+          /**
+           * proximitybeacon.beacons.diagnostics.list
+           * @desc List the diagnostics for a single beacon. You can also list
+           * diagnostics for all the beacons owned by your Google Developers
+           * Console project by using the beacon name `beacons/-`.  Authenticate
+           * using an [OAuth access
+           * token](https://developers.google.com/identity/protocols/OAuth2)
+           * from a signed-in user with **viewer**, **Is owner** or **Can edit**
+           * permissions in the Google Developers Console project.
+           * @alias proximitybeacon.beacons.diagnostics.list
+           * @memberOf! proximitybeacon(v1beta1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string=} params.alertFilter Requests only beacons that have the given alert. For example, to find beacons that have low batteries use `alert_filter=LOW_BATTERY`.
+           * @param {string} params.beaconName Beacon that the diagnostics are for.
+           * @param {integer=} params.pageSize Specifies the maximum number of results to return. Defaults to 10. Maximum 1000. Optional.
+           * @param {string=} params.pageToken Requests results that occur after the `page_token`, obtained from the response to a previous request. Optional.
+           * @param {string=} params.projectId Requests only diagnostic records for the given project id. If not set, then the project making the request will be used for looking up diagnostic records. Optional.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v1beta1/{beaconName}/diagnostics')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'GET'
+                  },
+                  options),
+              params,
+              requiredParams: ['beaconName'],
+              pathParams: ['beaconName'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.namespaces = {
+  namespaces = {
     /**
      * proximitybeacon.namespaces.list
      * @desc Lists all attachment namespaces owned by your Google Developers
@@ -720,7 +730,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * proximitybeacon.namespaces.update
         * @desc Updates the information about the specified namespace. Only the
@@ -759,11 +769,11 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: ['namespaceName'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.v1beta1 = {
+  v1beta1 = {
     /**
      * proximitybeacon.getEidparams
      * @desc Gets the Proximity Beacon API's current public key and associated
@@ -804,7 +814,7 @@ function Proximitybeacon(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -972,5 +982,3 @@ function Proximitybeacon(options: GlobalOptions) {
  * @property {string} telemetry The array of telemetry bytes received from the beacon. The server is responsible for parsing it. This field may frequently be empty, as with a beacon that transmits telemetry only occasionally.
  * @property {string} timestampMs Time when the beacon was observed.
  */
-
-export = Proximitybeacon;

@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Androidenterprise;
 
 /**
  * Google Play EMM API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Androidenterprise
  */
-function Androidenterprise(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.devices = {
+export class Androidenterprise extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  devices = {
     /**
      * androidenterprise.devices.get
      * @desc Retrieves the details of a device.
@@ -79,7 +84,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.getState
         * @desc Retrieves whether a device's access to Google services is
@@ -123,7 +128,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.list
         * @desc Retrieves the IDs of all of a user's devices.
@@ -161,7 +166,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.patch
         * @desc Updates the device policy. This method supports patch semantics.
@@ -202,7 +207,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.setState
         * @desc Sets whether a device's access to Google services is enabled or
@@ -246,7 +251,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.devices.update
         * @desc Updates the device policy
@@ -287,11 +292,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.enterprises = {
+  enterprises = {
     /**
      * androidenterprise.enterprises.acknowledgeNotificationSet
      * @desc Acknowledges notifications that were received from
@@ -330,7 +335,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.completeSignup
         * @desc Completes the signup flow, by specifying the Completion token
@@ -369,7 +374,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.createWebToken
         * @desc Returns a unique token to access an embeddable UI. To generate a
@@ -410,7 +415,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.delete
         * @desc Deletes the binding between the EMM and enterprise. This is now
@@ -426,7 +431,7 @@ function Androidenterprise(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -449,7 +454,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.enroll
         * @desc Enrolls an enterprise with the calling EMM.
@@ -485,7 +490,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.generateSignupUrl
         * @desc Generates a sign-up URL.
@@ -520,7 +525,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.get
         * @desc Retrieves the name and domain of an enterprise.
@@ -555,7 +560,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getAndroidDevicePolicyConfig
         * @desc Returns the Android Device Policy config resource.
@@ -592,7 +597,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getServiceAccount
         * @desc Returns a service account and credentials. The service account
@@ -640,7 +645,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.getStoreLayout
         * @desc Returns the store layout for the enterprise. If the store layout
@@ -679,7 +684,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.insert
         * @desc Establishes the binding between the EMM and an enterprise. This
@@ -716,7 +721,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.list
         * @desc Looks up an enterprise by domain name. This is only supported
@@ -755,7 +760,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.pullNotificationSet
         * @desc Pulls and returns a notification set for the enterprises
@@ -805,7 +810,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.sendTestPushNotification
         * @desc Sends a test notification to validate the EMM integration with
@@ -843,7 +848,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setAccount
         * @desc Sets the account that will be used to authenticate to the API as
@@ -881,7 +886,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setAndroidDevicePolicyConfig
         * @desc Sets the Android Device Policy config resource. EMM may use this
@@ -922,7 +927,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.setStoreLayout
         * @desc Sets the store layout for the enterprise. By default,
@@ -967,7 +972,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.enterprises.unenroll
         * @desc Unenrolls an enterprise from the calling EMM.
@@ -1003,11 +1008,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.entitlements = {
+  entitlements = {
     /**
      * androidenterprise.entitlements.delete
      * @desc Removes an entitlement to an app for a user.
@@ -1022,7 +1027,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1046,7 +1051,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.get
         * @desc Retrieves details of an entitlement.
@@ -1084,7 +1089,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.list
         * @desc Lists all entitlements for the specified user. Only the ID is
@@ -1123,7 +1128,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.patch
         * @desc Adds or updates an entitlement to an app for a user. This method
@@ -1165,7 +1170,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.entitlements.update
         * @desc Adds or updates an entitlement to an app for a user.
@@ -1206,11 +1211,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.grouplicenses = {
+  grouplicenses = {
     /**
      * androidenterprise.grouplicenses.get
      * @desc Retrieves details of an enterprise's group license for a product.
@@ -1247,7 +1252,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.grouplicenses.list
         * @desc Retrieves IDs of all products for which the enterprise has a
@@ -1285,11 +1290,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.grouplicenseusers = {
+  grouplicenseusers = {
     /**
      * androidenterprise.grouplicenseusers.list
      * @desc Retrieves the IDs of the users who have been granted entitlements
@@ -1328,11 +1333,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'groupLicenseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.installs = {
+  installs = {
     /**
      * androidenterprise.installs.delete
      * @desc Requests to remove an app from a device. A call to get or list will
@@ -1350,7 +1355,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1374,7 +1379,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.get
         * @desc Retrieves details of an installation of an app on a device.
@@ -1413,7 +1418,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.list
         * @desc Retrieves the details of all apps installed on the specified
@@ -1453,7 +1458,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.patch
         * @desc Requests to install the latest version of an app to a device. If
@@ -1496,7 +1501,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.installs.update
         * @desc Requests to install the latest version of an app to a device. If
@@ -1539,11 +1544,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.managedconfigurationsfordevice = {
+  managedconfigurationsfordevice = {
     /**
      * androidenterprise.managedconfigurationsfordevice.delete
      * @desc Removes a per-device managed configuration for an app for the
@@ -1560,7 +1565,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1590,7 +1595,7 @@ function Androidenterprise(options: GlobalOptions) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.get
         * @desc Retrieves details of a per-device managed configuration.
@@ -1635,7 +1640,7 @@ function Androidenterprise(options: GlobalOptions) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.list
         * @desc Lists all the per-device managed configurations for the
@@ -1675,7 +1680,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.patch
         * @desc Adds or updates a per-device managed configuration for an app
@@ -1723,7 +1728,7 @@ function Androidenterprise(options: GlobalOptions) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsfordevice.update
         * @desc Adds or updates a per-device managed configuration for an app
@@ -1771,11 +1776,11 @@ function Androidenterprise(options: GlobalOptions) {
         ],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.managedconfigurationsforuser = {
+  managedconfigurationsforuser = {
     /**
      * androidenterprise.managedconfigurationsforuser.delete
      * @desc Removes a per-user managed configuration for an app for the
@@ -1791,7 +1796,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1816,7 +1821,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.get
         * @desc Retrieves details of a per-user managed configuration for an app
@@ -1856,7 +1861,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.list
         * @desc Lists all the per-user managed configurations for the specified
@@ -1895,7 +1900,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.patch
         * @desc Adds or updates the managed configuration settings for an app
@@ -1942,7 +1947,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.managedconfigurationsforuser.update
         * @desc Adds or updates the managed configuration settings for an app
@@ -1988,11 +1993,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.managedconfigurationssettings = {
+  managedconfigurationssettings = {
     /**
      * androidenterprise.managedconfigurationssettings.list
      * @desc Lists all the managed configurations settings for the specified
@@ -2031,11 +2036,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.permissions = {
+  permissions = {
     /**
      * androidenterprise.permissions.get
      * @desc Retrieves details of an Android app permission for display to an
@@ -2072,11 +2077,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['permissionId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.products = {
+  products = {
     /**
      * androidenterprise.products.approve
      * @desc Approves the specified product and the relevant app permissions, if
@@ -2119,7 +2124,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.generateApprovalUrl
         * @desc Generates a URL that can be rendered in an iframe to display the
@@ -2166,7 +2171,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.get
         * @desc Retrieves details of a product for display to an enterprise
@@ -2205,7 +2210,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.getAppRestrictionsSchema
         * @desc Retrieves the schema that defines the configurable properties
@@ -2249,7 +2254,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.getPermissions
         * @desc Retrieves the Android app permissions required by this app.
@@ -2287,7 +2292,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.list
         * @desc Finds approved products that match a query, or all approved
@@ -2329,7 +2334,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.products.unapprove
         * @desc Unapproves the specified product (and the relevant app
@@ -2368,11 +2373,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'productId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.serviceaccountkeys = {
+  serviceaccountkeys = {
     /**
      * androidenterprise.serviceaccountkeys.delete
      * @desc Removes and invalidates the specified credentials for the service
@@ -2390,7 +2395,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2414,7 +2419,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'keyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.serviceaccountkeys.insert
         * @desc Generates new credentials for the service account associated
@@ -2457,7 +2462,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.serviceaccountkeys.list
         * @desc Lists all active credentials for the service account associated
@@ -2498,11 +2503,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.storelayoutclusters = {
+  storelayoutclusters = {
     /**
      * androidenterprise.storelayoutclusters.delete
      * @desc Deletes a cluster.
@@ -2517,7 +2522,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2541,7 +2546,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.get
         * @desc Retrieves details of a cluster.
@@ -2579,7 +2584,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.insert
         * @desc Inserts a new cluster in a page.
@@ -2618,7 +2623,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.list
         * @desc Retrieves the details of all clusters on the specified page.
@@ -2656,7 +2661,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.patch
         * @desc Updates a cluster. This method supports patch semantics.
@@ -2696,7 +2701,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutclusters.update
         * @desc Updates a cluster.
@@ -2736,11 +2741,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.storelayoutpages = {
+  storelayoutpages = {
     /**
      * androidenterprise.storelayoutpages.delete
      * @desc Deletes a store page.
@@ -2754,7 +2759,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2778,7 +2783,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.get
         * @desc Retrieves details of a store page.
@@ -2815,7 +2820,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.insert
         * @desc Inserts a new store page.
@@ -2853,7 +2858,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.list
         * @desc Retrieves the details of all pages in the store.
@@ -2890,7 +2895,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.patch
         * @desc Updates the content of a store page. This method supports patch
@@ -2930,7 +2935,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.storelayoutpages.update
         * @desc Updates the content of a store page.
@@ -2969,11 +2974,11 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'pageId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * androidenterprise.users.delete
      * @desc Deleted an EMM-managed user.
@@ -2987,7 +2992,7 @@ function Androidenterprise(options: GlobalOptions) {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -3011,7 +3016,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.generateAuthenticationToken
         * @desc Generates an authentication token which the device policy client
@@ -3052,7 +3057,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.generateToken
         * @desc Generates a token (activation code) to allow this user to
@@ -3093,7 +3098,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.get
         * @desc Retrieves a user's details.
@@ -3130,7 +3135,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.getAvailableProductSet
         * @desc Retrieves the set of products a user is entitled to access.
@@ -3168,7 +3173,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.insert
         * @desc Creates a new EMM-managed user.  The Users resource passed in
@@ -3209,7 +3214,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.list
         * @desc Looks up a user by primary email address. This is only supported
@@ -3249,7 +3254,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.patch
         * @desc Updates the details of an EMM-managed user.  Can be used with
@@ -3292,7 +3297,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.revokeDeviceAccess
         * @desc Revokes access to all devices currently provisioned to the user.
@@ -3333,7 +3338,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.revokeToken
         * @desc Revokes a previously generated token (activation code) for the
@@ -3372,7 +3377,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.setAvailableProductSet
         * @desc Modifies the set of products that a user is entitled to access
@@ -3414,7 +3419,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * androidenterprise.users.update
         * @desc Updates the details of an EMM-managed user.  Can be used with
@@ -3457,7 +3462,7 @@ function Androidenterprise(options: GlobalOptions) {
         pathParams: ['enterpriseId', 'userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -4037,5 +4042,3 @@ function Androidenterprise(options: GlobalOptions) {
  * @property {string} placeholder The placeholder string; defined by EMM.
  * @property {string} userValue The value of the placeholder, specific to the user.
  */
-
-export = Androidenterprise;

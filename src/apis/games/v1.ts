@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Games;
 
 /**
  * Google Play Game Services API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Games
  */
-function Games(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.achievementDefinitions = {
+export class Games extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  achievementDefinitions = {
     /**
      * games.achievementDefinitions.list
      * @desc Lists all the achievement definitions for your application.
@@ -78,11 +83,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.achievements = {
+  achievements = {
     /**
      * games.achievements.increment
      * @desc Increments the steps of the achievement with the given ID for the
@@ -121,7 +126,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.list
         * @desc Lists the progress for all your application's achievements for
@@ -161,7 +166,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.reveal
         * @desc Sets the state of the achievement with the given ID to REVEALED
@@ -197,7 +202,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.setStepsAtLeast
         * @desc Sets the steps for the currently authenticated player towards
@@ -237,7 +242,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.unlock
         * @desc Unlocks this achievement for the currently authenticated player.
@@ -272,7 +277,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['achievementId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.achievements.updateMultiple
         * @desc Updates multiple achievements for the currently authenticated
@@ -308,11 +313,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.applications = {
+  applications = {
     /**
      * games.applications.get
      * @desc Retrieves the metadata of the application with the given ID. If the
@@ -350,7 +355,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.applications.played
         * @desc Indicate that the the currently authenticated user is playing
@@ -385,7 +390,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.applications.verify
         * @desc Verifies the auth token provided with this request is for the
@@ -422,11 +427,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['applicationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.events = {
+  events = {
     /**
      * games.events.listByPlayer
      * @desc Returns a list showing the current progress on events in this
@@ -463,7 +468,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.events.listDefinitions
         * @desc Returns a list of the event definitions in this application.
@@ -500,7 +505,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.events.record
         * @desc Records a batch of changes to the number of times events have
@@ -536,11 +541,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.leaderboards = {
+  leaderboards = {
     /**
      * games.leaderboards.get
      * @desc Retrieves the metadata of the leaderboard with the given ID.
@@ -575,7 +580,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.leaderboards.list
         * @desc Lists all the leaderboard metadata for your application.
@@ -612,11 +617,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.metagame = {
+  metagame = {
     /**
      * games.metagame.getMetagameConfig
      * @desc Return the metagame configuration data for the calling application.
@@ -650,7 +655,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.metagame.listCategoriesByPlayer
         * @desc List play data aggregated per category for the player
@@ -691,11 +696,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['collection', 'playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.players = {
+  players = {
     /**
      * games.players.get
      * @desc Retrieves the Player resource with the given ID. To retrieve the
@@ -731,7 +736,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.players.list
         * @desc Get the collection of players for the currently authenticated
@@ -770,11 +775,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['collection'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.pushtokens = {
+  pushtokens = {
     /**
      * games.pushtokens.remove
      * @desc Removes a push token for the current user and application. Removing
@@ -810,7 +815,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.pushtokens.update
         * @desc Registers a push token for the current user and application.
@@ -845,11 +850,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.questMilestones = {
+  questMilestones = {
     /**
      * games.questMilestones.claim
      * @desc Report that a reward for the milestone corresponding to milestoneId
@@ -889,11 +894,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['milestoneId', 'questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.quests = {
+  quests = {
     /**
      * games.quests.accept
      * @desc Indicates that the currently authorized user will participate in
@@ -930,7 +935,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['questId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.quests.list
         * @desc Get a list of quests for your application and the currently
@@ -969,11 +974,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.revisions = {
+  revisions = {
     /**
      * games.revisions.check
      * @desc Checks whether the games client is out of date.
@@ -1008,11 +1013,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.rooms = {
+  rooms = {
     /**
      * games.rooms.create
      * @desc Create a room. For internal use by the Games SDK only. Calling this
@@ -1049,7 +1054,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.decline
         * @desc Decline an invitation to join a room. For internal use by the
@@ -1086,7 +1091,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.dismiss
         * @desc Dismiss an invitation to join a room. For internal use by the
@@ -1122,7 +1127,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.get
         * @desc Get the data for a room.
@@ -1157,7 +1162,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.join
         * @desc Join a room. For internal use by the Games SDK only. Calling
@@ -1195,7 +1200,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.leave
         * @desc Leave a room. For internal use by the Games SDK only. Calling
@@ -1233,7 +1238,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.list
         * @desc Returns invitations to join rooms.
@@ -1269,7 +1274,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.rooms.reportStatus
         * @desc Updates sent by a client reporting the status of peers in a
@@ -1308,11 +1313,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['roomId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.scores = {
+  scores = {
     /**
      * games.scores.get
      * @desc Get high scores, and optionally ranks, in leaderboards for the
@@ -1358,7 +1363,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.list
         * @desc Lists the scores in a leaderboard, starting from the top.
@@ -1400,7 +1405,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.listWindow
         * @desc Lists the scores in a leaderboard around (and including) a
@@ -1445,7 +1450,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['collection', 'leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.submit
         * @desc Submits a score to the specified leaderboard.
@@ -1483,7 +1488,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['leaderboardId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.scores.submitMultiple
         * @desc Submits multiple scores to leaderboards.
@@ -1519,11 +1524,11 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.snapshots = {
+  snapshots = {
     /**
      * games.snapshots.get
      * @desc Retrieves the metadata for a given snapshot ID.
@@ -1558,7 +1563,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['snapshotId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.snapshots.list
         * @desc Retrieves a list of snapshots created by your application for
@@ -1597,11 +1602,11 @@ function Games(options: GlobalOptions) {
         pathParams: ['playerId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.turnBasedMatches = {
+  turnBasedMatches = {
     /**
      * games.turnBasedMatches.cancel
      * @desc Cancel a turn-based match.
@@ -1636,7 +1641,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.create
         * @desc Create a turn-based match.
@@ -1672,7 +1677,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.decline
         * @desc Decline an invitation to play a turn-based match.
@@ -1708,7 +1713,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.dismiss
         * @desc Dismiss a turn-based match from the match list. The match will
@@ -1744,7 +1749,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.finish
         * @desc Finish a turn-based match. Each player should make this call
@@ -1783,7 +1788,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.get
         * @desc Get the data for a turn-based match.
@@ -1819,7 +1824,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.join
         * @desc Join a turn-based match.
@@ -1855,7 +1860,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.leave
         * @desc Leave a turn-based match when it is not the current player's
@@ -1892,7 +1897,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.leaveTurn
         * @desc Leave a turn-based match during the current player's turn,
@@ -1931,7 +1936,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.list
         * @desc Returns turn-based matches the player is or was involved in.
@@ -1970,7 +1975,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.rematch
         * @desc Create a rematch of a match that was previously completed, with
@@ -2010,7 +2015,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.sync
         * @desc Returns turn-based matches the player is or was involved in that
@@ -2052,7 +2057,7 @@ function Games(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * games.turnBasedMatches.takeTurn
         * @desc Commit the results of a player turn.
@@ -2089,7 +2094,7 @@ function Games(options: GlobalOptions) {
         pathParams: ['matchId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -3060,5 +3065,3 @@ function Games(options: GlobalOptions) {
  * @property {string} pendingParticipantId The ID of the participant who should take their turn next. May be set to the current player&#39;s participant ID to update match state without changing the turn. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
  * @property {games(v1).ParticipantResult[]} results The match results for the participants in the match.
  */
-
-export = Games;

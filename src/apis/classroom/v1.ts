@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Classroom;
 
 /**
  * Google Classroom API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Classroom
  */
-function Classroom(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.courses =
+export class Classroom extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  courses =
       {
         /**
          * classroom.courses.create
@@ -85,7 +90,7 @@ function Classroom(options: GlobalOptions) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.delete
             * @desc Deletes a course.  This method returns the following error
@@ -101,7 +106,7 @@ function Classroom(options: GlobalOptions) {
             * @param {callback} callback The callback that handles the response.
             * @return {object} Request object
             */
-        delete (
+        delete(
             params: any, options: MethodOptions|BodyResponseCallback<any>,
             callback?: BodyResponseCallback<any>) {
           if (typeof options === 'function') {
@@ -124,7 +129,7 @@ function Classroom(options: GlobalOptions) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.get
             * @desc Returns a course.  This method returns the following error
@@ -162,7 +167,7 @@ function Classroom(options: GlobalOptions) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.list
             * @desc Returns a list of courses that the requesting user is
@@ -208,7 +213,7 @@ function Classroom(options: GlobalOptions) {
             pathParams: [],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.patch
             * @desc Updates one or more fields in a course.  This method returns
@@ -253,7 +258,7 @@ function Classroom(options: GlobalOptions) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         }, /**
             * classroom.courses.update
             * @desc Updates a course.  This method returns the following error
@@ -295,1534 +300,1572 @@ function Classroom(options: GlobalOptions) {
             pathParams: ['id'],
             context: self
           };
-          return createAPIRequest(parameters, callback!);
+          createAPIRequest(parameters, callback!);
         },
-        aliases: {
-          /**
-           * classroom.courses.aliases.create
-           * @desc Creates an alias for a course.  This method returns the
-           * following error codes:  * `PERMISSION_DENIED` if the requesting
-           * user is not permitted to create the alias or for access errors. *
-           * `NOT_FOUND` if the course does not exist. * `ALREADY_EXISTS` if the
-           * alias already exists. * `FAILED_PRECONDITION` if the alias
-           * requested does not make sense for the   requesting user or course
-           * (for example, if a user not in a domain   attempts to access a
-           * domain-scoped alias).
-           * @alias classroom.courses.aliases.create
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
-           * @param {classroom(v1).CourseAlias} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          create(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.aliases.delete
-              * @desc Deletes an alias of a course.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to remove the alias or for access errors.
-              * * `NOT_FOUND` if the alias does not exist. *
-              * `FAILED_PRECONDITION` if the alias requested does not make sense
-              * for the   requesting user or course (for example, if a user not
-              * in a domain   attempts to delete a domain-scoped alias).
-              * @alias classroom.courses.aliases.delete
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.alias Alias to delete. This may not be the Classroom-assigned identifier.
-              * @param {string} params.courseId Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'alias'],
-              pathParams: ['alias', 'courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.aliases.list
-              * @desc Returns a list of aliases for a course.  This method
-              * returns the following error codes:  * `PERMISSION_DENIED` if the
-              * requesting user is not permitted to access the course or for
-              * access errors. * `NOT_FOUND` if the course does not exist.
-              * @alias classroom.courses.aliases.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/aliases')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
-
-        },
-        announcements: {
-          /**
-           * classroom.courses.announcements.create
-           * @desc Creates an announcement.  This method returns the following
-           * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-           * permitted to access the requested course, create announcements in
-           * the requested course, share a Drive attachment, or for access
-           * errors. * `INVALID_ARGUMENT` if the request is malformed. *
-           * `NOT_FOUND` if the requested course does not exist. *
-           * `FAILED_PRECONDITION` for the following request error:     *
-           * AttachmentNotVisible
-           * @alias classroom.courses.announcements.create
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-           * @param {classroom(v1).Announcement} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          create(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.announcements.delete
-              * @desc Deletes an announcement.  This request must be made by the
-              * Developer Console project of the [OAuth client
-              * ID](https://support.google.com/cloud/answer/6158849) used to
-              * create the corresponding announcement item.  This method returns
-              * the following error codes:  * `PERMISSION_DENIED` if the
-              * requesting developer project did not create the corresponding
-              * announcement, if the requesting user is not permitted to delete
-              * the requested course or for access errors. *
-              * `FAILED_PRECONDITION` if the requested announcement has already
-              * been deleted. * `NOT_FOUND` if no course exists with the
-              * requested ID.
-              * @alias classroom.courses.announcements.delete
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.announcements.get
-              * @desc Returns an announcement.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to access the requested course or
-              * announcement, or for access errors. * `INVALID_ARGUMENT` if the
-              * request is malformed. * `NOT_FOUND` if the requested course or
-              * announcement does not exist.
-              * @alias classroom.courses.announcements.get
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the announcement.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.announcements.list
-              * @desc Returns a list of announcements that the requester is
-              * permitted to view.  Course students may only view `PUBLISHED`
-              * announcements. Course teachers and domain administrators may
-              * view all announcements.  This method returns the following error
-              * codes:  * `PERMISSION_DENIED` if the requesting user is not
-              * permitted to access the requested course or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if
-              * the requested course does not exist.
-              * @alias classroom.courses.announcements.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string=} params.announcementStates Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/announcements')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.announcements.modifyAssignees
-              * @desc Modifies assignee mode and options of an announcement.
-              * Only a teacher of the course that contains the announcement may
-              * call this method.  This method returns the following error
-              * codes:  * `PERMISSION_DENIED` if the requesting user is not
-              * permitted to access the requested course or course work or for
-              * access errors. * `INVALID_ARGUMENT` if the request is malformed.
-              * * `NOT_FOUND` if the requested course or course work does not
-              * exist.
-              * @alias classroom.courses.announcements.modifyAssignees
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the announcement.
-              * @param {classroom(v1).ModifyAnnouncementAssigneesRequest} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          modifyAssignees(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1/courses/{courseId}/announcements/{id}:modifyAssignees')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.announcements.patch
-              * @desc Updates one or more fields of an announcement.  This
-              * method returns the following error codes:  * `PERMISSION_DENIED`
-              * if the requesting developer project did not create the
-              * corresponding announcement or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. *
-              * `FAILED_PRECONDITION` if the requested announcement has already
-              * been deleted. * `NOT_FOUND` if the requested course or
-              * announcement does not exist
-              * @alias classroom.courses.announcements.patch
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the announcement.
-              * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
-              * @param {classroom(v1).Announcement} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          patch(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/announcements/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'PATCH'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
-
-        },
-        courseWork: {
-          /**
-           * classroom.courses.courseWork.create
-           * @desc Creates course work.  The resulting course work (and
-           * corresponding student submissions) are associated with the
-           * Developer Console project of the [OAuth client
-           * ID](https://support.google.com/cloud/answer/6158849) used to make
-           * the request. Classroom API requests to modify course work and
-           * student submissions must be made with an OAuth client ID from the
-           * associated Developer Console project.  This method returns the
-           * following error codes:  * `PERMISSION_DENIED` if the requesting
-           * user is not permitted to access the requested course, create course
-           * work in the requested course, share a Drive attachment, or for
-           * access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-           * `NOT_FOUND` if the requested course does not exist. *
-           * `FAILED_PRECONDITION` for the following request error:     *
-           * AttachmentNotVisible
-           * @alias classroom.courses.courseWork.create
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-           * @param {classroom(v1).CourseWork} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          create(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.courseWork.delete
-              * @desc Deletes a course work.  This request must be made by the
-              * Developer Console project of the [OAuth client
-              * ID](https://support.google.com/cloud/answer/6158849) used to
-              * create the corresponding course work item.  This method returns
-              * the following error codes:  * `PERMISSION_DENIED` if the
-              * requesting developer project did not create the corresponding
-              * course work, if the requesting user is not permitted to delete
-              * the requested course or for access errors. *
-              * `FAILED_PRECONDITION` if the requested course work has already
-              * been deleted. * `NOT_FOUND` if no course exists with the
-              * requested ID.
-              * @alias classroom.courses.courseWork.delete
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.courseWork.get
-              * @desc Returns course work.  This method returns the following
-              * error codes:  * `PERMISSION_DENIED` if the requesting user is
-              * not permitted to access the requested course or course work, or
-              * for access errors. * `INVALID_ARGUMENT` if the request is
-              * malformed. * `NOT_FOUND` if the requested course or course work
-              * does not exist.
-              * @alias classroom.courses.courseWork.get
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the course work.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.courseWork.list
-              * @desc Returns a list of course work that the requester is
-              * permitted to view.  Course students may only view `PUBLISHED`
-              * course work. Course teachers and domain administrators may view
-              * all course work.  This method returns the following error codes:
-              * * `PERMISSION_DENIED` if the requesting user is not permitted to
-              * access the requested course or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if
-              * the requested course does not exist.
-              * @alias classroom.courses.courseWork.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string=} params.courseWorkStates Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
-              * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/courseWork')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.courseWork.modifyAssignees
-              * @desc Modifies assignee mode and options of a coursework.  Only
-              * a teacher of the course that contains the coursework may call
-              * this method.  This method returns the following error codes:  *
-              * `PERMISSION_DENIED` if the requesting user is not permitted to
-              * access the requested course or course work or for access errors.
-              * * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND`
-              * if the requested course or course work does not exist.
-              * @alias classroom.courses.courseWork.modifyAssignees
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the coursework.
-              * @param {classroom(v1).ModifyCourseWorkAssigneesRequest} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          modifyAssignees(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url:
-                        (rootUrl +
-                         '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees')
-                            .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.courseWork.patch
-              * @desc Updates one or more fields of a course work.  See
-              * google.classroom.v1.CourseWork for details of which fields may
-              * be updated and who may change them.  This request must be made
-              * by the Developer Console project of the [OAuth client
-              * ID](https://support.google.com/cloud/answer/6158849) used to
-              * create the corresponding course work item.  This method returns
-              * the following error codes:  * `PERMISSION_DENIED` if the
-              * requesting developer project did not create the corresponding
-              * course work, if the user is not permitted to make the requested
-              * modification to the student submission, or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. *
-              * `FAILED_PRECONDITION` if the requested course work has already
-              * been deleted. * `NOT_FOUND` if the requested course, course
-              * work, or student submission does not exist.
-              * @alias classroom.courses.courseWork.patch
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.id Identifier of the course work.
-              * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
-              * @param {classroom(v1).CourseWork} params.resource Request body data
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          patch(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'PATCH'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          },
-          studentSubmissions:
-              {
-                /**
-                 * classroom.courses.courseWork.studentSubmissions.get
-                 * @desc Returns a student submission.  * `PERMISSION_DENIED` if
-                 * the requesting user is not permitted to access the requested
-                 * course, course work, or student submission or for access
-                 * errors. * `INVALID_ARGUMENT` if the request is malformed. *
-                 * `NOT_FOUND` if the requested course, course work, or student
-                 * submission does not exist.
-                 * @alias classroom.courses.courseWork.studentSubmissions.get
-                 * @memberOf! classroom(v1)
-                 *
-                 * @param {object} params Parameters for request
-                 * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                 * @param {string} params.courseWorkId Identifier of the course work.
-                 * @param {string} params.id Identifier of the student submission.
-                 * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                 * @param {callback} callback The callback that handles the response.
-                 * @return {object} Request object
-                 */
-                get(params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.list
-                    * @desc Returns a list of student submissions that the
-                    * requester is permitted to view, factoring in the OAuth
-                    * scopes of the request. `-` may be specified as the
-                    * `course_work_id` to include student submissions for
-                    * multiple course work items.  Course students may only view
-                    * their own work. Course teachers and domain administrators
-                    * may view all student submissions.  This method returns the
-                    * following error codes:  * `PERMISSION_DENIED` if the
-                    * requesting user is not permitted to access the requested
-                    * course or course work, or for access errors. *
-                    * `INVALID_ARGUMENT` if the request is malformed. *
-                    * `NOT_FOUND` if the requested course does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.list
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
-                    * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
-                    * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-                    * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-                    * @param {string=} params.states Requested submission states. If specified, returned student submissions match one of the specified submission states.
-                    * @param {string=} params.userId Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                list(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'GET'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId'],
-                    pathParams: ['courseId', 'courseWorkId'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.modifyAttachments
-                    * @desc Modifies attachments of student submission.
-                    * Attachments may only be added to student submissions
-                    * belonging to course work objects with a `workType` of
-                    * `ASSIGNMENT`.  This request must be made by the Developer
-                    * Console project of the [OAuth client
-                    * ID](https://support.google.com/cloud/answer/6158849) used
-                    * to create the corresponding course work item.  This method
-                    * returns the following error codes:  * `PERMISSION_DENIED`
-                    * if the requesting user is not permitted to access the
-                    * requested course or course work, if the user is not
-                    * permitted to modify attachments on the requested student
-                    * submission, or for access errors. * `INVALID_ARGUMENT` if
-                    * the request is malformed. * `NOT_FOUND` if the requested
-                    * course, course work, or student submission does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.modifyAttachments
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the course work.
-                    * @param {string} params.id Identifier of the student submission.
-                    * @param {classroom(v1).ModifyAttachmentsRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                modifyAttachments(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.patch
-                    * @desc Updates one or more fields of a student submission.
-                    * See google.classroom.v1.StudentSubmission for details of
-                    * which fields may be updated and who may change them.  This
-                    * request must be made by the Developer Console project of
-                    * the [OAuth client
-                    * ID](https://support.google.com/cloud/answer/6158849) used
-                    * to create the corresponding course work item.  This method
-                    * returns the following error codes:  * `PERMISSION_DENIED`
-                    * if the requesting developer project did not create the
-                    * corresponding course work, if the user is not permitted to
-                    * make the requested modification to the student submission,
-                    * or for access errors. * `INVALID_ARGUMENT` if the request
-                    * is malformed. * `NOT_FOUND` if the requested course,
-                    * course work, or student submission does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.patch
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the course work.
-                    * @param {string} params.id Identifier of the student submission.
-                    * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers:  * `draft_grade` * `assigned_grade`
-                    * @param {classroom(v1).StudentSubmission} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                patch(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'PATCH'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.reclaim
-                    * @desc Reclaims a student submission on behalf of the
-                    * student that owns it.  Reclaiming a student submission
-                    * transfers ownership of attached Drive files to the student
-                    * and update the submission state.  Only the student that
-                    * owns the requested student submission may call this
-                    * method, and only for a student submission that has been
-                    * turned in.  This request must be made by the Developer
-                    * Console project of the [OAuth client
-                    * ID](https://support.google.com/cloud/answer/6158849) used
-                    * to create the corresponding course work item.  This method
-                    * returns the following error codes:  * `PERMISSION_DENIED`
-                    * if the requesting user is not permitted to access the
-                    * requested course or course work, unsubmit the requested
-                    * student submission, or for access errors. *
-                    * `FAILED_PRECONDITION` if the student submission has not
-                    * been turned in. * `INVALID_ARGUMENT` if the request is
-                    * malformed. * `NOT_FOUND` if the requested course, course
-                    * work, or student submission does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.reclaim
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the course work.
-                    * @param {string} params.id Identifier of the student submission.
-                    * @param {classroom(v1).ReclaimStudentSubmissionRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                reclaim(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.return
-                    * @desc Returns a student submission.  Returning a student
-                    * submission transfers ownership of attached Drive files to
-                    * the student and may also update the submission state.
-                    * Unlike the Classroom application, returning a student
-                    * submission does not set assignedGrade to the draftGrade
-                    * value.  Only a teacher of the course that contains the
-                    * requested student submission may call this method.  This
-                    * request must be made by the Developer Console project of
-                    * the [OAuth client
-                    * ID](https://support.google.com/cloud/answer/6158849) used
-                    * to create the corresponding course work item.  This method
-                    * returns the following error codes:  * `PERMISSION_DENIED`
-                    * if the requesting user is not permitted to access the
-                    * requested course or course work, return the requested
-                    * student submission, or for access errors. *
-                    * `INVALID_ARGUMENT` if the request is malformed. *
-                    * `NOT_FOUND` if the requested course, course work, or
-                    * student submission does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.return
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the course work.
-                    * @param {string} params.id Identifier of the student submission.
-                    * @param {classroom(v1).ReturnStudentSubmissionRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                return (
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
-                }, /**
-                    * classroom.courses.courseWork.studentSubmissions.turnIn
-                    * @desc Turns in a student submission.  Turning in a student
-                    * submission transfers ownership of attached Drive files to
-                    * the teacher and may also update the submission state.
-                    * This may only be called by the student that owns the
-                    * specified student submission.  This request must be made
-                    * by the Developer Console project of the [OAuth client
-                    * ID](https://support.google.com/cloud/answer/6158849) used
-                    * to create the corresponding course work item.  This method
-                    * returns the following error codes:  * `PERMISSION_DENIED`
-                    * if the requesting user is not permitted to access the
-                    * requested course or course work, turn in the requested
-                    * student submission, or for access errors. *
-                    * `INVALID_ARGUMENT` if the request is malformed. *
-                    * `NOT_FOUND` if the requested course, course work, or
-                    * student submission does not exist.
-                    * @alias
-                    * classroom.courses.courseWork.studentSubmissions.turnIn
-                    * @memberOf! classroom(v1)
-                    *
-                    * @param {object} params Parameters for request
-                    * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-                    * @param {string} params.courseWorkId Identifier of the course work.
-                    * @param {string} params.id Identifier of the student submission.
-                    * @param {classroom(v1).TurnInStudentSubmissionRequest} params.resource Request body data
-                    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-                    * @param {callback} callback The callback that handles the response.
-                    * @return {object} Request object
-                    */
-                turnIn(
-                    params: any,
-                    options: MethodOptions|BodyResponseCallback<any>,
-                    callback?: BodyResponseCallback<any>) {
-                  if (typeof options === 'function') {
-                    callback = options;
-                    options = {};
-                  }
-                  options = options || {};
-                  const rootUrl =
-                      options.rootUrl || 'https://classroom.googleapis.com/';
-                  const parameters = {
-                    options: Object.assign(
-                        {
-                          url:
-                              (rootUrl +
-                               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn')
-                                  .replace(/([^:]\/)\/+/g, '$1'),
-                          method: 'POST'
-                        },
-                        options),
-                    params,
-                    requiredParams: ['courseId', 'courseWorkId', 'id'],
-                    pathParams: ['courseId', 'courseWorkId', 'id'],
-                    context: self
-                  };
-                  return createAPIRequest(parameters, callback!);
+        aliases:
+            {
+              /**
+               * classroom.courses.aliases.create
+               * @desc Creates an alias for a course.  This method returns the
+               * following error codes:  * `PERMISSION_DENIED` if the requesting
+               * user is not permitted to create the alias or for access errors.
+               * * `NOT_FOUND` if the course does not exist. * `ALREADY_EXISTS`
+               * if the alias already exists. * `FAILED_PRECONDITION` if the
+               * alias requested does not make sense for the   requesting user
+               * or course (for example, if a user not in a domain   attempts to
+               * access a domain-scoped alias).
+               * @alias classroom.courses.aliases.create
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
+               * @param {classroom(v1).CourseAlias} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
                 }
-
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/aliases')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.aliases.delete
+                  * @desc Deletes an alias of a course.  This method returns the
+                  * following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to remove the alias or for
+                  * access errors. * `NOT_FOUND` if the alias does not exist. *
+                  * `FAILED_PRECONDITION` if the alias requested does not make
+                  * sense for the   requesting user or course (for example, if a
+                  * user not in a domain   attempts to delete a domain-scoped
+                  * alias).
+                  * @alias classroom.courses.aliases.delete
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.alias Alias to delete. This may not be the Classroom-assigned identifier.
+                  * @param {string} params.courseId Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl + '/v1/courses/{courseId}/aliases/{alias}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'alias'],
+                  pathParams: ['alias', 'courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.aliases.list
+                  * @desc Returns a list of aliases for a course.  This method
+                  * returns the following error codes:  * `PERMISSION_DENIED` if
+                  * the requesting user is not permitted to access the course or
+                  * for access errors. * `NOT_FOUND` if the course does not
+                  * exist.
+                  * @alias classroom.courses.aliases.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/aliases')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
               }
-        },
-        students: {
-          /**
-           * classroom.courses.students.create
-           * @desc Adds a user as a student of a course.  This method returns
-           * the following error codes:  * `PERMISSION_DENIED` if the requesting
-           * user is not permitted to create students in this course or for
-           * access errors. * `NOT_FOUND` if the requested course ID does not
-           * exist. * `FAILED_PRECONDITION` if the requested user's account is
-           * disabled, for the following request errors:     *
-           * CourseMemberLimitReached     * CourseNotModifiable     *
-           * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user is
-           * already a student or teacher in the course.
-           * @alias classroom.courses.students.create
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
-           * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
-           * @param {classroom(v1).Student} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          create(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/students')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.students.delete
-              * @desc Deletes a student of a course.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to delete students of this course or for
-              * access errors. * `NOT_FOUND` if no student of this course has
-              * the requested ID or if the course does not exist.
-              * @alias classroom.courses.students.delete
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.userId Identifier of the student to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'userId'],
-              pathParams: ['courseId', 'userId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.students.get
-              * @desc Returns a student of a course.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to view students of this course or for
-              * access errors. * `NOT_FOUND` if no student of this course has
-              * the requested ID or if the course does not exist.
-              * @alias classroom.courses.students.get
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.userId Identifier of the student to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/students/{userId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'userId'],
-              pathParams: ['courseId', 'userId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.students.list
-              * @desc Returns a list of students of this course that the
-              * requester is permitted to view.  This method returns the
-              * following error codes:  * `NOT_FOUND` if the course does not
-              * exist. * `PERMISSION_DENIED` for access errors.
-              * @alias classroom.courses.students.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/students')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
 
-        },
-        teachers: {
-          /**
-           * classroom.courses.teachers.create
-           * @desc Creates a teacher of a course.  This method returns the
-           * following error codes:  * `PERMISSION_DENIED` if the requesting
-           * user is not  permitted to create teachers in this course or for
-           * access errors. * `NOT_FOUND` if the requested course ID does not
-           * exist. * `FAILED_PRECONDITION` if the requested user's account is
-           * disabled, for the following request errors:     *
-           * CourseMemberLimitReached     * CourseNotModifiable     *
-           * CourseTeacherLimitReached     * UserGroupsMembershipLimitReached *
-           * `ALREADY_EXISTS` if the user is already a teacher or student in the
-           * course.
-           * @alias classroom.courses.teachers.create
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-           * @param {classroom(v1).Teacher} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          create(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'POST'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.teachers.delete
-              * @desc Deletes a teacher of a course.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to delete teachers of this course or for
-              * access errors. * `NOT_FOUND` if no teacher of this course has
-              * the requested ID or if the course does not exist. *
-              * `FAILED_PRECONDITION` if the requested ID belongs to the primary
-              * teacher of this course.
-              * @alias classroom.courses.teachers.delete
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.userId Identifier of the teacher to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          delete (
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'DELETE'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'userId'],
-              pathParams: ['courseId', 'userId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.teachers.get
-              * @desc Returns a teacher of a course.  This method returns the
-              * following error codes:  * `PERMISSION_DENIED` if the requesting
-              * user is not permitted to view teachers of this course or for
-              * access errors. * `NOT_FOUND` if no teacher of this course has
-              * the requested ID or if the course does not exist.
-              * @alias classroom.courses.teachers.get
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {string} params.userId Identifier of the teacher to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/teachers/{userId}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'userId'],
-              pathParams: ['courseId', 'userId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.teachers.list
-              * @desc Returns a list of teachers of this course that the
-              * requester is permitted to view.  This method returns the
-              * following error codes:  * `NOT_FOUND` if the course does not
-              * exist. * `PERMISSION_DENIED` for access errors.
-              * @alias classroom.courses.teachers.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/teachers')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
+            },
+        announcements:
+            {
+              /**
+               * classroom.courses.announcements.create
+               * @desc Creates an announcement.  This method returns the
+               * following error codes:  * `PERMISSION_DENIED` if the requesting
+               * user is not permitted to access the requested course, create
+               * announcements in the requested course, share a Drive
+               * attachment, or for access errors. * `INVALID_ARGUMENT` if the
+               * request is malformed. * `NOT_FOUND` if the requested course
+               * does not exist. * `FAILED_PRECONDITION` for the following
+               * request error:     * AttachmentNotVisible
+               * @alias classroom.courses.announcements.create
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+               * @param {classroom(v1).Announcement} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/announcements')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.announcements.delete
+                  * @desc Deletes an announcement.  This request must be made by
+                  * the Developer Console project of the [OAuth client
+                  * ID](https://support.google.com/cloud/answer/6158849) used to
+                  * create the corresponding announcement item.  This method
+                  * returns the following error codes:  * `PERMISSION_DENIED` if
+                  * the requesting developer project did not create the
+                  * corresponding announcement, if the requesting user is not
+                  * permitted to delete the requested course or for access
+                  * errors. * `FAILED_PRECONDITION` if the requested
+                  * announcement has already been deleted. * `NOT_FOUND` if no
+                  * course exists with the requested ID.
+                  * @alias classroom.courses.announcements.delete
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/announcements/{id}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.announcements.get
+                  * @desc Returns an announcement.  This method returns the
+                  * following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to access the requested
+                  * course or announcement, or for access errors. *
+                  * `INVALID_ARGUMENT` if the request is malformed. *
+                  * `NOT_FOUND` if the requested course or announcement does not
+                  * exist.
+                  * @alias classroom.courses.announcements.get
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the announcement.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/announcements/{id}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.announcements.list
+                  * @desc Returns a list of announcements that the requester is
+                  * permitted to view.  Course students may only view
+                  * `PUBLISHED` announcements. Course teachers and domain
+                  * administrators may view all announcements.  This method
+                  * returns the following error codes:  * `PERMISSION_DENIED` if
+                  * the requesting user is not permitted to access the requested
+                  * course or for access errors. * `INVALID_ARGUMENT` if the
+                  * request is malformed. * `NOT_FOUND` if the requested course
+                  * does not exist.
+                  * @alias classroom.courses.announcements.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string=} params.announcementStates Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/announcements')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.announcements.modifyAssignees
+                  * @desc Modifies assignee mode and options of an announcement.
+                  * Only a teacher of the course that contains the announcement
+                  * may call this method.  This method returns the following
+                  * error codes:  * `PERMISSION_DENIED` if the requesting user
+                  * is not permitted to access the requested course or course
+                  * work or for access errors. * `INVALID_ARGUMENT` if the
+                  * request is malformed. * `NOT_FOUND` if the requested course
+                  * or course work does not exist.
+                  * @alias classroom.courses.announcements.modifyAssignees
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the announcement.
+                  * @param {classroom(v1).ModifyAnnouncementAssigneesRequest} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              modifyAssignees(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/v1/courses/{courseId}/announcements/{id}:modifyAssignees')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.announcements.patch
+                  * @desc Updates one or more fields of an announcement.  This
+                  * method returns the following error codes:  *
+                  * `PERMISSION_DENIED` if the requesting developer project did
+                  * not create the corresponding announcement or for access
+                  * errors. * `INVALID_ARGUMENT` if the request is malformed. *
+                  * `FAILED_PRECONDITION` if the requested announcement has
+                  * already been deleted. * `NOT_FOUND` if the requested course
+                  * or announcement does not exist
+                  * @alias classroom.courses.announcements.patch
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the announcement.
+                  * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
+                  * @param {classroom(v1).Announcement} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/announcements/{id}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
 
-        },
-        topics: {
-          /**
-           * classroom.courses.topics.get
-           * @desc Returns a topic.  This method returns the following error
-           * codes:  * `PERMISSION_DENIED` if the requesting user is not
-           * permitted to access the requested course or topic, or for access
-           * errors. * `INVALID_ARGUMENT` if the request is malformed. *
-           * `NOT_FOUND` if the requested course or topic does not exist.
-           * @alias classroom.courses.topics.get
-           * @memberOf! classroom(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.courseId Identifier of the course.
-           * @param {string} params.id Identifier of the topic.
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          get(params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
+            },
+        courseWork:
+            {
+              /**
+               * classroom.courses.courseWork.create
+               * @desc Creates course work.  The resulting course work (and
+               * corresponding student submissions) are associated with the
+               * Developer Console project of the [OAuth client
+               * ID](https://support.google.com/cloud/answer/6158849) used to
+               * make the request. Classroom API requests to modify course work
+               * and student submissions must be made with an OAuth client ID
+               * from the associated Developer Console project.  This method
+               * returns the following error codes:  * `PERMISSION_DENIED` if
+               * the requesting user is not permitted to access the requested
+               * course, create course work in the requested course, share a
+               * Drive attachment, or for access errors. * `INVALID_ARGUMENT` if
+               * the request is malformed. * `NOT_FOUND` if the requested course
+               * does not exist. * `FAILED_PRECONDITION` for the following
+               * request error:     * AttachmentNotVisible
+               * @alias classroom.courses.courseWork.create
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+               * @param {classroom(v1).CourseWork} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.courseWork.delete
+                  * @desc Deletes a course work.  This request must be made by
+                  * the Developer Console project of the [OAuth client
+                  * ID](https://support.google.com/cloud/answer/6158849) used to
+                  * create the corresponding course work item.  This method
+                  * returns the following error codes:  * `PERMISSION_DENIED` if
+                  * the requesting developer project did not create the
+                  * corresponding course work, if the requesting user is not
+                  * permitted to delete the requested course or for access
+                  * errors. * `FAILED_PRECONDITION` if the requested course work
+                  * has already been deleted. * `NOT_FOUND` if no course exists
+                  * with the requested ID.
+                  * @alias classroom.courses.courseWork.delete
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.courseWork.get
+                  * @desc Returns course work.  This method returns the
+                  * following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to access the requested
+                  * course or course work, or for access errors. *
+                  * `INVALID_ARGUMENT` if the request is malformed. *
+                  * `NOT_FOUND` if the requested course or course work does not
+                  * exist.
+                  * @alias classroom.courses.courseWork.get
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the course work.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.courseWork.list
+                  * @desc Returns a list of course work that the requester is
+                  * permitted to view.  Course students may only view
+                  * `PUBLISHED` course work. Course teachers and domain
+                  * administrators may view all course work.  This method
+                  * returns the following error codes:  * `PERMISSION_DENIED` if
+                  * the requesting user is not permitted to access the requested
+                  * course or for access errors. * `INVALID_ARGUMENT` if the
+                  * request is malformed. * `NOT_FOUND` if the requested course
+                  * does not exist.
+                  * @alias classroom.courses.courseWork.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string=} params.courseWorkStates Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
+                  * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/courseWork')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.courseWork.modifyAssignees
+                  * @desc Modifies assignee mode and options of a coursework.
+                  * Only a teacher of the course that contains the coursework
+                  * may call this method.  This method returns the following
+                  * error codes:  * `PERMISSION_DENIED` if the requesting user
+                  * is not permitted to access the requested course or course
+                  * work or for access errors. * `INVALID_ARGUMENT` if the
+                  * request is malformed. * `NOT_FOUND` if the requested course
+                  * or course work does not exist.
+                  * @alias classroom.courses.courseWork.modifyAssignees
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the coursework.
+                  * @param {classroom(v1).ModifyCourseWorkAssigneesRequest} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              modifyAssignees(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl +
+                             '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.courseWork.patch
+                  * @desc Updates one or more fields of a course work.  See
+                  * google.classroom.v1.CourseWork for details of which fields
+                  * may be updated and who may change them.  This request must
+                  * be made by the Developer Console project of the [OAuth
+                  * client ID](https://support.google.com/cloud/answer/6158849)
+                  * used to create the corresponding course work item.  This
+                  * method returns the following error codes:  *
+                  * `PERMISSION_DENIED` if the requesting developer project did
+                  * not create the corresponding course work, if the user is not
+                  * permitted to make the requested modification to the student
+                  * submission, or for access errors. * `INVALID_ARGUMENT` if
+                  * the request is malformed. * `FAILED_PRECONDITION` if the
+                  * requested course work has already been deleted. *
+                  * `NOT_FOUND` if the requested course, course work, or student
+                  * submission does not exist.
+                  * @alias classroom.courses.courseWork.patch
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.id Identifier of the course work.
+                  * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode`
+                  * @param {classroom(v1).CourseWork} params.resource Request body data
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              patch(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url:
+                            (rootUrl + '/v1/courses/{courseId}/courseWork/{id}')
+                                .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'PATCH'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              },
+              studentSubmissions:
                   {
-                    url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId', 'id'],
-              pathParams: ['courseId', 'id'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }, /**
-              * classroom.courses.topics.list
-              * @desc Returns the list of topics that the requester is permitted
-              * to view.  This method returns the following error codes:  *
-              * `PERMISSION_DENIED` if the requesting user is not permitted to
-              * access the requested course or for access errors. *
-              * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if
-              * the requested course does not exist.
-              * @alias classroom.courses.topics.list
-              * @memberOf! classroom(v1)
-              *
-              * @param {object} params Parameters for request
-              * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-              * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
-              * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-              * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-              * @param {callback} callback The callback that handles the response.
-              * @return {object} Request object
-              */
-          list(
-              params: any, options: MethodOptions|BodyResponseCallback<any>,
-              callback?: BodyResponseCallback<any>) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options = options || {};
-            const rootUrl =
-                options.rootUrl || 'https://classroom.googleapis.com/';
-            const parameters = {
-              options: Object.assign(
-                  {
-                    url: (rootUrl + '/v1/courses/{courseId}/topics')
-                             .replace(/([^:]\/)\/+/g, '$1'),
-                    method: 'GET'
-                  },
-                  options),
-              params,
-              requiredParams: ['courseId'],
-              pathParams: ['courseId'],
-              context: self
-            };
-            return createAPIRequest(parameters, callback!);
-          }
+                    /**
+                     * classroom.courses.courseWork.studentSubmissions.get
+                     * @desc Returns a student submission.  *
+                     * `PERMISSION_DENIED` if the requesting user is not
+                     * permitted to access the requested course, course work, or
+                     * student submission or for access errors. *
+                     * `INVALID_ARGUMENT` if the request is malformed. *
+                     * `NOT_FOUND` if the requested course, course work, or
+                     * student submission does not exist.
+                     * @alias
+                     * classroom.courses.courseWork.studentSubmissions.get
+                     * @memberOf! classroom(v1)
+                     *
+                     * @param {object} params Parameters for request
+                     * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                     * @param {string} params.courseWorkId Identifier of the course work.
+                     * @param {string} params.id Identifier of the student submission.
+                     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                     * @param {callback} callback The callback that handles the response.
+                     * @return {object} Request object
+                     */
+                    get(params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.list
+                        * @desc Returns a list of student submissions that the
+                        * requester is permitted to view, factoring in the OAuth
+                        * scopes of the request. `-` may be specified as the
+                        * `course_work_id` to include student submissions for
+                        * multiple course work items.  Course students may only
+                        * view their own work. Course teachers and domain
+                        * administrators may view all student submissions.  This
+                        * method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting user is not
+                        * permitted to access the requested course or course
+                        * work, or for access errors. * `INVALID_ARGUMENT` if
+                        * the request is malformed. * `NOT_FOUND` if the
+                        * requested course does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.list
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
+                        * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
+                        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+                        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                        * @param {string=} params.states Requested submission states. If specified, returned student submissions match one of the specified submission states.
+                        * @param {string=} params.userId Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    list(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'GET'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId'],
+                        pathParams: ['courseId', 'courseWorkId'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.modifyAttachments
+                        * @desc Modifies attachments of student submission.
+                        * Attachments may only be added to student submissions
+                        * belonging to course work objects with a `workType` of
+                        * `ASSIGNMENT`.  This request must be made by the
+                        * Developer Console project of the [OAuth client
+                        * ID](https://support.google.com/cloud/answer/6158849)
+                        * used to create the corresponding course work item.
+                        * This method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting user is not
+                        * permitted to access the requested course or course
+                        * work, if the user is not permitted to modify
+                        * attachments on the requested student submission, or
+                        * for access errors. * `INVALID_ARGUMENT` if the request
+                        * is malformed. * `NOT_FOUND` if the requested course,
+                        * course work, or student submission does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.modifyAttachments
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the course work.
+                        * @param {string} params.id Identifier of the student submission.
+                        * @param {classroom(v1).ModifyAttachmentsRequest} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    modifyAttachments(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.patch
+                        * @desc Updates one or more fields of a student
+                        * submission.  See google.classroom.v1.StudentSubmission
+                        * for details of which fields may be updated and who may
+                        * change them.  This request must be made by the
+                        * Developer Console project of the [OAuth client
+                        * ID](https://support.google.com/cloud/answer/6158849)
+                        * used to create the corresponding course work item.
+                        * This method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting developer
+                        * project did not create the corresponding course work,
+                        * if the user is not permitted to make the requested
+                        * modification to the student submission, or for access
+                        * errors. * `INVALID_ARGUMENT` if the request is
+                        * malformed. * `NOT_FOUND` if the requested course,
+                        * course work, or student submission does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.patch
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the course work.
+                        * @param {string} params.id Identifier of the student submission.
+                        * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified.  The following fields may be specified by teachers:  * `draft_grade` * `assigned_grade`
+                        * @param {classroom(v1).StudentSubmission} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    patch(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'PATCH'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.reclaim
+                        * @desc Reclaims a student submission on behalf of the
+                        * student that owns it.  Reclaiming a student submission
+                        * transfers ownership of attached Drive files to the
+                        * student and update the submission state.  Only the
+                        * student that owns the requested student submission may
+                        * call this method, and only for a student submission
+                        * that has been turned in.  This request must be made by
+                        * the Developer Console project of the [OAuth client
+                        * ID](https://support.google.com/cloud/answer/6158849)
+                        * used to create the corresponding course work item.
+                        * This method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting user is not
+                        * permitted to access the requested course or course
+                        * work, unsubmit the requested student submission, or
+                        * for access errors. * `FAILED_PRECONDITION` if the
+                        * student submission has not been turned in. *
+                        * `INVALID_ARGUMENT` if the request is malformed. *
+                        * `NOT_FOUND` if the requested course, course work, or
+                        * student submission does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.reclaim
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the course work.
+                        * @param {string} params.id Identifier of the student submission.
+                        * @param {classroom(v1).ReclaimStudentSubmissionRequest} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    reclaim(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.return
+                        * @desc Returns a student submission.  Returning a
+                        * student submission transfers ownership of attached
+                        * Drive files to the student and may also update the
+                        * submission state. Unlike the Classroom application,
+                        * returning a student submission does not set
+                        * assignedGrade to the draftGrade value.  Only a teacher
+                        * of the course that contains the requested student
+                        * submission may call this method.  This request must be
+                        * made by the Developer Console project of the [OAuth
+                        * client
+                        * ID](https://support.google.com/cloud/answer/6158849)
+                        * used to create the corresponding course work item.
+                        * This method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting user is not
+                        * permitted to access the requested course or course
+                        * work, return the requested student submission, or for
+                        * access errors. * `INVALID_ARGUMENT` if the request is
+                        * malformed. * `NOT_FOUND` if the requested course,
+                        * course work, or student submission does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.return
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the course work.
+                        * @param {string} params.id Identifier of the student submission.
+                        * @param {classroom(v1).ReturnStudentSubmissionRequest} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    return(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }, /**
+                        * classroom.courses.courseWork.studentSubmissions.turnIn
+                        * @desc Turns in a student submission.  Turning in a
+                        * student submission transfers ownership of attached
+                        * Drive files to the teacher and may also update the
+                        * submission state.  This may only be called by the
+                        * student that owns the specified student submission.
+                        * This request must be made by the Developer Console
+                        * project of the [OAuth client
+                        * ID](https://support.google.com/cloud/answer/6158849)
+                        * used to create the corresponding course work item.
+                        * This method returns the following error codes:  *
+                        * `PERMISSION_DENIED` if the requesting user is not
+                        * permitted to access the requested course or course
+                        * work, turn in the requested student submission, or for
+                        * access errors. * `INVALID_ARGUMENT` if the request is
+                        * malformed. * `NOT_FOUND` if the requested course,
+                        * course work, or student submission does not exist.
+                        * @alias
+                        * classroom.courses.courseWork.studentSubmissions.turnIn
+                        * @memberOf! classroom(v1)
+                        *
+                        * @param {object} params Parameters for request
+                        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                        * @param {string} params.courseWorkId Identifier of the course work.
+                        * @param {string} params.id Identifier of the student submission.
+                        * @param {classroom(v1).TurnInStudentSubmissionRequest} params.resource Request body data
+                        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                        * @param {callback} callback The callback that handles the response.
+                        * @return {object} Request object
+                        */
+                    turnIn(
+                        params: any,
+                        options: MethodOptions|BodyResponseCallback<any>,
+                        callback?: BodyResponseCallback<any>) {
+                      if (typeof options === 'function') {
+                        callback = options;
+                        options = {};
+                      }
+                      options = options || {};
+                      const rootUrl = options.rootUrl ||
+                          'https://classroom.googleapis.com/';
+                      const parameters = {
+                        options: Object.assign(
+                            {
+                              url:
+                                  (rootUrl +
+                                   '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn')
+                                      .replace(/([^:]\/)\/+/g, '$1'),
+                              method: 'POST'
+                            },
+                            options),
+                        params,
+                        requiredParams: ['courseId', 'courseWorkId', 'id'],
+                        pathParams: ['courseId', 'courseWorkId', 'id'],
+                        context: self
+                      };
+                      createAPIRequest(parameters, callback!);
+                    }
 
-        }
+                  }
+            },
+        students:
+            {
+              /**
+               * classroom.courses.students.create
+               * @desc Adds a user as a student of a course.  This method
+               * returns the following error codes:  * `PERMISSION_DENIED` if
+               * the requesting user is not permitted to create students in this
+               * course or for access errors. * `NOT_FOUND` if the requested
+               * course ID does not exist. * `FAILED_PRECONDITION` if the
+               * requested user's account is disabled, for the following request
+               * errors:     * CourseMemberLimitReached     *
+               * CourseNotModifiable     * UserGroupsMembershipLimitReached *
+               * `ALREADY_EXISTS` if the user is already a student or teacher in
+               * the course.
+               * @alias classroom.courses.students.create
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
+               * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
+               * @param {classroom(v1).Student} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/students')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.students.delete
+                  * @desc Deletes a student of a course.  This method returns
+                  * the following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to delete students of this
+                  * course or for access errors. * `NOT_FOUND` if no student of
+                  * this course has the requested ID or if the course does not
+                  * exist.
+                  * @alias classroom.courses.students.delete
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.userId Identifier of the student to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/students/{userId}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'userId'],
+                  pathParams: ['courseId', 'userId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.students.get
+                  * @desc Returns a student of a course.  This method returns
+                  * the following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to view students of this
+                  * course or for access errors. * `NOT_FOUND` if no student of
+                  * this course has the requested ID or if the course does not
+                  * exist.
+                  * @alias classroom.courses.students.get
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.userId Identifier of the student to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/students/{userId}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'userId'],
+                  pathParams: ['courseId', 'userId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.students.list
+                  * @desc Returns a list of students of this course that the
+                  * requester is permitted to view.  This method returns the
+                  * following error codes:  * `NOT_FOUND` if the course does not
+                  * exist. * `PERMISSION_DENIED` for access errors.
+                  * @alias classroom.courses.students.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/students')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        teachers:
+            {
+              /**
+               * classroom.courses.teachers.create
+               * @desc Creates a teacher of a course.  This method returns the
+               * following error codes:  * `PERMISSION_DENIED` if the requesting
+               * user is not  permitted to create teachers in this course or for
+               * access errors. * `NOT_FOUND` if the requested course ID does
+               * not exist. * `FAILED_PRECONDITION` if the requested user's
+               * account is disabled, for the following request errors:     *
+               * CourseMemberLimitReached     * CourseNotModifiable     *
+               * CourseTeacherLimitReached     *
+               * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user
+               * is already a teacher or student in the course.
+               * @alias classroom.courses.teachers.create
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+               * @param {classroom(v1).Teacher} params.resource Request body data
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              create(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/teachers')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'POST'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.teachers.delete
+                  * @desc Deletes a teacher of a course.  This method returns
+                  * the following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to delete teachers of this
+                  * course or for access errors. * `NOT_FOUND` if no teacher of
+                  * this course has the requested ID or if the course does not
+                  * exist. * `FAILED_PRECONDITION` if the requested ID belongs
+                  * to the primary teacher of this course.
+                  * @alias classroom.courses.teachers.delete
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.userId Identifier of the teacher to delete. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              delete(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/teachers/{userId}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'DELETE'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'userId'],
+                  pathParams: ['courseId', 'userId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.teachers.get
+                  * @desc Returns a teacher of a course.  This method returns
+                  * the following error codes:  * `PERMISSION_DENIED` if the
+                  * requesting user is not permitted to view teachers of this
+                  * course or for access errors. * `NOT_FOUND` if no teacher of
+                  * this course has the requested ID or if the course does not
+                  * exist.
+                  * @alias classroom.courses.teachers.get
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {string} params.userId Identifier of the teacher to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl +
+                              '/v1/courses/{courseId}/teachers/{userId}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'userId'],
+                  pathParams: ['courseId', 'userId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.teachers.list
+                  * @desc Returns a list of teachers of this course that the
+                  * requester is permitted to view.  This method returns the
+                  * following error codes:  * `NOT_FOUND` if the course does not
+                  * exist. * `PERMISSION_DENIED` for access errors.
+                  * @alias classroom.courses.teachers.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/teachers')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            },
+        topics:
+            {
+              /**
+               * classroom.courses.topics.get
+               * @desc Returns a topic.  This method returns the following error
+               * codes:  * `PERMISSION_DENIED` if the requesting user is not
+               * permitted to access the requested course or topic, or for
+               * access errors. * `INVALID_ARGUMENT` if the request is
+               * malformed. * `NOT_FOUND` if the requested course or topic does
+               * not exist.
+               * @alias classroom.courses.topics.get
+               * @memberOf! classroom(v1)
+               *
+               * @param {object} params Parameters for request
+               * @param {string} params.courseId Identifier of the course.
+               * @param {string} params.id Identifier of the topic.
+               * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+               * @param {callback} callback The callback that handles the response.
+               * @return {object} Request object
+               */
+              get(params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/topics/{id}')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId', 'id'],
+                  pathParams: ['courseId', 'id'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }, /**
+                  * classroom.courses.topics.list
+                  * @desc Returns the list of topics that the requester is
+                  * permitted to view.  This method returns the following error
+                  * codes:  * `PERMISSION_DENIED` if the requesting user is not
+                  * permitted to access the requested course or for access
+                  * errors. * `INVALID_ARGUMENT` if the request is malformed. *
+                  * `NOT_FOUND` if the requested course does not exist.
+                  * @alias classroom.courses.topics.list
+                  * @memberOf! classroom(v1)
+                  *
+                  * @param {object} params Parameters for request
+                  * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+                  * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
+                  * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
+                  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+                  * @param {callback} callback The callback that handles the response.
+                  * @return {object} Request object
+                  */
+              list(
+                  params: any, options: MethodOptions|BodyResponseCallback<any>,
+                  callback?: BodyResponseCallback<any>) {
+                if (typeof options === 'function') {
+                  callback = options;
+                  options = {};
+                }
+                options = options || {};
+                const rootUrl =
+                    options.rootUrl || 'https://classroom.googleapis.com/';
+                const parameters = {
+                  options: Object.assign(
+                      {
+                        url: (rootUrl + '/v1/courses/{courseId}/topics')
+                                 .replace(/([^:]\/)\/+/g, '$1'),
+                        method: 'GET'
+                      },
+                      options),
+                  params,
+                  requiredParams: ['courseId'],
+                  pathParams: ['courseId'],
+                  context: self
+                };
+                createAPIRequest(parameters, callback!);
+              }
+
+            }
       };
-  self.invitations = {
+  invitations = {
     /**
      * classroom.invitations.accept
      * @desc Accepts an invitation, removing it and adding the invited user to
@@ -1865,7 +1908,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.create
         * @desc Creates an invitation. Only one invitation for a user and course
@@ -1907,7 +1950,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.delete
         * @desc Deletes an invitation.  This method returns the following error
@@ -1923,7 +1966,7 @@ function Classroom(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -1945,7 +1988,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.get
         * @desc Returns an invitation.  This method returns the following error
@@ -1982,7 +2025,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * classroom.invitations.list
         * @desc Returns a list of invitations that the requesting user is
@@ -2023,11 +2066,11 @@ function Classroom(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.registrations = {
+  registrations = {
     /**
      * classroom.registrations.create
      * @desc Creates a `Registration`, causing Classroom to start sending
@@ -2081,7 +2124,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * classroom.registrations.delete
         * @desc Deletes a `Registration`, causing Classroom to stop sending
@@ -2095,7 +2138,7 @@ function Classroom(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -2117,11 +2160,11 @@ function Classroom(options: GlobalOptions) {
         pathParams: ['registrationId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.userProfiles = {
+  userProfiles = {
     /**
      * classroom.userProfiles.get
      * @desc Returns a user profile.  This method returns the following error
@@ -2158,7 +2201,7 @@ function Classroom(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     guardianInvitations: {
       /**
@@ -2221,7 +2264,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.get
           * @desc Returns a specific guardian invitation.  This method returns
@@ -2268,7 +2311,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['invitationId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.list
           * @desc Returns a list of guardian invitations that the requesting
@@ -2321,7 +2364,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardianInvitations.patch
           * @desc Modifies a guardian invitation.  Currently, the only valid
@@ -2375,7 +2418,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['invitationId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     },
@@ -2405,7 +2448,7 @@ function Classroom(options: GlobalOptions) {
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete (
+      delete(
           params: any, options: MethodOptions|BodyResponseCallback<any>,
           callback?: BodyResponseCallback<any>) {
         if (typeof options === 'function') {
@@ -2428,7 +2471,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['guardianId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardians.get
           * @desc Returns a specific guardian.  This method returns the
@@ -2475,7 +2518,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['guardianId', 'studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * classroom.userProfiles.guardians.list
           * @desc Returns a list of guardians that the requesting user is
@@ -2529,7 +2572,7 @@ function Classroom(options: GlobalOptions) {
           pathParams: ['studentId'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
@@ -3022,5 +3065,3 @@ function Classroom(options: GlobalOptions) {
  * @property {string} thumbnailUrl URL of a thumbnail image of the YouTube video.  Read-only.
  * @property {string} title Title of the YouTube video.  Read-only.
  */
-
-export = Classroom;

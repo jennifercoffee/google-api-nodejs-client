@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Genomics;
 
 /**
  * Genomics API
@@ -38,10 +41,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2alpha1
  * @param {object=} options Options for Genomics
  */
-function Genomics(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.pipelines = {
+export class Genomics extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  pipelines = {
     /**
      * genomics.pipelines.run
      * @desc Runs a pipeline.  **Note:** In order to use this method, the
@@ -81,11 +86,11 @@ function Genomics(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.projects = {
+  projects = {
     operations: {
       /**
        * genomics.projects.operations.cancel
@@ -126,7 +131,7 @@ function Genomics(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * genomics.projects.operations.get
           * @desc Gets the latest state of a long-running operation.  Clients
@@ -162,7 +167,7 @@ function Genomics(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }, /**
           * genomics.projects.operations.list
           * @desc Lists operations that match the specified filter in the
@@ -201,12 +206,12 @@ function Genomics(options: GlobalOptions) {
           pathParams: ['name'],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.workers = {
+  workers = {
     /**
      * genomics.workers.checkIn
      * @desc The worker uses this method to retrieve the assigned operation and
@@ -243,7 +248,7 @@ function Genomics(options: GlobalOptions) {
         pathParams: ['id'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -510,5 +515,3 @@ function Genomics(options: GlobalOptions) {
  * @property {string} instance The worker&#39;s instance name.
  * @property {string} zone The zone the worker was running in.
  */
-
-export = Genomics;

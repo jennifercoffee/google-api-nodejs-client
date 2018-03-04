@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Vision;
 
 /**
  * Google Cloud Vision API
@@ -40,10 +43,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1
  * @param {object=} options Options for Vision
  */
-function Vision(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.images = {
+export class Vision extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  images = {
     /**
      * vision.images.annotate
      * @desc Run image detection and annotation for a batch of images.
@@ -132,11 +137,11 @@ function Vision(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.operations = {
+  operations = {
     /**
      * vision.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The
@@ -180,7 +185,7 @@ function Vision(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.delete
         * @desc Deletes a long-running operation. This method indicates that the
@@ -196,7 +201,7 @@ function Vision(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -217,7 +222,7 @@ function Vision(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.get
         * @desc Gets the latest state of a long-running operation.  Clients can
@@ -252,7 +257,7 @@ function Vision(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * vision.operations.list
         * @desc Lists operations that match the specified filter in the request.
@@ -297,7 +302,7 @@ function Vision(options: GlobalOptions) {
         pathParams: ['name'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -710,5 +715,3 @@ function Vision(options: GlobalOptions) {
  * @property {vision(v1).TextProperty} property Additional information detected for the word.
  * @property {vision(v1).Symbol[]} symbols List of symbols in the word. The order of the symbols follows the natural reading order.
  */
-
-export = Vision;

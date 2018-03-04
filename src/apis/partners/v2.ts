@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Partners;
 
 /**
  * Google Partners API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v2
  * @param {object=} options Options for Partners
  */
-function Partners(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.analytics = {
+export class Partners extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  analytics = {
     /**
      * partners.analytics.list
      * @desc Lists analytics data for a user's associated company. Should only
@@ -85,11 +90,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.clientMessages = {
+  clientMessages = {
     /**
      * partners.clientMessages.log
      * @desc Logs a generic message from the client, such as `Failed to render
@@ -125,11 +130,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.companies = {
+  companies = {
     /**
      * partners.companies.get
      * @desc Gets a company.
@@ -174,7 +179,7 @@ function Partners(options: GlobalOptions) {
         pathParams: ['companyId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.companies.list
         * @desc Lists companies.
@@ -232,50 +237,52 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
-    leads: {
-      /**
-       * partners.companies.leads.create
-       * @desc Creates an advertiser lead for the given company ID.
-       * @alias partners.companies.leads.create
-       * @memberOf! partners(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.companyId The ID of the company to contact.
-       * @param {partners(v2).CreateLeadRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create(
-          params: any, options: MethodOptions|BodyResponseCallback<any>,
-          callback?: BodyResponseCallback<any>) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://partners.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/companies/{companyId}/leads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['companyId'],
-          pathParams: ['companyId'],
-          context: self
-        };
-        return createAPIRequest(parameters, callback!);
-      }
+    leads:
+        {
+          /**
+           * partners.companies.leads.create
+           * @desc Creates an advertiser lead for the given company ID.
+           * @alias partners.companies.leads.create
+           * @memberOf! partners(v2)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.companyId The ID of the company to contact.
+           * @param {partners(v2).CreateLeadRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          create(
+              params: any, options: MethodOptions|BodyResponseCallback<any>,
+              callback?: BodyResponseCallback<any>) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options = options || {};
+            const rootUrl =
+                options.rootUrl || 'https://partners.googleapis.com/';
+            const parameters = {
+              options: Object.assign(
+                  {
+                    url: (rootUrl + '/v2/companies/{companyId}/leads')
+                             .replace(/([^:]\/)\/+/g, '$1'),
+                    method: 'POST'
+                  },
+                  options),
+              params,
+              requiredParams: ['companyId'],
+              pathParams: ['companyId'],
+              context: self
+            };
+            createAPIRequest(parameters, callback!);
+          }
 
-    }
+        }
   };
-  self.leads = {
+  leads = {
     /**
      * partners.leads.list
      * @desc Lists advertiser leads for a user's associated company. Should only
@@ -319,11 +326,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.offers = {
+  offers = {
     /**
      * partners.offers.list
      * @desc Lists the Offers available for the current user
@@ -363,7 +370,7 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     },
     history: {
       /**
@@ -411,12 +418,12 @@ function Partners(options: GlobalOptions) {
           pathParams: [],
           context: self
         };
-        return createAPIRequest(parameters, callback!);
+        createAPIRequest(parameters, callback!);
       }
 
     }
   };
-  self.userEvents = {
+  userEvents = {
     /**
      * partners.userEvents.log
      * @desc Logs a user event.
@@ -450,11 +457,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.users = {
+  users = {
     /**
      * partners.users.createCompanyRelation
      * @desc Creates a user's company relation. Affiliates the user to a
@@ -498,7 +505,7 @@ function Partners(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.users.deleteCompanyRelation
         * @desc Deletes a user's company relation. Unaffiliaites the user from a
@@ -541,7 +548,7 @@ function Partners(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.users.get
         * @desc Gets a user.
@@ -583,7 +590,7 @@ function Partners(options: GlobalOptions) {
         pathParams: ['userId'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.users.updateProfile
         * @desc Updates a user's profile. A user can only update their own
@@ -627,11 +634,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.userStates = {
+  userStates = {
     /**
      * partners.userStates.list
      * @desc Lists states for current user.
@@ -671,11 +678,11 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.v2 = {
+  v2 = {
     /**
      * partners.getPartnersstatus
      * @desc Gets Partners Status of the logged in user's agency. Should only be
@@ -717,7 +724,7 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.updateCompanies
         * @desc Update company. Should only be called within the context of an
@@ -760,7 +767,7 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * partners.updateLeads
         * @desc Updates the specified lead.
@@ -802,7 +809,7 @@ function Partners(options: GlobalOptions) {
         pathParams: [],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -1290,5 +1297,3 @@ function Partners(options: GlobalOptions) {
  * @property {string} primaryCountryCode The user&#39;s primary country, an ISO 2-character code.
  * @property {boolean} profilePublic Whether the user&#39;s public profile is visible to anyone with the URL.
  */
-
-export = Partners;

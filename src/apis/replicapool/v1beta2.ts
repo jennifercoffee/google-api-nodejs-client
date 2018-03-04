@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
+import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
-import {createAPIRequest} from '../../lib/apirequest';
+import {BaseAPI, createAPIRequest} from '../../lib/apirequest';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the
 // interim we want to turn on no-implicit-any.
 
 // tslint:disable: no-any
 
+
+let self: Replicapool;
 
 /**
  * Google Compute Engine Instance Group Manager API
@@ -39,10 +42,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  * @variation v1beta2
  * @param {object=} options Options for Replicapool
  */
-function Replicapool(options: GlobalOptions) {
-  const self = this;
-  self._options = options || {};
-  self.instanceGroupManagers = {
+export class Replicapool extends BaseAPI {
+  constructor(options: GlobalOptions, google: GoogleApis) {
+    super(options, google);
+    self = this;
+  }
+  instanceGroupManagers = {
     /**
      * replicapool.instanceGroupManagers.abandonInstances
      * @desc Removes the specified instances from the managed instance group,
@@ -84,7 +89,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.delete
         * @desc Deletes the instance group manager and all instances contained
@@ -102,7 +107,7 @@ function Replicapool(options: GlobalOptions) {
         * @param {callback} callback The callback that handles the response.
         * @return {object} Request object
         */
-    delete (
+    delete(
         params: any, options: MethodOptions|BodyResponseCallback<any>,
         callback?: BodyResponseCallback<any>) {
       if (typeof options === 'function') {
@@ -126,7 +131,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.deleteInstances
         * @desc Deletes the specified instances. The instances are deleted, then
@@ -169,7 +174,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.get
         * @desc Returns the specified Instance Group Manager resource.
@@ -207,7 +212,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.insert
         * @desc Creates an instance group manager, as well as the instance group
@@ -248,7 +253,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.list
         * @desc Retrieves the list of Instance Group Manager resources contained
@@ -290,7 +295,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.recreateInstances
         * @desc Recreates the specified instances. The instances are deleted,
@@ -332,7 +337,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.resize
         * @desc Resizes the managed instance group up or down. If resized up,
@@ -375,7 +380,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.setInstanceTemplate
         * @desc Sets the instance template to use when creating new instances in
@@ -416,7 +421,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.instanceGroupManagers.setTargetPools
         * @desc Modifies the target pools to which all new instances in this
@@ -457,11 +462,11 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['instanceGroupManager', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
-  self.zoneOperations = {
+  zoneOperations = {
     /**
      * replicapool.zoneOperations.get
      * @desc Retrieves the specified zone-specific operation resource.
@@ -499,7 +504,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['operation', 'project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }, /**
         * replicapool.zoneOperations.list
         * @desc Retrieves the list of operation resources contained within the
@@ -541,7 +546,7 @@ function Replicapool(options: GlobalOptions) {
         pathParams: ['project', 'zone'],
         context: self
       };
-      return createAPIRequest(parameters, callback!);
+      createAPIRequest(parameters, callback!);
     }
 
   };
@@ -650,5 +655,3 @@ function Replicapool(options: GlobalOptions) {
  * @property {string} actionType The action to perform when an instance becomes unhealthy. Possible values are RECREATE or REBOOT. RECREATE replaces an unhealthy instance with a new instance that is based on the instance template for this managed instance group. REBOOT performs a soft reboot on an instance. If the instance cannot reboot, the instance performs a hard restart.
  * @property {string} healthCheck The URL for the HealthCheck that signals autohealing.
  */
-
-export = Replicapool;
