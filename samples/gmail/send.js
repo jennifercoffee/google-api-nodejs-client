@@ -18,7 +18,8 @@ const sampleClient = require('../sampleclient');
 
 const gmail = google.gmail({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
+  http2: true
 });
 
 async function runSample () {

@@ -18,7 +18,8 @@ const sampleClient = require('../sampleclient');
 
 const drive = google.drive({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
+  http2: true
 });
 
 async function runSample (query) {

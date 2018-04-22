@@ -11,13 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosPromise} from 'axios';
+import {AxiosPromise, AxiosRequestConfig} from 'axios';
 import {DefaultTransporter} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
 import * as urlTemplate from 'url-template';
 import * as uuid from 'uuid';
+import {h2, MooRequestConfig} from './h2moo';
 
 import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
@@ -231,9 +232,16 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // now void.  This may be a source of confusion for users upgrading from
   // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
-    return authClient.request<T>(mergedOptions);
+    if (mergedOptions.http2) {
+      const authHeaders = await authClient.getRequestMetadata(mergedOptions.url);
+      const mooOpts = Object.assign({}, mergedOptions) as MooRequestConfig;
+      mooOpts.headers = Object.assign(mooOpts.headers, authHeaders.headers);
+      return h2.moo<T>(mooOpts);
+    } else {
+      return authClient.request<T>(mergedOptions as AxiosRequestConfig);
+    }
   } else {
-    return (new DefaultTransporter()).request<T>(mergedOptions);
+    return (new DefaultTransporter()).request<T>(mergedOptions as AxiosRequestConfig);
   }
 }
 

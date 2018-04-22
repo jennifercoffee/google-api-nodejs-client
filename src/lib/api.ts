@@ -22,7 +22,7 @@ import {Endpoint} from './endpoint';
 import {SchemaParameters} from './schema';
 
 export interface APIRequestParams {
-  options: AxiosRequestConfig;
+  options: GlobalOptions;
   params: APIRequestMethodParams;
   requiredParams: string[];
   pathParams: string[];
@@ -44,6 +44,7 @@ export interface APIRequestContext {
 export interface GlobalOptions {
   url?: string;
   method?: string;
+  http2?: boolean;
   baseURL?: string;
   transformRequest?: AxiosTransformer|AxiosTransformer[];
   transformResponse?: AxiosTransformer|AxiosTransformer[];
