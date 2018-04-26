@@ -25,7 +25,7 @@ async function runSample (useHttp2) {
 
   // Obtain a new drive client, making sure you pass along the auth client
   const drive = google.drive({
-    version: 'v2',
+    version: 'v3',
     auth: client,
     http2: useHttp2
   });
@@ -33,9 +33,9 @@ async function runSample (useHttp2) {
   const startTime = Date.now();
   // Make an authorized request to list Drive files.
   const requests = [];
-  //for (let i=0; i<100; i++) {
+  for (let i=0; i<1; i++) {
     requests.push(drive.files.list());
-  //}
+  }
   const res = await Promise.all(requests);
   const endTime = Date.now();
 

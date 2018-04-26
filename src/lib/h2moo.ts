@@ -27,7 +27,21 @@ export interface MooRequestConfig {
   params?: any;
 }
 
-export interface MooResponse<T> {
+export class MooError extends Error {
+  config: MooRequestConfig;
+  code?: number;
+  request?: http2.ClientHttp2Stream;
+  response?: MooResponse;
+  constructor(res: MooResponse) {
+    super();
+    this.response = res;
+    this.config = res.config;
+    this.code = res.status;
+    this.request = res.request;
+  }
+}
+
+export interface MooResponse<T = any> {
   config: MooRequestConfig;
   request: http2.ClientHttp2Stream;
   data: T;
@@ -93,33 +107,33 @@ export class h2Moo {
       let incomingHeaders: http2.IncomingHttpHeaders;
       req
         .on('data', d => {
-          console.log(`*DATA*: ${d}`);
-          data += d;
+          if (d) {
+            data += d;
+          }
         })
         .on('response', (headers, flags) => {
-          console.log(`*RESPONSE*\n`);
-          for (const name in headers) {
-            console.log(`\t${name}: ${headers[name]}`);
-          }
           incomingHeaders = headers;
         })
         .on('error', e => {
-          console.log('*ERROR*:' + e);
           reject(e);
           return;
         })
         .on('end', () => {
-          console.log(`*END*`);
-          console.log(`DATA DATA: ${data}`);
+          const d = data ? JSON.parse(data) : undefined;
+          const status = incomingHeaders ? Number(incomingHeaders[':status']) : undefined;
           const res: MooResponse<T> = {
-            data: JSON.parse(data),
+            data: d,
             config,
             request: req,
             headers: incomingHeaders,
-            status: Number(incomingHeaders[':status']),
+            status,
             statusText: ''
           };
-          resolve(res);
+          if (status && status >= 200 && status < 300) {
+            resolve(res); 
+          } else {
+            reject(new MooError(res));
+          }
           return;
         });
 
@@ -156,6 +170,7 @@ export class h2Moo {
    */
   private _getClient(host: string): SessionData {
     if (!this.sessions[host]) {
+      console.log('Creating new session!');
       const client = http2.connect(`https://${host}`);
       client
         .on('error', e => {
