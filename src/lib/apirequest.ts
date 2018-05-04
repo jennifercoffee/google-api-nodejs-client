@@ -18,12 +18,13 @@ import * as qs from 'qs';
 import * as stream from 'stream';
 import * as urlTemplate from 'url-template';
 import * as uuid from 'uuid';
-import {h2, MooRequestConfig} from './h2moo';
+//import {h2, MooRequestConfig} from './h2moo';
 
 import {APIRequestParams, GlobalOptions} from './api';
 import {SchemaParameters} from './schema';
 
 const maxContentLength = Math.pow(2, 31);
+let h2: any;
 
 // tslint:disable-next-line no-var-requires
 const pkg = require('../../../package.json');
@@ -233,8 +234,11 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
     if (mergedOptions.http2) {
+      if (!h2) {
+        h2 = (await import('./h2moo')).h2;
+      }
       const authHeaders = await authClient.getRequestMetadata(mergedOptions.url);
-      const mooOpts = Object.assign({}, mergedOptions) as MooRequestConfig;
+      const mooOpts = Object.assign({}, mergedOptions) as h2.MooRequestConfig;
       mooOpts.headers = Object.assign(mooOpts.headers, authHeaders.headers);
       return h2.moo<T>(mooOpts);
     } else {

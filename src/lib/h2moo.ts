@@ -158,7 +158,7 @@ export class h2Moo {
       // which will prevent the process from exiting. 
       session.timeoutHandle = setTimeout(() => {
         session.client.close(() => {
-          delete this.sessions[host]
+          delete this.sessions[host];
         });
       }, 500);
 

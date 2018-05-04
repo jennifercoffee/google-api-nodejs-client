@@ -22,7 +22,8 @@ const path = require('path');
 
 const drive = google.drive({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
+  http2: true
 });
 
 async function runSample (fileId) {
