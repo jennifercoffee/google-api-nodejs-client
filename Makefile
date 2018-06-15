@@ -1,10 +1,13 @@
-.PHONY: build build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install publish-docs test test-samples watch
+.PHONY: build build-common build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install publish-docs test test-samples watch
 
 PATH := $(shell npm bin):$(PATH)
 
 build:
 	tsc -v && tsc -p .
 	copyfiles src/shared/README.md src/shared/package.json src/apis/**/README.md src/apis/**/package.json build
+
+build-common:
+	cd src/shared && npm run compile
 
 build-tools:
 	tsc -p tsconfig.tools.json
