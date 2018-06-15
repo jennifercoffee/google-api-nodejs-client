@@ -4,7 +4,7 @@ PATH := $(shell npm bin):$(PATH)
 
 build:
 	tsc -v && tsc -p .
-	copyfiles src/apis/**/README.md src/apis/**/package.json build
+	copyfiles src/shared/README.md src/shared/package.json src/apis/**/README.md src/apis/**/package.json build
 
 build-tools:
 	tsc -p tsconfig.tools.json
